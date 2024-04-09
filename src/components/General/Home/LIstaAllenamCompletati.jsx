@@ -21,7 +21,7 @@ const LIstaAllenamCompletati = () => {
     };
 
     return (
-        <div className="Bg-sfondo altezza-sfondo-extra min-vh-100">
+        <div className="Bg-sfondo  min-vh-100">
             <Container>
                 {AllenamentiCompletatiUtente && AllenamentiCompletatiUtente.length === 0 && (
                     <Row>
@@ -52,9 +52,9 @@ const LIstaAllenamCompletati = () => {
                     {AllenamentiCompletatiUtente &&
                         AllenamentiCompletatiUtente.map((allenamentoComplete, i) => (
                             <Col key={`ciao-${i}`} xs="12" sm="12" md="12" lg="6">
-                                <Card className="rounded rounded-5 my-4 p-5  position-relative custom-h">
+                                <Card className="rounded rounded-5 my-4 p-5  position-relative">
                                     {/* TIMBRO */}
-                                    <div className="box positionStamp h-100">
+                                    <div className="box positionStamp">
                                         <span
                                             style={{
                                                 color:

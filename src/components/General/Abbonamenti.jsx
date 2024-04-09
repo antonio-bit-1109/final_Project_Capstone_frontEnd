@@ -17,7 +17,7 @@ const AbbonamentoTrainer = () => {
     }, [dispatch]);
 
     return (
-        <div className="Bg-sfondo-extra min-vh-100">
+        <div className="Bg-sfondo min-vh-100">
             <Container>
                 <Row>
                     <Col>

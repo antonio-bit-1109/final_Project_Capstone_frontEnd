@@ -16,12 +16,12 @@ body {
     opacity: 1;
 }
 
-.Bg-sfondo-extra {
+/* .Bg-sfondo-extra {
     background-image: url("assets/bg-pagine.jpg");
     background-position: center;
     background-size: cover;
     opacity: 1;
-}
+} */
 
 .altezza-sfondo {
     min-height: 110vh;
@@ -106,10 +106,6 @@ body {
     right: 27px;
     top: 61px;
     z-index: 99;
-}
-
-.custom-h {
-    height: 92%;
 }
 
 .filterGrayScale {
