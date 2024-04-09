@@ -30,15 +30,29 @@ export const PostUtenteRegistrato = (urlPath, objPost) => async (dispatch) => {
         const serverResponse = await response.json();
         console.log(serverResponse);
 
-        await dispatch(setUtenteAppenaRegistrato(serverResponse));
+        // se mi genera il message allora è bad request e non deve proseguire oltre
+        if (serverResponse.message === " Email già presente. Cambia la tua mail.") {
+            toast.info(serverResponse.message);
+            return;
+        } else {
+            toast.info(serverResponse.message);
 
-        await fetchWithAuth(LocalHostPath + "/Email/sendConfermaIscrizione", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(objPost),
-        });
+            await dispatch(setUtenteAppenaRegistrato(serverResponse));
+
+            const ConfermaIscrizione = await fetchWithAuth(LocalHostPath + "/Email/ConfermaIscrizione", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(objPost),
+            });
+
+            if (ConfermaIscrizione.status < 200 || ConfermaIscrizione.status > 300) {
+                toast.error("Errore nell'invio della mail di registrazione!");
+            } else {
+                toast.success("Mail di conferma inviata con successo!");
+            }
+        }
     } catch (error) {
         // Puoi gestire gli errori qui, se necessario
         console.error("Errore nel fetch:", error.message);
@@ -58,14 +72,6 @@ export const CambiaImmagine = (idutente, formData) => async (dispatch) => {
             console.log(response);
             toast.success("Immagine cambiata con successo!");
             dispatch(getDettagliUtente());
-            // dispatch(setTokenUtente(null));
-            // dispatch(setDatiutenteLoggato(null));
-            // dispatch(SvuotaArrayAllenamento());
-            // dispatch(setnomeAllenamentoCreato(""));
-            // dispatch(rimuoviTuttoDalCArrello());
-            // dispatch(setCarrelloOttimizzato([]));
-            // dispatch(rimuoviTuttoDalCArrello());
-            // dispatch(rimuoviTuttiAllenamentiCompletatiUtente());
         }
     } catch (error) {
         console.error("Errore nel fetch:", error.message);

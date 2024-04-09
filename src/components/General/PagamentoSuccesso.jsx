@@ -24,13 +24,14 @@ const PagamentoSuccesso = () => {
         if (statePerCarrelloOttimizzato) {
             dispatch(PostProdottoAcquistato(statePerCarrelloOttimizzato));
             //invio mail per conferma acquisto all utente
-            dispatch(EmailConfermaAcquisto(DatiUtenteLoggato.email, CarrelloOttimizzato));
+            dispatch(EmailConfermaAcquisto(DatiUtenteLoggato.email, statePerCarrelloOttimizzato));
             dispatch(rimuoviTuttoDalCArrello());
             dispatch(setCarrelloOttimizzato([]));
             setTimeout(() => {
                 navigate("/");
             }, 4500);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [statePerCarrelloOttimizzato, dispatch]);
 
     return (
