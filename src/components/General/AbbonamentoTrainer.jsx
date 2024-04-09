@@ -28,8 +28,9 @@ const AbbonamentoTrainer = () => {
                     {ListaTrainers &&
                         ListaTrainers.map((trainer, i) => (
                             <Col xs="12" sm="12" md="6" lg="6" xl="4" xxl="4" key={`ind-${i}`}>
-                                <Card>
+                                <Card className="filterGrayScale custom-h d-flex flex-column">
                                     <Card.Img
+                                        style={{ height: "70%", objectFit: "cover" }}
                                         className="img-thumbnail img-fluid"
                                         src={`${LocalHostPath}/img-trainers/${trainer.immagineProfilo}`}
                                     />

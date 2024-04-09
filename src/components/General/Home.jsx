@@ -13,6 +13,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import GraficoComponent from "./grafico/GraficoComponent";
 import ModaleCambiaImgprofilo from "./Home/ModaleCambiaImgprofilo";
+import ObscureGraphic from "./ObscureGraphic";
 
 const Home = () => {
     const navigate = useNavigate();
@@ -153,7 +154,8 @@ const Home = () => {
                         </Row>
                         <Row>
                             <Col>
-                                <div style={{ height: "50vh" }}>
+                                <div className="position-relative" style={{ height: "50vh" }}>
+                                    <ObscureGraphic TuttiDettagliUtenteLoggato={TuttiDettagliUtenteLoggato} />
                                     <GraficoComponent
                                         durataTotAllenamenti={durataTotAllenamenti}
                                         serieTotAllenamenti={serieTotAllenamenti}
