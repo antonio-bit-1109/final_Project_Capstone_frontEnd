@@ -1,0 +1,117 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+.dropdown-menu[data-bs-popper] {
+    top: 136%;
+    left: -127px;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+}
+
+.Bg-sfondo {
+    background-image: url("assets/bg-pagine.jpg");
+    background-position: center;
+    background-size: cover;
+    opacity: 1;
+}
+
+.Bg-sfondo-extra {
+    background-image: url("assets/bg-pagine.jpg");
+    background-position: center;
+    background-size: cover;
+    opacity: 1;
+}
+
+.altezza-sfondo {
+    min-height: 110vh;
+}
+
+.color {
+    color: #fea800;
+}
+
+.altezza {
+    height: 80vh;
+}
+
+.opaco {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.animation {
+    transition: all 0.5s ease;
+}
+
+.animation:hover {
+    scale: 1.1;
+}
+
+.positionX {
+    position: absolute;
+    right: 19px;
+    top: 12px;
+}
+
+.custom-position {
+    position: absolute;
+    right: 10px;
+    top: 21px;
+}
+
+.customPositioning {
+    position: absolute;
+    right: 180px;
+    top: -23px;
+}
+
+.customWidth {
+    width: 40px;
+}
+
+.box {
+    margin: 0px;
+    width: auto;
+    height: 100px;
+}
+.stamp {
+    transform: rotate(12deg);
+    color: #555;
+    font-size: 3rem;
+    font-weight: 700;
+    border: 0.25rem solid #555;
+    display: inline-block;
+    padding: 0.25rem 1rem;
+    text-transform: uppercase;
+    border-radius: 1rem;
+    font-family: "Courier";
+    -webkit-mask-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/8399/grunge.png");
+    mask-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/8399/grunge.png");
+    -webkit-mask-size: 944px 604px;
+    mask-size: 944px 604px;
+    mix-blend-mode: multiply;
+}
+
+.is-nope {
+    /* color: #d23;
+    border: 0.5rem double #d23; */
+    transform: rotate(19deg);
+    mask-position: 2rem 3rem;
+    -webkit-mask-position: 2rem 3rem;
+    font-size: 2rem;
+}
+
+.positionStamp {
+    position: absolute;
+    right: 27px;
+    top: 61px;
+    z-index: 99;
+}
+
+.custom-h {
+    height: 92%;
+}
+
+/* .Mono-Sfondo {
+    background-color: #333232;
+} */
