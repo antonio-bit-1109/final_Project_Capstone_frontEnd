@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 const AllenamentiDisponibili = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { DatiUtenteLoggato } = useSelector((store) => store.token);
+    const { TuttiDettagliUtenteLoggato } = useSelector((store) => store.utenti);
     const { listaAllenamentiDisponibili } = useSelector((store) => store.allenamenti);
 
     const [show, setShow] = useState(false);
@@ -82,17 +82,6 @@ const AllenamentiDisponibili = () => {
                                                 </Card.Title>
                                                 <div className="d-flex gap-2">
                                                     <Button
-                                                        variant="warning text-light"
-                                                        className="rounded-4 text-warning border-warning fw-bold"
-                                                        onClick={() => {
-                                                            dispatch(setAllenamentoSceltogiaCreato(allenamento));
-                                                            navigate("/svolgiAllenamentoPresoDallaLista");
-                                                        }}
-                                                    >
-                                                        {" "}
-                                                        Svolgi Allenamento
-                                                    </Button>
-                                                    <Button
                                                         variant="light"
                                                         className="rounded-4 text-warning border-warning fw-bold"
                                                         onClick={() => {
@@ -103,7 +92,19 @@ const AllenamentiDisponibili = () => {
                                                         {" "}
                                                         Dettagli Allenamento
                                                     </Button>
-                                                    {DatiUtenteLoggato && DatiUtenteLoggato.ruolo === "admin" ? (
+                                                    <Button
+                                                        variant="warning text-light"
+                                                        className="rounded-4 text-warning border-warning fw-bold"
+                                                        onClick={() => {
+                                                            dispatch(setAllenamentoSceltogiaCreato(allenamento));
+                                                            navigate("/svolgiAllenamentoPresoDallaLista");
+                                                        }}
+                                                    >
+                                                        {" "}
+                                                        Svolgi Allenamento
+                                                    </Button>
+                                                    {TuttiDettagliUtenteLoggato &&
+                                                    TuttiDettagliUtenteLoggato.ruolo === "admin" ? (
                                                         <Button
                                                             variant="light"
                                                             className="rounded-4 text-warning border-warning fw-bold"

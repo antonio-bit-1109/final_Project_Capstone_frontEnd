@@ -35,7 +35,7 @@ const PagamentoSuccesso = () => {
     }, [statePerCarrelloOttimizzato, dispatch]);
 
     return (
-        <div className="Bg-sfondo-extra altezza-sfondo">
+        <div className="Bg-sfondo altezza-sfondo">
             <Container>
                 <Row>
                     <Col>

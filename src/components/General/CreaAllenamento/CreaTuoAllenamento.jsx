@@ -49,7 +49,7 @@ const CreaTuoAllenamento = () => {
     // const navigate = useNavigate();
     const dispatch = useDispatch();
     const ArrayAllenamento = useSelector((store) => store.allenamenti.allenamentoPersonalizzatoUtente);
-    const { DatiUtenteLoggato } = useSelector((store) => store.token);
+    const { TuttiDettagliUtenteLoggato } = useSelector((store) => store.utenti);
     const [showCreateEsercizio, setShowCreateEsercizio] = useState(false);
     const [show, setShow] = useState(false);
     // const [GeneraAllenamentoRandomicoIsClicked, setGeneraAllenamentoRandomicoIsClicked] = useState(false);
@@ -97,13 +97,13 @@ const CreaTuoAllenamento = () => {
     return (
         <div className="Bg-sfondo altezza-sfondo">
             <Container fluid>
-                {DatiUtenteLoggato && (
+                {TuttiDettagliUtenteLoggato && (
                     <Row>
                         <Col xs="12">
                             {" "}
                             <div className="d-flex justify-content-center mt-4">
                                 {" "}
-                                {DatiUtenteLoggato.ruolo === "admin" ? (
+                                {TuttiDettagliUtenteLoggato.ruolo === "admin" ? (
                                     <Button
                                         onClick={handleShowCreateEsercizio}
                                         variant="transparent"

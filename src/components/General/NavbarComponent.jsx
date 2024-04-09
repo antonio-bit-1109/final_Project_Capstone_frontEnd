@@ -1,6 +1,6 @@
 import { Badge, Container, Nav, NavDropdown, Navbar } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { setTokenUtente, setDatiutenteLoggato } from "../../redux/reducers/tokenReducer";
+import { setTokenUtente } from "../../redux/reducers/tokenReducer";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
@@ -9,11 +9,11 @@ import { rimuoviTuttoDalCArrello, setCarrelloOttimizzato } from "../../redux/red
 import { SvuotaArrayAllenamento, setnomeAllenamentoCreato } from "../../redux/reducers/allenamentiReducer";
 import { CartFill } from "react-bootstrap-icons";
 import { rimuoviTuttiAllenamentiCompletatiUtente } from "../../redux/reducers/allenamentiCompletatiReducer";
+import { svuotaTuttiDettagliUtenteLoggato } from "../../redux/reducers/utentiReducer";
 
 function NavbarComponent() {
     const { carrelloProdotti } = useSelector((store) => store.prodotti);
     const TokenRedux = useSelector((store) => store.token.TokenUtente);
-    // const { DatiUtenteLoggato } = useSelector((store) => store.token);
     console.log("console log del token che sta nella navbar", TokenRedux);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -65,7 +65,7 @@ function NavbarComponent() {
                                         <NavDropdown.Item
                                             onClick={() => {
                                                 dispatch(setTokenUtente(null));
-                                                dispatch(setDatiutenteLoggato(null));
+                                                dispatch(svuotaTuttiDettagliUtenteLoggato());
                                                 dispatch(SvuotaArrayAllenamento());
                                                 dispatch(setnomeAllenamentoCreato(""));
                                                 dispatch(rimuoviTuttoDalCArrello());

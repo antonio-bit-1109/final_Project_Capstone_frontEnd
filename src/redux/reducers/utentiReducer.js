@@ -18,9 +18,14 @@ const stateReducerSlice = createSlice({
         setTuttiDettagliUtenteLoggato: (state, action) => {
             state.TuttiDettagliUtenteLoggato = action.payload;
         },
+
+        svuotaTuttiDettagliUtenteLoggato: (state) => {
+            state.TuttiDettagliUtenteLoggato = null;
+        },
     },
 });
 
 // Esporto solo l'azione definita nello slice
-export const { setUtenteAppenaRegistrato, setTuttiDettagliUtenteLoggato } = stateReducerSlice.actions;
+export const { setUtenteAppenaRegistrato, setTuttiDettagliUtenteLoggato, svuotaTuttiDettagliUtenteLoggato } =
+    stateReducerSlice.actions;
 export default stateReducerSlice.reducer;

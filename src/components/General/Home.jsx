@@ -6,7 +6,7 @@ import {
     getDettagliAllenamentiCompletatiUtente,
 } from "../../redux/actions/fetchAllenamentoCompletato";
 import { LocalHostPath } from "../../functions/localHostPath";
-import { PlusCircleFill } from "react-bootstrap-icons";
+import { PlusCircleFill, GearFill } from "react-bootstrap-icons";
 import { Button } from "react-bootstrap";
 import { CambiaImmagine, getDettagliUtente } from "../../redux/actions/fetchUtenti";
 import { useState } from "react";
@@ -14,10 +14,16 @@ import { useNavigate } from "react-router-dom";
 import GraficoComponent from "./grafico/GraficoComponent";
 import ModaleCambiaImgprofilo from "./Home/ModaleCambiaImgprofilo";
 import ObscureGraphic from "./grafico/ObscureGraphic";
+import ModificaDatiUtenteOffCanvas from "./Utente/ModificaDatiUtenteOffCanvas";
 
 const Home = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
+    const [showOffCanvas, setShowOffCanvas] = useState(false);
+
+    const handleCloseCanvas = () => setShowOffCanvas(false);
+    const handleShowCanvas = () => setShowOffCanvas(true);
 
     const { TuttiDettagliUtenteLoggato } = useSelector((store) => store.utenti);
     console.log("TuttiDettagliUtenteLoggato ", TuttiDettagliUtenteLoggato);
@@ -141,6 +147,13 @@ const Home = () => {
                                         src={`${LocalHostPath}/img-utenti/${TuttiDettagliUtenteLoggato.immagineProfilo}`}
                                         alt="immagine profilo "
                                     />
+                                    <Button
+                                        className="d-flex align-items-end"
+                                        onClick={handleShowCanvas}
+                                        variant="transparent"
+                                    >
+                                        <GearFill className="text-light fs-3" />
+                                    </Button>
                                 </div>
                             </Col>
                         </Row>
@@ -257,6 +270,7 @@ const Home = () => {
                     />
                 </div>
             )}
+            <ModificaDatiUtenteOffCanvas showOffCanvas={showOffCanvas} handleCloseCanvas={handleCloseCanvas} />
         </>
     );
 };

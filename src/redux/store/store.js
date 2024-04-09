@@ -16,7 +16,7 @@ import abbonamentiReducer from "../reducers/abbonamentiReducer";
 const persistConfig = {
     key: "root",
     storage,
-    whitelist: ["token", "prodotti"], //aggiungi il reducer che vuoi venga mantenuto
+    whitelist: ["token", "prodotti", "utenti"], //aggiungi il reducer che vuoi venga mantenuto
     transforms: [
         expireReducer("token", {
             expireSeconds: 7 * 24 * 60 * 60, // 7 days
@@ -26,6 +26,11 @@ const persistConfig = {
         expireReducer("prodotti", {
             expireSeconds: 60 * 60 * 24, // 1 day
             expiredState: { CarrelloOttimizzato: [], carrelloProdotti: [] },
+            autoExpire: true,
+        }),
+        expireReducer("utenti", {
+            expireSeconds: 7 * 24 * 60 * 60, // 1 day
+            expiredState: { TuttiDettagliUtenteLoggato: null },
             autoExpire: true,
         }),
     ],

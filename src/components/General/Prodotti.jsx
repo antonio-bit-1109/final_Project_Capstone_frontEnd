@@ -13,7 +13,7 @@ const Prodotti = () => {
     const [show, setShow] = useState(false);
     const [ImmagineProdotto, setImmagineProdotto] = useState(null);
     const { listaProdotti } = useSelector((store) => store.prodotti);
-    const { DatiUtenteLoggato } = useSelector((store) => store.token);
+    const { TuttiDettagliUtenteLoggato } = useSelector((store) => store.utenti);
 
     const {
         register,
@@ -49,13 +49,13 @@ const Prodotti = () => {
         <div className="Bg-sfondo min-vh-100">
             <Container>
                 <Row>
-                    <Col xs={DatiUtenteLoggato && DatiUtenteLoggato.ruolo !== "admin" ? "12" : "10"}>
+                    <Col xs={TuttiDettagliUtenteLoggato && TuttiDettagliUtenteLoggato.ruolo !== "admin" ? "12" : "10"}>
                         {" "}
                         <div className="h-100 d-flex align-items-center justify-content-center">
                             <h1 className="text-light display-5 my-3 text-center">Prodotti Disponibili </h1>{" "}
                         </div>
                     </Col>
-                    {DatiUtenteLoggato && DatiUtenteLoggato.ruolo === "admin" ? (
+                    {TuttiDettagliUtenteLoggato && TuttiDettagliUtenteLoggato.ruolo === "admin" ? (
                         <Col xs="2">
                             {" "}
                             <div className="d-flex flex-column align-items-center my-3">
@@ -74,9 +74,9 @@ const Prodotti = () => {
                 <Row className="justify-content-center">
                     {listaProdotti &&
                         listaProdotti.map((prodotto, index) => (
-                            <Col key={index} xs="10" md="8" lg="6" xl="4">
+                            <Col key={index} xs="12" md="8" lg="6" xl="4">
                                 <Card className="rounded rounded-5 my-4 p-3 position-relative shadow-lg custom-h">
-                                    {DatiUtenteLoggato && DatiUtenteLoggato.ruolo === "admin" ? (
+                                    {TuttiDettagliUtenteLoggato && TuttiDettagliUtenteLoggato.ruolo === "admin" ? (
                                         <Button
                                             onClick={() => eraseProduct(prodotto.idProdotto)}
                                             className="custom-position"
