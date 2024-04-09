@@ -17,7 +17,7 @@ const AbbonamentoTrainer = () => {
     }, [dispatch]);
 
     return (
-        <div className="Bg-sfondo-extra vh-100">
+        <div className="Bg-sfondo-extra min-vh-100">
             <Container>
                 <Row>
                     <Col>
@@ -27,11 +27,11 @@ const AbbonamentoTrainer = () => {
                 <Row>
                     {ListaAbbonamenti &&
                         ListaAbbonamenti.map((abbon, i) => (
-                            <Col xs="12" sm="12" md="6" lg="6" xl="4" xxl="4" key={`ind-${i}`}>
-                                <Card className="filterGrayScale custom-h d-flex flex-column">
+                            <Col xs="12" sm="12" md="12" lg="12" xl="4" xxl="4" key={`ind-${i}`}>
+                                <Card className="filterGrayScale d-flex flex-column custom-h">
                                     <Card.Img
                                         style={{ height: "70%", objectFit: "cover" }}
-                                        className="img-thumbnail img-fluid"
+                                        className="img-thumbnail"
                                         src={`${LocalHostPath}/img-trainers/${abbon.immagineAbbonamento}`}
                                     />
                                     <Card.Body>
