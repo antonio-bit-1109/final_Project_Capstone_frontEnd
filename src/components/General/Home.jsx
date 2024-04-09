@@ -109,7 +109,7 @@ const Home = () => {
                                 <div>
                                     <div>
                                         <h3 className="text-light">
-                                            Abbonamento Trainer :{" "}
+                                            Abbonamento :{" "}
                                             <span
                                                 style={{
                                                     color: TuttiDettagliUtenteLoggato.idTrainer ? "#13D227" : "red",
