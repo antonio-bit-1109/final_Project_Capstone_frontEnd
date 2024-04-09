@@ -60,7 +60,7 @@ function NavbarComponent() {
                                     </Badge>
                                     <CartFill fontSize={25} />
                                 </Nav.Link>
-                                <NavDropdown id="basic-nav-dropdown">
+                                <NavDropdown className=" ms-4 ms-lg-1" id="basic-nav-dropdown">
                                     {TokenRedux !== null ? (
                                         <NavDropdown.Item
                                             onClick={() => {
