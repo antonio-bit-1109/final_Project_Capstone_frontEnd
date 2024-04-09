@@ -9,20 +9,15 @@ import ToasterComponent from "./components/General/ToasterComponent";
 import Login from "./components/General/Login";
 import NavbarComponent from "./components/General/NavbarComponent";
 import Prodotti from "./components/General/Prodotti";
-// import TabataTimer from "./components/General/TabataTimer";
-// import Abbonamenti from "./components/General/Abbonamenti";
 import AllenamentiDisponibili from "./components/General/AllenamentiDisponibili";
-// import Trainers from "./components/General/Trainers";
-// import { } from "./components/General/AbbonamentoTrainer"
 import CreaTuoAllenamento from "./components/General/CreaAllenamento/CreaTuoAllenamento";
 import Carrello from "./components/General/Carrello";
 import PagamentoSuccesso from "./components/General/PagamentoSuccesso";
 import PagamentoFallito from "./components/General/PagamentoFallito";
-// import SvolgiAllenamentoAppenaCreato from "./components/SvolgiAllenamentoAppenaCreato";
 import SvolgiAllenamentoPresoDallaLista from "./components/General/SvolgiAllenamentoPresoDallaLista";
 import ImpacchettaAllenamento from "./components/General/CreaAllenamento/ImpacchettaAllenamento";
 import LIstaAllenamCompletati from "./components/General/Home/LIstaAllenamCompletati";
-import AbbonamentoTrainer from "./components/General/AbbonamentoTrainer";
+import Abbonamenti from "./components/General/Abbonamenti";
 
 function App() {
     return (
@@ -76,12 +71,12 @@ function App() {
                         }
                     />
                     <Route
-                        path="/Abbonamentotrainer"
+                        path="/Abbonamenti"
                         element={
                             <>
                                 {" "}
                                 <NavbarComponent />
-                                <AbbonamentoTrainer />
+                                <Abbonamenti />
                             </>
                         }
                     />

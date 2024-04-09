@@ -17,7 +17,7 @@ const AbbonamentoTrainer = () => {
     }, [dispatch]);
 
     return (
-        <>
+        <div className="Bg-sfondo-extra vh-100">
             <Container>
                 <Row>
                     <Col>
@@ -35,18 +35,18 @@ const AbbonamentoTrainer = () => {
                                         src={`${LocalHostPath}/img-trainers/${trainer.immagineProfilo}`}
                                     />
                                     <Card.Body>
-                                        <Card.Title>
-                                            {trainer.nome} {trainer.cognome}
-                                        </Card.Title>
-                                        <Card.Text>{trainer.qualifica}</Card.Text>
-                                        <Button variant="primary">SottoScrivi Abbonamento </Button>
+                                        <Card.Title>{trainer.nome}</Card.Title>
+                                        <Card.Text>{trainer.cognome}</Card.Text>
+                                        <Button variant="warning " className="rounded-4 text-light fw-bold">
+                                            Sottoscrivi Abbonamento{" "}
+                                        </Button>
                                     </Card.Body>
                                 </Card>
                             </Col>
                         ))}
                 </Row>
             </Container>
-        </>
+        </div>
     );
 };
 

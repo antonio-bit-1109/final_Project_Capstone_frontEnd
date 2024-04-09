@@ -9,7 +9,7 @@ const ObscureGraphic = ({ TuttiDettagliUtenteLoggato }) => {
             <div className="d-flex  justify-content-center h-100 align-items-center w-75 m-auto">
                 {" "}
                 <h3 className="text-light display-5 fw-semibold">
-                    Per visualizzare dettagli Aggiuntivi, Sottoscrivi un abbonamento con uno dei nostri trainer.
+                    Per visualizzare dettagli Aggiuntivi, Sottoscrivi un abbonamento.
                 </h3>{" "}
             </div>
         </div>

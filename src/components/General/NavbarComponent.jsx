@@ -49,8 +49,8 @@ function NavbarComponent() {
                                 <Nav.Link as={NavLink} to={"/prodotti"}>
                                     Sezione Prodotti{" "}
                                 </Nav.Link>
-                                <Nav.Link as={NavLink} to={"/Abbonamentotrainer"}>
-                                    Abbonamento Trainer{" "}
+                                <Nav.Link as={NavLink} to={"/Abbonamenti"}>
+                                    Abbonamenti
                                 </Nav.Link>
                             </div>
                             <div className="position-relative customWidth d-flex">
