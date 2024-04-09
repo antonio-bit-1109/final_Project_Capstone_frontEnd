@@ -2,7 +2,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    ListaTrainers: null,
+    ListaAbbonamenti: null,
 };
 
 const stateReducerSlice = createSlice({
@@ -10,12 +10,12 @@ const stateReducerSlice = createSlice({
     initialState,
     reducers: {
         // Azione definita nello slice
-        SetListaTrainers: (state, action) => {
-            state.ListaTrainers = action.payload;
+        SetListaAbbonamenti: (state, action) => {
+            state.ListaAbbonamenti = action.payload;
         },
     },
 });
 
 // Esporto solo l'azione definita nello slice
-export const { SetListaTrainers } = stateReducerSlice.actions;
+export const { SetListaAbbonamenti } = stateReducerSlice.actions;
 export default stateReducerSlice.reducer;

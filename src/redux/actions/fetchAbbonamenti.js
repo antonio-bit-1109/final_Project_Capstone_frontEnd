@@ -1,10 +1,10 @@
 import { fetchWithAuth } from "../../functions/interceptor";
 import { LocalHostPath } from "../../functions/localHostPath";
-import { SetListaTrainers } from "../reducers/trainersReducer";
+import { SetListaAbbonamenti } from "../reducers/abbonamentiReducer";
 
-export const GetTrainers = () => async (dispatch) => {
+export const GetAbbonamenti = () => async (dispatch) => {
     try {
-        const request = await fetchWithAuth(LocalHostPath + "/AbbonamentoTrainer/getTrainers", {
+        const request = await fetchWithAuth(LocalHostPath + "/Abbonamenti/getAbbonamenti", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -14,7 +14,7 @@ export const GetTrainers = () => async (dispatch) => {
         const serverResponse = await request.json();
         console.log(serverResponse);
 
-        dispatch(SetListaTrainers(serverResponse));
+        dispatch(SetListaAbbonamenti(serverResponse));
     } catch (error) {
         console.error("Errore nel fetch:", error.message);
     }

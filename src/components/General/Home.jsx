@@ -112,12 +112,12 @@ const Home = () => {
                                             Abbonamento :{" "}
                                             <span
                                                 style={{
-                                                    color: TuttiDettagliUtenteLoggato.idTrainer ? "#13D227" : "red",
+                                                    color: TuttiDettagliUtenteLoggato.idAbbonamento ? "#13D227" : "red",
                                                     fontSize: "2.2rem",
                                                 }}
                                             >
                                                 <span style={{ fontWeight: "bold" }}>
-                                                    {TuttiDettagliUtenteLoggato.idTrainer ? "Attivo" : "Non attivo"}
+                                                    {TuttiDettagliUtenteLoggato.idAbbonamento ? "Attivo" : "Non attivo"}
                                                 </span>
                                             </span>
                                         </h3>
