@@ -13,7 +13,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import GraficoComponent from "./grafico/GraficoComponent";
 import ModaleCambiaImgprofilo from "./Home/ModaleCambiaImgprofilo";
-import ObscureGraphic from "./ObscureGraphic";
+import ObscureGraphic from "./grafico/ObscureGraphic";
 
 const Home = () => {
     const navigate = useNavigate();
