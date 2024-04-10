@@ -21,22 +21,29 @@ const AbbonamentoTrainer = () => {
             <Container>
                 <Row>
                     <Col>
-                        <div> Abbonamenti Disponibili:</div>
+                        <div>
+                            {" "}
+                            <h3 className="display-4 text-light">Abbonamenti Disponibili:</h3>
+                        </div>
                     </Col>
                 </Row>
-                <Row>
+                <Row className="justify-content-center">
                     {ListaAbbonamenti &&
                         ListaAbbonamenti.map((abbon, i) => (
-                            <Col xs="12" sm="12" md="12" lg="12" xl="4" xxl="4" key={`ind-${i}`}>
-                                <Card className="filterGrayScale d-flex flex-column custom-h">
+                            <Col xs="12" sm="12" md="10" lg="8" xl="4" xxl="4" key={`ind-${i}`}>
+                                <Card className="filterGrayScale d-flex flex-column custom-h my-4">
                                     <Card.Img
-                                        style={{ height: "70%", objectFit: "cover" }}
+                                        style={{ maxHeight: "300px", objectFit: "cover", objectPosition: "top" }}
                                         className="img-thumbnail"
                                         src={`${LocalHostPath}/img-trainers/${abbon.immagineAbbonamento}`}
                                     />
                                     <Card.Body>
-                                        <Card.Title>{abbon.nomeAbbonamento}</Card.Title>
+                                        <Card.Title className="fs-3">{abbon.nomeAbbonamento}</Card.Title>
                                         <Card.Text>{abbon.descrizioneAbbonamento}</Card.Text>
+                                        <Card.Text className="fw-semibold display-4 ms-2">
+                                            {abbon.prezzoAbbonamento} €
+                                        </Card.Text>
+
                                         <Button variant="warning " className="rounded-4 text-light fw-bold">
                                             Sottoscrivi Abbonamento{" "}
                                         </Button>
