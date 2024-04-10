@@ -36,10 +36,13 @@ const Home = () => {
     const [serieTotAllenamenti, setSerieTotAllenamenti] = useState(0);
     const [ripetizioniTotAllenamenti, setRipetizioniTotAllenamenti] = useState(0);
     const [allenamentiCompletati, setAllenamentiCompletati] = useState(0);
-    console.log(durataTotAllenamenti, serieTotAllenamenti, ripetizioniTotAllenamenti, allenamentiCompletati);
 
     useEffect(() => {
         dispatch(getDettagliUtente());
+
+        if (TuttiDettagliUtenteLoggato.stripeCustomerId !== null) {
+            console.log("questo utente ha un customer Id");
+        }
     }, [dispatch]);
 
     useEffect(() => {
