@@ -39,10 +39,6 @@ const Home = () => {
 
     useEffect(() => {
         dispatch(getDettagliUtente());
-
-        if (TuttiDettagliUtenteLoggato.stripeCustomerId !== null) {
-            console.log("questo utente ha un customer Id");
-        }
     }, [dispatch]);
 
     useEffect(() => {
