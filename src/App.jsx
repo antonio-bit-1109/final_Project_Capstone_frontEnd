@@ -18,6 +18,7 @@ import SvolgiAllenamentoPresoDallaLista from "./components/General/SvolgiAllenam
 import ImpacchettaAllenamento from "./components/General/CreaAllenamento/ImpacchettaAllenamento";
 import LIstaAllenamCompletati from "./components/General/Home/LIstaAllenamCompletati";
 import Abbonamenti from "./components/General/Abbonamenti";
+import ModificaDatiUtente from "./components/General/Utente/ModificaDatiUtente";
 // import ModificaDatiUtente from "./components/General/Utente/ModificaDatiUtente";
 
 function App() {
@@ -50,16 +51,17 @@ function App() {
                                 </>
                             }
                         />
-                        {/* <Route
+                        <Route
                             path="ModificaDatiUtente"
                             element={
                                 <>
                                     {" "}
                                     <NavbarComponent />
+                                    {/* <ModificaDatiUtente /> */}
                                     <ModificaDatiUtente />
                                 </>
                             }
-                        /> */}
+                        />
                     </Route>
                     <Route
                         path="/prodotti"

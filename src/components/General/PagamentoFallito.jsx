@@ -11,8 +11,10 @@ const PagamentoFallito = () => {
     console.log("carrello ottimizzato", CarrelloOttimizzato);
 
     useEffect(() => {
-        dispatch(rimuoviTuttoDalCArrello());
-        dispatch(setCarrelloOttimizzato([]));
+        if (CarrelloOttimizzato.length !== 0) {
+            dispatch(rimuoviTuttoDalCArrello());
+            dispatch(setCarrelloOttimizzato([]));
+        }
         setTimeout(() => {
             navigate("/");
         }, 4500);

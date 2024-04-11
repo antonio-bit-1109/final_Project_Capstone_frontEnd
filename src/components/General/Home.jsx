@@ -14,16 +14,16 @@ import { useNavigate } from "react-router-dom";
 import GraficoComponent from "./grafico/GraficoComponent";
 import ModaleCambiaImgprofilo from "./Home/ModaleCambiaImgprofilo";
 import ObscureGraphic from "./grafico/ObscureGraphic";
-import ModificaDatiUtenteOffCanvas from "./Utente/ModificaDatiUtenteOffCanvas";
+// import ModificaDatiUtenteOffCanvas from "./Utente/ModificaDatiUtenteOffCanvas";
 
 const Home = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const [showOffCanvas, setShowOffCanvas] = useState(false);
+    // const [showOffCanvas, setShowOffCanvas] = useState(false);
 
-    const handleCloseCanvas = () => setShowOffCanvas(false);
-    const handleShowCanvas = () => setShowOffCanvas(true);
+    // const handleCloseCanvas = () => setShowOffCanvas(false);
+    // const handleShowCanvas = () => setShowOffCanvas(true);
 
     const { TuttiDettagliUtenteLoggato } = useSelector((store) => store.utenti);
     console.log("TuttiDettagliUtenteLoggato ", TuttiDettagliUtenteLoggato);
@@ -148,7 +148,7 @@ const Home = () => {
                                     />
                                     <Button
                                         className="d-flex align-items-end"
-                                        onClick={handleShowCanvas}
+                                        onClick={() => navigate("/ModificaDatiUtente")}
                                         variant="transparent"
                                     >
                                         <GearFill className="text-light fs-3" />
@@ -269,7 +269,7 @@ const Home = () => {
                     />
                 </div>
             )}
-            <ModificaDatiUtenteOffCanvas showOffCanvas={showOffCanvas} handleCloseCanvas={handleCloseCanvas} />
+            {/* <ModificaDatiUtenteOffCanvas showOffCanvas={showOffCanvas} handleCloseCanvas={handleCloseCanvas} /> */}
         </>
     );
 };

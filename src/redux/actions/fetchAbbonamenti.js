@@ -6,7 +6,7 @@ const stripePromise = loadStripe(
     "pk_test_51OvOuXF8RKd4FcyTpcXChaAdtZ1fn5O7yY9BDTcEQcY5tlHXiYyc96EQDtnvrJNGTX3EArS1zMT0U03sL5VJSZGf00MjrfcJkf"
 );
 
-export const CreaAbbonamento = (objData) => async (dispatch) => {
+export const CreaAbbonamento = (objData) => async () => {
     try {
         const sendData = await fetchWithAuth(LocalHostPath + "/Abbonamenti/CreazionePianoAbbonamento", {
             method: "POST",

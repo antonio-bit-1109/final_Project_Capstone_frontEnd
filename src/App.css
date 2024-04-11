@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap");
 
 .dropdown-menu[data-bs-popper] {
     top: 136%;
@@ -6,7 +8,10 @@
 }
 
 body {
-    font-family: "Montserrat", sans-serif;
+    /* font-family: "Montserrat", sans-serif; */
+    /* font-family: "Pixelify Sans", sans-serif; */
+    font-family: "Rajdhani", sans-serif;
+    font-weight: 700;
 }
 
 .Bg-sfondo {
@@ -15,13 +20,6 @@ body {
     background-size: cover;
     opacity: 1;
 }
-
-/* .Bg-sfondo-extra {
-    background-image: url("assets/bg-pagine.jpg");
-    background-position: center;
-    background-size: cover;
-    opacity: 1;
-} */
 
 .altezza-sfondo {
     min-height: 110vh;
@@ -106,6 +104,18 @@ body {
     right: 27px;
     top: 61px;
     z-index: 99;
+    animation: slide-in-bck-top 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@keyframes slide-in-bck-top {
+    0% {
+        transform: translateZ(700px) translateY(-300px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateZ(0) translateY(0);
+        opacity: 1;
+    }
 }
 
 .filterGrayScale {

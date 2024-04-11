@@ -71,7 +71,7 @@ const AllenamentiDisponibili = () => {
                 ) : (
                     <Row className="justify-content-center ">
                         {listaAllenamentiDisponibili.map((allenamento, index) => (
-                            <Col xs="12" sm="12" md="10" lg="10" xxl="10" key={`index-n-${index}`}>
+                            <Col xs="12" sm="12" md="8" lg="8" xxl="6" key={`index-n-${index}`}>
                                 <Card className="my-3 rounded-5 animation shadow-lg">
                                     <Card.Body>
                                         <div className="d-xl-flex justify-content-xl-center gap-4">
@@ -119,7 +119,7 @@ const AllenamentiDisponibili = () => {
                                                         </Button>
                                                     ) : null}
                                                 </div>
-                                                <div>
+                                                <div className="d-flex flex-column justify-content-center my-2">
                                                     Difficoltà:{" "}
                                                     <span
                                                         className="fw-semibold fs-5"
