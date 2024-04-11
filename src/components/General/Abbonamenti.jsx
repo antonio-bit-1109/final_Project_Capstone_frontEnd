@@ -21,6 +21,7 @@ const AbbonamentoTrainer = () => {
             descrizioneAbbonamento:
                 "sottoscrivendo questo abbonamento avrai diritto a 10 giorni di specifiche ulteriori sui tuoi allenamenti",
             prezzoAbbonamento: 10,
+            durataAbbonamento: 10,
         },
         {
             nomeAbbonamento: "Abbonamento Advanced",
@@ -28,6 +29,7 @@ const AbbonamentoTrainer = () => {
             descrizioneAbbonamento:
                 "sottoscrivendo questo abbonamento avrai diritto a 15 giorni di specifiche ulteriori sui tuoi allenamenti",
             prezzoAbbonamento: 15,
+            durataAbbonamento: 15,
         },
         {
             nomeAbbonamento: "Abbonamento Ultimate",
@@ -35,6 +37,7 @@ const AbbonamentoTrainer = () => {
             descrizioneAbbonamento:
                 "sottoscrivendo questo abbonamento avrai diritto ad un mese di specifiche ulteriori sui tuoi allenamenti",
             prezzoAbbonamento: 20,
+            durataAbbonamento: 30,
         },
     ];
     console.log("ListaAbbonamentiFake", ListaAbbonamentiFake);
@@ -43,6 +46,7 @@ const AbbonamentoTrainer = () => {
         nomeAbbonamento: null,
         description: null,
         price: null,
+        durataAbbonamento: null,
     });
 
     const subscribeSubscription = (abbon) => {
@@ -50,6 +54,7 @@ const AbbonamentoTrainer = () => {
             nomeAbbonamento: abbon.nomeAbbonamento,
             description: abbon.descrizioneAbbonamento,
             price: abbon.prezzoAbbonamento,
+            durataAbbonamento: abbon.durataAbbonamento,
         });
     };
 

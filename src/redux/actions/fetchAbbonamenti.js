@@ -1,6 +1,5 @@
 import { fetchWithAuth } from "../../functions/interceptor";
 import { LocalHostPath } from "../../functions/localHostPath";
-import { SetUltimoAbbonamentoCreato } from "../reducers/abbonamentiReducer";
 import { loadStripe } from "@stripe/stripe-js";
 
 const stripePromise = loadStripe(
@@ -18,9 +17,9 @@ export const CreaAbbonamento = (objData) => async (dispatch) => {
         });
 
         const serverResponse = await sendData.json();
-        console.log(serverResponse);
+        console.log(serverResponse.idAbbonamento);
 
-        dispatch(SetUltimoAbbonamentoCreato(serverResponse));
+        // dispatch(SetUltimoAbbonamentoCreato(serverResponse));
 
         const SessionePagamento = await fetchWithAuth(
             LocalHostPath + `/Abbonamenti/CreaSessionPagamento/${serverResponse.idAbbonamento}`,
@@ -37,7 +36,7 @@ export const CreaAbbonamento = (objData) => async (dispatch) => {
 
         const stripe = await stripePromise;
         await stripe.redirectToCheckout({
-            sessionId: ReturnedSessionID.id,
+            sessionId: ReturnedSessionID.sessionId,
         });
 
         console.log(Response);
