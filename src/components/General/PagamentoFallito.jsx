@@ -18,6 +18,7 @@ const PagamentoFallito = () => {
         setTimeout(() => {
             navigate("/");
         }, 4500);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dispatch]);
 
     return (
