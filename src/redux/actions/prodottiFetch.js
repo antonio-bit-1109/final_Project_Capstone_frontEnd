@@ -33,7 +33,6 @@ export const PostProdottoAcquistato = (objbody) => async () => {
             headers: {
                 "Content-Type": "application/json",
             },
-            // body: JSON.stringify({ carrello: { Prodotti: objbody } }),
             body: JSON.stringify({ Prodotti: objbody }),
         });
 
