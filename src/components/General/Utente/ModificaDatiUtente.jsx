@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row, Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 
 // eslint-disable-next-line react/prop-types
@@ -41,6 +41,7 @@ const ModificaDatiUtente = () => {
                         </Form>
                     </Col>
                     <div>INSERISCI BOTTONE PER ANNULLARE ABBONAMENTO </div>
+                    <Button> Annulla Abbonamento </Button>
                 </Row>
             </Container>{" "}
             {/* <Offcanvas
