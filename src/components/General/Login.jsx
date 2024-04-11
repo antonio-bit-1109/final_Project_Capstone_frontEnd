@@ -92,6 +92,7 @@ function Login() {
                 width: "100%",
                 backgroundImage: `url(${sfondo})`,
                 backgroundSize: "cover",
+                backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
             }}
         >

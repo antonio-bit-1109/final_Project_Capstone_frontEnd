@@ -1,6 +1,6 @@
 import { Badge, Container, Nav, NavDropdown, Navbar } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { setTokenUtente } from "../../redux/reducers/tokenReducer";
+import { setDatiutenteLoggato, setTokenUtente } from "../../redux/reducers/tokenReducer";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
@@ -65,6 +65,7 @@ function NavbarComponent() {
                                         <NavDropdown.Item
                                             onClick={() => {
                                                 dispatch(setTokenUtente(null));
+                                                dispatch(setDatiutenteLoggato(null));
                                                 dispatch(svuotaTuttiDettagliUtenteLoggato());
                                                 dispatch(SvuotaArrayAllenamento());
                                                 dispatch(setnomeAllenamentoCreato(""));

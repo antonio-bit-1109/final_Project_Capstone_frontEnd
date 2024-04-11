@@ -40,11 +40,11 @@ body {
 }
 
 .animation {
-    transition: all 0.5s ease;
+    transition: all 0.3s ease;
 }
 
 .animation:hover {
-    scale: 1.1;
+    scale: 1.02;
 }
 
 .positionX {
