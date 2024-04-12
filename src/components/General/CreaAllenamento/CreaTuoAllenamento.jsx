@@ -15,12 +15,12 @@ import { GetEsercizi } from "../../../redux/actions/fetchEsercizi";
 import { LocalHostPath } from "../../../functions/localHostPath";
 import workout from "../../../assets/workout.svg";
 import Dumbell from "../../../assets/dumbbell.svg";
-import IconaPetto from "../../../assets/immagini-parte-corpo/icon-petto.png";
+import IconaPetto from "../../../assets/immagini-parte-corpo/petto-icon-removebg.png";
 import IconaSpalle from "../../../assets/immagini-parte-corpo/icon-spalle.png";
 import IconaGambe from "../../../assets/immagini-parte-corpo/icon-gambe.png";
 import IconaBicipiti from "../../../assets/immagini-parte-corpo/icon-bicipiti.png";
 import IconaTricipiti from "../../../assets/immagini-parte-corpo/icon-tricipiti.png";
-import IconaFullBody from "../../../assets/immagini-parte-corpo/fullbody.png";
+import IconaFullBody from "../../../assets/immagini-parte-corpo/fullbody1.png";
 
 const CreaTuoAllenamento = () => {
     const { listaEsercizi } = useSelector((store) => store.esercizi);
@@ -33,6 +33,7 @@ const CreaTuoAllenamento = () => {
     const [showImage, setShowImage] = useState(false);
     const [immagineEsercizio, setImmagineEsercizio] = useState("");
     const ArrayIcone = [IconaPetto, IconaSpalle, IconaGambe, IconaBicipiti, IconaTricipiti, IconaFullBody];
+    const ValoriArray = ["petto", "spalle", "gambe", "bicipiti", "tricipiti", "fullbody"];
 
     const handleCloseImage = () => setShowImage(false);
     const handleShowImage = () => setShowImage(true);
@@ -149,13 +150,20 @@ const CreaTuoAllenamento = () => {
                     {/* sezione scelta esercizi */}
                     <Col xs="10" md="10" lg="6" xl="6" xxl="5">
                         <p className="m-0 text-light">Filtra Esercizi per Parte Del corpo:</p>
-                        <div className="my-2">
+                        <div className="d-flex">
                             {ArrayIcone.map((icon, i) => (
-                                <Card key={`card-icon${i}`}>
-                                    <Card.Body>
-                                        <img src={icon} alt="icon-muscolo" />
-                                    </Card.Body>
-                                </Card>
+                                <Button
+                                    onClick={() => setParteCorpo(ValoriArray[i])}
+                                    variant="transparent"
+                                    className="p-0 enlight"
+                                    key={`card-icon${i}`}
+                                >
+                                    <Card bg="transparent" style={{ height: "100px" }}>
+                                        <Card.Body>
+                                            <img src={icon} alt="icon-muscolo" />
+                                        </Card.Body>
+                                    </Card>
+                                </Button>
                             ))}
 
                             {/* <Form.Select
