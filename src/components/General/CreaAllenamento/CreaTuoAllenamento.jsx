@@ -15,7 +15,12 @@ import { GetEsercizi } from "../../../redux/actions/fetchEsercizi";
 import { LocalHostPath } from "../../../functions/localHostPath";
 import workout from "../../../assets/workout.svg";
 import Dumbell from "../../../assets/dumbbell.svg";
-// import { setlistaEsercizi } from "../../../redux/reducers/eserciziReducer";
+import IconaPetto from "../../../assets/immagini-parte-corpo/icon-petto.png";
+import IconaSpalle from "../../../assets/immagini-parte-corpo/icon-spalle.png";
+import IconaGambe from "../../../assets/immagini-parte-corpo/icon-gambe.png";
+import IconaBicipiti from "../../../assets/immagini-parte-corpo/icon-bicipiti.png";
+import IconaTricipiti from "../../../assets/immagini-parte-corpo/icon-tricipiti.png";
+import IconaFullBody from "../../../assets/immagini-parte-corpo/fullbody.png";
 
 const CreaTuoAllenamento = () => {
     const { listaEsercizi } = useSelector((store) => store.esercizi);
@@ -27,6 +32,7 @@ const CreaTuoAllenamento = () => {
     const [checkCardio, setCheckCardio] = useState(false);
     const [showImage, setShowImage] = useState(false);
     const [immagineEsercizio, setImmagineEsercizio] = useState("");
+    const ArrayIcone = [IconaPetto, IconaSpalle, IconaGambe, IconaBicipiti, IconaTricipiti, IconaFullBody];
 
     const handleCloseImage = () => setShowImage(false);
     const handleShowImage = () => setShowImage(true);
@@ -142,9 +148,17 @@ const CreaTuoAllenamento = () => {
                 <Row className="justify-content-center">
                     {/* sezione scelta esercizi */}
                     <Col xs="10" md="10" lg="6" xl="6" xxl="5">
+                        <p className="m-0 text-light">Filtra Esercizi per Parte Del corpo:</p>
                         <div className="my-2">
-                            <p className="m-0 text-light">Filtra Esercizi per Parte Del corpo:</p>
-                            <Form.Select
+                            {ArrayIcone.map((icon, i) => (
+                                <Card key={`card-icon${i}`}>
+                                    <Card.Body>
+                                        <img src={icon} alt="icon-muscolo" />
+                                    </Card.Body>
+                                </Card>
+                            ))}
+
+                            {/* <Form.Select
                                 value={parteCorpo}
                                 onChange={(e) => setParteCorpo(e.target.value === "null" ? null : e.target.value)}
                                 aria-label="Default select example"
@@ -157,7 +171,7 @@ const CreaTuoAllenamento = () => {
                                 <option value="spalle">Spalle</option>
                                 <option value="tricipiti">Tricipiti</option>
                                 <option value="fullbody">Full Body</option>
-                            </Form.Select>
+                            </Form.Select> */}
                         </div>
                         <div className="my-2">
                             <p className="m-0 text-light">Filtra esercizi per difficoltà: </p>

@@ -3,9 +3,12 @@ import { Col, Container, Row, Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import { useDispatch } from "react-redux";
 import { annullaAbbonamento } from "../../../redux/actions/fetchAbbonamenti";
+import { useNavigate } from "react-router-dom";
+import { ArrowLeft } from "react-bootstrap-icons";
 
 const ModificaDatiUtente = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleClick = () => {
         dispatch(annullaAbbonamento());
@@ -15,6 +18,20 @@ const ModificaDatiUtente = () => {
         <div className="Bg-sfondo altezza-sfondo">
             {" "}
             <Container>
+                <Row>
+                    <Col>
+                        <div className="my-1">
+                            <Button
+                                onClick={() => navigate("/")}
+                                variant="transparent"
+                                className="rounded-4 text-light fw-bolder fs-1"
+                            >
+                                {" "}
+                                <ArrowLeft size={120} />
+                            </Button>
+                        </div>
+                    </Col>
+                </Row>
                 <Row>
                     <Col>
                         <div>INSERISCI DATI ATTUALI</div>

@@ -51,6 +51,11 @@ body {
     top: 12px;
 }
 
+.loginDiv {
+    background-color: rgba(255, 255, 255, 0.014);
+    backdrop-filter: blur(5px);
+}
+
 .custom-position {
     position: absolute;
     right: 10px;

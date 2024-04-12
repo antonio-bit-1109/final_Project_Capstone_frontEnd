@@ -5,9 +5,9 @@ import { useDispatch } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 // import { LocalHostPath } from "../../functions/localHostPath";
-import trainer1 from "../../assets/trainer33.png";
-import trainer2 from "../../assets/TRAINER.2.jpg";
-import trainer3 from "../../assets/trainer4.jpg";
+import trainer1 from "../../../assets/trainer33.png";
+import trainer2 from "../../../assets/TRAINER.2.jpg";
+import trainer3 from "../../../assets/trainer4.jpg";
 import { CreaAbbonamento } from "../../../redux/actions/fetchAbbonamenti";
 import { useEffect, useState } from "react";
 

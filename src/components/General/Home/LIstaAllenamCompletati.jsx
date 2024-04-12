@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { Col, Container, Row, Card, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { ArrowLeft } from "react-bootstrap-icons";
 
 const LIstaAllenamCompletati = () => {
     const navigate = useNavigate();
@@ -36,14 +37,14 @@ const LIstaAllenamCompletati = () => {
 
                 <Row>
                     <Col>
-                        <div className="my-4">
+                        <div className="my-1">
                             <Button
                                 onClick={() => navigate("/")}
-                                variant="warning "
-                                className="rounded-4 text-light fw-bold"
+                                variant="transparent"
+                                className="rounded-4 text-light fw-bolder fs-1"
                             >
                                 {" "}
-                                Torna Indietro{" "}
+                                <ArrowLeft size={120} />
                             </Button>
                         </div>
                     </Col>

@@ -17,7 +17,7 @@ import PagamentoFallito from "./components/General/PagamentoFallito";
 import SvolgiAllenamentoPresoDallaLista from "./components/General/SvolgiAllenamentoPresoDallaLista";
 import ImpacchettaAllenamento from "./components/General/CreaAllenamento/ImpacchettaAllenamento";
 import LIstaAllenamCompletati from "./components/General/Home/LIstaAllenamCompletati";
-import Abbonamenti from "./components/General/Abbonamenti";
+import Abbonamenti from "./components/General/Utente/Abbonamenti";
 import ModificaDatiUtente from "./components/General/Utente/ModificaDatiUtente";
 // import ModificaDatiUtente from "./components/General/Utente/ModificaDatiUtente";
 

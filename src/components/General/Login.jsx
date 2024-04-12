@@ -1,6 +1,6 @@
 import sfondo from "../../assets/bg-login.webp";
 import { useEffect, useState } from "react";
-import { Col, Container, Form } from "react-bootstrap";
+import { Col, Container, Form, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useDispatch, useSelector } from "react-redux";
@@ -97,13 +97,17 @@ function Login() {
             }}
         >
             <Container>
-                <Col>
-                    {" "}
-                    <div>
-                        <div className="loginDiv d-flex justify-content-center align-items-center flex-column">
-                            <h1 className="text-light display-3 fw-bold">Benvenuto</h1>
-                            <p className="text-light">Accedi o Registrati per continuare </p>
-                            <div className="d-flex gap-3">
+                <Row className="justify-content-center">
+                    <Col xs="12" sm="12" md="6" lg="4">
+                        {" "}
+                        <div className="loginDiv d-inline-block rounded rounded-5 p-5">
+                            <div className="d-flex flex-column align-items-center justify-content-center">
+                                {" "}
+                                <h1 className="text-light display-3 fw-bold mx-auto">Benvenuto</h1>
+                                <h5 className="text-light mb-3 text-center">Accedi o Registrati per continuare </h5>
+                            </div>
+
+                            <div className="d-flex justify-content-center gap-3">
                                 {" "}
                                 <Button
                                     onClick={() => {
@@ -125,173 +129,186 @@ function Login() {
                                 </Button>
                             </div>
                         </div>
-                    </div>
-                    {/* MODALE PER IL LOGIN  */}
-                    <Modal show={show} onHide={handleClose}>
-                        <Modal.Header closeButton>
-                            <Modal.Title>Effettua il Login </Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>
-                            <Form onSubmit={handleSubmitting}>
-                                <Form.Group className="mb-3" controlId="formBasicEmail">
-                                    <Form.Label>Nome Utente</Form.Label>
-                                    <Form.Control
-                                        type="text"
-                                        placeholder="Nome Utente"
-                                        value={token.username}
-                                        onChange={(e) => setToken({ ...token, username: e.target.value })}
-                                    />
-                                    <Form.Text className="text-muted">
-                                        Fai attenzione a caratteri maiuscoli e minuscoli{" "}
-                                    </Form.Text>
-                                </Form.Group>
+                        {/* MODALE PER IL LOGIN  */}
+                        <Modal show={show} onHide={handleClose}>
+                            <Modal.Header closeButton>
+                                <Modal.Title>Effettua il Login </Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <Form onSubmit={handleSubmitting}>
+                                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                                        <Form.Label>Nome Utente</Form.Label>
+                                        <Form.Control
+                                            type="text"
+                                            placeholder="Nome Utente"
+                                            value={token.username}
+                                            onChange={(e) => setToken({ ...token, username: e.target.value })}
+                                        />
+                                        <Form.Text className="text-muted">
+                                            Fai attenzione a caratteri maiuscoli e minuscoli{" "}
+                                        </Form.Text>
+                                    </Form.Group>
 
-                                <Form.Group className="mb-3" controlId="formBasicPassword">
-                                    <Form.Label>Password</Form.Label>
-                                    <Form.Control
-                                        type="password"
-                                        placeholder="Password"
-                                        value={token.password}
-                                        onChange={(e) => setToken({ ...token, password: e.target.value })}
-                                    />
-                                </Form.Group>
-                                <Modal.Footer>
-                                    <Button
-                                        variant="light"
-                                        className="rounded-4 text-warning border-warning fw-bold"
-                                        onClick={() => {
-                                            handleClose();
-                                            setToken({ username: "", password: "" });
-                                        }}
-                                    >
-                                        Esci
-                                    </Button>
-                                    <Button variant="warning " className="rounded-4 text-light fw-bold" type="submit">
-                                        Entra nel Portale
-                                    </Button>
-                                </Modal.Footer>
-                            </Form>
-                        </Modal.Body>
-                    </Modal>
-                    {/* MODALE PER LA REGISTRAZIONE  */}
-                    <Modal show={showReg} onHide={handleCloseReg}>
-                        <Modal.Header closeButton>
-                            <Modal.Title> Registrati </Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>
-                            <Form onSubmit={handleSubmit(submitHandlerRegistration)}>
-                                {/* NOME */}
+                                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                                        <Form.Label>Password</Form.Label>
+                                        <Form.Control
+                                            type="password"
+                                            placeholder="Password"
+                                            value={token.password}
+                                            onChange={(e) => setToken({ ...token, password: e.target.value })}
+                                        />
+                                    </Form.Group>
+                                    <Modal.Footer>
+                                        <Button
+                                            variant="light"
+                                            className="rounded-4 text-warning border-warning fw-bold"
+                                            onClick={() => {
+                                                handleClose();
+                                                setToken({ username: "", password: "" });
+                                            }}
+                                        >
+                                            Esci
+                                        </Button>
+                                        <Button
+                                            variant="warning "
+                                            className="rounded-4 text-light fw-bold"
+                                            type="submit"
+                                        >
+                                            Entra nel Portale
+                                        </Button>
+                                    </Modal.Footer>
+                                </Form>
+                            </Modal.Body>
+                        </Modal>
+                        {/* MODALE PER LA REGISTRAZIONE  */}
+                        <Modal show={showReg} onHide={handleCloseReg}>
+                            <Modal.Header closeButton>
+                                <Modal.Title> Registrati </Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <Form onSubmit={handleSubmit(submitHandlerRegistration)}>
+                                    {/* NOME */}
 
-                                <Form.Group className="mb-3" controlId="formBasicNome">
-                                    <Form.Label>Nome Utente</Form.Label>
-                                    <Form.Control
-                                        {...register("nome", {
-                                            required: "Inserisci il tuo Nome.",
-                                            pattern: {
-                                                value: /^[A-Za-z]+$/i,
-                                                message: "Il nome può contenere solo lettere maiuscole o minuscole ",
-                                            },
-                                        })}
-                                        type="text"
-                                        placeholder="Inserisci il nome "
-                                    />
-                                    {errors.nome && <div className="text-danger">{errors.nome.message}</div>}
-                                </Form.Group>
+                                    <Form.Group className="mb-3" controlId="formBasicNome">
+                                        <Form.Label>Nome Utente</Form.Label>
+                                        <Form.Control
+                                            {...register("nome", {
+                                                required: "Inserisci il tuo Nome.",
+                                                pattern: {
+                                                    value: /^[A-Za-z]+$/i,
+                                                    message:
+                                                        "Il nome può contenere solo lettere maiuscole o minuscole ",
+                                                },
+                                            })}
+                                            type="text"
+                                            placeholder="Inserisci il nome "
+                                        />
+                                        {errors.nome && <div className="text-danger">{errors.nome.message}</div>}
+                                    </Form.Group>
 
-                                {/* COGNOME */}
+                                    {/* COGNOME */}
 
-                                <Form.Group className="mb-3" controlId="formBasicCognome">
-                                    <Form.Label>Cognome</Form.Label>
-                                    <Form.Control
-                                        {...register("cognome", {
-                                            required: "Inserisci il tuo cognome.",
-                                            pattern: {
-                                                value: /^[A-Za-z]+$/i,
-                                                message: "Il cognome può contenere solo lettere maiuscole o minuscole ",
-                                            },
-                                        })}
-                                        type="text"
-                                        placeholder="Inserisci il cognome "
-                                    />
-                                    {errors.cognome && <div className="text-danger">{errors.cognome.message}</div>}
-                                </Form.Group>
+                                    <Form.Group className="mb-3" controlId="formBasicCognome">
+                                        <Form.Label>Cognome</Form.Label>
+                                        <Form.Control
+                                            {...register("cognome", {
+                                                required: "Inserisci il tuo cognome.",
+                                                pattern: {
+                                                    value: /^[A-Za-z]+$/i,
+                                                    message:
+                                                        "Il cognome può contenere solo lettere maiuscole o minuscole ",
+                                                },
+                                            })}
+                                            type="text"
+                                            placeholder="Inserisci il cognome "
+                                        />
+                                        {errors.cognome && <div className="text-danger">{errors.cognome.message}</div>}
+                                    </Form.Group>
 
-                                {/* PASSWORD */}
+                                    {/* PASSWORD */}
 
-                                <Form.Group className="mb-3" controlId="formBasicPassword">
-                                    <Form.Label>Password</Form.Label>
-                                    <Form.Control
-                                        {...register("password", {
-                                            required: "Devi inserire una password",
-                                            minLength: {
-                                                value: 5,
-                                                message: "Password non valida. Deve contenere almeno 5 caratteri.",
-                                            },
-                                            pattern: {
-                                                value: /^[A-Za-z0-9]+$/i,
-                                                message: "La password può contenere solo lettere e numeri",
-                                            },
-                                        })}
-                                        type="password"
-                                        placeholder="Inserisci Password"
-                                    />
-                                    {errors.password && <div className="text-danger">{errors.password.message}</div>}
-                                </Form.Group>
+                                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                                        <Form.Label>Password</Form.Label>
+                                        <Form.Control
+                                            {...register("password", {
+                                                required: "Devi inserire una password",
+                                                minLength: {
+                                                    value: 5,
+                                                    message: "Password non valida. Deve contenere almeno 5 caratteri.",
+                                                },
+                                                pattern: {
+                                                    value: /^[A-Za-z0-9]+$/i,
+                                                    message: "La password può contenere solo lettere e numeri",
+                                                },
+                                            })}
+                                            type="password"
+                                            placeholder="Inserisci Password"
+                                        />
+                                        {errors.password && (
+                                            <div className="text-danger">{errors.password.message}</div>
+                                        )}
+                                    </Form.Group>
 
-                                {/* CONFERMA PASSWORD  */}
+                                    {/* CONFERMA PASSWORD  */}
 
-                                <Form.Group className="mb-3" controlId="formBasicConfermaPassword">
-                                    <Form.Label>Conferma Password</Form.Label>
-                                    <Form.Control
-                                        {...register("confermaPassword", {
-                                            required: "devi confermare la password",
-                                            validate: (value) => value === password || "Le password non corrispondono",
-                                        })}
-                                        type="password"
-                                        placeholder="Conferma Password."
-                                    />
-                                    {errors.confermaPassword && (
-                                        <div className="text-danger">{errors.confermaPassword.message}</div>
-                                    )}
-                                </Form.Group>
+                                    <Form.Group className="mb-3" controlId="formBasicConfermaPassword">
+                                        <Form.Label>Conferma Password</Form.Label>
+                                        <Form.Control
+                                            {...register("confermaPassword", {
+                                                required: "devi confermare la password",
+                                                validate: (value) =>
+                                                    value === password || "Le password non corrispondono",
+                                            })}
+                                            type="password"
+                                            placeholder="Conferma Password."
+                                        />
+                                        {errors.confermaPassword && (
+                                            <div className="text-danger">{errors.confermaPassword.message}</div>
+                                        )}
+                                    </Form.Group>
 
-                                {/* EMAIL  */}
+                                    {/* EMAIL  */}
 
-                                <Form.Group className="mb-3" controlId="formBasicConfermaPassword">
-                                    <Form.Label>Email</Form.Label>
-                                    <Form.Control
-                                        {...register("email", {
-                                            required: "Inserisci un email valida.",
-                                            pattern: {
-                                                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                                                message:
-                                                    "Formato della mail non valido. Assicurati di aver inserito @ e .",
-                                            },
-                                        })}
-                                        type="email"
-                                        placeholder="inserisci Email."
-                                    />
-                                    {errors.email && <div className="text-danger">{errors.email.message}</div>}
-                                </Form.Group>
-                                <Modal.Footer>
-                                    <Button variant="warning " className="rounded-4 text-light fw-bold" type="submit">
-                                        Registrati
-                                    </Button>
-                                    <Button
-                                        onClick={() => {
-                                            handleCloseReg();
-                                            reset();
-                                        }}
-                                        variant="light"
-                                        className="rounded-4 text-warning border-warning fw-bold"
-                                    >
-                                        Chiudi
-                                    </Button>
-                                </Modal.Footer>
-                            </Form>
-                        </Modal.Body>
-                    </Modal>
-                </Col>
+                                    <Form.Group className="mb-3" controlId="formBasicConfermaPassword">
+                                        <Form.Label>Email</Form.Label>
+                                        <Form.Control
+                                            {...register("email", {
+                                                required: "Inserisci un email valida.",
+                                                pattern: {
+                                                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                                    message:
+                                                        "Formato della mail non valido. Assicurati di aver inserito @ e .",
+                                                },
+                                            })}
+                                            type="email"
+                                            placeholder="inserisci Email."
+                                        />
+                                        {errors.email && <div className="text-danger">{errors.email.message}</div>}
+                                    </Form.Group>
+                                    <Modal.Footer>
+                                        <Button
+                                            variant="warning "
+                                            className="rounded-4 text-light fw-bold"
+                                            type="submit"
+                                        >
+                                            Registrati
+                                        </Button>
+                                        <Button
+                                            onClick={() => {
+                                                handleCloseReg();
+                                                reset();
+                                            }}
+                                            variant="light"
+                                            className="rounded-4 text-warning border-warning fw-bold"
+                                        >
+                                            Chiudi
+                                        </Button>
+                                    </Modal.Footer>
+                                </Form>
+                            </Modal.Body>
+                        </Modal>
+                    </Col>
+                </Row>
             </Container>
         </div>
     );
