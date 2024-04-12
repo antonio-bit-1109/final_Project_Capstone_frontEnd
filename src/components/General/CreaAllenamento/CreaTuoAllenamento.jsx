@@ -158,7 +158,7 @@ const CreaTuoAllenamento = () => {
                                     className="p-0 enlight"
                                     key={`card-icon${i}`}
                                 >
-                                    <Card bg="transparent" style={{ height: "100px" }}>
+                                    <Card bg="transparent" style={{ height: "100px", border: "none" }}>
                                         <Card.Body>
                                             <img src={icon} alt="icon-muscolo" />
                                         </Card.Body>
