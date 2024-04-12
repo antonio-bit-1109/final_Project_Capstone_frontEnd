@@ -150,15 +150,15 @@ const CreaTuoAllenamento = () => {
                     {/* sezione scelta esercizi */}
                     <Col xs="10" md="10" lg="6" xl="6" xxl="5">
                         <p className="m-0 text-light">Filtra Esercizi per Parte Del corpo:</p>
-                        <div className="d-flex">
+                        <div className="d-flex flex-wrap">
                             {ArrayIcone.map((icon, i) => (
                                 <Button
                                     onClick={() => setParteCorpo(ValoriArray[i])}
                                     variant="transparent"
-                                    className="p-0 enlight"
+                                    className="p-0 enlight border border-1"
                                     key={`card-icon${i}`}
                                 >
-                                    <Card bg="transparent" style={{ height: "100px", border: "none" }}>
+                                    <Card className="p-0" bg="transparent" style={{ height: "100px", border: "none" }}>
                                         <Card.Body>
                                             <img src={icon} alt="icon-muscolo" />
                                         </Card.Body>
