@@ -349,8 +349,6 @@ const CreaTuoAllenamento = () => {
                     </Col>
                 </Row>
 
-                {/* <Row className="flex-column"></Row> */}
-
                 <Row>
                     <Col>
                         <div className="d-flex justify-content-center my-3 ">

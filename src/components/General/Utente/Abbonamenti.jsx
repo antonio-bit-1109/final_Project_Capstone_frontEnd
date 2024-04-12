@@ -8,7 +8,7 @@ import Card from "react-bootstrap/Card";
 import trainer1 from "../../assets/trainer33.png";
 import trainer2 from "../../assets/TRAINER.2.jpg";
 import trainer3 from "../../assets/trainer4.jpg";
-import { CreaAbbonamento } from "../../redux/actions/fetchAbbonamenti";
+import { CreaAbbonamento } from "../../../redux/actions/fetchAbbonamenti";
 import { useEffect, useState } from "react";
 
 const AbbonamentoTrainer = () => {
