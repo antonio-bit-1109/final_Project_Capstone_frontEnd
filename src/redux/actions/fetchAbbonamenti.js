@@ -49,3 +49,28 @@ export const CreaAbbonamento = (objData) => async () => {
         console.error("Errore nel fetch:", error.message);
     }
 };
+
+export const annullaAbbonamento = () => async (dispatch) => {
+    const callAction = await fetchWithAuth(LocalHostPath + "/Abbonamenti/AnnullaAbbonamento", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+
+    const serverResponse = await callAction.json();
+
+    console.log(serverResponse);
+
+    if (serverResponse.message === "Abbonamento Annullato con Successo.") {
+        toast.success(serverResponse.message, { autoClose: 3000 });
+    }
+
+    if (serverResponse.title === "Bad Request") {
+        toast.error("Errore nella cancellazione dell'abbonamento, contattare l' ADMIN.", { autoClose: 3000 });
+    }
+
+    if (serverResponse.message === "Non sono presenti Abbonamenti attivi.") {
+        toast.info(serverResponse.message, { autoClose: 3000 });
+    }
+};

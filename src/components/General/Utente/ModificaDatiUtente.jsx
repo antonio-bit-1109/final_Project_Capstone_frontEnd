@@ -1,10 +1,15 @@
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { Col, Container, Row, Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
+import { useDispatch } from "react-redux";
+import { annullaAbbonamento } from "../../../redux/actions/fetchAbbonamenti";
 
-// eslint-disable-next-line react/prop-types
 const ModificaDatiUtente = () => {
-    useEffect(() => {}, []);
+    const dispatch = useDispatch();
+
+    const handleClick = () => {
+        dispatch(annullaAbbonamento());
+    };
 
     return (
         <div className="Bg-sfondo altezza-sfondo">
@@ -41,7 +46,7 @@ const ModificaDatiUtente = () => {
                         </Form>
                     </Col>
                     <div>INSERISCI BOTTONE PER ANNULLARE ABBONAMENTO </div>
-                    <Button> Annulla Abbonamento </Button>
+                    <Button onClick={handleClick}> Annulla Abbonamento </Button>
                     <Button> Storico acquisti </Button>
                 </Row>
             </Container>{" "}
