@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { EmailConfermaAcquisto, PostProdottoAcquistato } from "../../redux/actions/prodottiFetch";
+import { EmailConfermaAcquisto } from "../../redux/actions/prodottiFetch";
 import { rimuoviTuttoDalCArrello, setCarrelloOttimizzato } from "../../redux/reducers/prodottiReducer";
 import { useNavigate } from "react-router-dom";
 
@@ -22,7 +22,7 @@ const PagamentoSuccesso = () => {
 
     useEffect(() => {
         if (statePerCarrelloOttimizzato) {
-            dispatch(PostProdottoAcquistato(statePerCarrelloOttimizzato));
+            // dispatch(PostProdottoAcquistato(statePerCarrelloOttimizzato));
             //invio mail per conferma acquisto all utente
             dispatch(EmailConfermaAcquisto(DatiUtenteLoggato.email, statePerCarrelloOttimizzato));
             dispatch(rimuoviTuttoDalCArrello());

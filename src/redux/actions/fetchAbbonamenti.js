@@ -42,7 +42,7 @@ export const CreaAbbonamento = (objData) => async () => {
         }
 
         console.log(serverResponse);
-        toast.warning(serverResponse.message);
+        toast.warning(serverResponse.message, { autoClose: 3000 });
 
         // console.log(Response);
     } catch (error) {

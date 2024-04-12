@@ -42,6 +42,7 @@ const ModificaDatiUtente = () => {
                     </Col>
                     <div>INSERISCI BOTTONE PER ANNULLARE ABBONAMENTO </div>
                     <Button> Annulla Abbonamento </Button>
+                    <Button> Storico acquisti </Button>
                 </Row>
             </Container>{" "}
             {/* <Offcanvas
