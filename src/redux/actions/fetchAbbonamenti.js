@@ -50,7 +50,7 @@ export const CreaAbbonamento = (objData) => async () => {
     }
 };
 
-export const annullaAbbonamento = () => async (dispatch) => {
+export const annullaAbbonamento = () => async () => {
     const callAction = await fetchWithAuth(LocalHostPath + "/Abbonamenti/AnnullaAbbonamento", {
         method: "POST",
         headers: {
