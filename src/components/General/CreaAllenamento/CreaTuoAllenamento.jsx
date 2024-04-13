@@ -16,7 +16,7 @@ import { LocalHostPath } from "../../../functions/localHostPath";
 import workout from "../../../assets/workout.svg";
 import Dumbell from "../../../assets/dumbbell.svg";
 import IconaPetto from "../../../assets/immagini-parte-corpo/petto-icon-removebg.png";
-import IconaSpalle from "../../../assets/immagini-parte-corpo/icon-spalle.png";
+import IconaSpalle from "../../../assets/immagini-parte-corpo/icon-spalle1.png";
 import IconaGambe from "../../../assets/immagini-parte-corpo/icon-gambe.png";
 import IconaBicipiti from "../../../assets/immagini-parte-corpo/icon-bicipiti.png";
 import IconaTricipiti from "../../../assets/immagini-parte-corpo/icon-tricipiti.png";
@@ -150,7 +150,7 @@ const CreaTuoAllenamento = () => {
                     {/* sezione scelta esercizi */}
                     <Col xs="10" md="10" lg="6" xl="6" xxl="5">
                         <p className="m-0 text-light">Filtra Esercizi per Parte Del corpo:</p>
-                        <div className="d-flex flex-wrap">
+                        <div className="d-flex flex-wrap justify-content-center">
                             {ArrayIcone.map((icon, i) => (
                                 <Button
                                     onClick={() => setParteCorpo(ValoriArray[i])}
