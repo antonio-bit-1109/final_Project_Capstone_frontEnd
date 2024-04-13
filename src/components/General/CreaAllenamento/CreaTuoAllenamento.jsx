@@ -32,6 +32,7 @@ const CreaTuoAllenamento = () => {
     const [checkCardio, setCheckCardio] = useState(false);
     const [showImage, setShowImage] = useState(false);
     const [immagineEsercizio, setImmagineEsercizio] = useState("");
+    // const [cardIsClicked, setCardIsClicked] = useState(false);
     const ArrayIcone = [IconaPetto, IconaSpalle, IconaGambe, IconaBicipiti, IconaTricipiti, IconaFullBody];
     const ValoriArray = ["petto", "spalle", "gambe", "bicipiti", "tricipiti", "fullbody"];
 
@@ -150,7 +151,8 @@ const CreaTuoAllenamento = () => {
                     {/* sezione scelta esercizi */}
                     <Col xs="10" md="10" lg="6" xl="6" xxl="5">
                         <p className="m-0 text-light">Filtra Esercizi per Parte Del corpo:</p>
-                        <div className="d-flex flex-wrap justify-content-center">
+                        <h3 className="text-warning fw-bold fs-1">{parteCorpo}</h3>
+                        <div className="d-flex flex-wrap justify-content-start">
                             {ArrayIcone.map((icon, i) => (
                                 <Button
                                     onClick={() => setParteCorpo(ValoriArray[i])}
@@ -158,8 +160,13 @@ const CreaTuoAllenamento = () => {
                                     className="p-0 enlight border border-1"
                                     key={`card-icon${i}`}
                                 >
-                                    <Card className="p-0" bg="transparent" style={{ height: "100px", border: "none" }}>
-                                        <Card.Body>
+                                    <Card
+                                        // onClick={Selected}
+                                        className="p-0"
+                                        bg="transparent"
+                                        style={{ height: "100px", border: "none" }}
+                                    >
+                                        <Card.Body className="p-3">
                                             <img src={icon} alt="icon-muscolo" />
                                         </Card.Body>
                                     </Card>
