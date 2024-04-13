@@ -147,3 +147,8 @@ body {
     background-color: sandybrown;
     border: #fea800 3px solid;
 }
+
+.bg-button {
+    background-color: rgba(255, 255, 255, 0.014);
+    backdrop-filter: blur(10px);
+}

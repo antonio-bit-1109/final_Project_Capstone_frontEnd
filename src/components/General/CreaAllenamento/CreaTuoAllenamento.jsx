@@ -36,6 +36,12 @@ const CreaTuoAllenamento = () => {
     const ArrayIcone = [IconaPetto, IconaSpalle, IconaGambe, IconaBicipiti, IconaTricipiti, IconaFullBody];
     const ValoriArray = ["petto", "spalle", "gambe", "bicipiti", "tricipiti", "fullbody"];
 
+    const DifficoltaMatrix = [
+        ["facile", "1"],
+        ["medio", "2"],
+        ["difficile", "3"],
+    ];
+
     const handleCloseImage = () => setShowImage(false);
     const handleShowImage = () => setShowImage(true);
 
@@ -157,7 +163,7 @@ const CreaTuoAllenamento = () => {
                                 <Button
                                     onClick={() => setParteCorpo(ValoriArray[i])}
                                     variant="transparent"
-                                    className="p-0 enlight border border-1"
+                                    className="p-0 enlight border border-1 bg-button"
                                     key={`card-icon${i}`}
                                 >
                                     <Card
@@ -190,7 +196,7 @@ const CreaTuoAllenamento = () => {
                         </div>
                         <div className="my-2">
                             <p className="m-0 text-light">Filtra esercizi per difficoltà: </p>
-                            <Form.Select
+                            {/* <Form.Select
                                 value={difficolta}
                                 onChange={(e) => setDifficolta(e.target.value === "null" ? null : e.target.value)}
                                 id="selectList"
@@ -201,7 +207,28 @@ const CreaTuoAllenamento = () => {
                                 <option value="1">Facile</option>
                                 <option value="2">Medio</option>
                                 <option value="3">Difficile</option>
-                            </Form.Select>
+                            </Form.Select> */}
+                            {DifficoltaMatrix.map((diff, i) => (
+                                <Button
+                                    onClick={() => setDifficolta(diff[1])}
+                                    variant="transparent"
+                                    className="p-0 enlight border border-1 bg-button"
+                                    key={`card-icon${i}`}
+                                >
+                                    <Card
+                                        // onClick={Selected}
+                                        className="p-0"
+                                        bg="transparent"
+                                        // style={{ height: "100px", border: "none" }}
+                                    >
+                                        <Card.Body className="p-3 text-light">{diff[0]} </Card.Body>
+                                    </Card>
+                                </Button>
+                            ))}
+                            {/* <div className="w-75">
+                                <Form.Label>Difficoltà</Form.Label>
+                                <Form.Range min={"1"} max={"3"} />
+                            </div> */}
                         </div>
                         <div className="my-2">
                             <p className="m-0 text-light">Filtra Esercizi per Tipologia: </p>
