@@ -19,6 +19,7 @@ import ImpacchettaAllenamento from "./components/General/CreaAllenamento/Impacch
 import LIstaAllenamCompletati from "./components/General/Home/LIstaAllenamCompletati";
 import Abbonamenti from "./components/General/Utente/Abbonamenti";
 import ModificaDatiUtente from "./components/General/Utente/ModificaDatiUtente";
+import StoricoAcquisti from "./components/General/Utente/StoricoAcquisti";
 // import ModificaDatiUtente from "./components/General/Utente/ModificaDatiUtente";
 
 function App() {
@@ -59,6 +60,16 @@ function App() {
                                     <NavbarComponent />
                                     {/* <ModificaDatiUtente /> */}
                                     <ModificaDatiUtente />
+                                </>
+                            }
+                        />
+                        <Route
+                            path="StoricoAcquisti"
+                            element={
+                                <>
+                                    {" "}
+                                    <NavbarComponent />
+                                    <StoricoAcquisti />
                                 </>
                             }
                         />

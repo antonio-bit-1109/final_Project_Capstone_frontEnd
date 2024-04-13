@@ -6,6 +6,7 @@ const initialState = {
     carrelloProdotti: [],
     CarrelloOttimizzato: [],
     prodottoAppenaCreato: null,
+    prodottiAcquistati: null,
 };
 
 const stateReducerSlice = createSlice({
@@ -32,6 +33,10 @@ const stateReducerSlice = createSlice({
         setProdottoAppenaCreato: (state, action) => {
             state.prodottoAppenaCreato = action.payload;
         },
+
+        setProdottiAcquistati: (state, action) => {
+            state.prodottiAcquistati = action.payload;
+        },
     },
 });
 
@@ -42,5 +47,6 @@ export const {
     rimuoviTuttoDalCArrello,
     setCarrelloOttimizzato,
     setProdottoAppenaCreato,
+    setProdottiAcquistati,
 } = stateReducerSlice.actions;
 export default stateReducerSlice.reducer;

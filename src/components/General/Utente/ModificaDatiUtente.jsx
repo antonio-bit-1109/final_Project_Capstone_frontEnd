@@ -10,7 +10,7 @@ const ModificaDatiUtente = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const handleClick = () => {
+    const handleAnnullaAbbonamento = () => {
         dispatch(annullaAbbonamento());
     };
 
@@ -63,50 +63,10 @@ const ModificaDatiUtente = () => {
                         </Form>
                     </Col>
                     <div>INSERISCI BOTTONE PER ANNULLARE ABBONAMENTO </div>
-                    <Button onClick={handleClick}> Annulla Abbonamento </Button>
-                    <Button> Storico acquisti </Button>
+                    <Button onClick={handleAnnullaAbbonamento}> Annulla Abbonamento </Button>
+                    <Button onClick={() => navigate("/StoricoAcquisti")}> Storico acquisti </Button>
                 </Row>
             </Container>{" "}
-            {/* <Offcanvas
-                style={{ backgroundColor: "#212529", color: "white" }}
-                show={showOffCanvas}
-                onHide={handleCloseCanvas}
-                backdrop="static"
-                scroll={true}
-            >
-                <Offcanvas.Header closeVariant="white" closeButton>
-                    <Offcanvas.Title>Modifica Informazioni Profilo</Offcanvas.Title>
-                </Offcanvas.Header>
-
-                <Offcanvas.Body>
-                    <Form>
-                        <Form.Group className="my-3" controlId="nome">
-                            <Form.Label>Nome</Form.Label>
-                            <Form.Control type="text" placeholder="Inserisci un nuovo Nome." />
-                        </Form.Group>
-                        <Form.Group className="my-3" controlId="cognome">
-                            <Form.Label>Cognome</Form.Label>
-                            <Form.Control type="text" placeholder="Inserisci un nuovo cognome." />
-                        </Form.Group>
-                        <Form.Group className="my-3" controlId="email">
-                            <Form.Label>Email</Form.Label>
-                            <Form.Control type="text" placeholder="Inserisci una nuova mail" />
-                        </Form.Group>
-                        <Form.Group className="my-3" controlId="vecchiaPassword">
-                            <Form.Label>Vecchia Password</Form.Label>
-                            <Form.Control type="password" placeholder="Inserisci la vecchia Password" />
-                        </Form.Group>
-                        <Form.Group className="my-3" controlId="Nuovapassword">
-                            <Form.Label> Nuova Password</Form.Label>
-                            <Form.Control type="password" placeholder="Inserisci una nuova Password" />
-                        </Form.Group>
-                        <Form.Group className="my-3" controlId="confermaNuovaPassword">
-                            <Form.Label>Conferma Nuova Password</Form.Label>
-                            <Form.Control type="password" placeholder="Conferma la nuova Password" />
-                        </Form.Group>
-                    </Form>
-                </Offcanvas.Body>
-            </Offcanvas> */}
         </div>
     );
 };

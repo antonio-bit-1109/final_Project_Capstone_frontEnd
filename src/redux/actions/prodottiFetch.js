@@ -1,6 +1,6 @@
 import { LocalHostPath } from "../../functions/localHostPath";
 import { fetchWithAuth } from "../../functions/interceptor";
-import { setProdottoAppenaCreato, setlistaProdotti } from "../reducers/prodottiReducer";
+import { setProdottiAcquistati, setProdottoAppenaCreato, setlistaProdotti } from "../reducers/prodottiReducer";
 
 export const GetProdotti = () => async (dispatch) => {
     try {
@@ -115,6 +115,27 @@ export const cancellaProdotto = (pathUrl, idProdotto) => async (dispatch) => {
 
         if (cancellaProdotto.ok) {
             dispatch(GetProdotti());
+        }
+    } catch (error) {
+        console.error("Errore nel fetch:", error.message);
+    }
+};
+
+export const ShowStoricoAcquisti = (idUtente) => async (dispatch) => {
+    try {
+        const request = await fetchWithAuth(LocalHostPath + `/Carrello/storicoAcquisti/${idUtente}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+
+        const response = await request.json();
+
+        if (response.data) {
+            dispatch(setProdottiAcquistati(response.data));
+        } else {
+            throw new Error("Errore nel recupero degli acquisti utente ");
         }
     } catch (error) {
         console.error("Errore nel fetch:", error.message);
