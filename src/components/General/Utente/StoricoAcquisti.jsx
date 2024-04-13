@@ -12,7 +12,7 @@ const StoricoAcquisti = () => {
 
     useEffect(() => {
         dispatch(ShowStoricoAcquisti(TuttiDettagliUtenteLoggato.idUtente));
-    }, []);
+    }, [dispatch, TuttiDettagliUtenteLoggato]);
 
     return (
         <Container>
