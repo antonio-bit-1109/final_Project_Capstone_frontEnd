@@ -352,7 +352,7 @@ const CreaTuoAllenamento = () => {
                     </Col>{" "}
                     {/* sezione vista esercizi selezionati */}
                     <Col xs="12" md="12" lg="6" xl="6" xxl="6">
-                        <div className="sticky-top">
+                        <div className="sticky-top d-flex flex-column align-items-center">
                             {ArrayAllenamento.length > 0 && (
                                 <div className="d-flex justify-content-center mt-4">
                                     <h4 className="display-3 text-light">Esercizi Selezionati</h4>
@@ -362,7 +362,7 @@ const CreaTuoAllenamento = () => {
                                 ArrayAllenamento.map((esercizio, index) => (
                                     <div
                                         key={`div-${index}`}
-                                        className="border border-2 p-3 rounded-5 w-100 my-3 bg-light position-relative shadow-lg"
+                                        className="border border-2 p-3 rounded-5 w-75 my-1 bg-light position-relative shadow-lg"
                                     >
                                         <div className="d-flex justify-content-center">
                                             <Card.Title className="d-flex justify-content-center fw-bold fs-3">

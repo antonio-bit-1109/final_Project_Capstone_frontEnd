@@ -96,7 +96,24 @@ const Carrello = () => {
                         <h2 className="display-3 text-light">Il carrello è vuoto.</h2>
                     ) : (
                         <>
-                            {" "}
+                            <div className="d-flex gap-3 align-items-center h-100">
+                                <Button
+                                    onClick={() => handleClick(sessionId)}
+                                    variant="warning text-light"
+                                    className="rounded-4 text-warning border-warning fw-bold p-2"
+                                >
+                                    Procedi al Pagamento{" "}
+                                </Button>
+                                <Button
+                                    onClick={() => {
+                                        dispatch(rimuoviTuttoDalCArrello()), dispatch(setCarrelloOttimizzato([]));
+                                    }}
+                                    variant="light"
+                                    className="rounded-4 text-warning border-warning fw-bold p-2"
+                                >
+                                    Svuota Carrello
+                                </Button>
+                            </div>{" "}
                             {prodottiNelCarrello &&
                                 prodottiNelCarrello.map((prodotto, index) => (
                                     <Col xs="12" md="12" lg="8" xl="8" xxl="8" key={`my-col-${index}`}>
@@ -132,26 +149,6 @@ const Carrello = () => {
                                         </Card>
                                     </Col>
                                 ))}
-                            <Col xs="12" md="12" lg="4" xl="4" xxl="4">
-                                <div className="d-flex gap-3 align-items-center h-100">
-                                    <Button
-                                        onClick={() => handleClick(sessionId)}
-                                        variant="warning text-light"
-                                        className="rounded-4 text-warning border-warning fw-bold"
-                                    >
-                                        Procedi al Pagamento{" "}
-                                    </Button>
-                                    <Button
-                                        onClick={() => {
-                                            dispatch(rimuoviTuttoDalCArrello()), dispatch(setCarrelloOttimizzato([]));
-                                        }}
-                                        variant="light"
-                                        className="rounded-4 text-warning border-warning fw-bold"
-                                    >
-                                        Svuota Carrello
-                                    </Button>
-                                </div>
-                            </Col>
                         </>
                     )}
                 </Row>

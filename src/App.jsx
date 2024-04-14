@@ -20,6 +20,7 @@ import LIstaAllenamCompletati from "./components/General/Home/LIstaAllenamComple
 import Abbonamenti from "./components/General/Utente/Abbonamenti";
 import ModificaDatiUtente from "./components/General/Utente/ModificaDatiUtente";
 import StoricoAcquisti from "./components/General/Utente/StoricoAcquisti";
+import SocialMain from "./components/General/SocialMedia/SocialMain";
 // import ModificaDatiUtente from "./components/General/Utente/ModificaDatiUtente";
 
 function App() {
@@ -158,6 +159,16 @@ function App() {
                                 {" "}
                                 <NavbarComponent />
                                 <PagamentoFallito />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/MainSocialMedia"
+                        element={
+                            <>
+                                {" "}
+                                <NavbarComponent />
+                                <SocialMain />
                             </>
                         }
                     />
