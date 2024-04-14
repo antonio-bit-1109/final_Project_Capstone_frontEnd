@@ -136,7 +136,7 @@ function Login() {
                             </Modal.Header>
                             <Modal.Body>
                                 <Form onSubmit={handleSubmitting}>
-                                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                                    <Form.Group className="mb-3" controlId="IdNome">
                                         <Form.Label>Nome Utente</Form.Label>
                                         <Form.Control
                                             type="text"
@@ -149,7 +149,7 @@ function Login() {
                                         </Form.Text>
                                     </Form.Group>
 
-                                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                                    <Form.Group className="mb-3" controlId="IdPassword">
                                         <Form.Label>Password</Form.Label>
                                         <Form.Control
                                             type="password"

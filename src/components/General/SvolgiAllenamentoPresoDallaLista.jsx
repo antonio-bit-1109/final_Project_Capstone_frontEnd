@@ -61,11 +61,6 @@ const SvolgiAllenamentoPresoDallaLista = () => {
                     toast.success(" Complimenti, Hai terminato l'allenamento!", { autoClose: 3000 });
                 }
             }, 1000);
-
-            //all unmount del componente
-            return () => {
-                clearInterval(timer);
-            };
         }
     }, [Arrayrecuperi]);
 
