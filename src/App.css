@@ -151,4 +151,9 @@ body {
 .bg-button {
     background-color: rgba(255, 255, 255, 0.014);
     backdrop-filter: blur(10px);
+    border: white 1px solid;
+}
+
+.custom-h {
+    height: 90%;
 }

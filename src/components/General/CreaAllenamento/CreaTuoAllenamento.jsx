@@ -157,13 +157,15 @@ const CreaTuoAllenamento = () => {
                     {/* sezione scelta esercizi */}
                     <Col xs="10" md="10" lg="6" xl="6" xxl="5">
                         <p className="m-0 text-light">Filtra Esercizi per Parte Del corpo:</p>
-                        <h3 className="text-warning fw-bold fs-1">{parteCorpo}</h3>
+                        <h3 className="text-warning fw-bold fs-1">
+                            {parteCorpo.charAt(0).toLocaleUpperCase() + parteCorpo.slice(1)}
+                        </h3>
                         <div className="d-flex flex-wrap justify-content-start">
                             {ArrayIcone.map((icon, i) => (
                                 <Button
                                     onClick={() => setParteCorpo(ValoriArray[i])}
                                     variant="transparent"
-                                    className="p-0 enlight border border-1 bg-button"
+                                    className="p-0 enlight bg-button"
                                     key={`card-icon${i}`}
                                 >
                                     <Card
@@ -194,7 +196,7 @@ const CreaTuoAllenamento = () => {
                                 <option value="fullbody">Full Body</option>
                             </Form.Select> */}
                         </div>
-                        <div className="my-2">
+                        <div className="my-2 py-2">
                             <p className="m-0 text-light">Filtra esercizi per difficoltà: </p>
                             {/* <Form.Select
                                 value={difficolta}
@@ -212,23 +214,14 @@ const CreaTuoAllenamento = () => {
                                 <Button
                                     onClick={() => setDifficolta(diff[1])}
                                     variant="transparent"
-                                    className="p-0 enlight border border-1 bg-button"
+                                    className="p-0 enlight bg-button"
                                     key={`card-icon${i}`}
                                 >
-                                    <Card
-                                        // onClick={Selected}
-                                        className="p-0"
-                                        bg="transparent"
-                                        // style={{ height: "100px", border: "none" }}
-                                    >
-                                        <Card.Body className="p-3 text-light">{diff[0]} </Card.Body>
+                                    <Card className="p-0" bg="transparent">
+                                        <Card.Body className="p-3 text-light "> {diff[0]}</Card.Body>
                                     </Card>
                                 </Button>
                             ))}
-                            {/* <div className="w-75">
-                                <Form.Label>Difficoltà</Form.Label>
-                                <Form.Range min={"1"} max={"3"} />
-                            </div> */}
                         </div>
                         <div className="my-2">
                             <p className="m-0 text-light">Filtra Esercizi per Tipologia: </p>

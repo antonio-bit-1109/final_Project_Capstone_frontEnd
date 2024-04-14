@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button, Card, Col, Container, Modal, Row } from "react-bootstrap";
 import { setAllenamentoSceltogiaCreato } from "../../redux/reducers/allenamentiReducer";
 import { useNavigate } from "react-router-dom";
+import { Trash3Fill } from "react-bootstrap-icons";
 
 const AllenamentiDisponibili = () => {
     const navigate = useNavigate();
@@ -71,13 +72,13 @@ const AllenamentiDisponibili = () => {
                 ) : (
                     <Row className="justify-content-center ">
                         {listaAllenamentiDisponibili.map((allenamento, index) => (
-                            <Col xs="12" sm="12" md="8" lg="8" xxl="6" key={`index-n-${index}`}>
+                            <Col xs="12" sm="10" md="7" lg="6" xxl="5" key={`index-n-${index}`}>
                                 <Card className="my-3 rounded-5 animation shadow-lg">
                                     <Card.Body>
                                         <div className="d-xl-flex justify-content-xl-center gap-4">
                                             {" "}
                                             <div className="d-xl-flex flex-xl-column gap-3">
-                                                <Card.Title className="display-3">
+                                                <Card.Title className="display-3 fw-normal">
                                                     {allenamento.nomeAllenamento}
                                                 </Card.Title>
                                                 <div className="d-flex gap-2">
@@ -115,7 +116,7 @@ const AllenamentiDisponibili = () => {
                                                             }}
                                                         >
                                                             {" "}
-                                                            Elimina Allenamento
+                                                            <Trash3Fill />
                                                         </Button>
                                                     ) : null}
                                                 </div>
@@ -188,11 +189,16 @@ const AllenamentiDisponibili = () => {
                 </Modal.Header>
                 <Modal.Body>Cancellare Allenamento ? </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
+                    <Button
+                        variant="light"
+                        className="rounded-4 text-warning border-warning fw-bold"
+                        onClick={handleClose}
+                    >
                         Chiudi
                     </Button>
                     <Button
-                        variant="danger"
+                        variant="warning "
+                        className="rounded-4 text-light fw-bold"
                         onClick={() => {
                             handleClose();
                             handleDelete(AllenamDacancellare);
@@ -229,7 +235,7 @@ const AllenamentiDisponibili = () => {
                 )}
 
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleCloseEsercizi}>
+                    <Button variant="warning " className="rounded-4 text-light fw-bold" onClick={handleCloseEsercizi}>
                         Chiudi
                     </Button>
                 </Modal.Footer>
