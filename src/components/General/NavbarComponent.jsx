@@ -39,7 +39,6 @@ function NavbarComponent() {
                                 <Nav.Link as={NavLink} to={"/"}>
                                     Home
                                 </Nav.Link>
-
                                 <Nav.Link as={NavLink} to={"/allenamentiDisponibili"}>
                                     Allenamenti Disponibili{" "}
                                 </Nav.Link>
@@ -51,7 +50,8 @@ function NavbarComponent() {
                                 </Nav.Link>
                                 <Nav.Link as={NavLink} to={"/Abbonamenti"}>
                                     Abbonamenti
-                                </Nav.Link>
+                                </Nav.Link>{" "}
+                                <Nav.Link as={NavLink} /*to={"/Abbonamenti"}*/>SocialMedia</Nav.Link>
                             </div>
                             <div className="position-relative customWidth d-flex">
                                 <Nav.Link as={NavLink} to={"/carrello"}>
