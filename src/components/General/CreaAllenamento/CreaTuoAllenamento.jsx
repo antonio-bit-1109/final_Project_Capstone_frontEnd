@@ -7,7 +7,7 @@ import {
     SvuotaArrayAllenamento,
     setnomeAllenamentoCreato,
 } from "../../../redux/reducers/allenamentiReducer";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import { PlusCircleFill } from "react-bootstrap-icons";
 import ModaleCreazioneNuovoEsercizio from "./ModaleCreazioneNuovoEsercizio";
 import ModaleInserimentoNomeAllenamento from "./ModaleInserimentoNomeAllenamento";
@@ -21,18 +21,23 @@ import IconaGambe from "../../../assets/immagini-parte-corpo/icon-gambe.png";
 import IconaBicipiti from "../../../assets/immagini-parte-corpo/icon-bicipiti.png";
 import IconaTricipiti from "../../../assets/immagini-parte-corpo/icon-tricipiti.png";
 import IconaFullBody from "../../../assets/immagini-parte-corpo/fullbody1.png";
+import BottoniSvuotaConferma from "./BottoniSvuotaConferma";
 
 const CreaTuoAllenamento = () => {
+    const dispatch = useDispatch();
     const { listaEsercizi } = useSelector((store) => store.esercizi);
-    // const [ListaEserciziAutomatica, setListaEserciziAutomatica] = useState(null);
-    // const ArrayAllenamento = useSelector((store) => store.allenamenti.allenamentoPersonalizzatoUtente);
+    const ArrayAllenamento = useSelector((store) => store.allenamenti.allenamentoPersonalizzatoUtente);
+    const { TuttiDettagliUtenteLoggato } = useSelector((store) => store.utenti);
+    const [showCreateEsercizio, setShowCreateEsercizio] = useState(false);
+    const [show, setShow] = useState(false);
     const [parteCorpo, setParteCorpo] = useState("");
     const [difficolta, setDifficolta] = useState("");
     const [checkStrenght, setCheckStrenght] = useState(true);
     const [checkCardio, setCheckCardio] = useState(false);
     const [showImage, setShowImage] = useState(false);
     const [immagineEsercizio, setImmagineEsercizio] = useState("");
-    // const [cardIsClicked, setCardIsClicked] = useState(false);
+    const [ArrayPartiCorpo, setArrayPartiCorpo] = useState([false, false, false, false, false, false]);
+    const [ArrayDifficolta, setArrayDifficolta] = useState([false, false, false]);
     const ArrayIcone = [IconaPetto, IconaSpalle, IconaGambe, IconaBicipiti, IconaTricipiti, IconaFullBody];
     const ValoriArray = ["petto", "spalle", "gambe", "bicipiti", "tricipiti", "fullbody"];
 
@@ -60,20 +65,8 @@ const CreaTuoAllenamento = () => {
         dispatch(GetEsercizi(parteCorpo, difficolta, checkStrenght));
     };
 
-    // const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const ArrayAllenamento = useSelector((store) => store.allenamenti.allenamentoPersonalizzatoUtente);
-    const { TuttiDettagliUtenteLoggato } = useSelector((store) => store.utenti);
-    const [showCreateEsercizio, setShowCreateEsercizio] = useState(false);
-    const [show, setShow] = useState(false);
-    // const [GeneraAllenamentoRandomicoIsClicked, setGeneraAllenamentoRandomicoIsClicked] = useState(false);
-
-    // const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
 
-    // const handleCloseImage = () => setShowImage(false);
-    // const handleShowImage = () => setShowImage(true);
     const handleShowCreateEsercizio = () => setShowCreateEsercizio(true);
 
     // genera valori casuali per partecorpo, difficolta, isstrength (true , false) e prendi un esercizio casuale
@@ -163,10 +156,21 @@ const CreaTuoAllenamento = () => {
                         <div className="d-flex flex-wrap justify-content-start">
                             {ArrayIcone.map((icon, i) => (
                                 <Button
-                                    onClick={() => setParteCorpo(ValoriArray[i])}
+                                    onClick={() => {
+                                        setParteCorpo(ValoriArray[i]);
+                                        setArrayPartiCorpo(() => {
+                                            let newArray = [false, false, false, false, false, false];
+                                            newArray[i] = !newArray[i];
+                                            return newArray;
+                                        });
+                                    }}
                                     variant="transparent"
                                     className="p-0 enlight bg-button"
                                     key={`card-icon${i}`}
+                                    style={{
+                                        backgroundColor: ArrayPartiCorpo[i] ? "#fea800" : "transparent",
+                                        border: ArrayPartiCorpo[i] ? "rgb(244, 164, 96) 4px solid" : "",
+                                    }}
                                 >
                                     <Card
                                         // onClick={Selected}
@@ -180,24 +184,12 @@ const CreaTuoAllenamento = () => {
                                     </Card>
                                 </Button>
                             ))}
-
-                            {/* <Form.Select
-                                value={parteCorpo}
-                                onChange={(e) => setParteCorpo(e.target.value === "null" ? null : e.target.value)}
-                                aria-label="Default select example"
-                            >
-                                <option> Scegli Parte Del Corpo: </option>
-                                <option value="null">NON SPECIFICARE </option>
-                                <option value="petto">Petto</option>
-                                <option value="gambe">Gambe</option>
-                                <option value="bicipiti">Bicipiti</option>
-                                <option value="spalle">Spalle</option>
-                                <option value="tricipiti">Tricipiti</option>
-                                <option value="fullbody">Full Body</option>
-                            </Form.Select> */}
                         </div>
-                        <div className="my-2 py-2">
+                        <div className="my-4">
                             <p className="m-0 text-light">Filtra esercizi per difficoltà: </p>
+                            <h3 className="text-warning fw-bold fs-1">
+                                {difficolta === "1" ? "Facile" : difficolta === "2" ? "Medio" : "Difficile"}
+                            </h3>
                             {/* <Form.Select
                                 value={difficolta}
                                 onChange={(e) => setDifficolta(e.target.value === "null" ? null : e.target.value)}
@@ -212,9 +204,20 @@ const CreaTuoAllenamento = () => {
                             </Form.Select> */}
                             {DifficoltaMatrix.map((diff, i) => (
                                 <Button
-                                    onClick={() => setDifficolta(diff[1])}
+                                    onClick={() => {
+                                        setDifficolta(diff[1]);
+                                        setArrayDifficolta(() => {
+                                            let newArray = [false, false, false];
+                                            newArray[i] = !newArray[i];
+                                            return newArray;
+                                        });
+                                    }}
                                     variant="transparent"
                                     className="p-0 enlight bg-button"
+                                    style={{
+                                        backgroundColor: ArrayDifficolta[i] ? "#fea800" : "transparent",
+                                        border: ArrayDifficolta[i] ? "rgb(244, 164, 96) 4px solid" : "",
+                                    }}
                                     key={`card-icon${i}`}
                                 >
                                     <Card className="p-0" bg="transparent">
@@ -342,7 +345,7 @@ const CreaTuoAllenamento = () => {
                                 ))
                             ) : (
                                 <h2 className="fs-3 text-light d-flex justify-content-center my-3">
-                                    nessun Esercizio Soddisfa i criteri di ricerca{" "}
+                                    nessun Esercizio Soddisfa i criteri di ricerca.{" "}
                                 </h2>
                             )}
                         </div>
@@ -398,48 +401,7 @@ const CreaTuoAllenamento = () => {
                     </Col>
                 </Row>
 
-                <Row>
-                    <Col>
-                        <div className="d-flex justify-content-center my-3 ">
-                            <Button
-                                variant="warning text-light"
-                                className="rounded-4 text-warning border-warning fw-bold fs-3"
-                                onClick={() => {
-                                    if (ArrayAllenamento.length === 0) {
-                                        toast.info("il tuo Allenamento non contiene esercizi", {
-                                            autoClose: 2000,
-                                            position: "top-center",
-                                        });
-                                    }
-
-                                    if (ArrayAllenamento.length > 0) {
-                                        dispatch(SvuotaArrayAllenamento());
-                                        dispatch(setnomeAllenamentoCreato(""));
-                                        toast.success("Allenamento Svuotato", {
-                                            position: "top-center",
-                                            autoClose: 2000,
-                                        });
-                                    }
-                                }}
-                            >
-                                Svuota Allenamento
-                            </Button>
-                        </div>
-                    </Col>
-                    <Col>
-                        <div className="d-flex justify-content-center my-3">
-                            <Button
-                                variant="warning text-light"
-                                className="rounded-4 text-warning border-warning fw-bold fs-3"
-                                onClick={() => handleShow()}
-                            >
-                                {" "}
-                                Conferma Allenamento{" "}
-                            </Button>
-                        </div>
-                    </Col>
-                </Row>
-
+                <BottoniSvuotaConferma ArrayAllenamento={ArrayAllenamento} setShow={setShow} />
                 <ModaleInserimentoNomeAllenamento show={show} handleClose={handleClose} />
 
                 <ModaleCreazioneNuovoEsercizio
