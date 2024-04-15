@@ -176,3 +176,8 @@ body {
 .profondita {
     perspective: 1000px;
 }
+
+.effettoVetro {
+    background-color: rgba(255, 255, 255, 0.116);
+    backdrop-filter: blur(20px);
+}
