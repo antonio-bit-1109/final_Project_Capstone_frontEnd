@@ -14,7 +14,7 @@ import CreaTuoAllenamento from "./components/General/CreaAllenamento/CreaTuoAlle
 import Carrello from "./components/General/Carrello";
 import PagamentoSuccesso from "./components/General/PagamentoSuccesso";
 import PagamentoFallito from "./components/General/PagamentoFallito";
-import SvolgiAllenamentoPresoDallaLista from "./components/General/SvolgiAllenamentoPresoDallaLista";
+import SvolgiAllenamentoPresoDallaLista from "./components/General/SvolgiAllenamento/SvolgiAllenamentoPresoDallaLista";
 import ImpacchettaAllenamento from "./components/General/CreaAllenamento/ImpacchettaAllenamento";
 import LIstaAllenamCompletati from "./components/General/Home/LIstaAllenamCompletati";
 import Abbonamenti from "./components/General/Utente/Abbonamenti";

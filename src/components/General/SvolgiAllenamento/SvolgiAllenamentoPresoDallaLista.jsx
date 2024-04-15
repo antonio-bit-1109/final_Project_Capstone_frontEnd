@@ -1,9 +1,9 @@
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { PostAllenamentoConcluso } from "../../redux/actions/fetchAllenamento";
-import { LocalHostPath } from "../../functions/localHostPath";
+import { PostAllenamentoConcluso } from "../../../redux/actions/fetchAllenamento";
+import { LocalHostPath } from "../../../functions/localHostPath";
 import { useNavigate } from "react-router-dom";
-import { setAllenamentoSceltogiaCreato } from "../../redux/reducers/allenamentiReducer";
+import { setAllenamentoSceltogiaCreato } from "../../../redux/reducers/allenamentiReducer";
 // Import Swiper React components
 // import { Navigation, Pagination, Scrollbar, A11y, Autoplay, EffectCoverflow, EffectFade } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -34,14 +34,16 @@ const SvolgiAllenamentoPresoDallaLista = () => {
     };
 
     useEffect(() => {
-        setMinuti(AllenamentoSceltogiaCreato.durataTotaleAllenamento);
-        timerRef.current = AllenamentoSceltogiaCreato.durataTotaleAllenamento;
-        let array = [];
-        AllenamentoSceltogiaCreato.esercizi.map((es) => {
-            array.push(es.recupero);
-        });
-        setArrayRecuperi(array);
-    }, []);
+        if (AllenamentoSceltogiaCreato) {
+            setMinuti(AllenamentoSceltogiaCreato.durataTotaleAllenamento);
+            timerRef.current = AllenamentoSceltogiaCreato.durataTotaleAllenamento;
+            let array = [];
+            AllenamentoSceltogiaCreato.esercizi.map((es) => {
+                array.push(es.recupero);
+            });
+            setArrayRecuperi(array);
+        }
+    }, [AllenamentoSceltogiaCreato]);
 
     useEffect(() => {
         if (timerIsRunning) {
@@ -73,7 +75,7 @@ const SvolgiAllenamentoPresoDallaLista = () => {
                 clearInterval(interval);
             };
         }
-    }, [Arrayrecuperi, timerIsRunning]);
+    }, [Arrayrecuperi, timerIsRunning, minuti, secondi]);
 
     return (
         <div className="Bg-sfondo altezza-sfondo">

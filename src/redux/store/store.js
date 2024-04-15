@@ -16,7 +16,7 @@ import utentiReducer from "../reducers/utentiReducer";
 const persistConfig = {
     key: "root",
     storage,
-    whitelist: ["token", "prodotti", "utenti"], //aggiungi il reducer che vuoi venga mantenuto
+    whitelist: ["token", "prodotti", "utenti", "allenamenti"], //aggiungi il reducer che vuoi venga mantenuto
     transforms: [
         expireReducer("token", {
             expireSeconds: 7 * 24 * 60 * 60, // 7 days
@@ -31,6 +31,11 @@ const persistConfig = {
         expireReducer("utenti", {
             expireSeconds: 7 * 24 * 60 * 60, // 1 day
             expiredState: { TuttiDettagliUtenteLoggato: null },
+            autoExpire: true,
+        }),
+        expireReducer("allenamenti", {
+            expireSeconds: 60 * 60 * 3, // 3 hours
+            expiredState: { AllenamentoSceltogiaCreato: null },
             autoExpire: true,
         }),
     ],
