@@ -13,6 +13,7 @@ const SvolgiAllenamentoPresoDallaLista = () => {
     const { AllenamentoSceltogiaCreato } = useSelector((store) => store.allenamenti);
     console.log(AllenamentoSceltogiaCreato);
     const [isCustomModalVisible, setIscoCustomModalVisible] = useState(false);
+    const [count, setCount] = useState(0);
 
     useEffect(() => {
         if (isCustomModalVisible) {
@@ -24,12 +25,13 @@ const SvolgiAllenamentoPresoDallaLista = () => {
 
     return (
         <div className="Bg-sfondo altezza-sfondo position-relative">
-            <CustomModale isCustomModalVisible={isCustomModalVisible} />
+            <CustomModale count={count} isCustomModalVisible={isCustomModalVisible} />
             <Container>
                 {AllenamentoSceltogiaCreato && (
                     <>
                         <Row>
                             <TimerComponent
+                                setCount={setCount}
                                 setIscoCustomModalVisible={setIscoCustomModalVisible}
                                 AllenamentoSceltogiaCreato={AllenamentoSceltogiaCreato}
                             />
