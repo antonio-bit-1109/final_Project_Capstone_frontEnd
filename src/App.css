@@ -159,6 +159,7 @@ body {
 .customModalAnimation {
     transition: all 0.5s ease;
     animation: slide-in-bck-center 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    perspective: 1000px;
 }
 
 @keyframes slide-in-bck-center {
@@ -172,7 +173,6 @@ body {
     }
 }
 
-.otherProps {
+.profondita {
     perspective: 1000px;
-    height: 110vh;
 }
