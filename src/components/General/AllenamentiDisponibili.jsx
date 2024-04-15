@@ -73,7 +73,7 @@ const AllenamentiDisponibili = () => {
                     <Row className="justify-content-center ">
                         {listaAllenamentiDisponibili.map((allenamento, index) => (
                             <Col xs="12" sm="10" md="7" lg="6" xxl="5" key={`index-n-${index}`}>
-                                <Card className="my-3 rounded-5 animation shadow-lg">
+                                <Card className="my-3 rounded-5 animation shadow-lg effettoVetro text-light">
                                     <Card.Body>
                                         <div className="d-xl-flex justify-content-xl-center gap-4">
                                             {" "}
