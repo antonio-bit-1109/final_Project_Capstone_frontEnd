@@ -65,69 +65,100 @@ const SvolgiAllenamentoPresoDallaLista = () => {
     }, [Arrayrecuperi]);
 
     return (
-        <>
+        <div className="Bg-sfondo altezza-sfondo">
             <Container>
                 {AllenamentoSceltogiaCreato && (
                     <>
                         <Row>
-                            <Col xs="12" sm="12" md="10" lg="6" xl="5">
-                                {/* TIMER */}
-                                <div className="display-1">
-                                    {minuti} : {secondi === 0 ? secondi + "0" : secondi}
+                            <Col xs="6" sm="5" md="4" lg="4" xl="3">
+                                <div className="d-flex flex-column py-3">
+                                    {/* TIMER */}
+                                    <div className="display-1 rounded rounded-5 my-4 p-3 shadow-lg bg-button">
+                                        <span className="text-light d-flex justify-content-center">
+                                            {minuti} : {secondi === 0 ? secondi + "0" : secondi}
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <Button
+                                            variant="warning"
+                                            className="rounded-4 text-light fw-bold fs-3"
+                                            onClick={() => {
+                                                setTimerIsRunning(!timerIsRunning);
+                                            }}
+                                        >
+                                            {" "}
+                                            {timerIsRunning ? "Let's Workout!" : "Sei Pronto?"}
+                                        </Button>
+                                    </div>
                                 </div>
-                                <div>
-                                    <Button
-                                        variant="warning "
-                                        className="rounded-4 text-light fw-bold"
-                                        onClick={() => {
-                                            setTimerIsRunning(!timerIsRunning);
-                                        }}
-                                    >
-                                        {" "}
-                                        {timerIsRunning ? "Let's Workout!" : "Sei Pronto?"}
-                                    </Button>
-                                </div>
+                            </Col>
+                            <Col xs="12" sm="12">
+                                <span className=" text-light">
+                                    <div className="h-100 my-sm-4">
+                                        <div className="d-flex justify-content-center h-50 align-items-center">
+                                            <h1 className="display-3 fw-bold">
+                                                {AllenamentoSceltogiaCreato.nomeAllenamento}
+                                            </h1>
+                                        </div>
+                                        <div className="d-flex justify-content-around">
+                                            <div className="d-flex flex-column align-items-center">
+                                                {" "}
+                                                <span className="fs-3">Durata Allenamento:</span>
+                                                <span className="fs-1">
+                                                    {" "}
+                                                    {AllenamentoSceltogiaCreato.durataTotaleAllenamento} &apos;
+                                                </span>
+                                            </div>
+                                            <div className="d-flex flex-column align-items-center">
+                                                {" "}
+                                                <span className="fs-3">Serie Totali:</span>
+                                                <span className="fs-1"> {AllenamentoSceltogiaCreato.serieTotali}</span>
+                                            </div>
+                                            <div className="d-flex flex-column align-items-center">
+                                                {" "}
+                                                <span className="fs-3">Ripetizioni Totali:</span>
+                                                <span className="fs-1">
+                                                    {" "}
+                                                    {AllenamentoSceltogiaCreato.ripetizioniTotali}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </span>
                             </Col>
                         </Row>
-                        <Row>
-                            <Col>
-                                <div className="d-flex justify-content-center">
-                                    <h1>{AllenamentoSceltogiaCreato.nomeAllenamento}</h1>
-                                </div>
-                                <div className="d-flex justify-content-around">
-                                    <p>
-                                        {" "}
-                                        Durata Totale Allenamento :{AllenamentoSceltogiaCreato.durataTotaleAllenamento}
-                                    </p>
-                                    <p> Serie Totali: {AllenamentoSceltogiaCreato.serieTotali}</p>
-                                    <p> Ripetizioni Totali:{AllenamentoSceltogiaCreato.ripetizioniTotali}</p>
-                                </div>
-                            </Col>
-                            <Swiper draggable="true">
-                                {AllenamentoSceltogiaCreato.esercizi.map((esercizio, i) => (
-                                    <SwiperSlide key={`ciao-${i}`}>
+
+                        <Swiper draggable="true">
+                            {AllenamentoSceltogiaCreato.esercizi.map((esercizio, i) => (
+                                <SwiperSlide key={`ciao-${i}`}>
+                                    <div className="my-5">
                                         <Row>
-                                            <Col xl="9">
+                                            <Col>
                                                 <div>
                                                     <img
-                                                        style={{ width: "100%" }}
+                                                        style={{ maxWidth: "30vw" }}
                                                         src={`${LocalHostPath}/img-esercizi/${esercizio.immagineEsercizio}`}
                                                         alt="esercizio"
                                                     />
                                                 </div>
                                             </Col>
-                                            <Col xl="3">
+                                            <Col>
                                                 <div className="d-flex flex-column justify-content-center align-items-center h-100">
-                                                    <p>{esercizio.nomeEsercizio}</p>
-                                                    <p>{esercizio.serie}</p>
-                                                    <p>{esercizio.ripetizioni}</p>
+                                                    <span className="display-2 text-light fw-semibold">
+                                                        <p>{esercizio.nomeEsercizio}</p>
+                                                        <div>
+                                                            <p>
+                                                                {esercizio.serie} x {esercizio.ripetizioni}
+                                                            </p>
+                                                        </div>
+                                                    </span>
                                                 </div>
                                             </Col>
                                         </Row>
-                                    </SwiperSlide>
-                                ))}
-                            </Swiper>
-                        </Row>
+                                    </div>
+                                </SwiperSlide>
+                            ))}
+                        </Swiper>
                     </>
                 )}
 
@@ -151,7 +182,7 @@ const SvolgiAllenamentoPresoDallaLista = () => {
                     </Col>
                 </Row>
             </Container>
-        </>
+        </div>
     );
 };
 
