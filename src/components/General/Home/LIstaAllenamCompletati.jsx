@@ -53,7 +53,7 @@ const LIstaAllenamCompletati = () => {
                     {AllenamentiCompletatiUtente &&
                         AllenamentiCompletatiUtente.map((allenamentoComplete, i) => (
                             <Col key={`ciao-${i}`} xs="12" sm="12" md="12" lg="6">
-                                <Card className="rounded rounded-5 my-4 p-5 position-relative effettoVetro">
+                                <Card className="rounded rounded-5 my-4 p-5 position-relative effettoVetro border border-2">
                                     {/* TIMBRO */}
                                     <div className="box positionStamp">
                                         <span

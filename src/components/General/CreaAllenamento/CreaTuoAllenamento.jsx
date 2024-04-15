@@ -255,7 +255,7 @@ const CreaTuoAllenamento = () => {
                             {listaEsercizi.length > 0 ? (
                                 listaEsercizi.map((esercizio, index) => (
                                     <Col key={`col-${index}`}>
-                                        <Card className="rounded rounded-5 my-4 shadow-lg">
+                                        <Card className="rounded rounded-5 my-4 shadow-lg effettoVetro text-light border border-2">
                                             {/* MODALE PER MOSTRARE IMMAGINE ESERCIZIO */}
                                             <Modal
                                                 show={showImage}
@@ -353,7 +353,7 @@ const CreaTuoAllenamento = () => {
                     {/* sezione vista esercizi selezionati */}
                     <Col xs="12" md="12" lg="6" xl="6" xxl="6">
                         <div className="sticky-top d-flex flex-column align-items-center">
-                            {ArrayAllenamento.length > 0 && (
+                            {ArrayAllenamento && ArrayAllenamento.length > 0 && (
                                 <div className="d-flex justify-content-center mt-4">
                                     <h4 className="display-3 text-light">Esercizi Selezionati</h4>
                                 </div>
@@ -362,7 +362,7 @@ const CreaTuoAllenamento = () => {
                                 ArrayAllenamento.map((esercizio, index) => (
                                     <div
                                         key={`div-${index}`}
-                                        className="border border-2 p-3 rounded-5 w-75 my-1 bg-light position-relative shadow-lg"
+                                        className="border border-2 p-3 rounded-5 w-75 my-1 position-relative shadow-lg effettoVetro text-light"
                                     >
                                         <div className="d-flex justify-content-center">
                                             <Card.Title className="d-flex justify-content-center fw-bold fs-3">
@@ -371,7 +371,7 @@ const CreaTuoAllenamento = () => {
                                             <button
                                                 onClick={() => dispatch(RimuoviEsercizioDaArray(esercizio.idEsercizio))}
                                                 style={{ border: "none" }}
-                                                className="positionX"
+                                                className="positionX effettoVetro "
                                             >
                                                 ❌
                                             </button>

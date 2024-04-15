@@ -75,7 +75,7 @@ const Prodotti = () => {
                     {listaProdotti &&
                         listaProdotti.map((prodotto, index) => (
                             <Col key={index} xs="12" md="8" lg="6" xl="4">
-                                <Card className="rounded rounded-5 my-4 p-3 position-relative shadow-lg custom-h">
+                                <Card className="rounded rounded-5 my-4 p-3 position-relative shadow-lg custom-h border border-2 effettoVetro text-light scalaAnimazione">
                                     {TuttiDettagliUtenteLoggato && TuttiDettagliUtenteLoggato.ruolo === "admin" ? (
                                         <Button
                                             onClick={() => eraseProduct(prodotto.idProdotto)}

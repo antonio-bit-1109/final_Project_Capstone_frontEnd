@@ -113,14 +113,20 @@ body {
 
 .filterGrayScale {
     filter: grayscale(100%);
-    transition: all 0.5s ease;
-    scale: 1;
 }
 
 .filterGrayScale:hover {
+    filter: grayscale(0);
+}
+
+.scalaAnimazione {
+    scale: 1;
+    transition: all 0.5s ease;
+}
+
+.scalaAnimazione:hover {
     scale: 1.02;
     transition: all 0.5s ease;
-    filter: grayscale(0);
 }
 
 .obscure {

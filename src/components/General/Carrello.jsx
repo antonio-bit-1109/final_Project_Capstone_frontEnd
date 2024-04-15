@@ -117,7 +117,7 @@ const Carrello = () => {
                             {prodottiNelCarrello &&
                                 prodottiNelCarrello.map((prodotto, index) => (
                                     <Col xs="12" md="12" lg="8" xl="8" xxl="8" key={`my-col-${index}`}>
-                                        <Card className="rounded rounded-5 my-2 p-3 d-flex align-items-center flex-row shadow-lg">
+                                        <Card className="rounded rounded-5 my-2 p-3 d-flex align-items-center flex-row shadow-lg effettoVetro text-light">
                                             <Card.Img
                                                 className="me-3"
                                                 style={{

@@ -79,7 +79,7 @@ const AbbonamentoTrainer = () => {
                     {ListaAbbonamentiFake &&
                         ListaAbbonamentiFake.map((abbon, i) => (
                             <Col xs="12" sm="12" md="10" lg="6" xl="4" xxl="4" key={`ind-${i}`}>
-                                <Card className="filterGrayScale d-flex flex-column custom-h my-4 rounded rounded-5">
+                                <Card className="filterGrayScale scalaAnimazione d-flex flex-column custom-h my-4 rounded rounded-5 effettoVetro text-light border border-2">
                                     <Card.Img
                                         style={{ maxHeight: "300px", objectFit: "cover", objectPosition: "top" }}
                                         className="img-thumbnail rounded rounded-5"
