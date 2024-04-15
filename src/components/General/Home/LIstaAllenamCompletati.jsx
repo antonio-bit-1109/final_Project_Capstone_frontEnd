@@ -22,7 +22,7 @@ const LIstaAllenamCompletati = () => {
     };
 
     return (
-        <div className="Bg-sfondo  min-vh-100">
+        <div className="Bg-sfondo min-vh-100">
             <Container>
                 {AllenamentiCompletatiUtente && AllenamentiCompletatiUtente.length === 0 && (
                     <Row>
@@ -41,10 +41,10 @@ const LIstaAllenamCompletati = () => {
                             <Button
                                 onClick={() => navigate("/")}
                                 variant="transparent"
-                                className="rounded-4 text-light fw-bolder fs-1"
+                                className="rounded-4 text-light fw-bolder"
                             >
                                 {" "}
-                                <ArrowLeft size={120} />
+                                <ArrowLeft size={100} />
                             </Button>
                         </div>
                     </Col>

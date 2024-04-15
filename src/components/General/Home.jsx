@@ -108,7 +108,9 @@ const Home = () => {
                             <Col xs="12" sm="12" md="9">
                                 <div>
                                     <h2 className="text-light display-2 d-flex justify-content-center">
-                                        Benvenuto, {TuttiDettagliUtenteLoggato.nome}!
+                                        <span className="display-1 fw-semibold">
+                                            Benvenuto, {TuttiDettagliUtenteLoggato.nome}!
+                                        </span>
                                     </h2>
                                 </div>
                                 <div>

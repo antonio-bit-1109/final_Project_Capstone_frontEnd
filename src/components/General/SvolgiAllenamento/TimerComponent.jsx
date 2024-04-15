@@ -4,7 +4,7 @@ import { Button, Col } from "react-bootstrap";
 import { toast } from "react-toastify";
 
 // eslint-disable-next-line react/prop-types
-const TimerComponent = ({ AllenamentoSceltogiaCreato }) => {
+const TimerComponent = ({ AllenamentoSceltogiaCreato, setIscoCustomModalVisible }) => {
     const timerRef = useRef();
     const [minuti, setMinuti] = useState(null);
     const [secondi, setSecondi] = useState(0);
@@ -71,6 +71,7 @@ const TimerComponent = ({ AllenamentoSceltogiaCreato }) => {
                         onClick={() => {
                             // stopTimer();
                             setTimerIsRunning(!timerIsRunning);
+                            setIscoCustomModalVisible(true);
                         }}
                     >
                         {" "}

@@ -150,3 +150,8 @@ body {
     background-color: rgba(255, 255, 255, 0.014);
     backdrop-filter: blur(10px);
 }
+
+.customProp {
+    background-color: rgba(37, 36, 36, 0.842);
+    z-index: 999;
+}
