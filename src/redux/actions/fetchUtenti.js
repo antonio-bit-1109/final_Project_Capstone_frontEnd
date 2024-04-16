@@ -1,5 +1,5 @@
 import { toast } from "react-toastify";
-import { setTuttiDettagliUtenteLoggato, setUtenteAppenaRegistrato } from "../reducers/utentiReducer";
+import { setGenderUtente, setTuttiDettagliUtenteLoggato, setUtenteAppenaRegistrato } from "../reducers/utentiReducer";
 import { fetchWithAuth } from "../../functions/interceptor";
 import { LocalHostPath } from "../../functions/localHostPath";
 // import { rimuoviTuttoDalCArrello, setCarrelloOttimizzato } from "../reducers/prodottiReducer";
@@ -88,4 +88,24 @@ export const getDettagliUtente = () => async (dispatch) => {
 
     const response = await request.json();
     dispatch(setTuttiDettagliUtenteLoggato(response));
+};
+
+export const GenderUtente = (nomeUtente) => async (dispatch) => {
+    try {
+        const request = await fetch(
+            `https://genderapi.io/api/?key=${import.meta.env.VITE_API_TOKEN_GENDERAPI}&name=${nomeUtente}`,
+            { method: "GET" }
+        );
+        console.log(request);
+        if (request.ok) {
+            const response = await request.json();
+            console.log(response);
+            dispatch(setGenderUtente(response));
+            return;
+        }
+
+        throw new Error("Errore nel fetch");
+    } catch (error) {
+        console.error("Errore nel fetch:", error.message);
+    }
 };

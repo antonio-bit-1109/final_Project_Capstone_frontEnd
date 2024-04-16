@@ -8,7 +8,7 @@ import {
 import { LocalHostPath } from "../../functions/localHostPath";
 import { PlusCircleFill, GearFill } from "react-bootstrap-icons";
 import { Button } from "react-bootstrap";
-import { CambiaImmagine, getDettagliUtente } from "../../redux/actions/fetchUtenti";
+import { CambiaImmagine, GenderUtente, getDettagliUtente } from "../../redux/actions/fetchUtenti";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import GraficoComponent from "./grafico/GraficoComponent";
@@ -27,6 +27,9 @@ const Home = () => {
 
     const { TuttiDettagliUtenteLoggato } = useSelector((store) => store.utenti);
     console.log("TuttiDettagliUtenteLoggato ", TuttiDettagliUtenteLoggato);
+
+    const DatiGenderUtente = useSelector((store) => store.utenti.GenderUtente);
+    console.log("DatiGenderUtente ", DatiGenderUtente);
 
     const { AllenamentiCompletatiUtente } = useSelector((store) => store.allenamentiCompletati);
     const { DettagliAllenamentiCompletatiUtente } = useSelector((store) => store.allenamentiCompletati);
@@ -49,6 +52,8 @@ const Home = () => {
                     "/AllenamentiCompletati/CompletedWorkoutsUtente/"
                 )
             );
+
+            dispatch(GenderUtente(TuttiDettagliUtenteLoggato.nome));
         }
     }, [dispatch, TuttiDettagliUtenteLoggato]);
 
@@ -109,7 +114,10 @@ const Home = () => {
                                 <div>
                                     <h2 className="text-light display-2 d-flex justify-content-center">
                                         <span className="display-1 fw-semibold">
-                                            Benvenuto, {TuttiDettagliUtenteLoggato.nome}!
+                                            {DatiGenderUtente && DatiGenderUtente.gender === "male"
+                                                ? "Benvenuto"
+                                                : "Benvenuta"}
+                                            , {TuttiDettagliUtenteLoggato.nome}!
                                         </span>
                                     </h2>
                                 </div>

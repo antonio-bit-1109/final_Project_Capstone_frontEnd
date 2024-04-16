@@ -4,6 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     UtenteAppenaRegistrato: null,
     TuttiDettagliUtenteLoggato: null,
+    GenderUtente: null,
 };
 
 const stateReducerSlice = createSlice({
@@ -22,10 +23,18 @@ const stateReducerSlice = createSlice({
         svuotaTuttiDettagliUtenteLoggato: (state) => {
             state.TuttiDettagliUtenteLoggato = null;
         },
+
+        setGenderUtente: (state, action) => {
+            state.GenderUtente = action.payload;
+        },
     },
 });
 
 // Esporto solo l'azione definita nello slice
-export const { setUtenteAppenaRegistrato, setTuttiDettagliUtenteLoggato, svuotaTuttiDettagliUtenteLoggato } =
-    stateReducerSlice.actions;
+export const {
+    setUtenteAppenaRegistrato,
+    setTuttiDettagliUtenteLoggato,
+    svuotaTuttiDettagliUtenteLoggato,
+    setGenderUtente,
+} = stateReducerSlice.actions;
 export default stateReducerSlice.reducer;
