@@ -43,7 +43,7 @@ const SwiperCarousel = ({ AllenamentoSceltogiaCreato }) => {
                     <SwiperSlide key={`ciao-${i}`}>
                         <div className="my-2 ">
                             <Col>
-                                <div className="d-flex">
+                                <div className="d-flex align-items-center">
                                     <div>
                                         <img
                                             style={{ width: "30vw" }}
@@ -52,7 +52,7 @@ const SwiperCarousel = ({ AllenamentoSceltogiaCreato }) => {
                                         />
                                     </div>
 
-                                    <div className="display-2 text-light fw-semibold m-auto">
+                                    <div className="display-2 text-light fw-semibold d-flex flex-column align-items-center w-100">
                                         <p>{esercizio.nomeEsercizio}</p>
                                         <p>
                                             {esercizio.serie} x {esercizio.ripetizioni}
