@@ -1,12 +1,15 @@
 /* eslint-disable react/prop-types */
 import { Button, Col, Row } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { SvuotaArrayAllenamento, setnomeAllenamentoCreato } from "../../../redux/reducers/allenamentiReducer";
 
 // eslint-disable-next-line react/prop-types
-const BottoniSvuotaConferma = ({ ArrayAllenamento, setShow }) => {
+const BottoniSvuotaConferma = ({ setShow }) => {
     const dispatch = useDispatch();
+
+    const ArrayAllenamento = useSelector((store) => store.allenamenti.allenamentoPersonalizzatoUtente);
+
     const handleShow = () => setShow(true);
 
     return (

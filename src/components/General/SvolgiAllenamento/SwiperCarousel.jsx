@@ -47,7 +47,7 @@ const SwiperCarousel = ({ AllenamentoSceltogiaCreato }) => {
                                     <Col xs="12" lg="6">
                                         <div className="d-flex justify-content-center align-items-center my-3 p-3">
                                             <img
-                                                style={{ height: "100%", maxWidth: "100%" }}
+                                                style={{ maxHeight: "350px", maxWidth: "100%" }}
                                                 src={`${LocalHostPath}/img-esercizi/${esercizio.immagineEsercizio}`}
                                                 alt="esercizio"
                                             />
