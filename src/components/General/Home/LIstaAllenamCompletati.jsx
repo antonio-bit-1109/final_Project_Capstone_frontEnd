@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { Col, Container, Row, Card, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft } from "react-bootstrap-icons";
+import { ArrowLeft, FiletypePdf } from "react-bootstrap-icons";
 
 const LIstaAllenamCompletati = () => {
     const navigate = useNavigate();
@@ -54,7 +54,7 @@ const LIstaAllenamCompletati = () => {
                     {AllenamentiCompletatiUtente &&
                         AllenamentiCompletatiUtente.map((allenamentoComplete, i) => (
                             <Col key={`ciao-${i}`} xs="12" sm="12" md="12" lg="6">
-                                <Card className="rounded rounded-5 my-4 p-5 position-relative effettoVetro border border-2">
+                                <Card className="rounded rounded-5 my-4 p-5 position-relative effettoVetro border border-2 position-relative">
                                     {/* TIMBRO */}
                                     <div className="box positionStamp">
                                         <span
@@ -138,6 +138,9 @@ const LIstaAllenamCompletati = () => {
                                             </div>
                                         ))}
                                     </div>
+                                    <Button variant="transparent customPositionPdfIcon">
+                                        <FiletypePdf size={50} className=" text-light" />
+                                    </Button>
                                 </Card>
                             </Col>
                         ))}

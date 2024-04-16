@@ -193,3 +193,9 @@ body {
     padding: 2px 0;
     background-color: #404040;
 }
+
+.customPositionPdfIcon {
+    position: absolute;
+    right: 21px;
+    bottom: 21px;
+}
