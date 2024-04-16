@@ -71,7 +71,7 @@ const ModaleInserimentoNomeAllenamento = ({ show, handleClose }) => {
                                     message: "Il nome non può contenere più di 10 caratteri",
                                 },
                                 pattern: {
-                                    value: /^[A-Za-z0-9]+$/i,
+                                    value: /^[A-Za-z0-9 ]+$/i,
                                     message: "Il nome dell'allenamento può contenere solo lettere e numeri.",
                                 },
                             })}

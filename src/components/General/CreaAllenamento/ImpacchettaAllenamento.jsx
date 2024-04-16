@@ -38,9 +38,8 @@ const ImpacchettaAllenamento = () => {
                 oldArray.push(singoloEsercizioObj.idEsercizio);
 
                 durataTotAllen +=
-                    (singoloEsercizioObj.ripetizioni * 2 * singoloEsercizioObj.serie +
-                        (singoloEsercizioObj.tempoRecupero * singoloEsercizioObj.serie - 1)) /
-                    60;
+                    singoloEsercizioObj.ripetizioni * 2 * singoloEsercizioObj.serie +
+                    (singoloEsercizioObj.tempoRecupero * singoloEsercizioObj.serie - 1);
 
                 ripetizioniTotAllen += singoloEsercizioObj.ripetizioni;
                 serieTotAllen += singoloEsercizioObj.serie;

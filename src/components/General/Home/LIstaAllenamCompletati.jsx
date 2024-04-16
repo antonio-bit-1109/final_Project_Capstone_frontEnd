@@ -24,17 +24,6 @@ const LIstaAllenamCompletati = () => {
     return (
         <div className="Bg-sfondo min-vh-100">
             <Container>
-                {AllenamentiCompletatiUtente && AllenamentiCompletatiUtente.length === 0 && (
-                    <Row>
-                        <Col>
-                            <div className="my-5">
-                                {" "}
-                                <h2 className="display-3 text-light">Non hai ancora completato nessun allenamento.</h2>
-                            </div>
-                        </Col>
-                    </Row>
-                )}
-
                 <Row>
                     <Col>
                         <div className="my-1">
@@ -49,6 +38,18 @@ const LIstaAllenamCompletati = () => {
                         </div>
                     </Col>
                 </Row>
+
+                {AllenamentiCompletatiUtente && AllenamentiCompletatiUtente.length === 0 && (
+                    <Row>
+                        <Col>
+                            <div className="my-3">
+                                {" "}
+                                <h2 className="display-3 text-light">Non hai ancora completato nessun allenamento.</h2>
+                            </div>
+                        </Col>
+                    </Row>
+                )}
+
                 <Row>
                     {AllenamentiCompletatiUtente &&
                         AllenamentiCompletatiUtente.map((allenamentoComplete, i) => (
