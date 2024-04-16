@@ -226,7 +226,7 @@ const CreaTuoAllenamento = () => {
                                 </Button>
                             ))}
                         </div>
-                        <div className="my-2">
+                        <div hidden className="my-2">
                             <p className="m-0 text-light">Filtra Esercizi per Tipologia: </p>
                             <Form.Check // prettier-ignore
                                 className="text-light"
