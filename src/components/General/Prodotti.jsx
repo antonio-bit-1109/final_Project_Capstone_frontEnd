@@ -86,18 +86,25 @@ const Prodotti = () => {
                                         </Button>
                                     ) : null}
 
-                                    <Card.Img
-                                        className="m-auto"
-                                        style={{ maxHeight: "300px", objectFit: "contains", maxWidth: "300px" }}
-                                        variant="img-top"
-                                        src={`${LocalHostPath}/img-prodotti/${prodotto.immagineProdotto}`}
-                                    />
+                                    <div className="d-flex h-100 justify-content-center align-items-center">
+                                        {" "}
+                                        <Card.Img
+                                            className="m-auto"
+                                            style={{ maxHeight: "250px", objectFit: "contains", maxWidth: "300px" }}
+                                            variant="img-top"
+                                            src={`${LocalHostPath}/img-prodotti/${prodotto.immagineProdotto}`}
+                                        />
+                                    </div>
+
                                     <Card.Body className="d-flex justify-content-end flex-column">
                                         <Card.Title className="d-flex justify-content-center fw-bold fs-3">
                                             {prodotto.nomeProdotto}
                                         </Card.Title>
 
-                                        <Card.Text className="d-flex justify-content-center fs-5">
+                                        <Card.Text
+                                            style={{ height: "60px" }}
+                                            className="d-flex justify-content-center fs-5 overflow-y-auto"
+                                        >
                                             {prodotto.descrizione}
                                         </Card.Text>
                                         <Card.Text>
