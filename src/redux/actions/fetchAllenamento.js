@@ -8,19 +8,28 @@ import {
 } from "../reducers/allenamentiReducer";
 
 export const PostAllenamento = (urlPath, objPost) => async (dispatch) => {
-    const options = {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(objPost),
-    };
-    dispatch(setallenamentoInviatoAlServer(objPost));
-    const response = await fetchWithAuth(urlPath, options);
+    try {
+        const options = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(objPost),
+        };
+        dispatch(setallenamentoInviatoAlServer(objPost));
+        const response = await fetchWithAuth(urlPath, options);
 
-    const serverResponse = await response.json();
-    dispatch(setdatiAllenamentoRitorno_server(serverResponse));
-    //  dispatch(setFirstState(data));
+        const serverResponse = await response.json();
+
+        if (serverResponse.Message === "Errore nella creazione dell'allenamento") {
+            throw new Error("Errore nella creazione dell'allenamento");
+        }
+
+        dispatch(setdatiAllenamentoRitorno_server(serverResponse));
+        //  dispatch(setFirstState(data));
+    } catch (Error) {
+        console.log(Error);
+    }
 };
 
 export const PostAllenamentoConcluso = (urlPath, objPost) => async (dispatch) => {
