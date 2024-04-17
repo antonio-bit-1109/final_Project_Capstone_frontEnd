@@ -25,7 +25,7 @@ const StoricoAcquisti = () => {
                     <Col>
                         <div className="my-1">
                             <Button
-                                onClick={() => navigate("/")}
+                                onClick={() => navigate("/ModificaDatiUtente")}
                                 variant="transparent"
                                 className="rounded-4 text-light fw-bolder"
                             >

@@ -109,3 +109,19 @@ export const GenderUtente = (nomeUtente) => async (dispatch) => {
         console.error("Errore nel fetch:", error.message);
     }
 };
+
+export const ModificaDatiUtente = (idutente, objBody) => async (dispatch) => {
+    try {
+        const request = await fetchWithAuth(LocalHostPath + `Utente/modificaDatiUtente/${idutente}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(objBody),
+        });
+        const response = await request.json();
+        console.log(response);
+    } catch (error) {
+        console.error("Errore nel fetch:", error.message);
+    }
+};

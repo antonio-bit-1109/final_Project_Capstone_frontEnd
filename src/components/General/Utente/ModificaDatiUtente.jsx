@@ -5,26 +5,66 @@ import { useDispatch, useSelector } from "react-redux";
 import { annullaAbbonamento } from "../../../redux/actions/fetchAbbonamenti";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, PencilSquare } from "react-bootstrap-icons";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { getDettagliUtente } from "../../../redux/actions/fetchUtenti";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import { AddOneCountModale } from "../../../redux/reducers/notificaReducer";
 
 const ModificaDatiUtente = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { TuttiDettagliUtenteLoggato } = useSelector((state) => state.utenti);
+
+    const RefInfoUtente = useRef();
+    const nomeIniziale = useRef();
+    const CognomeIniziale = useRef();
+    const EmailIniziale = useRef();
+
+    const { TuttiDettagliUtenteLoggato } = useSelector((store) => store.utenti);
+    const { CountModale } = useSelector((store) => store.notifica);
+    console.log(CountModale);
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+        // watch,
+        // reset,
+    } = useForm();
 
     const handleAnnullaAbbonamento = () => {
         dispatch(annullaAbbonamento());
     };
 
     useEffect(() => {
-        dispatch(getDettagliUtente());
+        dispatch(AddOneCountModale());
+    }, [dispatch]);
+
+    useEffect(() => {
+        if (CountModale % 2 === 0) {
+            toast.info(" Attenzione, Se modifichi i dati personali dovrai rieseguire di nuovo il login!", {
+                autoClose: 4000,
+                position: "top-right",
+            });
+        }
+
+        if (TuttiDettagliUtenteLoggato) {
+            RefInfoUtente.current = TuttiDettagliUtenteLoggato;
+            nomeIniziale.current = TuttiDettagliUtenteLoggato.nome;
+            CognomeIniziale.current = TuttiDettagliUtenteLoggato.cognome;
+            EmailIniziale.current = TuttiDettagliUtenteLoggato.email;
+
+            if (TuttiDettagliUtenteLoggato !== RefInfoUtente.current) {
+                dispatch(getDettagliUtente());
+            }
+        }
     }, [TuttiDettagliUtenteLoggato, dispatch]);
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     console.log("ciao");
-    // };
+    const submitHandlerDatiUtente = (data) => {
+        //invio dati form e id utente al server
+        console.log(data);
+        console.log(TuttiDettagliUtenteLoggato.idUtente);
+    };
 
     return (
         <div className="Bg-sfondo-dark min-vh-100 ">
@@ -44,13 +84,20 @@ const ModificaDatiUtente = () => {
                         </div>
                     </Col>
                 </Row>
+                <Row>
+                    <Col>
+                        <div className="my-1 text-light">
+                            <h2 className="display-3 fw-semibold text-center">Modifica Dati </h2>
+                        </div>
+                    </Col>
+                </Row>
                 <Row className=" justify-content-center align-items-center row-gap-4">
                     <Col xs="12" sm="10" md="10" lg="6" xl="6">
                         <div className="text-light">
                             {TuttiDettagliUtenteLoggato && (
                                 <Card className="rounded rounded-5 my-4 p-3 position-relative shadow-lg  border border-2 effettoVetro text-light scalaAnimazione">
                                     <div className="my-3">
-                                        <div>
+                                        <div className="my-1">
                                             {" "}
                                             <span className="display-6">nome: </span>
                                             <span className="display-5 fw-semibold">
@@ -58,7 +105,7 @@ const ModificaDatiUtente = () => {
                                             </span>
                                         </div>
 
-                                        <div>
+                                        <div className="my-1">
                                             {" "}
                                             <span className="display-6">cognome: </span>
                                             <span className="display-5 fw-semibold">
@@ -66,7 +113,7 @@ const ModificaDatiUtente = () => {
                                             </span>
                                         </div>
 
-                                        <div>
+                                        <div className="my-1">
                                             {" "}
                                             <span className="display-6">email: </span>
                                             <span className="display-6 fw-semibold">
@@ -118,38 +165,85 @@ const ModificaDatiUtente = () => {
                         </div>
                     </Col>
                     <Col xs="12" sm="10" md="10" lg="6" xl="4">
-                        {/* nome */}
                         <div className="text-light">
-                            <Form /*onSubmit={handleSubmit}*/>
+                            <Form onSubmit={handleSubmit(submitHandlerDatiUtente)} /*onSubmit={handleSubmit}*/>
+                                {/* nome */}
                                 <Form.Group className="my-3" controlId="nome">
                                     <Form.Label className="fs-1 fw-normal m-auto">Nome</Form.Label>
                                     <div className="d-flex align-items-center">
-                                        <Form.Control type="text" placeholder="Inserisci un nuovo Nome." />
+                                        <Form.Control
+                                            {...register("nome", {
+                                                required: false,
+                                                pattern: {
+                                                    value: /^[A-Za-z1234567890]+$/i,
+                                                    message: "Il nome deve contenere solo lettere o numeri.",
+                                                },
+                                                validate: (value) =>
+                                                    value !== nomeIniziale.current ||
+                                                    "Il nome deve essere diverso da quello attualmente in uso.",
+                                            })}
+                                            type="text"
+                                            placeholder="Inserisci un nuovo Nome."
+                                        />
+
                                         <Button type="submit" variant="transparent">
                                             <PencilSquare size={30} className="text-light" />
                                         </Button>
                                     </div>
                                 </Form.Group>
-                            </Form>
-                            {/* cognome  */}
-                            <Form>
+                                {errors.nome && <div className="text-danger m-auto">{errors.nome.message}</div>}
+
+                                {/* cognome  */}
                                 <Form.Group className="my-3" controlId="cognome">
                                     <Form.Label className="fs-1 fw-normal m-auto">Cognome</Form.Label>
                                     <div className="d-flex align-items-center">
-                                        <Form.Control type="text" placeholder="Inserisci un nuovo cognome." />
+                                        <Form.Control
+                                            {...register("cognome", {
+                                                required: false,
+                                                pattern: {
+                                                    value: /^[A-Za-z1234567890]+$/i,
+                                                    message: "Il cognome deve contenere solo lettere o numeri.",
+                                                },
+                                                validate: (value) =>
+                                                    value !== CognomeIniziale.current ||
+                                                    "Il cognome deve essere diverso da quello attualmente in uso.",
+                                            })}
+                                            type="text"
+                                            placeholder="Inserisci un nuovo cognome."
+                                        />
                                         <Button type="submit" variant="transparent">
                                             <PencilSquare size={30} className="text-light" />
                                         </Button>
                                     </div>
                                 </Form.Group>
-                            </Form>
-                            {/* email */}
-                            <Form>
+                                {errors.cognome && <div className="text-danger m-auto">{errors.cognome.message}</div>}
+
+                                {/* email */}
                                 <Form.Group className="my-3" controlId="email">
                                     <Form.Label className="fs-1 fw-normal m-auto">Email</Form.Label>
-                                    <Form.Control type="text" placeholder="Inserisci una nuova mail" />
+                                    <div className="d-flex align-items-center">
+                                        <Form.Control
+                                            {...register("email", {
+                                                required: false,
+                                                pattern: {
+                                                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                                    message: "Formato Email non valido.",
+                                                },
+                                                validate: (value) =>
+                                                    value !== EmailIniziale.current ||
+                                                    "L' E-Mail deve essere diversa da quella attualmente in uso.",
+                                            })}
+                                            type="text"
+                                            placeholder="Inserisci una nuova mail"
+                                        />
+                                        <Button type="submit" variant="transparent">
+                                            <PencilSquare size={30} className="text-light" />
+                                        </Button>
+                                    </div>
                                 </Form.Group>
+                                {errors.email && <div className="text-danger m-auto">{errors.email.message}</div>}
                             </Form>
+
                             {/* cambio password  */}
                             {/* <Form>
                                 <Form.Group className="my-3" controlId="vecchiaPassword">

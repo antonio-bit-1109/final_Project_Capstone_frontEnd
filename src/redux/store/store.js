@@ -8,6 +8,7 @@ import eserciziReducer from "../reducers/eserciziReducer";
 import allenamentiReducer from "../reducers/allenamentiReducer";
 import allenamentiCompletatiReducer from "../reducers/allenamentiCompletatiReducer";
 import utentiReducer from "../reducers/utentiReducer";
+import notificaReducer from "../reducers/notificaReducer";
 // import abbonamentiReducer from "../reducers/abbonamentiReducer";
 // import animaleReducer from "../reducers/animaleReducer";
 // import visiteReducer from "../reducers/visiteReducer";
@@ -48,7 +49,7 @@ const rootReducer = combineReducers({
     allenamenti: allenamentiReducer,
     utenti: utentiReducer,
     allenamentiCompletati: allenamentiCompletatiReducer,
-    // abbonamenti: abbonamentiReducer,
+    notifica: notificaReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
