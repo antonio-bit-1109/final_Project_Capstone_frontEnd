@@ -75,7 +75,7 @@ function Login() {
 
     useEffect(() => {
         if (UtenteAppenaRegistrato !== null) {
-            if (UtenteAppenaRegistrato.nome === watch("nome")) {
+            if (UtenteAppenaRegistrato && UtenteAppenaRegistrato.nome === watch("nome")) {
                 toast.success("Registrazione avvenuta con successo! Effettua il login per continuare", {
                     position: "top-center",
                     autoClose: 3000,
