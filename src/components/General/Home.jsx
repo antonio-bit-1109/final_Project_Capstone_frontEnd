@@ -107,7 +107,7 @@ const Home = () => {
     return (
         <>
             {TuttiDettagliUtenteLoggato && (
-                <div className="Bg-sfondo altezza-sfondo">
+                <div className="Bg-sfondo-dark altezza-sfondo">
                     <Container>
                         <Row>
                             <Col xs="12" sm="12" md="9">

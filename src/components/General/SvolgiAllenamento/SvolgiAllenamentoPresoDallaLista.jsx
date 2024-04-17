@@ -24,7 +24,7 @@ const SvolgiAllenamentoPresoDallaLista = () => {
     }, [isCustomModalVisible]);
 
     return (
-        <div className="Bg-sfondo altezza-sfondo position-relative">
+        <div className="Bg-sfondo-dark altezza-sfondo position-relative">
             <CustomModale count={count} isCustomModalVisible={isCustomModalVisible} />
             <Container>
                 {AllenamentoSceltogiaCreato && (

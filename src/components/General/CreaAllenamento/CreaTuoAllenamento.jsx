@@ -37,7 +37,7 @@ const CreaTuoAllenamento = () => {
     }, [dispatch]);
 
     return (
-        <div className="Bg-sfondo altezza-sfondo">
+        <div className="Bg-sfondo-dark altezza-sfondo">
             <Container fluid>
                 {TuttiDettagliUtenteLoggato && (
                     <Row>
