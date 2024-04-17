@@ -1,7 +1,16 @@
 import { toast } from "react-toastify";
-import { setGenderUtente, setTuttiDettagliUtenteLoggato, setUtenteAppenaRegistrato } from "../reducers/utentiReducer";
+import {
+    setGenderUtente,
+    setTuttiDettagliUtenteLoggato,
+    setUtenteAppenaRegistrato,
+    svuotaTuttiDettagliUtenteLoggato,
+} from "../reducers/utentiReducer";
 import { fetchWithAuth } from "../../functions/interceptor";
 import { LocalHostPath } from "../../functions/localHostPath";
+import { setDatiutenteLoggato, setTokenUtente } from "../reducers/tokenReducer";
+import { SvuotaArrayAllenamento, setnomeAllenamentoCreato } from "../reducers/allenamentiReducer";
+import { rimuoviTuttoDalCArrello, setCarrelloOttimizzato } from "../reducers/prodottiReducer";
+import { rimuoviTuttiAllenamentiCompletatiUtente } from "../reducers/allenamentiCompletatiReducer";
 // import { rimuoviTuttoDalCArrello, setCarrelloOttimizzato } from "../reducers/prodottiReducer";
 // import { SvuotaArrayAllenamento, setnomeAllenamentoCreato } from "../reducers/allenamentiReducer";
 // import { setDatiutenteLoggato, setTokenUtente } from "../reducers/tokenReducer";
@@ -110,18 +119,49 @@ export const GenderUtente = (nomeUtente) => async (dispatch) => {
     }
 };
 
-export const ModificaDatiUtente = (idutente, objBody) => async (dispatch) => {
+export const ModificaDati = (password, idutente, objBody) => async (dispatch) => {
     try {
-        const request = await fetchWithAuth(LocalHostPath + `Utente/modificaDatiUtente/${idutente}`, {
+        const sendPassword = await fetchWithAuth(LocalHostPath + "/Utente/CheckPassword", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(objBody),
+            body: JSON.stringify(password),
         });
-        const response = await request.json();
-        console.log(response);
+
+        const responsePassword = await sendPassword.json();
+
+        if (responsePassword.message === "Password non Corrispondenti.") {
+            throw new Error("Password non corrispondenti");
+        } else if (responsePassword.message === "Password Corrispondenti.") {
+            //
+            const sendDataModificheUtente = await fetchWithAuth(
+                LocalHostPath + `/Utente/modificaDatiUtente/${idutente}`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(objBody),
+                }
+            );
+
+            const response2 = await sendDataModificheUtente.json();
+            console.log("response2", response2);
+            if (response2.message === "Modifiche Effettuate") {
+                toast.success("Dati modificati con successo! Effettua Nuovamente il Login.");
+                dispatch(setTokenUtente(null));
+                dispatch(setDatiutenteLoggato(null));
+                dispatch(svuotaTuttiDettagliUtenteLoggato());
+                dispatch(SvuotaArrayAllenamento());
+                dispatch(setnomeAllenamentoCreato(""));
+                dispatch(rimuoviTuttoDalCArrello());
+                dispatch(setCarrelloOttimizzato([]));
+                dispatch(rimuoviTuttoDalCArrello());
+                dispatch(rimuoviTuttiAllenamentiCompletatiUtente());
+            }
+        }
     } catch (error) {
-        console.error("Errore nel fetch:", error.message);
+        toast.error(error.message);
     }
 };

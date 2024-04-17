@@ -1,12 +1,12 @@
 // import { useEffect } from "react";
-import { Col, Container, Row, Button, Card } from "react-bootstrap";
+import { Col, Container, Row, Button, Card, Modal } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import { useDispatch, useSelector } from "react-redux";
 import { annullaAbbonamento } from "../../../redux/actions/fetchAbbonamenti";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, PencilSquare } from "react-bootstrap-icons";
-import { useEffect, useRef } from "react";
-import { getDettagliUtente } from "../../../redux/actions/fetchUtenti";
+import { useEffect, useRef, useState } from "react";
+import { ModificaDati, getDettagliUtente } from "../../../redux/actions/fetchUtenti";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { AddOneCountModale } from "../../../redux/reducers/notificaReducer";
@@ -23,6 +23,18 @@ const ModificaDatiUtente = () => {
     const { TuttiDettagliUtenteLoggato } = useSelector((store) => store.utenti);
     const { CountModale } = useSelector((store) => store.notifica);
     console.log(CountModale);
+
+    const [show, setShow] = useState(false);
+    const [passwordInput, setPasswordInput] = useState("");
+    const [dataReactHookForm, setDataReactHookForm] = useState(null);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => {
+        if (errors.nome || errors.cognome || errors.email) {
+            return;
+        }
+        setShow(true);
+    };
 
     const {
         register,
@@ -41,7 +53,7 @@ const ModificaDatiUtente = () => {
     }, [dispatch]);
 
     useEffect(() => {
-        if (CountModale % 2 === 0) {
+        if (CountModale % 3 === 0) {
             toast.info(" Attenzione, Se modifichi i dati personali dovrai rieseguire di nuovo il login!", {
                 autoClose: 4000,
                 position: "top-right",
@@ -61,9 +73,15 @@ const ModificaDatiUtente = () => {
     }, [TuttiDettagliUtenteLoggato, dispatch]);
 
     const submitHandlerDatiUtente = (data) => {
-        //invio dati form e id utente al server
         console.log(data);
-        console.log(TuttiDettagliUtenteLoggato.idUtente);
+        setDataReactHookForm(data);
+    };
+
+    const submitCheckPassword = (e) => {
+        if (dataReactHookForm !== null) {
+            e.preventDefault();
+            dispatch(ModificaDati(passwordInput, TuttiDettagliUtenteLoggato.idUtente, dataReactHookForm));
+        }
     };
 
     return (
@@ -175,7 +193,7 @@ const ModificaDatiUtente = () => {
                                             {...register("nome", {
                                                 required: false,
                                                 pattern: {
-                                                    value: /^[A-Za-z1234567890]+$/i,
+                                                    value: /^[A-Za-z1234567890 ,.-òàùè+'ì?]+$/i,
                                                     message: "Il nome deve contenere solo lettere o numeri.",
                                                 },
                                                 validate: (value) =>
@@ -186,7 +204,7 @@ const ModificaDatiUtente = () => {
                                             placeholder="Inserisci un nuovo Nome."
                                         />
 
-                                        <Button type="submit" variant="transparent">
+                                        <Button type="submit" onClick={handleShow} variant="transparent">
                                             <PencilSquare size={30} className="text-light" />
                                         </Button>
                                     </div>
@@ -201,7 +219,7 @@ const ModificaDatiUtente = () => {
                                             {...register("cognome", {
                                                 required: false,
                                                 pattern: {
-                                                    value: /^[A-Za-z1234567890]+$/i,
+                                                    value: /^[A-Za-z1234567890 ,.-òàùè+'ì?]+$/i,
                                                     message: "Il cognome deve contenere solo lettere o numeri.",
                                                 },
                                                 validate: (value) =>
@@ -211,7 +229,7 @@ const ModificaDatiUtente = () => {
                                             type="text"
                                             placeholder="Inserisci un nuovo cognome."
                                         />
-                                        <Button type="submit" variant="transparent">
+                                        <Button type="submit" onClick={handleShow} variant="transparent">
                                             <PencilSquare size={30} className="text-light" />
                                         </Button>
                                     </div>
@@ -236,7 +254,7 @@ const ModificaDatiUtente = () => {
                                             type="text"
                                             placeholder="Inserisci una nuova mail"
                                         />
-                                        <Button type="submit" variant="transparent">
+                                        <Button type="submit" onClick={handleShow} variant="transparent">
                                             <PencilSquare size={30} className="text-light" />
                                         </Button>
                                     </div>
@@ -286,6 +304,48 @@ const ModificaDatiUtente = () => {
                         </div>
                     </Col>
                 </Row>
+
+                {/* MODALE PER CONFERMA PASSWORD PER MODIFICARE I DATI UTENTE  */}
+                <Modal show={show} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Conferma Password Prima di proseguire</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form onSubmit={submitCheckPassword}>
+                            <Form.Group className="my-3" controlId="email">
+                                <Form.Label className="fs-1 fw-normal m-auto">Inserisci Password</Form.Label>
+                                <div className="d-flex align-items-center">
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="Inserisci la Password Corrente."
+                                        onChange={(e) => setPasswordInput(e.target.value)}
+                                        value={passwordInput}
+                                    />
+                                    <Button onClick={handleShow} variant="transparent">
+                                        <PencilSquare size={30} className="text-light" />
+                                    </Button>
+                                </div>
+                            </Form.Group>{" "}
+                            <Modal.Footer>
+                                <Button
+                                    variant="light"
+                                    className="rounded-4 text-warning border-warning fw-bold"
+                                    onClick={handleClose}
+                                >
+                                    Chiudi
+                                </Button>
+                                <Button
+                                    type="submit"
+                                    variant="warning "
+                                    className="rounded-4 text-light fw-bold"
+                                    onClick={handleClose}
+                                >
+                                    Invia
+                                </Button>
+                            </Modal.Footer>
+                        </Form>
+                    </Modal.Body>
+                </Modal>
             </Container>{" "}
         </div>
     );
