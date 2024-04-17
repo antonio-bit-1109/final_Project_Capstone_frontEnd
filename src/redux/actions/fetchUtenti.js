@@ -11,14 +11,6 @@ import { setDatiutenteLoggato, setTokenUtente } from "../reducers/tokenReducer";
 import { SvuotaArrayAllenamento, setnomeAllenamentoCreato } from "../reducers/allenamentiReducer";
 import { rimuoviTuttoDalCArrello, setCarrelloOttimizzato } from "../reducers/prodottiReducer";
 import { rimuoviTuttiAllenamentiCompletatiUtente } from "../reducers/allenamentiCompletatiReducer";
-// import { rimuoviTuttoDalCArrello, setCarrelloOttimizzato } from "../reducers/prodottiReducer";
-// import { SvuotaArrayAllenamento, setnomeAllenamentoCreato } from "../reducers/allenamentiReducer";
-// import { setDatiutenteLoggato, setTokenUtente } from "../reducers/tokenReducer";
-// import { rimuoviTuttiAllenamentiCompletatiUtente } from "../reducers/allenamentiCompletatiReducer";
-// import { setDatiutenteLoggato, setTokenUtente } from "../reducers/tokenReducer";
-// import { SvuotaArrayAllenamento, setnomeAllenamentoCreato } from "../reducers/allenamentiReducer";
-// import { rimuoviTuttoDalCArrello, setCarrelloOttimizzato } from "../reducers/prodottiReducer";
-// import { rimuoviTuttiAllenamentiCompletatiUtente } from "../reducers/allenamentiCompletatiReducer";
 
 export const PostUtenteRegistrato = (urlPath, objPost) => async (dispatch) => {
     try {
