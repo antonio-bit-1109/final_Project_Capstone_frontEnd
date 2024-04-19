@@ -16,7 +16,7 @@ export const fetchCreaPDF = (allenamento) => async (dispatch) => {
             const url = window.URL.createObjectURL(blob);
             const link = document.createElement("a");
             link.href = url;
-            link.setAttribute("download", "FeesStructure.pdf");
+            link.setAttribute("download", `allenamentoCompletato-${allenamento.allenamento.nomeAllenamento}.pdf`);
             document.body.appendChild(link);
             link.click();
             link.remove();
