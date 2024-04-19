@@ -4,12 +4,13 @@ import Form from "react-bootstrap/Form";
 import { useDispatch, useSelector } from "react-redux";
 import { annullaAbbonamento } from "../../../redux/actions/fetchAbbonamenti";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, PencilSquare } from "react-bootstrap-icons";
+import { ArrowLeft, PencilSquare, PersonX } from "react-bootstrap-icons";
 import { useEffect, useRef, useState } from "react";
 import { ModificaDati, getDettagliUtente } from "../../../redux/actions/fetchUtenti";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { AddOneCountModale } from "../../../redux/reducers/notificaReducer";
+import ModaleCancellazioneAccount from "./ModaleCancellazioneAccount";
 
 const ModificaDatiUtente = () => {
     const dispatch = useDispatch();
@@ -22,11 +23,12 @@ const ModificaDatiUtente = () => {
 
     const { TuttiDettagliUtenteLoggato } = useSelector((store) => store.utenti);
     const { CountModale } = useSelector((store) => store.notifica);
-    console.log(CountModale);
+    console.log("ogni 3 c'è remainder", CountModale);
 
     const [show, setShow] = useState(false);
     const [passwordInput, setPasswordInput] = useState("");
     const [dataReactHookForm, setDataReactHookForm] = useState(null);
+    const [modaleCancellaAccountIsVisible, setModaleCancellaAccount] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => {
@@ -46,6 +48,13 @@ const ModificaDatiUtente = () => {
 
     const handleAnnullaAbbonamento = () => {
         dispatch(annullaAbbonamento());
+    };
+
+    const HandleCloseModale = () => {
+        setModaleCancellaAccount(false);
+    };
+    const HandleShowModale = () => {
+        setModaleCancellaAccount(true);
     };
 
     useEffect(() => {
@@ -70,6 +79,8 @@ const ModificaDatiUtente = () => {
                 dispatch(getDettagliUtente());
             }
         }
+
+        return;
     }, [TuttiDettagliUtenteLoggato, dispatch]);
 
     const submitHandlerDatiUtente = (data) => {
@@ -78,6 +89,7 @@ const ModificaDatiUtente = () => {
     };
 
     const submitCheckPassword = (e) => {
+        setPasswordInput("");
         if (dataReactHookForm !== null) {
             e.preventDefault();
             dispatch(ModificaDati(passwordInput, TuttiDettagliUtenteLoggato.idUtente, dataReactHookForm));
@@ -90,15 +102,24 @@ const ModificaDatiUtente = () => {
             <Container>
                 <Row>
                     <Col>
-                        <div className="my-1">
-                            <Button
-                                onClick={() => navigate("/")}
-                                variant="transparent"
-                                className="rounded-4 text-light fw-bolder fs-1"
-                            >
-                                {" "}
-                                <ArrowLeft size={120} />
-                            </Button>
+                        <div className="d-flex align-items-center">
+                            {" "}
+                            <div className="my-1">
+                                <Button
+                                    onClick={() => navigate("/")}
+                                    variant="transparent"
+                                    className="rounded-4 text-light fw-bolder fs-1"
+                                >
+                                    {" "}
+                                    <ArrowLeft size={120} />
+                                </Button>
+                            </div>
+                            <div className="ms-auto">
+                                <Button onClick={HandleShowModale} variant="transparent">
+                                    <PersonX size={40} className="text-warning" />
+                                    <p className="m-auto text-warning">Elimina Account</p>
+                                </Button>
+                            </div>
                         </div>
                     </Col>
                 </Row>
@@ -145,7 +166,7 @@ const ModificaDatiUtente = () => {
                                         <span className="fs-4 fw-normal"> data Inizio Abbonamento:</span>
                                         <div className=" fs-2 fw-semibold">
                                             {TuttiDettagliUtenteLoggato.dataInizioAbbonamento === null ? (
-                                                <span className="text-danger">non disponibile</span>
+                                                <span className="text-warning">non disponibile</span>
                                             ) : (
                                                 <span className=" text-success">
                                                     {new Date(
@@ -164,7 +185,7 @@ const ModificaDatiUtente = () => {
                                         <span className="fs-4 fw-normal"> data fine abbonamento:</span>
                                         <div className=" fs-2 fw-semibold">
                                             {TuttiDettagliUtenteLoggato.dataFineAbbonamento === null ? (
-                                                <span className="text-danger">non disponibile</span>
+                                                <span className="text-warning">non disponibile</span>
                                             ) : (
                                                 <span className=" text-success">
                                                     {new Date(
@@ -261,24 +282,6 @@ const ModificaDatiUtente = () => {
                                 </Form.Group>
                                 {errors.email && <div className="text-danger m-auto">{errors.email.message}</div>}
                             </Form>
-
-                            {/* cambio password  */}
-                            {/* <Form>
-                                <Form.Group className="my-3" controlId="vecchiaPassword">
-                                    <Form.Label className="fs-1 fw-normal m-auto">Vecchia Password</Form.Label>
-                                    <Form.Control type="password" placeholder="Inserisci la vecchia Password" />
-                                </Form.Group>
-
-                                <Form.Group className="my-3" controlId="Nuovapassword">
-                                    <Form.Label className="fs-1 fw-normal m-auto"> Nuova Password</Form.Label>
-                                    <Form.Control type="password" placeholder="Inserisci una nuova Password" />
-                                </Form.Group>
-
-                                <Form.Group className="my-3" controlId="confermaNuovaPassword">
-                                    <Form.Label className="fs-1 fw-normal m-auto">Conferma Nuova Password</Form.Label>
-                                    <Form.Control type="password" placeholder="Conferma la nuova Password" />
-                                </Form.Group>
-                            </Form> */}
                         </div>
                     </Col>
                 </Row>
@@ -316,7 +319,7 @@ const ModificaDatiUtente = () => {
                                 <Form.Label className="fs-1 fw-normal m-auto">Inserisci Password</Form.Label>
                                 <div className="d-flex align-items-center">
                                     <Form.Control
-                                        type="text"
+                                        type="password"
                                         placeholder="Inserisci la Password Corrente."
                                         onChange={(e) => setPasswordInput(e.target.value)}
                                         value={passwordInput}
@@ -346,6 +349,11 @@ const ModificaDatiUtente = () => {
                         </Form>
                     </Modal.Body>
                 </Modal>
+                <ModaleCancellazioneAccount
+                    modaleCancellaAccountIsVisible={modaleCancellaAccountIsVisible}
+                    HandleCloseModale={HandleCloseModale}
+                    HandleShowModale={HandleShowModale}
+                />
             </Container>{" "}
         </div>
     );
