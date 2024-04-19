@@ -1,12 +1,18 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Col, Container, Row, Card, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, FiletypePdf } from "react-bootstrap-icons";
+import { fetchCreaPDF } from "../../../redux/actions/fetchPDF";
 
 const LIstaAllenamCompletati = () => {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const { AllenamentiCompletatiUtente } = useSelector((store) => store.allenamentiCompletati);
     console.log(AllenamentiCompletatiUtente);
+
+    const generatePDF = (allCompletato) => {
+        dispatch(fetchCreaPDF(allCompletato));
+    };
 
     const TraduciDifficolta = (number) => {
         switch (number) {
@@ -138,7 +144,10 @@ const LIstaAllenamCompletati = () => {
                                             </div>
                                         ))}
                                     </div>
-                                    <Button variant="transparent customPositionPdfIcon">
+                                    <Button
+                                        onClick={() => generatePDF(allenamentoComplete)}
+                                        variant="transparent customPositionPdfIcon"
+                                    >
                                         <FiletypePdf size={50} className=" text-light" />
                                     </Button>
                                 </Card>
