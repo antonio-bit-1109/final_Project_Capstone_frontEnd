@@ -166,3 +166,59 @@ export const ModificaDati = (password, idutente, objBody) => async (dispatch) =>
         toast.error(error.message);
     }
 };
+
+export const CancellaAccount = (password, idutente) => async (dispatch) => {
+    try {
+        const checkPassword = await fetchWithAuth(LocalHostPath + "/Utente/CheckPassword", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(password),
+        });
+
+        const response = await checkPassword.json();
+        console.log(response);
+
+        if (response.message === "Password non Corrispondenti.") {
+            throw new Error("Password non corrispondenti");
+        }
+
+        if (response.message === "Password Corrispondenti.") {
+            // fai fetch per cancellare account
+            const deleteAccount = await fetchWithAuth(LocalHostPath + `/Utente/cancellaAccount/${idutente}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+
+            const response = await deleteAccount.json();
+
+            if (response.message === "Account Cancellato con Successo.") {
+                toast.success("Account Cancellato con Successo, Effettua una nuova registrazione.");
+                dispatch(setTokenUtente(null));
+                dispatch(setDatiutenteLoggato(null));
+                dispatch(svuotaTuttiDettagliUtenteLoggato());
+                dispatch(SvuotaArrayAllenamento());
+                dispatch(setnomeAllenamentoCreato(""));
+                dispatch(rimuoviTuttoDalCArrello());
+                dispatch(setCarrelloOttimizzato([]));
+                dispatch(rimuoviTuttoDalCArrello());
+                dispatch(rimuoviTuttiAllenamentiCompletatiUtente());
+                return;
+            }
+        }
+
+        if (response.message === "utente non trovato.") {
+            throw new Error("Utente non trovato.");
+        }
+
+        if (response.message === "Errore. idUtente non trovato nel server ") {
+            throw new Error(response.message);
+        }
+    } catch (error) {
+        console.error("Errore nel fetch:", error.message);
+        toast.error(error.message);
+    }
+};

@@ -58,7 +58,7 @@ function Login() {
     useEffect(() => {
         if (TokenUtente) {
             if (DatiUtenteLoggato) {
-                toast.success("Benvenuto " + DatiUtenteLoggato.nome);
+                toast.success("Benvenuto " + DatiUtenteLoggato.nome, { autoClose: 1500 });
                 dispatch(setTokenUtente(TokenUtente));
                 navigate("/");
             }

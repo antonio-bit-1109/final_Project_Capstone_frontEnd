@@ -1,13 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import { useDispatch, useSelector } from "react-redux";
+import { CancellaAccount } from "../../../redux/actions/fetchUtenti";
 
+// eslint-disable-next-line react/prop-types
 const ModaleCancellazioneAccount = ({ modaleCancellaAccountIsVisible, HandleCloseModale }) => {
+    const dispatch = useDispatch();
     const [password, setPassword] = useState("");
+    const { TuttiDettagliUtenteLoggato } = useSelector((store) => store.utenti);
+
+    useEffect(() => {
+        setPassword("");
+    }, []);
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log("Password:", password);
+        dispatch(CancellaAccount(password, TuttiDettagliUtenteLoggato.idUtente));
     };
 
     return (
