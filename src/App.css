@@ -206,3 +206,7 @@ body {
     right: 21px;
     bottom: 21px;
 }
+
+.h-card {
+    height: 70vh;
+}

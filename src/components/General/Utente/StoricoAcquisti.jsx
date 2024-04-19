@@ -45,17 +45,17 @@ const StoricoAcquisti = () => {
                         </Col>
                     </Row>
                 )}
-                <Row className="justify-content-center gap-3">
+                <Row className="justify-content-sm-center">
                     {prodottiAcquistati && prodottiAcquistati.length > 0 && (
                         <>
                             <div className="d-flex justify-content-center text-light display-3">
                                 Storico acquisti :{" "}
                             </div>
                             {prodottiAcquistati.map((prod, i) => (
-                                <Col key={`hello-${i}`} xs="12" sm="12" md="10" lg="6" xl="5">
+                                <Col key={`hello-${i}`} xs="12" sm="12" md="10" lg="6" xl="6">
                                     <Card
                                         className="rounded rounded-5 my-4 p-3 position-relative shadow-lg  border border-2 
-                                        effettoVetro text-light scalaAnimazione custom-h"
+                                        effettoVetro text-light scalaAnimazione h-card"
                                     >
                                         <div className="my-1 text-light">
                                             <p className="m-auto">Acquistato il:</p>
