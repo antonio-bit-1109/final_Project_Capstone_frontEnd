@@ -125,7 +125,9 @@ export const ModificaDati = (password, idutente, objBody) => async (dispatch) =>
 
         if (responsePassword.message === "Password non Corrispondenti.") {
             throw new Error("Password non corrispondenti");
-        } else if (responsePassword.message === "Password Corrispondenti.") {
+        }
+
+        if (responsePassword.message === "Password Corrispondenti.") {
             //
             const sendDataModificheUtente = await fetchWithAuth(
                 LocalHostPath + `/Utente/modificaDatiUtente/${idutente}`,
@@ -140,6 +142,7 @@ export const ModificaDati = (password, idutente, objBody) => async (dispatch) =>
 
             const response2 = await sendDataModificheUtente.json();
             console.log("response2", response2);
+
             if (response2.message === "Modifiche Effettuate") {
                 toast.success("Dati modificati con successo! Effettua Nuovamente il Login.");
                 dispatch(setTokenUtente(null));
@@ -151,6 +154,12 @@ export const ModificaDati = (password, idutente, objBody) => async (dispatch) =>
                 dispatch(setCarrelloOttimizzato([]));
                 dispatch(rimuoviTuttoDalCArrello());
                 dispatch(rimuoviTuttiAllenamentiCompletatiUtente());
+                return;
+            }
+
+            if (response2.message === "I campi da Modificare sono tutti vuoti.") {
+                toast.info(response2.message);
+                return;
             }
         }
     } catch (error) {
