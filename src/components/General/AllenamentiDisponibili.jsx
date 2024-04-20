@@ -222,6 +222,7 @@ const AllenamentiDisponibili = () => {
                         {DettagliAllenamento.esercizi.map((es, i) => (
                             <div className="w-100" key={`indice-${i}`}>
                                 <img
+                                    style={{ maxHeight: "300px", objectFit: "contain" }}
                                     className="w-100"
                                     src={`${LocalHostPath}/img-esercizi/${es.immagineEsercizio}`}
                                     alt="esercizio"
