@@ -103,7 +103,9 @@ function Login() {
                         <div className="loginDiv d-inline-block rounded rounded-5 p-5">
                             <div className="d-flex flex-column align-items-center justify-content-center">
                                 {" "}
-                                <h1 className="text-light display-3 fw-bold mx-auto">Benvenuto</h1>
+                                <h1 className="text-light display-3 fw-bold mx-auto text-center">
+                                    Benvenuto in EpicWorkout
+                                </h1>
                                 <h5 className="text-light mb-3 text-center">Accedi o Registrati per continuare </h5>
                             </div>
 

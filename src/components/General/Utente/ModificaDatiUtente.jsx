@@ -177,42 +177,59 @@ const ModificaDatiUtente = () => {
                                         </div>
                                     </div>
 
-                                    <div className="my-2">
-                                        {" "}
-                                        <span className="fs-4 fw-normal"> data Inizio Abbonamento:</span>
-                                        <div className=" fs-2 fw-semibold">
-                                            {TuttiDettagliUtenteLoggato.dataInizioAbbonamento === null ? (
-                                                <span className="text-warning">non disponibile</span>
-                                            ) : (
-                                                <span className=" text-success">
-                                                    {new Date(
-                                                        TuttiDettagliUtenteLoggato.dataInizioAbbonamento
-                                                    ).toLocaleDateString("it-IT") +
-                                                        " - " +
-                                                        new Date(
-                                                            TuttiDettagliUtenteLoggato.dataInizioAbbonamento
-                                                        ).toLocaleTimeString("it-IT")}
-                                                </span>
-                                            )}
+                                    <div className="d-flex">
+                                        <div>
+                                            <div className="my-2">
+                                                {" "}
+                                                <span className="fs-4 fw-normal"> data Inizio Abbonamento:</span>
+                                                <div className=" fs-2 fw-semibold">
+                                                    {TuttiDettagliUtenteLoggato.dataInizioAbbonamento === null ? (
+                                                        <span className="text-warning">non disponibile</span>
+                                                    ) : (
+                                                        <span className=" text-success">
+                                                            {new Date(
+                                                                TuttiDettagliUtenteLoggato.dataInizioAbbonamento
+                                                            ).toLocaleDateString("it-IT") +
+                                                                " - " +
+                                                                new Date(
+                                                                    TuttiDettagliUtenteLoggato.dataInizioAbbonamento
+                                                                ).toLocaleTimeString("it-IT")}
+                                                        </span>
+                                                    )}
+                                                </div>
+                                            </div>
+                                            <div>
+                                                {" "}
+                                                <span className="fs-4 fw-normal"> data fine abbonamento:</span>
+                                                <div className=" fs-2 fw-semibold">
+                                                    {TuttiDettagliUtenteLoggato.dataFineAbbonamento === null ? (
+                                                        <span className="text-warning">non disponibile</span>
+                                                    ) : (
+                                                        <span className=" text-success">
+                                                            {new Date(
+                                                                TuttiDettagliUtenteLoggato.dataFineAbbonamento
+                                                            ).toLocaleDateString("it-IT") +
+                                                                " - " +
+                                                                new Date(
+                                                                    TuttiDettagliUtenteLoggato.dataFineAbbonamento
+                                                                ).toLocaleTimeString("it-IT")}
+                                                        </span>
+                                                    )}
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div>
-                                        {" "}
-                                        <span className="fs-4 fw-normal"> data fine abbonamento:</span>
-                                        <div className=" fs-2 fw-semibold">
-                                            {TuttiDettagliUtenteLoggato.dataFineAbbonamento === null ? (
-                                                <span className="text-warning">non disponibile</span>
-                                            ) : (
-                                                <span className=" text-success">
-                                                    {new Date(
-                                                        TuttiDettagliUtenteLoggato.dataFineAbbonamento
-                                                    ).toLocaleDateString("it-IT") +
-                                                        " - " +
-                                                        new Date(
-                                                            TuttiDettagliUtenteLoggato.dataFineAbbonamento
-                                                        ).toLocaleTimeString("it-IT")}
-                                                </span>
-                                            )}
+                                        <div className="m-auto">
+                                            <div className="my-2">
+                                                {" "}
+                                                <span className="fs-4 fw-normal"> Totale Kcal consumate:</span>
+                                                <div className=" fs-2 fw-semibold">
+                                                    <span className="text-warning">
+                                                        {TuttiDettagliUtenteLoggato.totaleKcalConsumate === null
+                                                            ? "N/A"
+                                                            : TuttiDettagliUtenteLoggato.totaleKcalConsumate + "Kcal"}
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </Card>
