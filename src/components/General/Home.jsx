@@ -261,7 +261,7 @@ const Home = () => {
                                         onClick={() => {
                                             navigate("/ListaAllenamentiCompletati");
                                         }}
-                                        variant="warning "
+                                        variant="warning"
                                         className="rounded-4 text-light fw-bold"
                                     >
                                         {" "}

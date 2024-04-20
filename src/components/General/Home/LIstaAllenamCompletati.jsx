@@ -28,7 +28,7 @@ const LIstaAllenamCompletati = () => {
     };
 
     return (
-        <div className="Bg-sfondo min-vh-100">
+        <div className="Bg-sfondo-dark min-vh-100">
             <Container>
                 <Row>
                     <Col>

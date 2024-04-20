@@ -31,6 +31,7 @@ function NavbarComponent() {
                 <Container fluid>
                     <Navbar.Brand as={NavLink} to={"/"}>
                         <img style={{ width: "50px" }} src={logo} alt="logo-app" />
+                        <span className="m-auto ms-3 nameColor">EpicWorkout</span>
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">

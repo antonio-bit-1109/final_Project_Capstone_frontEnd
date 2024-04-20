@@ -210,3 +210,7 @@ body {
 .h-card {
     height: 70vh;
 }
+
+.nameColor {
+    color: rgb(176, 177, 179);
+}
