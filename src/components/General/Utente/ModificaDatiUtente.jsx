@@ -159,6 +159,22 @@ const ModificaDatiUtente = () => {
                                                 {TuttiDettagliUtenteLoggato.email}
                                             </span>
                                         </div>
+
+                                        <div className="my-1">
+                                            {" "}
+                                            <span className="display-6">altezza: </span>
+                                            <span className="display-6 fw-semibold">
+                                                {TuttiDettagliUtenteLoggato.altezza} cm
+                                            </span>
+                                        </div>
+
+                                        <div className="my-1">
+                                            {" "}
+                                            <span className="display-6">peso: </span>
+                                            <span className="display-6 fw-semibold">
+                                                {TuttiDettagliUtenteLoggato.peso} kg
+                                            </span>
+                                        </div>
                                     </div>
 
                                     <div className="my-2">
@@ -281,6 +297,62 @@ const ModificaDatiUtente = () => {
                                     </div>
                                 </Form.Group>
                                 {errors.email && <div className="text-danger m-auto">{errors.email.message}</div>}
+                                {/* ALTEZZA  E PESO  */}
+                                <div className="d-flex">
+                                    <div className="w-50">
+                                        {/* altezza */}
+                                        <Form.Group className="my-3" controlId="altezza">
+                                            <Form.Label className="fs-1 fw-normal m-auto">Altezza</Form.Label>
+                                            <div className="d-flex align-items-center">
+                                                <Form.Control
+                                                    {...register("altezza", {
+                                                        required: false,
+                                                        pattern: {
+                                                            value: /^[0123456789]+$/i,
+                                                            message: "Formato non valido.",
+                                                        },
+                                                    })}
+                                                    type="number"
+                                                    placeholder="Inserire nuova altezza"
+                                                />
+                                                <Button
+                                                    style={{ visibility: "hidden" }}
+                                                    type="submit"
+                                                    onClick={handleShow}
+                                                    variant="transparent"
+                                                >
+                                                    <PencilSquare size={30} className="text-light" />
+                                                </Button>
+                                            </div>
+                                        </Form.Group>
+                                        {errors.altezza && (
+                                            <div className="text-danger m-auto">{errors.altezza.message}</div>
+                                        )}
+                                    </div>
+                                    <div className="w-50">
+                                        {/* peso */}
+                                        <Form.Group className="my-3" controlId="peso">
+                                            <Form.Label className="fs-1 fw-normal m-auto">Peso</Form.Label>
+                                            <div className="d-flex align-items-center">
+                                                <Form.Control
+                                                    {...register("peso", {
+                                                        required: false,
+                                                        pattern: {
+                                                            value: /^[0123456789]+$/i,
+                                                            message: "Formato non valido.",
+                                                        },
+                                                    })}
+                                                    type="number"
+                                                    placeholder="Inserire nuovo peso"
+                                                />
+                                                <Button type="submit" onClick={handleShow} variant="transparent">
+                                                    <PencilSquare size={30} className="text-light" />
+                                                </Button>
+                                            </div>
+                                        </Form.Group>
+                                        {errors.peso && <div className="text-danger m-auto">{errors.peso.message}</div>}{" "}
+                                    </div>
+                                </div>
                             </Form>
                         </div>
                     </Col>
