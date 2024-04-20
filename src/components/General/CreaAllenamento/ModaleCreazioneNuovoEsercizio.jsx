@@ -195,6 +195,26 @@ const ModaleCreazioneNuovoEsercizio = ({ showCreateEsercizio, setShowCreateEserc
                             )}
                         </Form.Group>
 
+                        {/* MET */}
+                        <Form.Group className="my-2">
+                            <Form.Label className="m-auto" htmlFor="inputSerieEsercizio">
+                                MET (Metabolic Equivalent of Task)
+                            </Form.Label>
+                            <Form.Control
+                                {...register("met", {
+                                    required: "Inserisci un valore tra 1 e 15.",
+                                    pattern: {
+                                        value: /^(1[0-5]|[1-9])$/i,
+                                        message: "Inserisci un valore intero tra 1 e 15.",
+                                    },
+                                })}
+                                type="number"
+                                id="metEsercizio"
+                                aria-describedby="inputmetEsercizio"
+                            />
+                            {errors.met && <div className="text-danger">{errors.met.message}</div>}
+                        </Form.Group>
+
                         {/* PARTE CORPO ESERCIZIO STRING */}
                         <Form.Group className="my-3">
                             {" "}
