@@ -225,6 +225,38 @@ function Login() {
                                         {errors.cognome && <div className="text-danger">{errors.cognome.message}</div>}
                                     </Form.Group>
 
+                                    {/* altezza  */}
+
+                                    <Form.Group className="mb-3" controlId="formBasicConfermaPassword">
+                                        <Form.Label>Altezza (cm)</Form.Label>
+                                        <Form.Control
+                                            {...register("altezza", {
+                                                required: "inserire altezza in cm",
+                                            })}
+                                            type="number"
+                                            placeholder="Inserisci Altezza"
+                                        />
+                                        {errors.altezza && (
+                                            <div className="text-danger">{errors.confermaPassword.message}</div>
+                                        )}
+                                    </Form.Group>
+
+                                    {/* peso */}
+
+                                    <Form.Group className="mb-3" controlId="formBasicConfermaPassword">
+                                        <Form.Label>Peso (kg)</Form.Label>
+                                        <Form.Control
+                                            {...register("peso", {
+                                                required: "inserire peso in kg",
+                                            })}
+                                            type="number"
+                                            placeholder="Inserisci Peso"
+                                        />
+                                        {errors.peso && (
+                                            <div className="text-danger">{errors.confermaPassword.message}</div>
+                                        )}
+                                    </Form.Group>
+
                                     {/* PASSWORD */}
 
                                     <Form.Group className="mb-3" controlId="formBasicPassword">
