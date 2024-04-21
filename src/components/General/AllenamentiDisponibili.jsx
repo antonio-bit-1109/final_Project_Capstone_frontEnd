@@ -17,6 +17,7 @@ const AllenamentiDisponibili = () => {
     const [showEsercizi, setShowEsercizi] = useState(false);
     const [AllenamDacancellare, setAllenamDacancellare] = useState(null);
     const [DettagliAllenamento, setDettagliAllenamento] = useState(null);
+    const [ricerca, setRicerca] = useState("");
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -36,15 +37,13 @@ const AllenamentiDisponibili = () => {
         });
     };
 
-    const mediaDifficolta = (listaEsercizi) => {
-        let difficoltamedia = 0;
-        for (let i = 0; i < listaEsercizi.length; i++) {
-            let difficoltaSingoloEsercizio = listaEsercizi[i].difficolta;
-            difficoltamedia += difficoltaSingoloEsercizio;
-        }
+    // useEffect(() => {
+    //     if (ricerca.length > 0) {
+    //     }
+    // }, [ricerca]);
 
-        let result = difficoltamedia / listaEsercizi.length;
-        switch (Math.floor(result)) {
+    const mediaDifficolta = (difficoltaAllenamento) => {
+        switch (difficoltaAllenamento) {
             case 1:
                 return "Facile";
             case 2:
@@ -60,24 +59,56 @@ const AllenamentiDisponibili = () => {
         <div className="Bg-sfondo-dark min-vh-100">
             <Container>
                 <Row className=" justify-content-center">
-                    <Col xs="12" sm="10" md="9" lg="6">
+                    <Col xs="12" sm="10" md="9" lg="8" xl="5">
                         <div className="d-flex align-items-center justify-content-center">
                             {" "}
                             <div className="my-4 w-75">
+                                {/* input per ricerca allenamento */}
                                 <Form.Control
                                     className="rounded-0 rounded-start-2"
                                     type="text"
                                     id="ricercaAllenamenti"
                                     aria-describedby="ricercaAllenamenti"
+                                    value={ricerca}
+                                    onChange={(e) => {
+                                        setRicerca(e.target.value);
+                                    }}
                                 />
                             </div>
                             <div>
                                 {" "}
                                 <Button className="rounded-0 rounded-end-2" variant="warning text-light">
                                     {" "}
-                                    <Search />
+                                    <Search width={"2em"} />
                                 </Button>
                             </div>
+                        </div>
+                    </Col>
+                    <Col md="3" lg="4" xl="2">
+                        <div className="d-flex justify-content-center align-items-center h-100">
+                            <Button variant="transparent" className="p-0 enlight bg-button">
+                                <Card className="p-0" bg="transparent">
+                                    <Card.Body className="p-3 text-light">Facile</Card.Body>
+                                </Card>
+                            </Button>
+                            <Button variant="transparent" className="p-0 enlight bg-button">
+                                <Card
+                                    // onClick={Selected}
+                                    className="p-0"
+                                    bg="transparent"
+                                >
+                                    <Card.Body className="p-3 text-light">Medio</Card.Body>
+                                </Card>
+                            </Button>
+                            <Button variant="transparent" className="p-0 enlight bg-button">
+                                <Card
+                                    // onClick={Selected}
+                                    className="p-0"
+                                    bg="transparent"
+                                >
+                                    <Card.Body className="p-3 text-light">Difficile</Card.Body>
+                                </Card>
+                            </Button>
                         </div>
                     </Col>
                 </Row>
@@ -148,17 +179,19 @@ const AllenamentiDisponibili = () => {
                                                         className="fw-semibold fs-5"
                                                         style={{
                                                             color:
-                                                                mediaDifficolta(allenamento.esercizi) === "Facile"
+                                                                mediaDifficolta(allenamento.dIfficoltaMedia) ===
+                                                                "Facile"
                                                                     ? "green"
-                                                                    : mediaDifficolta(allenamento.esercizi) === "Media"
+                                                                    : mediaDifficolta(allenamento.dIfficoltaMedia) ===
+                                                                      "Media"
                                                                     ? "orange"
-                                                                    : mediaDifficolta(allenamento.esercizi) ===
+                                                                    : mediaDifficolta(allenamento.dIfficoltaMedia) ===
                                                                       "Difficile"
                                                                     ? "red"
                                                                     : "black",
                                                         }}
                                                     >
-                                                        {mediaDifficolta(allenamento.esercizi)}
+                                                        {mediaDifficolta(allenamento.dIfficoltaMedia)}
                                                     </span>
                                                 </div>
                                             </div>
