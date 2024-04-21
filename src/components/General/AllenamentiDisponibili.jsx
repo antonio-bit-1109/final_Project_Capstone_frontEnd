@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { CancellaAllenamento, GetListaAllenamenti } from "../../redux/actions/fetchAllenamento";
 import { LocalHostPath } from "../../functions/localHostPath";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Card, Col, Container, Modal, Row } from "react-bootstrap";
+import { Button, Card, Col, Container, Form, Modal, Row } from "react-bootstrap";
 import { setAllenamentoSceltogiaCreato } from "../../redux/reducers/allenamentiReducer";
 import { useNavigate } from "react-router-dom";
-import { Trash3Fill } from "react-bootstrap-icons";
+import { Trash3Fill, Search } from "react-bootstrap-icons";
 
 const AllenamentiDisponibili = () => {
     const navigate = useNavigate();
@@ -59,6 +59,28 @@ const AllenamentiDisponibili = () => {
     return (
         <div className="Bg-sfondo-dark min-vh-100">
             <Container>
+                <Row className=" justify-content-center">
+                    <Col xs="12" sm="10" md="9" lg="6">
+                        <div className="d-flex align-items-center justify-content-center">
+                            {" "}
+                            <div className="my-4 w-75">
+                                <Form.Control
+                                    className="rounded-0 rounded-start-2"
+                                    type="text"
+                                    id="ricercaAllenamenti"
+                                    aria-describedby="ricercaAllenamenti"
+                                />
+                            </div>
+                            <div>
+                                {" "}
+                                <Button className="rounded-0 rounded-end-2" variant="warning text-light">
+                                    {" "}
+                                    <Search />
+                                </Button>
+                            </div>
+                        </div>
+                    </Col>
+                </Row>
                 {!listaAllenamentiDisponibili || listaAllenamentiDisponibili.length === 0 ? (
                     <Row>
                         <Col>
