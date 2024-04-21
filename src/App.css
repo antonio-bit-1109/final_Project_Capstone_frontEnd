@@ -149,6 +149,20 @@ body {
     border: #fea800 3px solid;
 }
 
+.enlight_green:hover {
+    background-color: #60f46c;
+    border: #19e92a 3px solid;
+}
+
+.enlight_yellow:hover {
+    background-color: rgb(244, 164, 96);
+    border: #fea800 3px solid;
+}
+
+.enlight_red:hover {
+    background-color: #e20a0a;
+    border: #661818 3px solid;
+}
 .bg-button {
     background-color: rgba(255, 255, 255, 0.014);
     backdrop-filter: blur(10px);

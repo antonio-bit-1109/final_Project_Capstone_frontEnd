@@ -86,7 +86,7 @@ const AllenamentiDisponibili = () => {
                     </Col>
                     <Col md="3" lg="4" xl="2">
                         <div className="d-flex justify-content-center align-items-center h-100">
-                            <Button variant="transparent" className="p-0 enlight bg-button">
+                            <Button variant="transparent" className="p-0 enlight_green bg-button">
                                 <Card className="p-0" bg="transparent">
                                     <Card.Body className="p-3 text-light">FACILE</Card.Body>
                                 </Card>
@@ -100,7 +100,7 @@ const AllenamentiDisponibili = () => {
                                     <Card.Body className="p-3 text-light">MEDIA</Card.Body>
                                 </Card>
                             </Button>
-                            <Button variant="transparent" className="p-0 enlight bg-button">
+                            <Button variant="transparent" className="p-0 enlight_red bg-button">
                                 <Card
                                     // onClick={Selected}
                                     className="p-0"
