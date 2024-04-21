@@ -12,6 +12,7 @@ const ElencoEsercizi = ({ handleClose }) => {
     const [immagineEsercizio, setImmagineEsercizio] = useState("");
     const [showImage, setShowImage] = useState(false);
     const { listaEsercizi } = useSelector((store) => store.esercizi);
+    const { TuttiDettagliUtenteLoggato } = useSelector((store) => store.utenti);
     const [showInput, setShowInput] = useState(new Array(listaEsercizi.length).fill(false));
     const [serie, setSerie] = useState(null);
 
@@ -65,54 +66,61 @@ const ElencoEsercizi = ({ handleClose }) => {
                                         <Card.Text>
                                             {" "}
                                             <span className="fw-semibold fs-4">Serie:</span>
-                                            {!showInput[index] ? (
-                                                <div className="d-inline-block position-relative">
-                                                    <button
-                                                        onClick={() => {
-                                                            // setShowInput(!showInput[index]);
-                                                            setShowInput((prevState) => {
-                                                                const newState = [...prevState];
-                                                                newState[index] = !newState[index];
-                                                                return newState;
-                                                            });
-                                                        }}
-                                                        className=" buttonStyle1_position"
+                                            {TuttiDettagliUtenteLoggato &&
+                                            TuttiDettagliUtenteLoggato.ruolo === "admin" ? (
+                                                !showInput[index] ? (
+                                                    <div className="d-inline-block position-relative">
+                                                        <button
+                                                            onClick={() => {
+                                                                // setShowInput(!showInput[index]);
+                                                                setShowInput((prevState) => {
+                                                                    const newState = [...prevState];
+                                                                    newState[index] = !newState[index];
+                                                                    return newState;
+                                                                });
+                                                            }}
+                                                            className=" buttonStyle1_position"
+                                                        >
+                                                            <PencilSquare />
+                                                        </button>
+                                                        <span className="fw-semibold fs-3 ms-2">{esercizio.serie}</span>
+                                                    </div>
+                                                ) : (
+                                                    <Form
+                                                        onSubmit={() =>
+                                                            changeSerieEsercizio(event, esercizio.idEsercizio)
+                                                        }
+                                                        className="position-relative"
                                                     >
-                                                        <PencilSquare />
-                                                    </button>
-                                                    <span className="fw-semibold fs-3 ms-2">{esercizio.serie}</span>
-                                                </div>
+                                                        <Form.Control
+                                                            className="w-25"
+                                                            type="number"
+                                                            id="serie"
+                                                            aria-describedby="numeroserie"
+                                                            value={serie}
+                                                            onChange={(e) => setSerie(e.target.value)}
+                                                            min="1"
+                                                        />
+                                                        <button
+                                                            onClick={() => {
+                                                                // setShowInput(!showInput[index]);
+                                                                setShowInput((prevState) => {
+                                                                    const newState = [...prevState];
+                                                                    newState[index] = !newState[index];
+                                                                    return newState;
+                                                                });
+                                                            }}
+                                                            className=" buttonStyle2_position"
+                                                        >
+                                                            <PencilSquare />
+                                                        </button>
+                                                        <button type="submit" className="buttonStyle3_position">
+                                                            <Check className="text-success" size={36} />
+                                                        </button>
+                                                    </Form>
+                                                )
                                             ) : (
-                                                <Form
-                                                    onSubmit={() => changeSerieEsercizio(event, esercizio.idEsercizio)}
-                                                    className="position-relative"
-                                                >
-                                                    <Form.Control
-                                                        className="w-25"
-                                                        type="number"
-                                                        id="serie"
-                                                        aria-describedby="numeroserie"
-                                                        value={serie}
-                                                        onChange={(e) => setSerie(e.target.value)}
-                                                        min="1"
-                                                    />
-                                                    <button
-                                                        onClick={() => {
-                                                            // setShowInput(!showInput[index]);
-                                                            setShowInput((prevState) => {
-                                                                const newState = [...prevState];
-                                                                newState[index] = !newState[index];
-                                                                return newState;
-                                                            });
-                                                        }}
-                                                        className=" buttonStyle2_position"
-                                                    >
-                                                        <PencilSquare />
-                                                    </button>
-                                                    <button type="submit" className="buttonStyle3_position">
-                                                        <Check className="text-success" size={36} />
-                                                    </button>
-                                                </Form>
+                                                <span className="fw-semibold fs-3 ms-2">{esercizio.serie}</span>
                                             )}
                                         </Card.Text>
                                         <Card.Text>
@@ -157,21 +165,6 @@ const ElencoEsercizi = ({ handleClose }) => {
                                         >
                                             Guarda Esecuzione
                                         </Button>
-                                        {/* <Button
-                                            onClick={() => {
-                                                handleModifica();
-                                                // setShowInput(!showInput[index]);
-                                                setShowInput((prevState) => {
-                                                    const newState = [...prevState];
-                                                    newState[index] = !newState[index];
-                                                    return newState;
-                                                });
-                                            }}
-                                            variant="warning "
-                                            className="rounded-4 text-light fw-bold"
-                                        >
-                                            Modifica Serie
-                                        </Button> */}
                                     </div>
                                 </Card.Body>
                             </Card>
