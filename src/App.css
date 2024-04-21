@@ -214,3 +214,30 @@ body {
 .nameColor {
     color: rgb(176, 177, 179);
 }
+
+.buttonStyle1_position {
+    background-color: transparent;
+    border: none;
+    color: white;
+    position: absolute;
+    top: -14%;
+    left: 104%;
+}
+
+.buttonStyle2_position {
+    background-color: transparent;
+    border: none;
+    color: white;
+    position: absolute;
+    top: -23%;
+    left: 30%;
+}
+
+.buttonStyle3_position {
+    background-color: transparent;
+    border: none;
+    color: white;
+    position: absolute;
+    top: 30%;
+    left: 25%;
+}

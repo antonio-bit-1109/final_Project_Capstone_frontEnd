@@ -39,10 +39,10 @@ const ImpacchettaAllenamento = () => {
 
                 durataTotAllen +=
                     singoloEsercizioObj.ripetizioni * 2 * singoloEsercizioObj.serie +
-                    (singoloEsercizioObj.tempoRecupero * singoloEsercizioObj.serie - 1);
+                    singoloEsercizioObj.tempoRecupero * singoloEsercizioObj.serie;
 
-                ripetizioniTotAllen += singoloEsercizioObj.ripetizioni;
                 serieTotAllen += singoloEsercizioObj.serie;
+                ripetizioniTotAllen += singoloEsercizioObj.ripetizioni * singoloEsercizioObj.serie;
             }
 
             // setto lo stato locale con l'oggetto da inviare al server

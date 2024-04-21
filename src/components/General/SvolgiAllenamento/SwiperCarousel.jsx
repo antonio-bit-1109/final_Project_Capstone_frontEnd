@@ -21,7 +21,7 @@ const SwiperCarousel = ({ AllenamentoSceltogiaCreato }) => {
                                 <span className="fs-3">Durata Allenamento:</span>
                                 <span className="fs-1">
                                     {" "}
-                                    {AllenamentoSceltogiaCreato.durataTotaleAllenamento} &apos;
+                                    ~ {AllenamentoSceltogiaCreato.durataTotaleAllenamento} &apos;
                                 </span>
                             </div>
                             <div className="d-block d-md-flex flex-column align-items-center">
