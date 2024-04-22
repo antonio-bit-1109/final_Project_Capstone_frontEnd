@@ -32,6 +32,12 @@ const AllenamentiDisponibili = () => {
         dispatch(GetListaAllenamenti(LocalHostPath + "/Allenamento/ListaAllenamenti"));
     }, [dispatch]);
 
+    useEffect(() => {
+        if (Inputricerca || difficoltaAllenamento || !difficoltaAllenamento) {
+            dispatch(AllenamentoFiltrato(Inputricerca, difficoltaAllenamento));
+        }
+    }, [Inputricerca, dispatch, difficoltaAllenamento]);
+
     const handleDelete = (id) => {
         // cancella allenamento a partire dall'id
         dispatch(CancellaAllenamento(LocalHostPath + `/Allenamento/CancellaAllenamento/${id}`)).then(() => {
@@ -39,12 +45,6 @@ const AllenamentiDisponibili = () => {
             dispatch(GetListaAllenamenti(LocalHostPath + "/Allenamento/ListaAllenamenti"));
         });
     };
-
-    useEffect(() => {
-        if (Inputricerca || difficoltaAllenamento || !difficoltaAllenamento) {
-            dispatch(AllenamentoFiltrato(Inputricerca, difficoltaAllenamento));
-        }
-    }, [Inputricerca, dispatch, difficoltaAllenamento]);
 
     const mediaDifficolta = (difficoltaAllenamento) => {
         switch (difficoltaAllenamento) {
