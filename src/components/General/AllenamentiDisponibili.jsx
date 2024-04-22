@@ -88,7 +88,7 @@ const AllenamentiDisponibili = () => {
                         <div className="d-flex justify-content-center align-items-center h-100">
                             <Button variant="transparent" className="p-0 enlight_green bg-button">
                                 <Card className="p-0" bg="transparent">
-                                    <Card.Body className="p-3 text-light">FACILE</Card.Body>
+                                    <Card.Body className="p-3 text-light">Facile</Card.Body>
                                 </Card>
                             </Button>
                             <Button variant="transparent" className="p-0 enlight bg-button">
@@ -97,7 +97,7 @@ const AllenamentiDisponibili = () => {
                                     className="p-0"
                                     bg="transparent"
                                 >
-                                    <Card.Body className="p-3 text-light">MEDIA</Card.Body>
+                                    <Card.Body className="p-3 text-light">Media</Card.Body>
                                 </Card>
                             </Button>
                             <Button variant="transparent" className="p-0 enlight_red bg-button">
@@ -106,7 +106,7 @@ const AllenamentiDisponibili = () => {
                                     className="p-0"
                                     bg="transparent"
                                 >
-                                    <Card.Body className="p-3 text-light">DIFFICILE</Card.Body>
+                                    <Card.Body className="p-3 text-light">Difficile</Card.Body>
                                 </Card>
                             </Button>
                         </div>

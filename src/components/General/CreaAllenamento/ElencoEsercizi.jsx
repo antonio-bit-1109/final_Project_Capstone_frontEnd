@@ -36,7 +36,7 @@ const ElencoEsercizi = ({ handleClose }) => {
                 {listaEsercizi.length > 0 ? (
                     listaEsercizi.map((esercizio, index) => (
                         <Col key={`col-${index}`}>
-                            <Card className="rounded rounded-5 my-4 shadow-lg effettoVetro text-light border border-2">
+                            <Card className="rounded rounded-5 my-4 p-2 shadow-lg effettoVetro text-light border border-2">
                                 {/* MODALE PER MOSTRARE IMMAGINE ESERCIZIO */}
                                 <Modal show={showImage} onHide={handleCloseImage} backdrop="static" keyboard={false}>
                                     <Modal.Header closeButton></Modal.Header>
@@ -63,7 +63,7 @@ const ElencoEsercizi = ({ handleClose }) => {
                                         {esercizio.descrizioneEsercizio}
                                     </Card.Text>
                                     <div className="d-flex justify-content-around">
-                                        <Card.Text>
+                                        <Card.Body>
                                             {" "}
                                             <span className="fw-semibold fs-4">Serie:</span>
                                             {TuttiDettagliUtenteLoggato &&
@@ -122,7 +122,7 @@ const ElencoEsercizi = ({ handleClose }) => {
                                             ) : (
                                                 <span className="fw-semibold fs-3 ms-2">{esercizio.serie}</span>
                                             )}
-                                        </Card.Text>
+                                        </Card.Body>
                                         <Card.Text>
                                             {" "}
                                             <span className="fw-semibold fs-4">Ripetizioni:</span>
