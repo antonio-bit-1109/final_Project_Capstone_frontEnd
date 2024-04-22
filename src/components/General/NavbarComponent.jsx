@@ -31,7 +31,7 @@ function NavbarComponent() {
     return (
         <>
             {" "}
-            <Navbar expand="lg" bg="dark" data-bs-theme="dark">
+            <Navbar className=" sticky-top" expand="lg" bg="dark" data-bs-theme="dark">
                 <Container fluid>
                     <Navbar.Brand as={NavLink} to={"/"}>
                         <img style={{ width: "50px" }} src={logo} alt="logo-app" />

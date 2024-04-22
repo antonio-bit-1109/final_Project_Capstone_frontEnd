@@ -284,3 +284,15 @@ body {
     top: 30%;
     left: 25%;
 }
+
+.customPosition-Row {
+    position: sticky;
+    top: 70px;
+    z-index: 999;
+}
+
+.customPosition-sticky {
+    position: sticky;
+    top: 75px;
+    z-index: 999;
+}

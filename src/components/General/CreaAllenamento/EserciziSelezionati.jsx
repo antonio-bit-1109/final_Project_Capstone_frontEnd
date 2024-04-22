@@ -11,7 +11,7 @@ const EserciziSelezionati = () => {
         <>
             {/* sezione vista esercizi selezionati */}
             <Col xs="12" md="12" lg="6" xl="6" xxl="6">
-                <div className="sticky-top d-flex flex-column align-items-center">
+                <div className="customPosition-sticky d-flex flex-column align-items-center">
                     {ArrayAllenamento && ArrayAllenamento.length > 0 && (
                         <div className="d-flex justify-content-center mt-4">
                             <h4 className="display-3 text-light">Esercizi Selezionati</h4>
