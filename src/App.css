@@ -164,6 +164,11 @@ body {
     border: #661818 3px solid !important;
 }
 
+._white {
+    background-color: #b6b2b2;
+    border: #ddd1d1 3px solid;
+}
+
 .bordino {
     border: solid 2px whitesmoke;
 }
@@ -181,6 +186,10 @@ body {
 .enlight_red:hover {
     background-color: #e20a0a;
     border: #661818 3px solid;
+}
+.enlight_white:hover {
+    background-color: #b6b2b2;
+    border: #ddd1d1 3px solid;
 }
 
 .bg-button {

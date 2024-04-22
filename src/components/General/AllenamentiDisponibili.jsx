@@ -5,11 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button, Card, Col, Container, Form, Modal, Row } from "react-bootstrap";
 import { setAllenamentoSceltogiaCreato } from "../../redux/reducers/allenamentiReducer";
 import { useNavigate } from "react-router-dom";
-import { Trash3Fill, Search } from "react-bootstrap-icons";
+import { Trash3Fill } from "react-bootstrap-icons";
 
 const AllenamentiDisponibili = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
     const { TuttiDettagliUtenteLoggato } = useSelector((store) => store.utenti);
     const { listaAllenamentiDisponibili } = useSelector((store) => store.allenamenti);
 
@@ -17,7 +18,7 @@ const AllenamentiDisponibili = () => {
     const [showEsercizi, setShowEsercizi] = useState(false);
     const [AllenamDacancellare, setAllenamDacancellare] = useState(null);
     const [DettagliAllenamento, setDettagliAllenamento] = useState(null);
-    const [Inputricerca, setInputRicerca] = useState("");
+    const [Inputricerca, setInputRicerca] = useState(null);
     const [difficoltaAllenamento, setDifficoltaAllenamento] = useState(null);
     const [difficultIsClicked, setDifficultIsClicked] = useState([false, false, false]);
 
@@ -40,10 +41,10 @@ const AllenamentiDisponibili = () => {
     };
 
     useEffect(() => {
-        if (Inputricerca.length > 0) {
-            dispatch(AllenamentoFiltrato(Inputricerca));
+        if (Inputricerca || difficoltaAllenamento || !difficoltaAllenamento) {
+            dispatch(AllenamentoFiltrato(Inputricerca, difficoltaAllenamento));
         }
-    }, [Inputricerca]);
+    }, [Inputricerca, dispatch, difficoltaAllenamento]);
 
     const mediaDifficolta = (difficoltaAllenamento) => {
         switch (difficoltaAllenamento) {
@@ -62,7 +63,7 @@ const AllenamentiDisponibili = () => {
         <div className="Bg-sfondo-dark min-vh-100">
             <Container>
                 <Row className=" justify-content-center">
-                    <Col xs="12" sm="10" md="9" lg="8" xl="5">
+                    <Col xs="12" sm="10" md="9" lg="8" xl="7">
                         <div className="d-flex align-items-center justify-content-center">
                             {" "}
                             <div className="my-4 w-75">
@@ -78,73 +79,93 @@ const AllenamentiDisponibili = () => {
                                     }}
                                 />
                             </div>
-                            <div>
-                                {" "}
-                                <Button className="rounded-0 rounded-end-2" variant="warning text-light">
-                                    {" "}
-                                    <Search width={"2em"} />
+                            <div className="d-flex justify-content-center align-items-center h-100">
+                                <Button
+                                    onClick={() => {
+                                        setDifficoltaAllenamento(1);
+                                        setDifficultIsClicked(() => {
+                                            let array = [false, false, false];
+                                            array[0] = !array[0];
+                                            return array;
+                                        });
+                                    }}
+                                    variant="transparent"
+                                    className={`bordino rounded-0 p-0 enlight_green ${
+                                        difficultIsClicked[0] ? "_green" : ""
+                                    }`}
+                                >
+                                    <Card className="p-0" bg="transparent">
+                                        <Card.Body className="py-1 px-4 text-light">Facile</Card.Body>
+                                    </Card>
+                                </Button>
+                                <Button
+                                    onClick={() => {
+                                        setDifficoltaAllenamento(2);
+                                        setDifficultIsClicked(() => {
+                                            let array = [false, false, false];
+                                            array[1] = !array[1];
+                                            return array;
+                                        });
+                                    }}
+                                    variant="transparent"
+                                    className={`bordino rounded-0 p-0 enlight_yellow ${
+                                        difficultIsClicked[1] ? "_yellow" : ""
+                                    }`}
+                                >
+                                    <Card
+                                        // onClick={Selected}
+                                        className="p-0"
+                                        bg="transparent"
+                                    >
+                                        <Card.Body className="py-1 px-4 text-light">Media</Card.Body>
+                                    </Card>
+                                </Button>
+                                <Button
+                                    onClick={() => {
+                                        setDifficoltaAllenamento(3);
+                                        setDifficultIsClicked(() => {
+                                            let array = [false, false, false];
+                                            array[2] = !array[2];
+                                            return array;
+                                        });
+                                    }}
+                                    variant="transparent"
+                                    className={`bordino rounded-0 p-0 enlight_red  ${
+                                        difficultIsClicked[2] ? "_red" : ""
+                                    }`}
+                                >
+                                    <Card
+                                        // onClick={Selected}
+                                        className="p-0"
+                                        bg="transparent"
+                                    >
+                                        <Card.Body className="py-1 px-4 text-light">Difficile</Card.Body>
+                                    </Card>
+                                </Button>
+                                <Button
+                                    onClick={() => {
+                                        setDifficoltaAllenamento(null);
+                                        setDifficultIsClicked(() => {
+                                            let array = [false, false, false];
+                                            return array;
+                                        });
+                                    }}
+                                    variant="transparent"
+                                    className={`bordino rounded-0 rounded-end-2 p-0 enlight_white  ${
+                                        !difficultIsClicked[0] && !difficultIsClicked[1] && !difficultIsClicked[2]
+                                            ? "_white"
+                                            : ""
+                                    }`}
+                                >
+                                    <Card
+                                        // onClick={Selected}
+                                        className="p-0"
+                                        bg="transparent"
+                                    >
+                                        <Card.Body className="py-1 rounded-end-2 px-4 text-light">Tutti</Card.Body>
+                                    </Card>
                                 </Button>
                             </div>
-                        </div>
-                    </Col>
-                    <Col md="3" lg="4" xl="2">
-                        <div className="d-flex justify-content-center align-items-center h-100">
-                            <Button
-                                onClick={() => {
-                                    setDifficoltaAllenamento(1);
-                                    setDifficultIsClicked(() => {
-                                        let array = [false, false, false];
-                                        array[0] = !array[0];
-                                        return array;
-                                    });
-                                }}
-                                variant="transparent"
-                                className={`bordino p-0 enlight_green ${difficultIsClicked[0] ? "_green" : ""}`}
-                            >
-                                <Card className="p-0" bg="transparent">
-                                    <Card.Body className="py-1 px-4 text-light">Facile</Card.Body>
-                                </Card>
-                            </Button>
-                            <Button
-                                onClick={() => {
-                                    setDifficoltaAllenamento(2);
-                                    setDifficultIsClicked(() => {
-                                        let array = [false, false, false];
-                                        array[1] = !array[1];
-                                        return array;
-                                    });
-                                }}
-                                variant="transparent"
-                                className={`bordino p-0 enlight_yellow ${difficultIsClicked[1] ? "_yellow" : ""}`}
-                            >
-                                <Card
-                                    // onClick={Selected}
-                                    className="p-0"
-                                    bg="transparent"
-                                >
-                                    <Card.Body className="py-1 px-4 text-light">Media</Card.Body>
-                                </Card>
-                            </Button>
-                            <Button
-                                onClick={() => {
-                                    setDifficoltaAllenamento(3);
-                                    setDifficultIsClicked(() => {
-                                        let array = [false, false, false];
-                                        array[2] = !array[2];
-                                        return array;
-                                    });
-                                }}
-                                variant="transparent"
-                                className={`bordino p-0 enlight_red  ${difficultIsClicked[2] ? "_red" : ""}`}
-                            >
-                                <Card
-                                    // onClick={Selected}
-                                    className="p-0"
-                                    bg="transparent"
-                                >
-                                    <Card.Body className="py-1 px-4 text-light">Difficile</Card.Body>
-                                </Card>
-                            </Button>
                         </div>
                     </Col>
                 </Row>

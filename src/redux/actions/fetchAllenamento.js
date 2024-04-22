@@ -65,20 +65,26 @@ export const GetListaAllenamenti = (urlPath) => async (dispatch) => {
     // dispatch(setDatiAllenamentoCompletato(serverResponse));
 };
 
-export const AllenamentoFiltrato = (inputNome) => async (dispatch) => {
+export const AllenamentoFiltrato = (inputNome, difficoltaAllenamento) => async (dispatch) => {
     try {
+        console.log(inputNome, difficoltaAllenamento);
         const request = await fetchWithAuth(LocalHostPath + "/Allenamento/AllenamentoFiltrato", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(inputNome),
+            body: JSON.stringify({ NomeAllenamentoInput: inputNome, difficoltainput: difficoltaAllenamento }),
         });
 
         const response = await request.json();
-        dispatch(setlistaAllenamenti(response));
+        console.log(response);
+        if (!response.status) {
+            dispatch(setlistaAllenamenti(response));
+        } else {
+            throw new Error("Errore nella ricerca dell'allenamento");
+        }
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 };
 

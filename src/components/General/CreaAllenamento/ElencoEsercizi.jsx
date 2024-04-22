@@ -63,7 +63,7 @@ const ElencoEsercizi = ({ handleClose }) => {
                                         {esercizio.descrizioneEsercizio}
                                     </Card.Text>
                                     <div className="d-flex justify-content-around">
-                                        <Card.Body>
+                                        <Card.Body className="d-flex justify-content-center align-items-center">
                                             {" "}
                                             <span className="fw-semibold fs-4">Serie:</span>
                                             {TuttiDettagliUtenteLoggato &&
@@ -123,11 +123,11 @@ const ElencoEsercizi = ({ handleClose }) => {
                                                 <span className="fw-semibold fs-3 ms-2">{esercizio.serie}</span>
                                             )}
                                         </Card.Body>
-                                        <Card.Text>
+                                        <Card.Body className="d-flex justify-content-center align-items-center">
                                             {" "}
                                             <span className="fw-semibold fs-4">Ripetizioni:</span>
                                             <span className="fw-semibold fs-3 ms-2">{esercizio.ripetizioni}</span>
-                                        </Card.Text>
+                                        </Card.Body>
                                     </div>
                                     <div className="d-flex justify-content-around">
                                         {" "}
