@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { CancellaAllenamento, GetListaAllenamenti } from "../../redux/actions/fetchAllenamento";
+import { AllenamentoFiltrato, CancellaAllenamento, GetListaAllenamenti } from "../../redux/actions/fetchAllenamento";
 import { LocalHostPath } from "../../functions/localHostPath";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Card, Col, Container, Form, Modal, Row } from "react-bootstrap";
@@ -17,7 +17,9 @@ const AllenamentiDisponibili = () => {
     const [showEsercizi, setShowEsercizi] = useState(false);
     const [AllenamDacancellare, setAllenamDacancellare] = useState(null);
     const [DettagliAllenamento, setDettagliAllenamento] = useState(null);
-    const [ricerca, setRicerca] = useState("");
+    const [Inputricerca, setInputRicerca] = useState("");
+    const [difficoltaAllenamento, setDifficoltaAllenamento] = useState(null);
+    const [difficultIsClicked, setDifficultIsClicked] = useState([false, false, false]);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -37,10 +39,11 @@ const AllenamentiDisponibili = () => {
         });
     };
 
-    // useEffect(() => {
-    //     if (ricerca.length > 0) {
-    //     }
-    // }, [ricerca]);
+    useEffect(() => {
+        if (Inputricerca.length > 0) {
+            dispatch(AllenamentoFiltrato(Inputricerca));
+        }
+    }, [Inputricerca]);
 
     const mediaDifficolta = (difficoltaAllenamento) => {
         switch (difficoltaAllenamento) {
@@ -69,9 +72,9 @@ const AllenamentiDisponibili = () => {
                                     type="text"
                                     id="ricercaAllenamenti"
                                     aria-describedby="ricercaAllenamenti"
-                                    value={ricerca}
+                                    value={Inputricerca}
                                     onChange={(e) => {
-                                        setRicerca(e.target.value);
+                                        setInputRicerca(e.target.value);
                                     }}
                                 />
                             </div>
@@ -86,27 +89,60 @@ const AllenamentiDisponibili = () => {
                     </Col>
                     <Col md="3" lg="4" xl="2">
                         <div className="d-flex justify-content-center align-items-center h-100">
-                            <Button variant="transparent" className="p-0 enlight_green bg-button">
+                            <Button
+                                onClick={() => {
+                                    setDifficoltaAllenamento(1);
+                                    setDifficultIsClicked(() => {
+                                        let array = [false, false, false];
+                                        array[0] = !array[0];
+                                        return array;
+                                    });
+                                }}
+                                variant="transparent"
+                                className={`bordino p-0 enlight_green ${difficultIsClicked[0] ? "_green" : ""}`}
+                            >
                                 <Card className="p-0" bg="transparent">
-                                    <Card.Body className="p-3 text-light">Facile</Card.Body>
+                                    <Card.Body className="py-1 px-4 text-light">Facile</Card.Body>
                                 </Card>
                             </Button>
-                            <Button variant="transparent" className="p-0 enlight bg-button">
+                            <Button
+                                onClick={() => {
+                                    setDifficoltaAllenamento(2);
+                                    setDifficultIsClicked(() => {
+                                        let array = [false, false, false];
+                                        array[1] = !array[1];
+                                        return array;
+                                    });
+                                }}
+                                variant="transparent"
+                                className={`bordino p-0 enlight_yellow ${difficultIsClicked[1] ? "_yellow" : ""}`}
+                            >
                                 <Card
                                     // onClick={Selected}
                                     className="p-0"
                                     bg="transparent"
                                 >
-                                    <Card.Body className="p-3 text-light">Media</Card.Body>
+                                    <Card.Body className="py-1 px-4 text-light">Media</Card.Body>
                                 </Card>
                             </Button>
-                            <Button variant="transparent" className="p-0 enlight_red bg-button">
+                            <Button
+                                onClick={() => {
+                                    setDifficoltaAllenamento(3);
+                                    setDifficultIsClicked(() => {
+                                        let array = [false, false, false];
+                                        array[2] = !array[2];
+                                        return array;
+                                    });
+                                }}
+                                variant="transparent"
+                                className={`bordino p-0 enlight_red  ${difficultIsClicked[2] ? "_red" : ""}`}
+                            >
                                 <Card
                                     // onClick={Selected}
                                     className="p-0"
                                     bg="transparent"
                                 >
-                                    <Card.Body className="p-3 text-light">Difficile</Card.Body>
+                                    <Card.Body className="py-1 px-4 text-light">Difficile</Card.Body>
                                 </Card>
                             </Button>
                         </div>
@@ -124,116 +160,119 @@ const AllenamentiDisponibili = () => {
                     </Row>
                 ) : (
                     <Row className="justify-content-center ">
-                        {listaAllenamentiDisponibili.map((allenamento, index) => (
-                            <Col xs="12" sm="10" md="7" lg="6" xxl="5" key={`index-n-${index}`}>
-                                <Card className="my-3 rounded-5 scalaAnimazione shadow-lg effettoVetro text-light border border-2">
-                                    <Card.Body>
-                                        <div className="d-xl-flex justify-content-xl-center gap-4">
-                                            {" "}
-                                            <div className="d-xl-flex flex-xl-column gap-3">
-                                                <Card.Title className="display-3 fw-normal">
-                                                    {allenamento.nomeAllenamento}
-                                                </Card.Title>
-                                                <div className="d-flex gap-2">
-                                                    <Button
-                                                        variant="light"
-                                                        className="rounded-4 text-warning border-warning fw-bold"
-                                                        onClick={() => {
-                                                            handleShowEsercizi();
-                                                            setDettagliAllenamento(allenamento);
-                                                        }}
-                                                    >
-                                                        {" "}
-                                                        Dettagli Allenamento
-                                                    </Button>
-                                                    <Button
-                                                        variant="warning text-light"
-                                                        className="rounded-4 text-warning border-warning fw-bold"
-                                                        onClick={() => {
-                                                            dispatch(setAllenamentoSceltogiaCreato(allenamento));
-                                                            navigate("/svolgiAllenamentoPresoDallaLista");
-                                                        }}
-                                                    >
-                                                        {" "}
-                                                        Svolgi Allenamento
-                                                    </Button>
-                                                    {TuttiDettagliUtenteLoggato &&
-                                                    TuttiDettagliUtenteLoggato.ruolo === "admin" ? (
+                        {listaAllenamentiDisponibili &&
+                            listaAllenamentiDisponibili.map((allenamento, index) => (
+                                <Col xs="12" sm="10" md="7" lg="6" xxl="5" key={`index-n-${index}`}>
+                                    <Card className="my-3 rounded-5 scalaAnimazione shadow-lg effettoVetro text-light border border-2">
+                                        <Card.Body>
+                                            <div className="d-xl-flex justify-content-xl-center gap-4">
+                                                {" "}
+                                                <div className="d-xl-flex flex-xl-column gap-3">
+                                                    <Card.Title className="display-3 fw-normal">
+                                                        {allenamento.nomeAllenamento}
+                                                    </Card.Title>
+                                                    <div className="d-flex gap-2">
                                                         <Button
                                                             variant="light"
                                                             className="rounded-4 text-warning border-warning fw-bold"
                                                             onClick={() => {
-                                                                // handleDelete(allenamento.idAllenamento);
-                                                                handleShow();
-                                                                setAllenamDacancellare(allenamento.idAllenamento);
+                                                                handleShowEsercizi();
+                                                                setDettagliAllenamento(allenamento);
                                                             }}
                                                         >
                                                             {" "}
-                                                            <Trash3Fill />
+                                                            Dettagli Allenamento
                                                         </Button>
-                                                    ) : null}
+                                                        <Button
+                                                            variant="warning text-light"
+                                                            className="rounded-4 text-warning border-warning fw-bold"
+                                                            onClick={() => {
+                                                                dispatch(setAllenamentoSceltogiaCreato(allenamento));
+                                                                navigate("/svolgiAllenamentoPresoDallaLista");
+                                                            }}
+                                                        >
+                                                            {" "}
+                                                            Svolgi Allenamento
+                                                        </Button>
+                                                        {TuttiDettagliUtenteLoggato &&
+                                                        TuttiDettagliUtenteLoggato.ruolo === "admin" ? (
+                                                            <Button
+                                                                variant="light"
+                                                                className="rounded-4 text-warning border-warning fw-bold"
+                                                                onClick={() => {
+                                                                    // handleDelete(allenamento.idAllenamento);
+                                                                    handleShow();
+                                                                    setAllenamDacancellare(allenamento.idAllenamento);
+                                                                }}
+                                                            >
+                                                                {" "}
+                                                                <Trash3Fill />
+                                                            </Button>
+                                                        ) : null}
+                                                    </div>
+                                                    <div className="d-flex flex-column justify-content-center my-2">
+                                                        Difficoltà:{" "}
+                                                        <span
+                                                            className="fw-semibold fs-5"
+                                                            style={{
+                                                                color:
+                                                                    mediaDifficolta(allenamento.dIfficoltaMedia) ===
+                                                                    "Facile"
+                                                                        ? "green"
+                                                                        : mediaDifficolta(
+                                                                              allenamento.dIfficoltaMedia
+                                                                          ) === "Media"
+                                                                        ? "orange"
+                                                                        : mediaDifficolta(
+                                                                              allenamento.dIfficoltaMedia
+                                                                          ) === "Difficile"
+                                                                        ? "red"
+                                                                        : "black",
+                                                            }}
+                                                        >
+                                                            {mediaDifficolta(allenamento.dIfficoltaMedia)}
+                                                        </span>
+                                                    </div>
                                                 </div>
-                                                <div className="d-flex flex-column justify-content-center my-2">
-                                                    Difficoltà:{" "}
-                                                    <span
-                                                        className="fw-semibold fs-5"
-                                                        style={{
-                                                            color:
-                                                                mediaDifficolta(allenamento.dIfficoltaMedia) ===
-                                                                "Facile"
-                                                                    ? "green"
-                                                                    : mediaDifficolta(allenamento.dIfficoltaMedia) ===
-                                                                      "Media"
-                                                                    ? "orange"
-                                                                    : mediaDifficolta(allenamento.dIfficoltaMedia) ===
-                                                                      "Difficile"
-                                                                    ? "red"
-                                                                    : "black",
-                                                        }}
-                                                    >
-                                                        {mediaDifficolta(allenamento.dIfficoltaMedia)}
-                                                    </span>
+                                                <div>
+                                                    <div className="my-3">
+                                                        <div className="d-xl-flex gap-3">
+                                                            <Card.Text>
+                                                                {" "}
+                                                                <span className="fw-semibold fs-4">
+                                                                    Ripetizioni Totali:
+                                                                </span>
+                                                                <span className="fw-semibold fs-3 ms-2">
+                                                                    {allenamento.ripetizioniTotali}
+                                                                </span>
+                                                            </Card.Text>
+                                                        </div>
+                                                        <div>
+                                                            {" "}
+                                                            <Card.Text>
+                                                                {" "}
+                                                                <span className="fw-semibold fs-4">Serie Totali:</span>
+                                                                <span className="fw-semibold fs-3 ms-2">
+                                                                    {allenamento.serieTotali}
+                                                                </span>
+                                                            </Card.Text>
+                                                        </div>
+                                                        <div>
+                                                            <Card.Text>
+                                                                {" "}
+                                                                <span className="fw-semibold fs-4">Durata Totale:</span>
+                                                                <span className="fw-semibold fs-3 ms-2">
+                                                                    {allenamento.durataTotaleAllenamento}&apos;
+                                                                </span>
+                                                            </Card.Text>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div>
-                                                <div className="my-3">
-                                                    <div className="d-xl-flex gap-3">
-                                                        <Card.Text>
-                                                            {" "}
-                                                            <span className="fw-semibold fs-4">
-                                                                Ripetizioni Totali:
-                                                            </span>
-                                                            <span className="fw-semibold fs-3 ms-2">
-                                                                {allenamento.ripetizioniTotali}
-                                                            </span>
-                                                        </Card.Text>
-                                                    </div>
-                                                    <div>
-                                                        {" "}
-                                                        <Card.Text>
-                                                            {" "}
-                                                            <span className="fw-semibold fs-4">Serie Totali:</span>
-                                                            <span className="fw-semibold fs-3 ms-2">
-                                                                {allenamento.serieTotali}
-                                                            </span>
-                                                        </Card.Text>
-                                                    </div>
-                                                    <div>
-                                                        <Card.Text>
-                                                            {" "}
-                                                            <span className="fw-semibold fs-4">Durata Totale:</span>
-                                                            <span className="fw-semibold fs-3 ms-2">
-                                                                {allenamento.durataTotaleAllenamento}&apos;
-                                                            </span>
-                                                        </Card.Text>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </Card.Body>
-                                </Card>
-                            </Col>
-                        ))}
+                                        </Card.Body>
+                                    </Card>
+                                </Col>
+                            ))}
                     </Row>
                 )}
             </Container>

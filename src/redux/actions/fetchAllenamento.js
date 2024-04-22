@@ -1,4 +1,5 @@
 import { fetchWithAuth } from "../../functions/interceptor";
+import { LocalHostPath } from "../../functions/localHostPath";
 import {
     setallenamentoInviatoAlServer,
     setdatiAllenamentoRitorno_server,
@@ -62,6 +63,23 @@ export const GetListaAllenamenti = (urlPath) => async (dispatch) => {
     console.log(serverResponse);
     dispatch(setlistaAllenamenti(serverResponse));
     // dispatch(setDatiAllenamentoCompletato(serverResponse));
+};
+
+export const AllenamentoFiltrato = (inputNome) => async (dispatch) => {
+    try {
+        const request = await fetchWithAuth(LocalHostPath + "/Allenamento/AllenamentoFiltrato", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(inputNome),
+        });
+
+        const response = await request.json();
+        dispatch(setlistaAllenamenti(response));
+    } catch (err) {
+        console.log(err);
+    }
 };
 
 export const CancellaAllenamento = (urlPath) => async (dispatch) => {

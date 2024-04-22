@@ -6,7 +6,11 @@ import { useEffect } from "react";
 import { toast } from "react-toastify";
 import logo from "../../assets/logo.svg";
 import { rimuoviTuttoDalCArrello, setCarrelloOttimizzato } from "../../redux/reducers/prodottiReducer";
-import { SvuotaArrayAllenamento, setnomeAllenamentoCreato } from "../../redux/reducers/allenamentiReducer";
+import {
+    SvuotaArrayAllenamento,
+    setlistaAllenamenti,
+    setnomeAllenamentoCreato,
+} from "../../redux/reducers/allenamentiReducer";
 import { CartFill } from "react-bootstrap-icons";
 import { rimuoviTuttiAllenamentiCompletatiUtente } from "../../redux/reducers/allenamentiCompletatiReducer";
 import { svuotaTuttiDettagliUtenteLoggato } from "../../redux/reducers/utentiReducer";
@@ -77,6 +81,7 @@ function NavbarComponent() {
                                                 toast.success("Logout effettuato", { position: "top-center" });
                                                 dispatch(rimuoviTuttoDalCArrello());
                                                 dispatch(rimuoviTuttiAllenamentiCompletatiUtente());
+                                                dispatch(setlistaAllenamenti(null));
                                             }}
                                         >
                                             Logout
