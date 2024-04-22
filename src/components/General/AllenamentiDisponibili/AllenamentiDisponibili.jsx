@@ -63,10 +63,11 @@ const AllenamentiDisponibili = () => {
         <div className="Bg-sfondo-dark min-vh-100">
             <Container>
                 <Row className="justify-content-center customPosition-Row effettoVetro rounded-5">
-                    <Col xs="11" sm="10" md="8" lg="6" xl="4">
+                    <Col xs="11" sm="10" md="8" lg="6" xl="5">
                         {" "}
-                        <div className="my-4">
+                        <div className="my-4 d-flex align-items-center">
                             {/* input per ricerca allenamento */}
+                            <div className="d-inline-block me-5 text-light fs-3 fst-italic">Ricerca:</div>
                             <Form.Control
                                 className="rounded-0 rounded-2"
                                 type="text"
