@@ -47,7 +47,7 @@ const PannelloSceltaEsercizi = () => {
     return (
         <>
             {" "}
-            <p className="m-0 text-light">Filtra Esercizi per Parte Del corpo:</p>
+            <p className="m-0 text-light mt-3">Filtra Esercizi per Parte Del corpo:</p>
             <h3 className="text-warning fw-bold fs-1">
                 {parteCorpo.charAt(0).toLocaleUpperCase() + parteCorpo.slice(1)}
             </h3>
