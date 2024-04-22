@@ -9,7 +9,7 @@ import ToasterComponent from "./components/General/ToasterComponent";
 import Login from "./components/General/Login";
 import NavbarComponent from "./components/General/NavbarComponent";
 import Prodotti from "./components/General/Prodotti";
-import AllenamentiDisponibili from "./components/General/AllenamentiDisponibili";
+import AllenamentiDisponibili from "./components/General/AllenamentiDisponibili/AllenamentiDisponibili";
 import CreaTuoAllenamento from "./components/General/CreaAllenamento/CreaTuoAllenamento";
 import Carrello from "./components/General/Carrello";
 import PagamentoSuccesso from "./components/General/PagamentoSuccesso";

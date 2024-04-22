@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { AllenamentoFiltrato, CancellaAllenamento, GetListaAllenamenti } from "../../redux/actions/fetchAllenamento";
-import { LocalHostPath } from "../../functions/localHostPath";
+import { AllenamentoFiltrato, CancellaAllenamento, GetListaAllenamenti } from "../../../redux/actions/fetchAllenamento";
+import { LocalHostPath } from "../../../functions/localHostPath";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Card, Col, Container, Form, Modal, Row } from "react-bootstrap";
-import { setAllenamentoSceltogiaCreato } from "../../redux/reducers/allenamentiReducer";
+import { setAllenamentoSceltogiaCreato } from "../../../redux/reducers/allenamentiReducer";
 import { useNavigate } from "react-router-dom";
 import { Trash3Fill } from "react-bootstrap-icons";
 
