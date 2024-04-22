@@ -43,7 +43,7 @@ const RowSuperioreIcone = ({ setShowCreateEsercizio }) => {
         <>
             <Col xs="12">
                 {" "}
-                <div className="d-flex justify-content-center mt-4">
+                <div className="d-flex justify-content-center effettoVetro mt-2 p-2 pt-3 w-50 m-auto rounded-5 border border-2">
                     {" "}
                     {TuttiDettagliUtenteLoggato.ruolo === "admin" ? (
                         <Button

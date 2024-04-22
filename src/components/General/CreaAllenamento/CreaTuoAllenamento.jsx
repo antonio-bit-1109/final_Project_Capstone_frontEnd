@@ -40,7 +40,7 @@ const CreaTuoAllenamento = () => {
         <div className="Bg-sfondo-dark altezza-sfondo">
             <Container fluid>
                 {TuttiDettagliUtenteLoggato && (
-                    <Row>
+                    <Row className="customPosition-sticky">
                         <RowSuperioreIcone setShowCreateEsercizio={setShowCreateEsercizio} />
                     </Row>
                 )}

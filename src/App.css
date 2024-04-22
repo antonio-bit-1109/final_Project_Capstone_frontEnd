@@ -294,5 +294,11 @@ body {
 .customPosition-sticky {
     position: sticky;
     top: 75px;
-    z-index: 999;
+    z-index: 500;
+}
+
+.customPosition-sticky2 {
+    position: sticky;
+    top: 180px;
+    z-index: 400;
 }
