@@ -20,11 +20,6 @@ const Home = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    // const [showOffCanvas, setShowOffCanvas] = useState(false);
-
-    // const handleCloseCanvas = () => setShowOffCanvas(false);
-    // const handleShowCanvas = () => setShowOffCanvas(true);
-
     const { TuttiDettagliUtenteLoggato } = useSelector((store) => store.utenti);
     console.log("TuttiDettagliUtenteLoggato ", TuttiDettagliUtenteLoggato);
 

@@ -3,12 +3,32 @@ import { Col, Container, Row, Card, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, FiletypePdf } from "react-bootstrap-icons";
 import { fetchCreaPDF } from "../../../redux/actions/fetchPDF";
+import { useEffect } from "react";
+import { getAllenamentiCompletati } from "../../../redux/actions/fetchAllenamentoCompletato";
+import { getDettagliUtente } from "../../../redux/actions/fetchUtenti";
 
 const LIstaAllenamCompletati = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { AllenamentiCompletatiUtente } = useSelector((store) => store.allenamentiCompletati);
+    const { TuttiDettagliUtenteLoggato } = useSelector((store) => store.utenti);
+    console.log(TuttiDettagliUtenteLoggato);
     console.log(AllenamentiCompletatiUtente);
+
+    useEffect(() => {
+        dispatch(getDettagliUtente());
+    }, [dispatch]);
+
+    useEffect(() => {
+        if (TuttiDettagliUtenteLoggato) {
+            dispatch(
+                getAllenamentiCompletati(
+                    TuttiDettagliUtenteLoggato.idUtente,
+                    "/AllenamentiCompletati/CompletedWorkoutsUtente/"
+                )
+            );
+        }
+    }, [dispatch, TuttiDettagliUtenteLoggato]);
 
     const generatePDF = (allCompletato) => {
         dispatch(fetchCreaPDF(allCompletato));
