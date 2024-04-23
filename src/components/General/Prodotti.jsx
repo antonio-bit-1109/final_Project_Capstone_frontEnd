@@ -14,7 +14,7 @@ const Prodotti = () => {
     const [ImmagineProdotto, setImmagineProdotto] = useState(null);
     const { listaProdotti } = useSelector((store) => store.prodotti);
     const { TuttiDettagliUtenteLoggato } = useSelector((store) => store.utenti);
-
+    const [idProdottoELiminare, setIdProdottoELiminare] = useState(null);
     const {
         register,
         handleSubmit,
@@ -25,6 +25,11 @@ const Prodotti = () => {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    const [showModalDelete, setShowModalDelete] = useState(false);
+
+    const handleCloseModalDelete = () => setShowModalDelete(false);
+    const handleShowModalDelete = () => setShowModalDelete(true);
 
     const HandleSubmitting = (data) => {
         console.log(data);
@@ -39,6 +44,7 @@ const Prodotti = () => {
 
     const eraseProduct = (id) => {
         dispatch(cancellaProdotto(LocalHostPath, id));
+        handleCloseModalDelete();
     };
 
     useEffect(() => {
@@ -78,7 +84,10 @@ const Prodotti = () => {
                                 <Card className="rounded rounded-5 my-4 p-3 position-relative shadow-lg custom-h border border-2 effettoVetro text-light scalaAnimazione">
                                     {TuttiDettagliUtenteLoggato && TuttiDettagliUtenteLoggato.ruolo === "admin" ? (
                                         <Button
-                                            onClick={() => eraseProduct(prodotto.idProdotto)}
+                                            // onClick={() => eraseProduct(prodotto.idProdotto)}
+                                            onClick={() => {
+                                                handleShowModalDelete(), setIdProdottoELiminare(prodotto.idProdotto);
+                                            }}
                                             className="custom-position"
                                             variant="transparent"
                                         >
@@ -209,6 +218,28 @@ const Prodotti = () => {
                     </Modal.Body>
                 </Modal>
             </Container>
+            <Modal show={showModalDelete} onHide={() => handleCloseModalDelete()}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Elimina Prodotto </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Stai per eliminare il Prodotto Selezionato, Vuoi continuare ?</Modal.Body>
+                <Modal.Footer>
+                    <Button
+                        variant="light"
+                        className="rounded-4 text-warning border-warning fw-bold"
+                        onClick={handleCloseModalDelete}
+                    >
+                        Chiudi
+                    </Button>
+                    <Button
+                        variant="warning "
+                        className="rounded-4 text-light fw-bold"
+                        onClick={() => eraseProduct(idProdottoELiminare)}
+                    >
+                        Elimina Definitivamente
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </div>
     );
 };

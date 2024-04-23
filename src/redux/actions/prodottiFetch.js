@@ -1,6 +1,7 @@
 import { LocalHostPath } from "../../functions/localHostPath";
 import { fetchWithAuth } from "../../functions/interceptor";
 import { setProdottiAcquistati, setProdottoAppenaCreato, setlistaProdotti } from "../reducers/prodottiReducer";
+import { toast } from "react-toastify";
 
 export const GetProdotti = () => async (dispatch) => {
     try {
@@ -115,6 +116,7 @@ export const cancellaProdotto = (pathUrl, idProdotto) => async (dispatch) => {
 
         if (cancellaProdotto.ok) {
             dispatch(GetProdotti());
+            toast.success("Prodotto cancellato con successo", { autoClose: 1000 });
         }
     } catch (error) {
         console.error("Errore nel fetch:", error.message);
