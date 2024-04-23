@@ -1,16 +1,17 @@
 // import { useEffect } from "react";
-import { Col, Container, Row, Button, Card, Modal } from "react-bootstrap";
+import { Col, Container, Row, Button, Card } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import { useDispatch, useSelector } from "react-redux";
-import { annullaAbbonamento } from "../../../redux/actions/fetchAbbonamenti";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, PencilSquare, PersonX } from "react-bootstrap-icons";
 import { useEffect, useRef, useState } from "react";
-import { ModificaDati, getDettagliUtente } from "../../../redux/actions/fetchUtenti";
+import { getDettagliUtente } from "../../../redux/actions/fetchUtenti";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { AddOneCountModale } from "../../../redux/reducers/notificaReducer";
-import ModaleCancellazioneAccount from "./ModaleCancellazioneAccount";
+import ModaleCancellazioneAccount from "./ModificaDatiUtente/ModaleCancellazioneAccount";
+import MOdaleConfermaPassCancellazione from "./ModificaDatiUtente/MOdaleConfermaPassCancellazione";
+import AnnullaEStoricoAcquisti from "./ModificaDatiUtente/AnnullaEStoricoAcquisti";
 
 const ModificaDatiUtente = () => {
     const dispatch = useDispatch();
@@ -26,7 +27,7 @@ const ModificaDatiUtente = () => {
     console.log("ogni 3 c'è remainder", CountModale);
 
     const [show, setShow] = useState(false);
-    const [passwordInput, setPasswordInput] = useState("");
+    // const [passwordInput, setPasswordInput] = useState("");
     const [dataReactHookForm, setDataReactHookForm] = useState(null);
     const [modaleCancellaAccountIsVisible, setModaleCancellaAccount] = useState(false);
 
@@ -46,9 +47,9 @@ const ModificaDatiUtente = () => {
         // reset,
     } = useForm();
 
-    const handleAnnullaAbbonamento = () => {
-        dispatch(annullaAbbonamento());
-    };
+    // const handleAnnullaAbbonamento = () => {
+    //     dispatch(annullaAbbonamento());
+    // };
 
     const HandleCloseModale = () => {
         setModaleCancellaAccount(false);
@@ -88,13 +89,13 @@ const ModificaDatiUtente = () => {
         setDataReactHookForm(data);
     };
 
-    const submitCheckPassword = (e) => {
-        setPasswordInput("");
-        if (dataReactHookForm !== null) {
-            e.preventDefault();
-            dispatch(ModificaDati(passwordInput, TuttiDettagliUtenteLoggato.idUtente, dataReactHookForm));
-        }
-    };
+    // const submitCheckPassword = (e) => {
+    //     setPasswordInput("");
+    //     if (dataReactHookForm !== null) {
+    //         e.preventDefault();
+    //         dispatch(ModificaDati(passwordInput, TuttiDettagliUtenteLoggato.idUtente, dataReactHookForm));
+    //     }
+    // };
 
     return (
         <div className="Bg-sfondo-dark min-vh-100 ">
@@ -374,70 +375,12 @@ const ModificaDatiUtente = () => {
                         </div>
                     </Col>
                 </Row>
-                <Row className="justify-content-center">
-                    <Col xs="12" sm="10" md="10" lg="6" xl="4">
-                        <div className="d-flex gap-2 my-4 justify-content-center">
-                            <Button
-                                variant="light"
-                                className="rounded-4 text-warning border-warning fw-bold"
-                                onClick={handleAnnullaAbbonamento}
-                            >
-                                {" "}
-                                Annulla Abbonamento{" "}
-                            </Button>
-                            <Button
-                                variant="warning "
-                                className="rounded-4 text-light fw-bold"
-                                onClick={() => navigate("/StoricoAcquisti")}
-                            >
-                                {" "}
-                                Storico acquisti{" "}
-                            </Button>
-                        </div>
-                    </Col>
-                </Row>
-
-                {/* MODALE PER CONFERMA PASSWORD PER MODIFICARE I DATI UTENTE  */}
-                <Modal show={show} onHide={handleClose}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Conferma Password Prima di proseguire</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <Form onSubmit={submitCheckPassword}>
-                            <Form.Group className="my-3" controlId="email">
-                                <Form.Label className="fs-1 fw-normal m-auto">Inserisci Password</Form.Label>
-                                <div className="d-flex align-items-center">
-                                    <Form.Control
-                                        type="password"
-                                        placeholder="Inserisci la Password Corrente."
-                                        onChange={(e) => setPasswordInput(e.target.value)}
-                                        value={passwordInput}
-                                    />
-                                    <Button onClick={handleShow} variant="transparent">
-                                        <PencilSquare size={30} className="text-light" />
-                                    </Button>
-                                </div>
-                            </Form.Group>{" "}
-                            <Modal.Footer>
-                                <Button
-                                    variant="light"
-                                    className="rounded-4 text-warning border-warning fw-bold"
-                                    onClick={handleClose}
-                                >
-                                    Chiudi
-                                </Button>
-                                <Button
-                                    type="submit"
-                                    variant="warning "
-                                    className="rounded-4 text-light fw-bold"
-                                    onClick={handleClose}
-                                >
-                                    Invia
-                                </Button>
-                            </Modal.Footer>
-                        </Form>
-                    </Modal.Body>
-                </Modal>
+                <AnnullaEStoricoAcquisti />
+                <MOdaleConfermaPassCancellazione
+                    show={show}
+                    dataReactHookForm={dataReactHookForm}
+                    handleClose={handleClose}
+                />
                 <ModaleCancellazioneAccount
                     modaleCancellaAccountIsVisible={modaleCancellaAccountIsVisible}
                     HandleCloseModale={HandleCloseModale}

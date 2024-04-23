@@ -4,16 +4,16 @@ import { useSelector, useDispatch } from "react-redux";
 import {
     getAllenamentiCompletati,
     getDettagliAllenamentiCompletatiUtente,
-} from "../../redux/actions/fetchAllenamentoCompletato";
-import { LocalHostPath } from "../../functions/localHostPath";
+} from "../../../redux/actions/fetchAllenamentoCompletato";
+import { LocalHostPath } from "../../../functions/localHostPath";
 import { PlusCircleFill, GearFill } from "react-bootstrap-icons";
 import { Button } from "react-bootstrap";
-import { CambiaImmagine, GenderUtente, getDettagliUtente } from "../../redux/actions/fetchUtenti";
+import { CambiaImmagine, GenderUtente, getDettagliUtente } from "../../../redux/actions/fetchUtenti";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import GraficoComponent from "./grafico/GraficoComponent";
-import ModaleCambiaImgprofilo from "./Home/ModaleCambiaImgprofilo";
-import ObscureGraphic from "./grafico/ObscureGraphic";
+import GraficoComponent from "../grafico/GraficoComponent";
+import ModaleCambiaImgprofilo from "./ModaleCambiaImgprofilo";
+import ObscureGraphic from "../grafico/ObscureGraphic";
 // import ModificaDatiUtenteOffCanvas from "./Utente/ModificaDatiUtenteOffCanvas";
 
 const Home = () => {

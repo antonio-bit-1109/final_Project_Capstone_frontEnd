@@ -3,7 +3,7 @@ import { Form } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useDispatch, useSelector } from "react-redux";
-import { CancellaAccount } from "../../../redux/actions/fetchUtenti";
+import { CancellaAccount } from "../../../../redux/actions/fetchUtenti";
 
 // eslint-disable-next-line react/prop-types
 const ModaleCancellazioneAccount = ({ modaleCancellaAccountIsVisible, HandleCloseModale }) => {

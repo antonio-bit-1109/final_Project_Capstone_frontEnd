@@ -4,9 +4,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./components/General/Home";
+import Home from "./components/General/Home/Home";
 import ToasterComponent from "./components/General/ToasterComponent";
-import Login from "./components/General/Login";
+import Login from "./components/General/Login/Login";
 import NavbarComponent from "./components/General/NavbarComponent";
 import Prodotti from "./components/General/Prodotti";
 import AllenamentiDisponibili from "./components/General/AllenamentiDisponibili/AllenamentiDisponibili";
@@ -18,7 +18,7 @@ import SvolgiAllenamentoPresoDallaLista from "./components/General/SvolgiAllenam
 import ImpacchettaAllenamento from "./components/General/CreaAllenamento/ImpacchettaAllenamento";
 import LIstaAllenamCompletati from "./components/General/Home/LIstaAllenamCompletati";
 import Abbonamenti from "./components/General/Utente/Abbonamenti";
-import ModificaDatiUtente from "./components/General/Utente/ModificaDatiUtente";
+import ModificaDatiUtente from "./components/General/Home/ModificaDatiUtente";
 import StoricoAcquisti from "./components/General/Utente/StoricoAcquisti";
 import SocialMain from "./components/General/SocialMedia/SocialMain";
 // import ModificaDatiUtente from "./components/General/Utente/ModificaDatiUtente";

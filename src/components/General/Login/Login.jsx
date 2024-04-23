@@ -1,16 +1,16 @@
-import sfondo from "../../assets/bg-login.webp";
+import sfondo from "../../../assets/bg-login.webp";
 import { useEffect, useState } from "react";
 import { Col, Container, Form, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useDispatch, useSelector } from "react-redux";
-import { TokenFetch } from "../../redux/actions/TokenFetch";
-import { LocalHostPath } from "../../functions/localHostPath";
+import { TokenFetch } from "../../../redux/actions/TokenFetch";
+import { LocalHostPath } from "../../../functions/localHostPath";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { setTokenUtente } from "../../redux/reducers/tokenReducer";
+import { setTokenUtente } from "../../../redux/reducers/tokenReducer";
 import { useForm } from "react-hook-form";
-import { PostUtenteRegistrato } from "../../redux/actions/fetchUtenti";
+import { PostUtenteRegistrato } from "../../../redux/actions/fetchUtenti";
 
 function Login() {
     const {
