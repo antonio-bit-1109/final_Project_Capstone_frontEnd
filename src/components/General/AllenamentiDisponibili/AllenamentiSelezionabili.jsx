@@ -36,7 +36,7 @@ const AllenamentiSelezionabili = ({
                 <Row>
                     <Col>
                         <div>
-                            <h2 className="display-3 text-light">non sono disponibili allenamenti da visualizzare</h2>
+                            <h2 className="display-3 text-light">non sono disponibili allenamenti da visualizzare.</h2>
                         </div>
                     </Col>
                 </Row>
