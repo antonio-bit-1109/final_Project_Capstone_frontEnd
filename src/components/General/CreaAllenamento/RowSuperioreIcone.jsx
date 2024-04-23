@@ -59,9 +59,9 @@ const RowSuperioreIcone = ({ setShowCreateEsercizio }) => {
             <Col xs="12">
                 {" "}
                 <div
-                    className={`d-flex justify-content-center effettoVetro mt-2 pt-3 ${
+                    className={`d-flex justify-content-center mt-2 pt-3 ${
                         windowWidth < 600 ? "w-100" : "w-50"
-                    } m-auto rounded-5 border border-2 `}
+                    } m-auto rounded-5  `}
                 >
                     {" "}
                     {TuttiDettagliUtenteLoggato.ruolo === "admin" ? (
