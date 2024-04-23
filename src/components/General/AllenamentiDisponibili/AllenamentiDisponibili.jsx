@@ -62,13 +62,13 @@ const AllenamentiDisponibili = () => {
     return (
         <div className="Bg-sfondo-dark min-vh-100">
             <Container>
-                <div className=" customPosition-Row effettoVetro rounded-5 border border-2 pb-sm-3 pb-lg-0">
+                <div className=" customPosition-Row effettoVetro rounded-5 border mb-3 border-2 pb-sm-3 pb-lg-0">
                     <Row className="justify-content-center">
                         <Col xs="11" sm="10" md="8" lg="6" xl="5">
                             {" "}
                             <div className="my-4 d-flex align-items-center">
                                 {/* input per ricerca allenamento */}
-                                <div className="d-inline-block me-5 text-light fs-3 fst-italic">Ricerca:</div>
+                                <div className="d-inline-block mx-3 text-light fs-3 fst-italic">Ricerca:</div>
                                 <Form.Control
                                     className="rounded-0 rounded-2"
                                     type="text"
@@ -82,7 +82,7 @@ const AllenamentiDisponibili = () => {
                             </div>
                         </Col>
                         <Col xs="12" sm="10" lg="6" xl="4">
-                            <div className="d-flex justify-content-center align-items-center h-100">
+                            <div className="d-flex justify-content-center align-items-center h-100 flex-wrap pb-2 pb-lg-0">
                                 <Button
                                     onClick={() => {
                                         setDifficoltaAllenamento(1);
