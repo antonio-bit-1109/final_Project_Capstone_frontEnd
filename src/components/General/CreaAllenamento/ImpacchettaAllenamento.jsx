@@ -38,7 +38,7 @@ const ImpacchettaAllenamento = () => {
                 oldArray.push(singoloEsercizioObj.idEsercizio);
 
                 durataTotAllen +=
-                    singoloEsercizioObj.ripetizioni * 2 * singoloEsercizioObj.serie +
+                    singoloEsercizioObj.ripetizioni * 3 * singoloEsercizioObj.serie +
                     singoloEsercizioObj.tempoRecupero * singoloEsercizioObj.serie;
 
                 serieTotAllen += singoloEsercizioObj.serie;
@@ -63,8 +63,8 @@ const ImpacchettaAllenamento = () => {
         if (Object.values(objdaInviare).every((prop) => prop !== null)) {
             dispatch(PostAllenamento(LocalHostPath + "/Allenamento/AggiungiAllenamento", objdaInviare));
             toast.success("Allenamento Creato con Successo!", {
-                autoClose: 3500,
-                position: "top-center",
+                autoClose: 1200,
+                position: "top-right",
             });
             navigate("/");
         }
