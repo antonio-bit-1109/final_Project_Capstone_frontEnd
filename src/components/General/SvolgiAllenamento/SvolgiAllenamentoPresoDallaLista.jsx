@@ -1,5 +1,4 @@
 import { Container, Row } from "react-bootstrap";
-import { useSelector } from "react-redux";
 import "swiper/css/bundle";
 // import TimerComponent from "./TimerComponent";
 import SwiperCarousel from "./SwiperCarousel";
@@ -13,7 +12,7 @@ import KcalBruciate from "./KcalBruciate";
 const SvolgiAllenamentoPresoDallaLista = () => {
     // const navigate = useNavigate();
     // const dispatch = useDispatch();
-
+    const [timerIsRunning, setTimerIsRunning] = useState(false);
     const [isCustomModalVisible, setIscoCustomModalVisible] = useState(false);
     const [count, setCount] = useState(0);
 
@@ -31,9 +30,14 @@ const SvolgiAllenamentoPresoDallaLista = () => {
             <Container>
                 <>
                     <Row>
-                        <TimerComponent setCount={setCount} setIscoCustomModalVisible={setIscoCustomModalVisible} />
+                        <TimerComponent
+                            timerIsRunning={timerIsRunning}
+                            setTimerIsRunning={setTimerIsRunning}
+                            setCount={setCount}
+                            setIscoCustomModalVisible={setIscoCustomModalVisible}
+                        />
 
-                        <KcalBruciate />
+                        <KcalBruciate timerIsRunning={timerIsRunning} />
                         <SwiperCarousel />
                     </Row>
                 </>

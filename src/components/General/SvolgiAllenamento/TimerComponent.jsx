@@ -5,12 +5,12 @@ import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
 // eslint-disable-next-line react/prop-types
-const TimerComponent = ({ setIscoCustomModalVisible, setCount }) => {
+const TimerComponent = ({ setIscoCustomModalVisible, setCount, timerIsRunning, setTimerIsRunning }) => {
     const timerRef = useRef();
     const [minuti, setMinuti] = useState(null);
     const [secondi, setSecondi] = useState(0);
     const [Arrayrecuperi, setArrayRecuperi] = useState([]);
-    const [timerIsRunning, setTimerIsRunning] = useState(false);
+
     const { AllenamentoSceltogiaCreato } = useSelector((store) => store.allenamenti);
 
     useEffect(() => {

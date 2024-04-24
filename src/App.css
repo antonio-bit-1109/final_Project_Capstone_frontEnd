@@ -302,3 +302,15 @@ body {
     top: 180px;
     z-index: 400;
 }
+
+.positionInfo {
+    position: absolute;
+    top: 0;
+    right: -45px;
+}
+
+.positionInfo2 {
+    position: absolute;
+    top: 0;
+    right: 22px;
+}
