@@ -2,8 +2,11 @@
 import { Col, Row } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { LocalHostPath } from "../../../functions/localHostPath";
+import { useSelector } from "react-redux";
 
-const SwiperCarousel = ({ AllenamentoSceltogiaCreato }) => {
+const SwiperCarousel = () => {
+    const { AllenamentoSceltogiaCreato } = useSelector((store) => store.allenamenti);
+
     return (
         <div className="effettoVetro border border-2 rounded-5 p-3">
             <Col xs="12" sm="12">

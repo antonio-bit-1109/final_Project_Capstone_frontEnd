@@ -1,13 +1,15 @@
 import { Button, Col, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { LocalHostPath } from "../../../functions/localHostPath";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { PostAllenamentoConcluso } from "../../../redux/actions/fetchAllenamento";
 import { setAllenamentoSceltogiaCreato } from "../../../redux/reducers/allenamentiReducer";
 
 // eslint-disable-next-line react/prop-types
-const BottoniFinePagina = ({ AllenamentoSceltogiaCreato }) => {
+const BottoniFinePagina = () => {
+    const { AllenamentoSceltogiaCreato } = useSelector((store) => store.allenamenti);
+
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
