@@ -60,6 +60,7 @@ const ModificaDatiUtente = () => {
 
     useEffect(() => {
         dispatch(AddOneCountModale());
+        dispatch(getDettagliUtente());
     }, [dispatch]);
 
     useEffect(() => {
