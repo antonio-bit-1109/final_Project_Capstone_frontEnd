@@ -2,11 +2,12 @@
 import { useEffect } from "react";
 import { Col } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { InfoCircleFill } from "react-bootstrap-icons";
+// import { InfoCircleFill } from "react-bootstrap-icons";
 
 const KcalBruciate = ({ timerIsRunning, kcalBurnSec, setKcalBurnSec }) => {
     const { TuttiDettagliUtenteLoggato } = useSelector((store) => store.utenti);
     const { AllenamentoSceltogiaCreato } = useSelector((store) => store.allenamenti);
+    // const [infoIsVisible, setInfoIsVisible] = useState(false);
 
     console.log(TuttiDettagliUtenteLoggato);
     console.log(AllenamentoSceltogiaCreato);
@@ -32,7 +33,7 @@ const KcalBruciate = ({ timerIsRunning, kcalBurnSec, setKcalBurnSec }) => {
         if (timerIsRunning) {
             const interval = setInterval(() => {
                 KcalBurnSecEsercizio();
-            }, 1000);
+            }, 2000);
 
             return () => clearInterval(interval);
         }
@@ -40,21 +41,16 @@ const KcalBruciate = ({ timerIsRunning, kcalBurnSec, setKcalBurnSec }) => {
 
     return (
         <>
-            <Col xs="12" sm="12" md="7" lg="8" xl="7">
+            <Col xs="12" sm="12" md="8" lg="8" xl="5">
                 <div className="d-flex flex-column py-3 position-relative">
                     {/* timer kcal Bruciate */}
-                    <InfoCircleFill size={30} className="text-light positionInfo2 d-sm-none" />
+
                     <div className="display-3 rounded rounded-5 my-4 p-3 shadow-lg bg-button">
-                        <InfoCircleFill size={30} className="text-light positionInfo d-none d-sm-block" />
                         <span className="text-light d-flex justify-content-center">
                             Kcal Bruciate :{" "}
                             <span className="fw-bold ms-3 text-warning">{parseFloat(kcalBurnSec.toFixed(2))}</span>
                         </span>
                     </div>
-                    {/* <div className="text-dark bg-white p-4 rounded-5 info">
-                        Il calcolo delle Kcal Bruciate durante l&apos;allenamento è una stima che presuppone che ogni
-                        ripetizione che svolgi duri circa 3&quot;.
-                    </div> */}
                 </div>
             </Col>
         </>

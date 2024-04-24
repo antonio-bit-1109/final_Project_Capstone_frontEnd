@@ -303,23 +303,24 @@ body {
     z-index: 400;
 }
 
-.positionInfo {
+/* .positionInfo {
     position: absolute;
-    top: 0;
-    right: -45px;
+    top: -12px;
+    right: -57px;
 }
 
 .positionInfo2 {
     position: absolute;
     top: 0;
-    right: 22px;
+    right: 8px;
 }
 
 .info {
     width: 200px;
     position: absolute;
-    top: 76px;
+    top: 71px;
     right: 100;
-    right: 24px;
+    right: -214px;
     z-index: 600;
-}
+    background-color: rgba(245, 245, 245, 0.719);
+} */
