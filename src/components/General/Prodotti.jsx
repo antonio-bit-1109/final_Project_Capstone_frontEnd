@@ -1,51 +1,50 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { CreaNuovoProdotto, GetProdotti, cancellaProdotto } from "../../redux/actions/prodottiFetch";
-import { Button, Card, Col, Container, Form, Modal, Row } from "react-bootstrap";
+import { GetProdotti } from "../../redux/actions/prodottiFetch";
+import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import { LocalHostPath } from "../../functions/localHostPath";
 import { aggiungiAlcarrelloProdotti } from "../../redux/reducers/prodottiReducer";
 import { toast } from "react-toastify";
-import { PlusCircleFill, X } from "react-bootstrap-icons";
-import { useForm } from "react-hook-form";
+// import { PlusCircleFill } from "react-bootstrap-icons";
 
 const Prodotti = () => {
     const dispatch = useDispatch();
-    const [show, setShow] = useState(false);
-    const [ImmagineProdotto, setImmagineProdotto] = useState(null);
+    // const [show, setShow] = useState(false);
+    // const [ImmagineProdotto, setImmagineProdotto] = useState(null);
     const { listaProdotti } = useSelector((store) => store.prodotti);
-    const { TuttiDettagliUtenteLoggato } = useSelector((store) => store.utenti);
-    const [idProdottoELiminare, setIdProdottoELiminare] = useState(null);
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-        // watch,
-        reset,
-    } = useForm();
+    // const { TuttiDettagliUtenteLoggato } = useSelector((store) => store.utenti);
+    // const [idProdottoELiminare, setIdProdottoELiminare] = useState(null);
+    // const {
+    //     register,
+    //     handleSubmit,
+    //     formState: { errors },
+    //     // watch,
+    //     reset,
+    // } = useForm();
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    // const handleClose = () => setShow(false);
+    // const handleShow = () => setShow(true);
 
-    const [showModalDelete, setShowModalDelete] = useState(false);
+    // const [showModalDelete, setShowModalDelete] = useState(false);
 
-    const handleCloseModalDelete = () => setShowModalDelete(false);
-    const handleShowModalDelete = () => setShowModalDelete(true);
+    // const handleCloseModalDelete = () => setShowModalDelete(false);
+    // const handleShowModalDelete = () => setShowModalDelete(true);
 
-    const HandleSubmitting = (data) => {
-        console.log(data);
-        handleClose();
+    // const HandleSubmitting = (data) => {
+    //     console.log(data);
+    //     handleClose();
 
-        const formData = new FormData();
-        formData.append("immagineProdotto", ImmagineProdotto);
+    //     const formData = new FormData();
+    //     formData.append("immagineProdotto", ImmagineProdotto);
 
-        dispatch(CreaNuovoProdotto(LocalHostPath, data, formData));
-        reset();
-    };
+    //     dispatch(CreaNuovoProdotto(LocalHostPath, data, formData));
+    //     reset();
+    // };
 
-    const eraseProduct = (id) => {
-        dispatch(cancellaProdotto(LocalHostPath, id));
-        handleCloseModalDelete();
-    };
+    // const eraseProduct = (id) => {
+    //     dispatch(cancellaProdotto(LocalHostPath, id));
+    //     handleCloseModalDelete();
+    // };
 
     useEffect(() => {
         dispatch(GetProdotti());
@@ -55,13 +54,16 @@ const Prodotti = () => {
         <div className="Bg-sfondo-dark min-vh-100">
             <Container>
                 <Row>
-                    <Col xs={TuttiDettagliUtenteLoggato && TuttiDettagliUtenteLoggato.ruolo !== "admin" ? "12" : "10"}>
+                    <Col xs="12">
                         {" "}
                         <div className="h-100 d-flex align-items-center justify-content-center">
                             <h1 className="text-light display-5 my-3 text-center">Prodotti Disponibili </h1>{" "}
                         </div>
                     </Col>
-                    {TuttiDettagliUtenteLoggato && TuttiDettagliUtenteLoggato.ruolo === "admin" ? (
+                </Row>
+                {/* <Row>
+                    
+                    {/* {TuttiDettagliUtenteLoggato && TuttiDettagliUtenteLoggato.ruolo === "admin" ? (
                         <Col xs="2">
                             {" "}
                             <div className="d-flex flex-column align-items-center my-3">
@@ -75,14 +77,14 @@ const Prodotti = () => {
                                 </Button>
                             </div>
                         </Col>
-                    ) : null}
-                </Row>
+                    ) : null} */}
+                {/* </Row>  */}
                 <Row className="justify-content-center">
                     {listaProdotti &&
                         listaProdotti.map((prodotto, index) => (
                             <Col key={index} xs="12" md="8" lg="6" xl="4">
                                 <Card className="rounded rounded-5 my-4 p-3 position-relative shadow-lg custom-h border border-2 effettoVetro text-light scalaAnimazione">
-                                    {TuttiDettagliUtenteLoggato && TuttiDettagliUtenteLoggato.ruolo === "admin" ? (
+                                    {/* {TuttiDettagliUtenteLoggato && TuttiDettagliUtenteLoggato.ruolo === "admin" ? (
                                         <Button
                                             // onClick={() => eraseProduct(prodotto.idProdotto)}
                                             onClick={() => {
@@ -93,7 +95,7 @@ const Prodotti = () => {
                                         >
                                             <X className="fs-1 text-danger" />
                                         </Button>
-                                    ) : null}
+                                    ) : null} */}
 
                                     <div className="d-flex h-100 justify-content-center align-items-center">
                                         {" "}
@@ -141,14 +143,12 @@ const Prodotti = () => {
                             </Col>
                         ))}
                 </Row>
-                <Modal show={show} onHide={handleClose}>
+                {/* <Modal show={show} onHide={handleClose}>
                     <Modal.Header closeButton>
                         <Modal.Title>Crea Nuovo Prodotto </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        {/* form creazione prodotti  */}
                         <Form onSubmit={handleSubmit(HandleSubmitting)}>
-                            {/* nome */}
                             <div className="my-2">
                                 <Form.Label htmlFor="nomeProdotto">Nome Prodotto</Form.Label>
                                 <Form.Control
@@ -163,7 +163,6 @@ const Prodotti = () => {
                                     <div className="text-danger">{errors.nomeProdotto.message}</div>
                                 )}
                             </div>
-                            {/* prezzo */}
                             <div className="my-2">
                                 <Form.Label htmlFor="prezzoProdotto">Prezzo Prodotto</Form.Label>
                                 <Form.Control
@@ -178,7 +177,6 @@ const Prodotti = () => {
                                     <div className="text-danger">{errors.PrezzoProdotto.message}</div>
                                 )}
                             </div>
-                            {/* immagine */}
                             <div className="my-2">
                                 <Form.Label htmlFor="ImmagineProdotto">Immagine Prodotto</Form.Label>
                                 <Form.Control
@@ -189,7 +187,6 @@ const Prodotti = () => {
                                     aria-describedby="ImmagineProdotto"
                                 />
                             </div>
-                            {/* descrizione */}
                             <div className="my-2">
                                 <Form.Label htmlFor="descrizione">Descrizione</Form.Label>
                                 <Form.Control
@@ -216,9 +213,9 @@ const Prodotti = () => {
                             </Modal.Footer>
                         </Form>
                     </Modal.Body>
-                </Modal>
+                </Modal>  */}
             </Container>
-            <Modal show={showModalDelete} onHide={() => handleCloseModalDelete()}>
+            {/* <Modal show={showModalDelete} onHide={() => handleCloseModalDelete()}>
                 <Modal.Header closeButton>
                     <Modal.Title>Elimina Prodotto </Modal.Title>
                 </Modal.Header>
@@ -239,7 +236,7 @@ const Prodotti = () => {
                         Elimina Definitivamente
                     </Button>
                 </Modal.Footer>
-            </Modal>
+            </Modal> */}
         </div>
     );
 };

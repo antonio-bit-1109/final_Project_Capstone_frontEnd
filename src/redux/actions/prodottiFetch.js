@@ -123,6 +123,34 @@ export const cancellaProdotto = (pathUrl, idProdotto) => async (dispatch) => {
     }
 };
 
+export const modificaProdotto = (idProdotto, pathUrl, data2, formData) => async (dispatch) => {
+    try {
+        const sendData = await fetchWithAuth(pathUrl + `/Prodotto/ModificaProdotto/${idProdotto}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data2),
+        });
+
+        const response = await sendData.json();
+
+        if (response.message) {
+            const sendPhoto = await fetchWithAuth(pathUrl + `/Prodotto/AggiungiImmagine/${idProdotto}`, {
+                method: "POST",
+                body: formData,
+            });
+
+            if (sendPhoto.ok) {
+                dispatch(GetProdotti());
+                toast.success("Prodotto modificato con successo", { autoClose: 1000 });
+            }
+        }
+    } catch (error) {
+        console.error("Errore nel fetch:", error.message);
+    }
+};
+
 export const ShowStoricoAcquisti = (idUtente) => async (dispatch) => {
     try {
         const request = await fetchWithAuth(LocalHostPath + `/Carrello/storicoAcquisti/${idUtente}`, {

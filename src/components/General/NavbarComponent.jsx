@@ -87,7 +87,11 @@ function NavbarComponent() {
                                             >
                                                 Logout
                                             </NavDropdown.Item>
-                                            <NavDropdown.Item as={NavLink} to={"/BackOffice"}>
+                                            <NavDropdown.Item
+                                                className="bg-transparent"
+                                                as={NavLink}
+                                                to={"/BackOffice"}
+                                            >
                                                 BackOffice
                                             </NavDropdown.Item>
                                         </>

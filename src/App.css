@@ -65,8 +65,14 @@ body {
 
 .custom-position {
     position: absolute;
-    right: 10px;
-    top: 21px;
+    right: 8px;
+    top: 5px;
+}
+
+.custom-position2 {
+    position: absolute;
+    right: 50px;
+    top: 13px;
 }
 
 .customPositioning {
