@@ -16,14 +16,14 @@ const KcalBruciate = ({ timerIsRunning }) => {
             let singoloEsercizio = AllenamentoSceltogiaCreato.esercizi[i];
 
             let sforzo = singoloEsercizio.met;
-            let durataEsercizioSec =
+            let durataTotEsercizioSingolo =
                 singoloEsercizio.serie * singoloEsercizio.ripetizioni * 3 +
                 singoloEsercizio.serie * singoloEsercizio.recupero;
 
-            let KcalBurnEsercizio = (sforzo * TuttiDettagliUtenteLoggato.peso * durataEsercizioSec) / 3600;
-            let KcalBurnEsercizioSec = KcalBurnEsercizio / durataEsercizioSec;
+            let KcalBurnEsercizio = (sforzo * TuttiDettagliUtenteLoggato.peso * durataTotEsercizioSingolo) / 3600; // i met vengono calcolati in kcal/kg/h se voglio il valore in secondi divido per 3600 (n sec in 1h)
+
+            let KcalBurnEsercizioSec = KcalBurnEsercizio / durataTotEsercizioSingolo;
             let kcalBurnNumber = parseFloat(KcalBurnEsercizioSec.toFixed(2));
-            console.log(kcalBurnNumber);
             setKcalBurnSec((prev) => (prev += kcalBurnNumber));
         }
     };
@@ -33,6 +33,7 @@ const KcalBruciate = ({ timerIsRunning }) => {
             const interval = setInterval(() => {
                 KcalBurnSecEsercizio();
             }, 1000);
+
             return () => clearInterval(interval);
         }
     }, [timerIsRunning]);
