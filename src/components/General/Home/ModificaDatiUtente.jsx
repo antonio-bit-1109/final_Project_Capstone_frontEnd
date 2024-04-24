@@ -81,8 +81,6 @@ const ModificaDatiUtente = () => {
                 dispatch(getDettagliUtente());
             }
         }
-
-        return;
     }, [TuttiDettagliUtenteLoggato, dispatch]);
 
     const submitHandlerDatiUtente = (data) => {
