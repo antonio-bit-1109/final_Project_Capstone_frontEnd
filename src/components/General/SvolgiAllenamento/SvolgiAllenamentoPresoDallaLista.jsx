@@ -15,6 +15,7 @@ const SvolgiAllenamentoPresoDallaLista = () => {
     const [timerIsRunning, setTimerIsRunning] = useState(false);
     const [isCustomModalVisible, setIscoCustomModalVisible] = useState(false);
     const [count, setCount] = useState(0);
+    const [kcalBurnSec, setKcalBurnSec] = useState(0);
 
     useEffect(() => {
         if (isCustomModalVisible) {
@@ -37,12 +38,16 @@ const SvolgiAllenamentoPresoDallaLista = () => {
                             setIscoCustomModalVisible={setIscoCustomModalVisible}
                         />
 
-                        <KcalBruciate timerIsRunning={timerIsRunning} />
+                        <KcalBruciate
+                            timerIsRunning={timerIsRunning}
+                            kcalBurnSec={kcalBurnSec}
+                            setKcalBurnSec={setKcalBurnSec}
+                        />
                         <SwiperCarousel />
                     </Row>
                 </>
 
-                <BottoniFinePagina />
+                <BottoniFinePagina kcalBurnSec={kcalBurnSec} />
             </Container>
         </div>
     );

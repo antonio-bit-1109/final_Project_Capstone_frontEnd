@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Col } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { InfoCircleFill } from "react-bootstrap-icons";
 
-const KcalBruciate = ({ timerIsRunning }) => {
+const KcalBruciate = ({ timerIsRunning, kcalBurnSec, setKcalBurnSec }) => {
     const { TuttiDettagliUtenteLoggato } = useSelector((store) => store.utenti);
     const { AllenamentoSceltogiaCreato } = useSelector((store) => store.allenamenti);
-    const [kcalBurnSec, setKcalBurnSec] = useState(0);
+
     console.log(TuttiDettagliUtenteLoggato);
     console.log(AllenamentoSceltogiaCreato);
 
@@ -51,6 +51,10 @@ const KcalBruciate = ({ timerIsRunning }) => {
                             <span className="fw-bold ms-3 text-warning">{parseFloat(kcalBurnSec.toFixed(2))}</span>
                         </span>
                     </div>
+                    {/* <div className="text-dark bg-white p-4 rounded-5 info">
+                        Il calcolo delle Kcal Bruciate durante l&apos;allenamento è una stima che presuppone che ogni
+                        ripetizione che svolgi duri circa 3&quot;.
+                    </div> */}
                 </div>
             </Col>
         </>

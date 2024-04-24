@@ -2,12 +2,11 @@ import { Button, Col, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { LocalHostPath } from "../../../functions/localHostPath";
 import { useDispatch, useSelector } from "react-redux";
-import { toast } from "react-toastify";
 import { PostAllenamentoConcluso } from "../../../redux/actions/fetchAllenamento";
 import { setAllenamentoSceltogiaCreato } from "../../../redux/reducers/allenamentiReducer";
 
 // eslint-disable-next-line react/prop-types
-const BottoniFinePagina = () => {
+const BottoniFinePagina = ({ kcalBurnSec }) => {
     const { AllenamentoSceltogiaCreato } = useSelector((store) => store.allenamenti);
 
     const navigate = useNavigate();
@@ -15,12 +14,16 @@ const BottoniFinePagina = () => {
 
     const handleClick = () => {
         dispatch(
-            PostAllenamentoConcluso(LocalHostPath + "/Allenamento/AllenamentoCompletato", AllenamentoSceltogiaCreato)
+            PostAllenamentoConcluso(
+                LocalHostPath + "/Allenamento/AllenamentoCompletato",
+                AllenamentoSceltogiaCreato.idAllenamento,
+                kcalBurnSec
+            )
         );
         navigate("/");
-        toast.success(" Complimenti, Hai terminato l'allenamento!", {
-            autoClose: 2000,
-        });
+        // toast.success(" Complimenti, Hai terminato l'allenamento!", {
+        //     autoClose: 2000,
+        // });
         dispatch(setAllenamentoSceltogiaCreato(null));
     };
     return (

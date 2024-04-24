@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import { fetchWithAuth } from "../../functions/interceptor";
 import { LocalHostPath } from "../../functions/localHostPath";
 import {
@@ -33,20 +34,42 @@ export const PostAllenamento = (urlPath, objPost) => async (dispatch) => {
     }
 };
 
-export const PostAllenamentoConcluso = (urlPath, objPost) => async (dispatch) => {
+export const PostAllenamentoConcluso = (urlPath, idAllenamento, kcalBruciate) => async (dispatch) => {
     const options = {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify(objPost),
+        body: JSON.stringify({ IdAllenamento: idAllenamento }),
     };
+
     const response = await fetchWithAuth(urlPath, options);
     console.log(response);
 
-    const serverResponse = await response.json();
-    console.log(serverResponse);
-    dispatch(setDatiAllenamentoCompletato(serverResponse));
+    if (response.ok) {
+        const serverResponse = await response.json();
+        console.log(serverResponse);
+        dispatch(setDatiAllenamentoCompletato(serverResponse));
+        toast.success(" Complimenti, Hai terminato l'allenamento!", {
+            autoClose: 2000,
+        });
+
+        const sendDataKcal = await fetchWithAuth(LocalHostPath + "/Allenamento/aggiornaKcalConsumateUtente", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(kcalBruciate),
+        });
+
+        console.log(sendDataKcal);
+    }
+
+    if (!response.ok) {
+        toast.error("Errore durante il completamento dell'allenamento", {
+            autoClose: 2000,
+        });
+    }
 };
 
 export const GetListaAllenamenti = (urlPath) => async (dispatch) => {

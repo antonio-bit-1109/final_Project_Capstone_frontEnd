@@ -227,7 +227,11 @@ const ModificaDatiUtente = () => {
                                                     <span className="text-warning">
                                                         {TuttiDettagliUtenteLoggato.totaleKcalConsumate === null
                                                             ? "N/A"
-                                                            : TuttiDettagliUtenteLoggato.totaleKcalConsumate + "Kcal"}
+                                                            : parseFloat(
+                                                                  TuttiDettagliUtenteLoggato.totaleKcalConsumate.toFixed(
+                                                                      2
+                                                                  )
+                                                              ) + "Kcal"}
                                                     </span>
                                                 </div>
                                             </div>

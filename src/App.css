@@ -314,3 +314,12 @@ body {
     top: 0;
     right: 22px;
 }
+
+.info {
+    width: 200px;
+    position: absolute;
+    top: 76px;
+    right: 100;
+    right: 24px;
+    z-index: 600;
+}
