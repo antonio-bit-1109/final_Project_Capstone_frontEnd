@@ -216,15 +216,17 @@ const ModificaDatiUtente = () => {
                                                 {" "}
                                                 <span className="fs-4 fw-normal"> Totale Kcal consumate:</span>
                                                 <div className=" fs-2 fw-semibold">
-                                                    <span className="text-warning">
-                                                        {TuttiDettagliUtenteLoggato.totaleKcalConsumate === null
-                                                            ? "N/A"
-                                                            : parseFloat(
-                                                                  TuttiDettagliUtenteLoggato.totaleKcalConsumate.toFixed(
-                                                                      2
-                                                                  )
-                                                              ) + "Kcal"}
-                                                    </span>
+                                                    {TuttiDettagliUtenteLoggato.totaleKcalConsumate === 0 ? (
+                                                        <span className="text-warning">N/A</span>
+                                                    ) : (
+                                                        <span className=" text-success">
+                                                            {parseFloat(
+                                                                TuttiDettagliUtenteLoggato.totaleKcalConsumate.toFixed(
+                                                                    2
+                                                                )
+                                                            ) + "Kcal"}
+                                                        </span>
+                                                    )}
                                                 </div>
                                             </div>
                                         </div>
