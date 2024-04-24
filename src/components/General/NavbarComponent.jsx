@@ -69,23 +69,28 @@ function NavbarComponent() {
                                 </Nav.Link>
                                 <NavDropdown className=" ms-4 ms-lg-1" id="basic-nav-dropdown">
                                     {TokenRedux !== null ? (
-                                        <NavDropdown.Item
-                                            onClick={() => {
-                                                dispatch(setTokenUtente(null));
-                                                dispatch(setDatiutenteLoggato(null));
-                                                dispatch(svuotaTuttiDettagliUtenteLoggato());
-                                                dispatch(SvuotaArrayAllenamento());
-                                                dispatch(setnomeAllenamentoCreato(""));
-                                                dispatch(rimuoviTuttoDalCArrello());
-                                                dispatch(setCarrelloOttimizzato([]));
-                                                toast.success("Logout effettuato", { position: "top-center" });
-                                                dispatch(rimuoviTuttoDalCArrello());
-                                                dispatch(rimuoviTuttiAllenamentiCompletatiUtente());
-                                                dispatch(setlistaAllenamenti(null));
-                                            }}
-                                        >
-                                            Logout
-                                        </NavDropdown.Item>
+                                        <>
+                                            <NavDropdown.Item
+                                                onClick={() => {
+                                                    dispatch(setTokenUtente(null));
+                                                    dispatch(setDatiutenteLoggato(null));
+                                                    dispatch(svuotaTuttiDettagliUtenteLoggato());
+                                                    dispatch(SvuotaArrayAllenamento());
+                                                    dispatch(setnomeAllenamentoCreato(""));
+                                                    dispatch(rimuoviTuttoDalCArrello());
+                                                    dispatch(setCarrelloOttimizzato([]));
+                                                    toast.success("Logout effettuato", { position: "top-center" });
+                                                    dispatch(rimuoviTuttoDalCArrello());
+                                                    dispatch(rimuoviTuttiAllenamentiCompletatiUtente());
+                                                    dispatch(setlistaAllenamenti(null));
+                                                }}
+                                            >
+                                                Logout
+                                            </NavDropdown.Item>
+                                            <NavDropdown.Item as={NavLink} to={"/BackOffice"}>
+                                                BackOffice
+                                            </NavDropdown.Item>
+                                        </>
                                     ) : (
                                         <NavDropdown.Item>Login</NavDropdown.Item>
                                     )}
