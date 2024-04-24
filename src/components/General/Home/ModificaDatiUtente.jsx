@@ -89,14 +89,6 @@ const ModificaDatiUtente = () => {
         setDataReactHookForm(data);
     };
 
-    // const submitCheckPassword = (e) => {
-    //     setPasswordInput("");
-    //     if (dataReactHookForm !== null) {
-    //         e.preventDefault();
-    //         dispatch(ModificaDati(passwordInput, TuttiDettagliUtenteLoggato.idUtente, dataReactHookForm));
-    //     }
-    // };
-
     return (
         <div className="Bg-sfondo-dark min-vh-100 ">
             {" "}
