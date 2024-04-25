@@ -5,8 +5,8 @@ import { loadStripe } from "@stripe/stripe-js";
 import { useEffect, useState } from "react";
 import { rimuoviTuttoDalCArrello } from "../../redux/reducers/prodottiReducer";
 import { fetchWithAuth } from "../../functions/interceptor";
-// import { fetchWithAuth } from "../../functions/interceptor";
 import { setCarrelloOttimizzato } from "../../redux/reducers/prodottiReducer";
+
 const Carrello = () => {
     const token = useSelector((store) => store.token.TokenUtente);
     const dispatch = useDispatch();
@@ -114,41 +114,43 @@ const Carrello = () => {
                                     Svuota Carrello
                                 </Button>
                             </div>{" "}
-                            {prodottiNelCarrello &&
-                                prodottiNelCarrello.map((prodotto, index) => (
-                                    <Col xs="12" md="12" lg="8" xl="8" xxl="8" key={`my-col-${index}`}>
-                                        <Card className="rounded rounded-5 my-2 p-3 d-flex align-items-center flex-row shadow-lg effettoVetro text-light">
-                                            <Card.Img
-                                                className="me-3"
-                                                style={{
-                                                    maxHeight: "120px",
-                                                    objectFit: "contains",
-                                                    maxWidth: "120px",
-                                                }}
-                                                variant="img-top"
-                                                src={`${LocalHostPath}/img-prodotti/${prodotto.immagineProdotto}`}
-                                            />
-                                            <div className="d-flex gap-4">
-                                                {" "}
-                                                <div>
-                                                    <Card.Title className="d-flex justify-content-center fw-bold fs-3">
-                                                        {prodotto.nomeProdotto}
-                                                    </Card.Title>
-                                                    <Card.Text>
-                                                        {" "}
-                                                        {/* <span className="fw-semibold fs-4">Prezzo:</span> */}
-                                                        <span className="fw-semibold fs-2 ms-2">
-                                                            {prodotto.prezzoProdotto} €
-                                                        </span>
-                                                    </Card.Text>
+                            <div className="mt-3">
+                                {prodottiNelCarrello &&
+                                    prodottiNelCarrello.map((prodotto, index) => (
+                                        <Col xs="12" md="12" lg="8" xl="8" xxl="8" key={`my-col-${index}`}>
+                                            <Card className="rounded rounded-5 my-2 p-3 d-flex align-items-center flex-row shadow-lg effettoVetro text-light border border-2">
+                                                <Card.Img
+                                                    className="me-3"
+                                                    style={{
+                                                        maxHeight: "120px",
+                                                        objectFit: "contains",
+                                                        maxWidth: "120px",
+                                                    }}
+                                                    variant="img-top"
+                                                    src={`${LocalHostPath}/img-prodotti/${prodotto.immagineProdotto}`}
+                                                />
+                                                <div className="d-flex gap-4">
+                                                    {" "}
+                                                    <div>
+                                                        <Card.Title className="d-flex justify-content-center fw-bold fs-3">
+                                                            {prodotto.nomeProdotto}
+                                                        </Card.Title>
+                                                        <Card.Text>
+                                                            {" "}
+                                                            {/* <span className="fw-semibold fs-4">Prezzo:</span> */}
+                                                            <span className="fw-semibold fs-2 ms-2">
+                                                                {prodotto.prezzoProdotto} €
+                                                            </span>
+                                                        </Card.Text>
+                                                    </div>
+                                                    <div className="d-flex align-items-center">
+                                                        <Card.Text className=" fs-5">{prodotto.descrizione}</Card.Text>
+                                                    </div>
                                                 </div>
-                                                <div className="d-flex align-items-center">
-                                                    <Card.Text className=" fs-5">{prodotto.descrizione}</Card.Text>
-                                                </div>
-                                            </div>
-                                        </Card>
-                                    </Col>
-                                ))}
+                                            </Card>
+                                        </Col>
+                                    ))}
+                            </div>
                         </>
                     )}
                 </Row>

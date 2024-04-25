@@ -70,6 +70,10 @@ const stateReducerSlice = createSlice({
             state.listaAllenamentiDisponibili = action.payload;
         },
 
+        // RiordinaLista: (state, action) => {
+        //     state.listaAllenamentiDisponibili = action.payload;
+        // },
+
         setAllenamentoSceltogiaCreato: (state, action) => {
             state.AllenamentoSceltogiaCreato = action.payload;
         },
@@ -92,5 +96,6 @@ export const {
     setAllenamentoSceltogiaCreato,
     setAllenamentoCancellato,
     RimuoviEsercizioDaArray,
+    // RiordinaLista,
 } = stateReducerSlice.actions;
 export default stateReducerSlice.reducer;
