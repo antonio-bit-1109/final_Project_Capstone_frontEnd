@@ -1,31 +1,39 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
-import { useForm } from "react-hook-form";
+// import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { modificaProdotto } from "../../redux/actions/prodottiFetch";
 import { LocalHostPath } from "../../functions/localHostPath";
 
-const ModaleModificaProdottoBackOffice = ({ idProdotto, showModalEditProdotto, handleCloseModalEditprodotto }) => {
+const ModaleModificaProdottoBackOffice = ({
+    idProdotto,
+    showModalEditProdotto,
+    handleCloseModalEditprodotto,
+    DatiProdotto,
+    setDatiprodotto,
+}) => {
     const dispatch = useDispatch();
     const [immagineProdottoModifica, setImmagineProdottoModifica] = useState(null);
 
-    const {
-        register: register2,
-        handleSubmit: handleSubmit2,
-        formState: { errors: errors2 },
-        reset: reset2,
-    } = useForm();
+    // const {
+    //     register: register2,
+    //     handleSubmit: handleSubmit2,
+    //     formState: { errors: errors2 },
+    //     reset: reset2,
+    // } = useForm();
 
-    const HandleSubmittingModificaProdotto = (data2) => {
-        console.log(data2);
+    const HandleSubmittingModificaProdotto = (e) => {
+        // console.log(data2);
+        e.preventDefault();
         handleCloseModalEditprodotto();
 
         const formData2 = new FormData();
         formData2.append("immagineProdottoModifica", immagineProdottoModifica);
 
-        dispatch(modificaProdotto(idProdotto, LocalHostPath, data2, formData2));
-        reset2();
+        console.log(DatiProdotto);
+        dispatch(modificaProdotto(idProdotto, LocalHostPath, DatiProdotto, formData2));
+        // reset2();
     };
 
     return (
@@ -37,45 +45,47 @@ const ModaleModificaProdottoBackOffice = ({ idProdotto, showModalEditProdotto, h
                     <Modal.Title>Modifica Prodotto Selezionato</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form onSubmit={handleSubmit2(HandleSubmittingModificaProdotto)}>
+                    <Form onSubmit={HandleSubmittingModificaProdotto}>
                         <Form.Group className="mb-3" controlId="nomeprodotto">
                             <Form.Label>Nome</Form.Label>
                             <Form.Control
-                                {...register2("ProdottoNome", {
-                                    required: false,
-                                })}
                                 type="text"
                                 placeholder="nuovo nome prodotto"
+                                value={DatiProdotto.ProdottoNome}
+                                onChange={(e) => setDatiprodotto({ ...DatiProdotto, ProdottoNome: e.target.value })}
                             />
-                            {errors2.ProdottoNomeModificato && (
+                            {/* {errors2.ProdottoNomeModificato && (
                                 <div className="text-danger">{errors2.ProdottoNomeModificato.message}</div>
-                            )}
+                            )} */}
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="prezzoprodotto">
                             <Form.Label>Prezzo</Form.Label>
                             <Form.Control
-                                {...register2("prodottoPrezzo", {
-                                    required: false,
-                                })}
                                 type="number"
                                 placeholder="nuovo prezzo Prodotto"
+                                value={DatiProdotto.prodottoPrezzo}
+                                onChange={(e) => setDatiprodotto({ ...DatiProdotto, prodottoPrezzo: e.target.value })}
                             />
-                            {errors2.prodottoPrezzoModificato && (
+                            {/* {errors2.prodottoPrezzoModificato && (
                                 <div className="text-danger">{errors2.prodottoPrezzoModificato.message}</div>
-                            )}
+                            )} */}
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="descrizioneprodotto">
                             <Form.Label>Descrizione</Form.Label>
                             <Form.Control
-                                {...register2("ProdottoDescrizione", {
-                                    required: false,
-                                })}
+                                // {...register2("ProdottoDescrizione", {
+                                //     required: false,
+                                // })}
                                 type="text"
                                 placeholder="nuova descrizione prodotto"
+                                value={DatiProdotto.ProdottoDescrizione}
+                                onChange={(e) =>
+                                    setDatiprodotto({ ...DatiProdotto, ProdottoDescrizione: e.target.value })
+                                }
                             />
-                            {errors2.ProdottoDescrizioneModificato && (
+                            {/* {errors2.ProdottoDescrizioneModificato && (
                                 <div className="text-danger">{errors2.ProdottoDescrizioneModificato.message}</div>
-                            )}
+                            )} */}
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="immagine">
                             <Form.Label>Immagine</Form.Label>

@@ -123,14 +123,14 @@ export const cancellaProdotto = (pathUrl, idProdotto) => async (dispatch) => {
     }
 };
 
-export const modificaProdotto = (idProdotto, pathUrl, data2, formData) => async (dispatch) => {
+export const modificaProdotto = (idProdotto, pathUrl, datiProdotto, formData) => async (dispatch) => {
     try {
         const sendData = await fetchWithAuth(pathUrl + `/Prodotto/ModificaProdotto/${idProdotto}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(data2),
+            body: JSON.stringify(datiProdotto),
         });
 
         const response = await sendData.json();

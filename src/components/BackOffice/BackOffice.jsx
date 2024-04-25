@@ -26,6 +26,11 @@ const BackOffice = () => {
     const [showCreateEsercizio, setShowCreateEsercizio] = useState(false);
     const [showModaldeleteEsercizio, setShowModaldeleteEsercizio] = useState(false);
     const [idEsercizio, setIdEsercizio] = useState(null);
+    const [DatiProdotto, setDatiprodotto] = useState({
+        ProdottoNome: null,
+        prodottoPrezzo: null,
+        ProdottoDescrizione: null,
+    });
 
     useEffect(() => {
         dispatch(GetProdotti());
@@ -125,7 +130,7 @@ const BackOffice = () => {
                 </Row>
                 <Row>
                     {/* DIV PRODOTTI */}
-                    <div className={`${showDivProdotti ? "d-block" : "d-none"}`}>
+                    <div className={`${showDivProdotti ? "d-block scrollBar2" : "d-none"}`}>
                         {listaProdotti &&
                             listaProdotti.map((prodotto, index) => (
                                 <Col key={index} xs="12" md="9" lg="8" xl="6">
@@ -145,6 +150,11 @@ const BackOffice = () => {
                                                 onClick={() => {
                                                     handleShowModalEditprodotto();
                                                     setIdProdotto(prodotto.idProdotto);
+                                                    setDatiprodotto({
+                                                        ProdottoNome: prodotto.nomeProdotto,
+                                                        prodottoPrezzo: prodotto.prezzoProdotto,
+                                                        ProdottoDescrizione: prodotto.descrizione,
+                                                    });
                                                     // handleShowModalDelete(),
                                                     //     setIdProdottoELiminare(prodotto.idProdotto);
                                                 }}
@@ -189,7 +199,7 @@ const BackOffice = () => {
                     </div>
 
                     {/* DIV ESERCIZI */}
-                    <div className={`${showDivEsercizi ? "d-block" : "d-none"}`}>
+                    <div id="style-1" className={`${showDivEsercizi ? "d-block scrollBar" : "d-none"}`}>
                         {listaTuttiEsercizi &&
                             listaTuttiEsercizi.map((esercizio, index) => (
                                 <Col key={index} xs="12" md="9" lg="8" xl="6">
@@ -270,9 +280,12 @@ const BackOffice = () => {
             <ModaleCreaNuovoProdottoBackOffice handleClose={handleClose} show={show} />
 
             <ModaleModificaProdottoBackOffice
+                key={idProdotto}
                 idProdotto={idProdotto}
                 showModalEditProdotto={showModalEditProdotto}
                 handleCloseModalEditprodotto={handleCloseModalEditprodotto}
+                DatiProdotto={DatiProdotto}
+                setDatiprodotto={setDatiprodotto}
             />
 
             <ModaleCreazioneNuovoEsercizio
