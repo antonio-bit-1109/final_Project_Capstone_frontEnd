@@ -13,7 +13,6 @@ const BackOffice = () => {
     const { TuttiDettagliUtenteLoggato } = useSelector((store) => store.utenti);
     const [ImmagineProdotto, setImmagineProdotto] = useState(null);
     const [immagineProdottoModifica, setImmagineProdottoModifica] = useState(null);
-
     const [showModalDelete, setShowModalDelete] = useState(false);
     const [idProdotto, setIdProdotto] = useState(null);
     const [show, setShow] = useState(false);
