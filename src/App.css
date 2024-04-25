@@ -309,24 +309,17 @@ body {
     z-index: 400;
 }
 
-/* .positionInfo {
-    position: absolute;
-    top: -12px;
-    right: -57px;
+.slide-out {
+    animation: slide-out-bck-center 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
 }
 
-.positionInfo2 {
-    position: absolute;
-    top: 0;
-    right: 8px;
+@keyframes slide-out {
+    0% {
+        transform: translateZ(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateZ(-1100px);
+        opacity: 0;
+    }
 }
-
-.info {
-    width: 200px;
-    position: absolute;
-    top: 71px;
-    right: 100;
-    right: -214px;
-    z-index: 600;
-    background-color: rgba(245, 245, 245, 0.719);
-} */

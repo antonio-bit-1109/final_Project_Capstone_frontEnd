@@ -30,6 +30,19 @@ export const GetEsercizi = (parteCorpo, difficolta, Isstrength) => async (dispat
     }
 };
 
+export const GetAllEsercizi = () => async (dispatch) => {
+    try {
+        const request = await fetchWithAuth(LocalHostPath + "/Esercizi/ListAllExercise", {
+            method: "GET",
+        });
+
+        const response = request.json();
+        console.log(response);
+    } catch (error) {
+        console.error("abbiamo un problema" + error);
+    }
+};
+
 export const CreateEsercizio = (objPost, formData) => async (dispatch) => {
     try {
         const response = await fetchWithAuth(LocalHostPath + `/Esercizi/CreateEsercizio`, {
