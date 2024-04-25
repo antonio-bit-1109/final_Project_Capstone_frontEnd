@@ -1,4 +1,4 @@
-import { Button, Card, Col, Container, Row } from "react-bootstrap";
+import { Button, Card, Col, Container, Modal, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { GetProdotti } from "../../redux/actions/prodottiFetch";
 import { LocalHostPath } from "../../functions/localHostPath";
@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import ModaleModificaProdottoBackOffice from "./ModaleModificaProdottoBackOffice";
 import ModaleEliminaProdottoBackOffice from "./ModaleEliminaProdottoBackOffice";
 import ModaleCreaNuovoProdottoBackOffice from "./ModaleCreaNuovoProdottoBackOffice";
-import { GetAllEsercizi } from "../../redux/actions/fetchEsercizi";
+import { GetAllEsercizi, deleteEsercizio } from "../../redux/actions/fetchEsercizi";
 import ModaleCreazioneNuovoEsercizio from "./ModaleCreazioneNuovoEsercizio";
 
 const BackOffice = () => {
@@ -23,6 +23,8 @@ const BackOffice = () => {
     const [showDivEsercizi, setShowDivEsercizi] = useState(false);
     const [showModalEditProdotto, setShowModalEditProdotto] = useState(false);
     const [showCreateEsercizio, setShowCreateEsercizio] = useState(false);
+    const [showModaldeleteEsercizio, setShowModaldeleteEsercizio] = useState(false);
+    const [idEsercizio, setIdEsercizio] = useState(null);
 
     useEffect(() => {
         dispatch(GetProdotti());
@@ -38,6 +40,9 @@ const BackOffice = () => {
     const handleShowModalDelete = () => setShowModalDelete(true);
 
     const handleShowCreateEsercizio = () => setShowCreateEsercizio(true);
+
+    const handleCloseModalDeleteEsercizio = () => setShowModaldeleteEsercizio(false);
+    const handleShowModalDeleteEsercizio = () => setShowModaldeleteEsercizio(true);
 
     return (
         <div className="Bg-sfondo-dark altezza-sfondo">
@@ -189,7 +194,15 @@ const BackOffice = () => {
                                 <Col key={index} xs="12" md="9" lg="8" xl="6">
                                     <Card className="rounded rounded-5 my-4 shadow-lg effettoVetro text-light border border-2 p-4">
                                         <div className="d-flex justify-content-end">
-                                            <Button className="me-2" variant="transparent">
+                                            <Button
+                                                // onClick={() => dispatch(deleteEsercizio(esercizio.idEsercizio))}
+                                                onClick={() => {
+                                                    handleShowModalDeleteEsercizio();
+                                                    setIdEsercizio(esercizio.idEsercizio);
+                                                }}
+                                                className="me-2"
+                                                variant="transparent"
+                                            >
                                                 <X className="fs-1 text-danger" />
                                             </Button>
                                             <Button variant="transparent">
@@ -265,6 +278,36 @@ const BackOffice = () => {
                 showCreateEsercizio={showCreateEsercizio}
                 setShowCreateEsercizio={setShowCreateEsercizio}
             />
+
+            <Modal show={showModaldeleteEsercizio} onHide={handleCloseModalDeleteEsercizio}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Conferma Cancellazione Account</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <h4 className="text-warning">
+                        Sei Sicuro di voler eliminare l&apos;esercizio ? Questa azione non è reversibile.
+                    </h4>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button
+                        variant="light"
+                        onClick={handleCloseModalDeleteEsercizio}
+                        className="rounded-4 text-warning border-warning fw-bold"
+                    >
+                        Chiudi
+                    </Button>
+                    <Button
+                        variant="warning "
+                        className="rounded-4 text-light fw-bold"
+                        onClick={() => {
+                            handleCloseModalDeleteEsercizio();
+                            dispatch(deleteEsercizio(idEsercizio));
+                        }}
+                    >
+                        Elimina Esercizio
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </div>
     );
 };

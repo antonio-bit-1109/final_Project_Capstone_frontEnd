@@ -95,3 +95,20 @@ export const ModificaSerieEsercizio = (serie, idEsercizio) => async (dispatch) =
         console.error("Errore nel fetch:", error.message);
     }
 };
+
+export const deleteEsercizio = (idEsercizio) => async (dispatch) => {
+    try {
+        const request = await fetchWithAuth(LocalHostPath + `/Esercizi/cancellaEsercizio/${idEsercizio}`, {
+            method: "DELETE",
+        });
+
+        if (request.ok) {
+            toast.success("cancellazione avvenuta con successo", { autoClose: 1200 });
+            dispatch(GetAllEsercizi());
+        } else {
+            throw new Error("errore", request.status);
+        }
+    } catch (error) {
+        console.error("Errore nel fetch:", error.message);
+    }
+};
