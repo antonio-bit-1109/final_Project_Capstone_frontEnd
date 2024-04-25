@@ -7,13 +7,14 @@ import { useEffect, useState } from "react";
 import ModaleModificaProdottoBackOffice from "./ModaleModificaProdottoBackOffice";
 import ModaleEliminaProdottoBackOffice from "./ModaleEliminaProdottoBackOffice";
 import ModaleCreaNuovoProdottoBackOffice from "./ModaleCreaNuovoProdottoBackOffice";
+import { GetAllEsercizi } from "../../redux/actions/fetchEsercizi";
 
 const BackOffice = () => {
     const dispatch = useDispatch();
 
     const { listaProdotti } = useSelector((store) => store.prodotti);
     const { TuttiDettagliUtenteLoggato } = useSelector((store) => store.utenti);
-    // const [ImmagineProdotto, setImmagineProdotto] = useState(null);
+    const { listaTuttiEsercizi } = useSelector((store) => store.esercizi);
     const [showModalDelete, setShowModalDelete] = useState(false);
     const [idProdotto, setIdProdotto] = useState(null);
     const [show, setShow] = useState(false);
@@ -78,6 +79,7 @@ const BackOffice = () => {
                                 onClick={() => {
                                     setShowDivEsercizi(true);
                                     setShowDivProdotti(false);
+                                    dispatch(GetAllEsercizi());
                                 }}
                                 variant="warning "
                                 className="rounded-4 text-light fw-bold"
@@ -155,61 +157,60 @@ const BackOffice = () => {
 
                     {/* DIV ESERCIZI */}
                     <div className={`${showDivEsercizi ? "d-block" : "d-none"}`}>
-                        {listaProdotti &&
-                            listaProdotti.map((prodotto, index) => (
+                        {listaTuttiEsercizi &&
+                            listaTuttiEsercizi.map((esercizio, index) => (
                                 <Col key={index} xs="12" md="9" lg="8" xl="6">
-                                    <Card className="rounded rounded-5 my-2 d-flex align-items-center flex-row shadow-lg bg-black text-light border border-2 p-5">
-                                        <div>
-                                            {" "}
-                                            <Button
-                                                // onClick={() => {
-                                                //     handleShowModalDelete(), setIdProdotto(prodotto.idProdotto);
-                                                // }}
-                                                className="custom-position"
-                                                variant="transparent"
-                                            >
+                                    <Card className="rounded rounded-5 my-4 shadow-lg effettoVetro text-light border border-2 p-4">
+                                        <div className="d-flex justify-content-end">
+                                            <Button className="me-2" variant="transparent">
                                                 <X className="fs-1 text-danger" />
                                             </Button>
-                                            <Button
-                                                // onClick={() => {
-                                                //     handleShowModalEditprodotto();
-                                                //     setIdProdotto(prodotto.idProdotto);
-                                                //     // handleShowModalDelete(),
-                                                //     //     setIdProdottoELiminare(prodotto.idProdotto);
-                                                // }}
-                                                className="custom-position2"
-                                                variant="transparent"
-                                            >
+                                            <Button variant="transparent">
                                                 <PenFill className="fs-5 text-white" />
                                             </Button>
                                         </div>
 
-                                        <Card.Img
-                                            className="me-3"
-                                            style={{
-                                                maxHeight: "120px",
-                                                objectFit: "contains",
-                                                maxWidth: "120px",
-                                            }}
-                                            variant="img-top"
-                                            src={`${LocalHostPath}/img-prodotti/${prodotto.immagineProdotto}`}
-                                        />
-                                        <div className="d-flex gap-4">
-                                            {" "}
-                                            <div>
-                                                <Card.Title className="d-flex justify-content-center fw-bold fs-3">
-                                                    {prodotto.nomeProdotto}
+                                        <div className="d-flex align-items-center">
+                                            <Card.Img
+                                                className="my-3"
+                                                style={{
+                                                    height: "200px",
+                                                    objectFit: "contain",
+                                                    width: "200px",
+                                                }}
+                                                variant="img-top"
+                                                src={`${LocalHostPath}/img-esercizi/${esercizio.immagineEsercizio}`}
+                                            />
+
+                                            <div className="ms-4">
+                                                <Card.Title className="fw-bold fs-2">
+                                                    {esercizio.nomeEsercizio}
                                                 </Card.Title>
-                                                <Card.Text>
-                                                    {" "}
-                                                    {/* <span className="fw-semibold fs-4">Prezzo:</span> */}
-                                                    <span className="fw-semibold fs-2 ms-2">
-                                                        {prodotto.prezzoProdotto} €
-                                                    </span>
+
+                                                <Card.Text className="fs-5 my-2">
+                                                    <strong>Descrizione:</strong> {esercizio.descrizioneEsercizio}
                                                 </Card.Text>
-                                            </div>
-                                            <div className="d-flex align-items-center">
-                                                <Card.Text className=" fs-5">{prodotto.descrizione}</Card.Text>
+
+                                                <Card.Text className="fs-5 my-2">
+                                                    <strong>Parte del corpo allenata:</strong>{" "}
+                                                    {esercizio.parteDelCorpoAllenata}
+                                                </Card.Text>
+
+                                                <Card.Text className="fs-5 my-2">
+                                                    <strong>Ripetizioni:</strong> {esercizio.ripetizioni}
+                                                </Card.Text>
+
+                                                <Card.Text className="fs-5 my-2">
+                                                    <strong>Serie:</strong> {esercizio.serie}
+                                                </Card.Text>
+
+                                                <Card.Text className="fs-5 my-2">
+                                                    <strong>Tempo di recupero:</strong> {esercizio.tempoRecupero}
+                                                </Card.Text>
+
+                                                <Card.Text className="fs-5 my-2">
+                                                    <strong>MET:</strong> {esercizio.met}
+                                                </Card.Text>
                                             </div>
                                         </div>
                                     </Card>

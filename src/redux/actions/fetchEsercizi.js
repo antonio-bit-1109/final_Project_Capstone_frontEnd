@@ -1,6 +1,6 @@
 import { LocalHostPath } from "../../functions/localHostPath";
 import { fetchWithAuth } from "../../functions/interceptor";
-import { setUltimoEsercizioCreato, setlistaEsercizi } from "../reducers/eserciziReducer";
+import { setListaTuttiEsercizi, setUltimoEsercizioCreato, setlistaEsercizi } from "../reducers/eserciziReducer";
 import { toast } from "react-toastify";
 
 export const GetEsercizi = (parteCorpo, difficolta, Isstrength) => async (dispatch) => {
@@ -36,8 +36,9 @@ export const GetAllEsercizi = () => async (dispatch) => {
             method: "GET",
         });
 
-        const response = request.json();
+        const response = await request.json();
         console.log(response);
+        dispatch(setListaTuttiEsercizi(response));
     } catch (error) {
         console.error("abbiamo un problema" + error);
     }
