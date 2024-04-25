@@ -8,7 +8,7 @@ import {
 } from "../../../redux/reducers/allenamentiReducer";
 // import { toast } from "react-toastify";
 // import { PlusCircleFill } from "react-bootstrap-icons";
-import ModaleCreazioneNuovoEsercizio from "./ModaleCreazioneNuovoEsercizio";
+// import ModaleCreazioneNuovoEsercizio from "../../BackOffice/ModaleCreazioneNuovoEsercizio";
 import ModaleInserimentoNomeAllenamento from "./ModaleInserimentoNomeAllenamento";
 // import { GetEsercizi } from "../../../redux/actions/fetchEsercizi";
 // import { LocalHostPath } from "../../../functions/localHostPath";
@@ -26,7 +26,7 @@ const CreaTuoAllenamento = () => {
     // const { listaEsercizi } = useSelector((store) => store.esercizi);
     // const ArrayAllenamento = useSelector((store) => store.allenamenti.allenamentoPersonalizzatoUtente);
     const { TuttiDettagliUtenteLoggato } = useSelector((store) => store.utenti);
-    const [showCreateEsercizio, setShowCreateEsercizio] = useState(false);
+    // const [showCreateEsercizio, setShowCreateEsercizio] = useState(false);
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -41,7 +41,7 @@ const CreaTuoAllenamento = () => {
             <Container fluid>
                 {TuttiDettagliUtenteLoggato && (
                     <Row>
-                        <RowSuperioreIcone setShowCreateEsercizio={setShowCreateEsercizio} />
+                        <RowSuperioreIcone />
                     </Row>
                 )}
 
@@ -58,10 +58,10 @@ const CreaTuoAllenamento = () => {
                 <BottoniSvuotaConferma setShow={setShow} />
                 <ModaleInserimentoNomeAllenamento show={show} handleClose={handleClose} />
 
-                <ModaleCreazioneNuovoEsercizio
+                {/* <ModaleCreazioneNuovoEsercizio
                     showCreateEsercizio={showCreateEsercizio}
                     setShowCreateEsercizio={setShowCreateEsercizio}
-                />
+                /> */}
             </Container>
         </div>
     );

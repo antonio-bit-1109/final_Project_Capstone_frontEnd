@@ -8,6 +8,7 @@ import ModaleModificaProdottoBackOffice from "./ModaleModificaProdottoBackOffice
 import ModaleEliminaProdottoBackOffice from "./ModaleEliminaProdottoBackOffice";
 import ModaleCreaNuovoProdottoBackOffice from "./ModaleCreaNuovoProdottoBackOffice";
 import { GetAllEsercizi } from "../../redux/actions/fetchEsercizi";
+import ModaleCreazioneNuovoEsercizio from "./ModaleCreazioneNuovoEsercizio";
 
 const BackOffice = () => {
     const dispatch = useDispatch();
@@ -21,6 +22,7 @@ const BackOffice = () => {
     const [showDivProdotti, setShowDivProdotti] = useState(true);
     const [showDivEsercizi, setShowDivEsercizi] = useState(false);
     const [showModalEditProdotto, setShowModalEditProdotto] = useState(false);
+    const [showCreateEsercizio, setShowCreateEsercizio] = useState(false);
 
     useEffect(() => {
         dispatch(GetProdotti());
@@ -35,30 +37,55 @@ const BackOffice = () => {
     const handleCloseModalDelete = () => setShowModalDelete(false);
     const handleShowModalDelete = () => setShowModalDelete(true);
 
+    const handleShowCreateEsercizio = () => setShowCreateEsercizio(true);
+
     return (
         <div className="Bg-sfondo-dark altezza-sfondo">
             <Container>
                 <Row>
-                    <Col xs={TuttiDettagliUtenteLoggato && TuttiDettagliUtenteLoggato.ruolo !== "admin" ? "12" : "10"}>
+                    <Col xs="12">
                         {" "}
                         <div className="h-100 d-flex align-items-center justify-content-center">
-                            <h1 className="text-light display-5 my-3 text-center"> BackOffice </h1>{" "}
+                            <h1 className="text-light display-2 my-3 text-center"> BackOffice </h1>{" "}
                         </div>
                     </Col>
                     {TuttiDettagliUtenteLoggato && TuttiDettagliUtenteLoggato.ruolo === "admin" ? (
-                        <Col xs="2">
+                        <>
                             {" "}
-                            <div className="d-flex flex-column align-items-center my-3">
-                                <Button onClick={handleShow} variant="transparent">
-                                    <PlusCircleFill
-                                        color="white"
-                                        style={{ Height: "56px", Width: "56px" }}
-                                        className="display-4"
-                                    />{" "}
-                                    <p className="mt-2 text-light">Aggiungi Prodotto</p>
-                                </Button>
-                            </div>
-                        </Col>
+                            {showDivProdotti && (
+                                <Col xs="6" sm="5" md="2">
+                                    {" "}
+                                    <div className="d-flex flex-column align-items-center my-3">
+                                        <Button onClick={handleShow} variant="transparent">
+                                            <PlusCircleFill
+                                                color="white"
+                                                style={{ Height: "70px", Width: "70px" }}
+                                                className="display-4"
+                                            />{" "}
+                                            <p className="mt-2 text-light">Aggiungi Prodotto</p>
+                                        </Button>
+                                    </div>
+                                </Col>
+                            )}
+                            {showDivEsercizi && (
+                                <Col xs="6" sm="5" md="2">
+                                    <div className="d-flex flex-column align-items-center my-3">
+                                        <Button
+                                            onClick={handleShowCreateEsercizio}
+                                            variant="transparent"
+                                            className=" text-light d-flex flex-column align-items-center"
+                                        >
+                                            <PlusCircleFill
+                                                color="white"
+                                                style={{ Height: "70px", Width: "70px" }}
+                                                className="display-4"
+                                            />{" "}
+                                            <p className="mt-1">Inserisci Nuovo Esercizio </p>
+                                        </Button>
+                                    </div>
+                                </Col>
+                            )}
+                        </>
                     ) : null}
                 </Row>
                 <Row>
@@ -232,6 +259,11 @@ const BackOffice = () => {
                 idProdotto={idProdotto}
                 showModalEditProdotto={showModalEditProdotto}
                 handleCloseModalEditprodotto={handleCloseModalEditprodotto}
+            />
+
+            <ModaleCreazioneNuovoEsercizio
+                showCreateEsercizio={showCreateEsercizio}
+                setShowCreateEsercizio={setShowCreateEsercizio}
             />
         </div>
     );

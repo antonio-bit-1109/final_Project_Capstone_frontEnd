@@ -69,6 +69,7 @@ export const CreateEsercizio = (objPost, formData) => async (dispatch) => {
                 }
             );
             toast.success("Esercizio Creato con successo!", { autoClose: 2000, position: "top-center" });
+            dispatch(GetAllEsercizi());
         } else {
             throw new Error("Errore nel recupero dei risultati");
         }

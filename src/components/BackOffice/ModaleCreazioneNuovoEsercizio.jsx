@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { CreateEsercizio } from "../../../redux/actions/fetchEsercizi";
+import { CreateEsercizio } from "../../redux/actions/fetchEsercizi";
 
 // eslint-disable-next-line react/prop-types
 const ModaleCreazioneNuovoEsercizio = ({ showCreateEsercizio, setShowCreateEsercizio }) => {

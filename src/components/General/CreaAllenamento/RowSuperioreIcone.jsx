@@ -1,5 +1,5 @@
 import { Button, Col } from "react-bootstrap";
-import { PlusCircleFill } from "react-bootstrap-icons";
+// import { PlusCircleFill } from "react-bootstrap-icons";
 import workout from "../../../assets/workout.svg";
 import Dumbell from "../../../assets/dumbbell.svg";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,14 +8,14 @@ import { GetEsercizi } from "../../../redux/actions/fetchEsercizi";
 import { useEffect, useState } from "react";
 
 // eslint-disable-next-line react/prop-types
-const RowSuperioreIcone = ({ setShowCreateEsercizio }) => {
+const RowSuperioreIcone = () => {
     const dispatch = useDispatch();
 
-    const { TuttiDettagliUtenteLoggato } = useSelector((store) => store.utenti);
+    // const { TuttiDettagliUtenteLoggato } = useSelector((store) => store.utenti);
     const { listaEsercizi } = useSelector((store) => store.esercizi);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-    const handleShowCreateEsercizio = () => setShowCreateEsercizio(true);
+    // const handleShowCreateEsercizio = () => setShowCreateEsercizio(true);
 
     useEffect(() => {
         const handleResize = () => {
@@ -64,7 +64,7 @@ const RowSuperioreIcone = ({ setShowCreateEsercizio }) => {
                     } m-auto rounded-5  `}
                 >
                     {" "}
-                    {TuttiDettagliUtenteLoggato.ruolo === "admin" ? (
+                    {/* {TuttiDettagliUtenteLoggato.ruolo === "admin" ? (
                         <Button
                             onClick={handleShowCreateEsercizio}
                             variant="transparent"
@@ -73,7 +73,7 @@ const RowSuperioreIcone = ({ setShowCreateEsercizio }) => {
                             <PlusCircleFill style={{ maxHeight: "50px" }} className="display-4" />
                             <p className="mt-1">Inserisci Nuovo Esercizio </p>
                         </Button>
-                    ) : null}
+                    ) : null} */}
                     <Button
                         onClick={TrovaEserciziocasuale}
                         variant="transparent"

@@ -17,6 +17,7 @@ import { svuotaTuttiDettagliUtenteLoggato } from "../../redux/reducers/utentiRed
 
 function NavbarComponent() {
     const { carrelloProdotti } = useSelector((store) => store.prodotti);
+    const { TuttiDettagliUtenteLoggato } = useSelector((store) => store.utenti);
     const TokenRedux = useSelector((store) => store.token.TokenUtente);
     console.log("console log del token che sta nella navbar", TokenRedux);
     const dispatch = useDispatch();
@@ -87,13 +88,16 @@ function NavbarComponent() {
                                             >
                                                 Logout
                                             </NavDropdown.Item>
-                                            <NavDropdown.Item
-                                                className="bg-transparent"
-                                                as={NavLink}
-                                                to={"/BackOffice"}
-                                            >
-                                                BackOffice
-                                            </NavDropdown.Item>
+                                            {TuttiDettagliUtenteLoggato &&
+                                                TuttiDettagliUtenteLoggato.ruolo === "admin" && (
+                                                    <NavDropdown.Item
+                                                        className="bg-transparent"
+                                                        as={NavLink}
+                                                        to={"/BackOffice"}
+                                                    >
+                                                        BackOffice
+                                                    </NavDropdown.Item>
+                                                )}
                                         </>
                                     ) : (
                                         <NavDropdown.Item>Login</NavDropdown.Item>
