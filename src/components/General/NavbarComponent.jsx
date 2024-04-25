@@ -57,9 +57,9 @@ function NavbarComponent() {
                                 <Nav.Link as={NavLink} to={"/Abbonamenti"}>
                                     Abbonamenti
                                 </Nav.Link>{" "}
-                                <Nav.Link as={NavLink} to={"/MainSocialMedia"}>
+                                {/* <Nav.Link as={NavLink} to={"/MainSocialMedia"}>
                                     SocialMedia
-                                </Nav.Link>
+                                </Nav.Link> */}
                             </div>
                             <div className="position-relative customWidth d-flex">
                                 <Nav.Link as={NavLink} to={"/carrello"}>

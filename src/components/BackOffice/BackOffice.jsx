@@ -1,4 +1,4 @@
-import { Button, Card, Col, Container, Modal, Row } from "react-bootstrap";
+import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { GetProdotti } from "../../redux/actions/prodottiFetch";
 import { LocalHostPath } from "../../functions/localHostPath";
@@ -7,8 +7,9 @@ import { useEffect, useState } from "react";
 import ModaleModificaProdottoBackOffice from "./ModaleModificaProdottoBackOffice";
 import ModaleEliminaProdottoBackOffice from "./ModaleEliminaProdottoBackOffice";
 import ModaleCreaNuovoProdottoBackOffice from "./ModaleCreaNuovoProdottoBackOffice";
-import { GetAllEsercizi, deleteEsercizio } from "../../redux/actions/fetchEsercizi";
+import { GetAllEsercizi } from "../../redux/actions/fetchEsercizi";
 import ModaleCreazioneNuovoEsercizio from "./ModaleCreazioneNuovoEsercizio";
+import ModaleDeleteEsercizio from "./ModaleDeleteEsercizio";
 
 const BackOffice = () => {
     const dispatch = useDispatch();
@@ -279,35 +280,11 @@ const BackOffice = () => {
                 setShowCreateEsercizio={setShowCreateEsercizio}
             />
 
-            <Modal show={showModaldeleteEsercizio} onHide={handleCloseModalDeleteEsercizio}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Conferma Cancellazione Account</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <h4 className="text-warning">
-                        Sei Sicuro di voler eliminare l&apos;esercizio ? Questa azione non è reversibile.
-                    </h4>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button
-                        variant="light"
-                        onClick={handleCloseModalDeleteEsercizio}
-                        className="rounded-4 text-warning border-warning fw-bold"
-                    >
-                        Chiudi
-                    </Button>
-                    <Button
-                        variant="warning "
-                        className="rounded-4 text-light fw-bold"
-                        onClick={() => {
-                            handleCloseModalDeleteEsercizio();
-                            dispatch(deleteEsercizio(idEsercizio));
-                        }}
-                    >
-                        Elimina Esercizio
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+            <ModaleDeleteEsercizio
+                idEsercizio={idEsercizio}
+                showModaldeleteEsercizio={showModaldeleteEsercizio}
+                handleCloseModalDeleteEsercizio={handleCloseModalDeleteEsercizio}
+            />
         </div>
     );
 };
