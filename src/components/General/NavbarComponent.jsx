@@ -57,6 +57,11 @@ function NavbarComponent() {
                                 <Nav.Link as={NavLink} to={"/Abbonamenti"}>
                                     Abbonamenti
                                 </Nav.Link>{" "}
+                                {TuttiDettagliUtenteLoggato && TuttiDettagliUtenteLoggato.ruolo === "admin" && (
+                                    <Nav.Link className="bg-transparent" as={NavLink} to={"/BackOffice"}>
+                                        BackOffice
+                                    </Nav.Link>
+                                )}
                                 {/* <Nav.Link as={NavLink} to={"/MainSocialMedia"}>
                                     SocialMedia
                                 </Nav.Link> */}
@@ -88,16 +93,6 @@ function NavbarComponent() {
                                             >
                                                 Logout
                                             </NavDropdown.Item>
-                                            {TuttiDettagliUtenteLoggato &&
-                                                TuttiDettagliUtenteLoggato.ruolo === "admin" && (
-                                                    <NavDropdown.Item
-                                                        className="bg-transparent"
-                                                        as={NavLink}
-                                                        to={"/BackOffice"}
-                                                    >
-                                                        BackOffice
-                                                    </NavDropdown.Item>
-                                                )}
                                         </>
                                     ) : (
                                         <NavDropdown.Item>Login</NavDropdown.Item>
