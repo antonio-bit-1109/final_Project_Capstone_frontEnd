@@ -125,7 +125,7 @@ const BackOffice = () => {
                     <div>
                         {listaProdotti &&
                             listaProdotti.map((prodotto, index) => (
-                                <Col key={index} xs="12" md="8" lg="8" xl="5">
+                                <Col key={index} xs="12" md="9" lg="8" xl="6">
                                     <Card className="rounded rounded-5 my-2 d-flex align-items-center flex-row shadow-lg effettoVetro text-light border border-2 p-5">
                                         <div>
                                             {" "}
@@ -184,8 +184,6 @@ const BackOffice = () => {
                                 </Col>
                             ))}
                     </div>
-
-                    <Col></Col>
                 </Row>
             </Container>
 
