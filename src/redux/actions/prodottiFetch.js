@@ -136,12 +136,12 @@ export const modificaProdotto = (idProdotto, pathUrl, data2, formData) => async 
         const response = await sendData.json();
 
         if (response.message) {
-            const sendPhoto = await fetchWithAuth(pathUrl + `/Prodotto/AggiungiImmagine/${idProdotto}`, {
+            const sendPhoto = await fetchWithAuth(pathUrl + `/Prodotto/ModificaImmagine/${idProdotto}`, {
                 method: "POST",
                 body: formData,
             });
 
-            if (sendPhoto.ok) {
+            if (sendPhoto.ok || sendPhoto.message === "nessun immagine fornita.") {
                 dispatch(GetProdotti());
                 toast.success("Prodotto modificato con successo", { autoClose: 1000 });
             }

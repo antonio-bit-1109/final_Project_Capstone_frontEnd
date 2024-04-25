@@ -58,6 +58,7 @@ const BackOffice = () => {
 
         const formData2 = new FormData();
         formData2.append("immagineProdottoModifica", immagineProdottoModifica);
+
         dispatch(modificaProdotto(idProdotto, LocalHostPath, data2, formData2));
         reset2();
     };
