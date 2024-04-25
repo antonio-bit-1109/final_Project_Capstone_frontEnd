@@ -193,6 +193,7 @@ body {
     background-color: #e20a0a;
     border: #661818 3px solid;
 }
+
 .enlight_white:hover {
     background-color: #b6b2b2;
     border: #ddd1d1 3px solid;
@@ -339,9 +340,11 @@ body {
 
     background-color: #f5f5f5;
 }
+
 #style-1::-webkit-scrollbar-thumb {
     background-color: #ffc107;
 }
+
 #style-1::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     background-color: #f5f5f5;
