@@ -10,6 +10,7 @@ import ModaleCreaNuovoProdottoBackOffice from "./ModaleCreaNuovoProdottoBackOffi
 import { GetAllEsercizi } from "../../redux/actions/fetchEsercizi";
 import ModaleCreazioneNuovoEsercizio from "./ModaleCreazioneNuovoEsercizio";
 import ModaleDeleteEsercizio from "./ModaleDeleteEsercizio";
+import ModaleModificaEsercizio from "./ModaleModificaEsercizio";
 
 const BackOffice = () => {
     const dispatch = useDispatch();
@@ -32,6 +33,8 @@ const BackOffice = () => {
         ProdottoDescrizione: null,
     });
 
+    const [showModaleEditEsercizio, SetshowModaleEditEsercizio] = useState(false);
+
     useEffect(() => {
         dispatch(GetProdotti());
     }, [dispatch]);
@@ -49,6 +52,9 @@ const BackOffice = () => {
 
     const handleCloseModalDeleteEsercizio = () => setShowModaldeleteEsercizio(false);
     const handleShowModalDeleteEsercizio = () => setShowModaldeleteEsercizio(true);
+
+    const handleCloseMOdaleEditEsercizio = () => SetshowModaleEditEsercizio(false);
+    const handleShowMOdaleEditEsercizi = () => SetshowModaleEditEsercizio(true);
 
     return (
         <div className="Bg-sfondo-dark altezza-sfondo">
@@ -130,7 +136,7 @@ const BackOffice = () => {
                 </Row>
                 <Row>
                     {/* DIV PRODOTTI */}
-                    <div className={`${showDivProdotti ? "d-block scrollBar2" : "d-none"}`}>
+                    <div className={`${showDivProdotti ? "d-block" : "d-none"}`}>
                         {listaProdotti &&
                             listaProdotti.map((prodotto, index) => (
                                 <Col key={index} xs="12" md="9" lg="8" xl="6">
@@ -216,7 +222,7 @@ const BackOffice = () => {
                                             >
                                                 <X className="fs-1 text-danger" />
                                             </Button>
-                                            <Button variant="transparent">
+                                            <Button onClick={handleShowMOdaleEditEsercizi} variant="transparent">
                                                 <PenFill className="fs-5 text-white" />
                                             </Button>
                                         </div>
@@ -297,6 +303,11 @@ const BackOffice = () => {
                 idEsercizio={idEsercizio}
                 showModaldeleteEsercizio={showModaldeleteEsercizio}
                 handleCloseModalDeleteEsercizio={handleCloseModalDeleteEsercizio}
+            />
+
+            <ModaleModificaEsercizio
+                showModaleEditEsercizio={showModaleEditEsercizio}
+                handleCloseMOdaleEditEsercizio={handleCloseMOdaleEditEsercizio}
             />
         </div>
     );
