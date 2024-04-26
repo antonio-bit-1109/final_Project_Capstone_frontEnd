@@ -24,7 +24,7 @@ const CustomModalTreasure = () => {
                             showModalTreasure && "customModalAnimation"
                         }`}
                     >
-                        hai trovato un tesoro! Hai vinto 5 giorni di abbonamento{" "}
+                        hai trovato un tesoro! <br /> Hai vinto 5 giorni di abbonamento{" "}
                         <span className="size puff-in">gratis!</span>
                     </h2>
                 </div>
