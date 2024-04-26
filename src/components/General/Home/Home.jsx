@@ -15,6 +15,8 @@ import GraficoComponent from "../grafico/GraficoComponent";
 import ModaleCambiaImgprofilo from "./ModaleCambiaImgprofilo";
 import ObscureGraphic from "../grafico/ObscureGraphic";
 // import ModificaDatiUtenteOffCanvas from "./Utente/ModificaDatiUtenteOffCanvas";
+import { motion } from "framer-motion";
+import TreasureComp from "../../TreasureComp";
 
 const Home = () => {
     const navigate = useNavigate();
@@ -105,7 +107,7 @@ const Home = () => {
                 <div className="Bg-sfondo-dark altezza-sfondo">
                     <Container>
                         <Row>
-                            <Col xs="12" sm="12" md="9">
+                            <Col xs="12" sm="12" md="8">
                                 <div>
                                     <h2 className="text-light display-2 d-flex justify-content-center">
                                         <span className="display-1 fw-semibold">
@@ -136,7 +138,7 @@ const Home = () => {
                             </Col>
                             <Col xs="12" sm="12" md="3">
                                 {" "}
-                                <div className="d-flex justify-content-center my-4">
+                                <div className="d-flex justify-content-center my-4 position-relative">
                                     {" "}
                                     <Button
                                         className="d-flex align-items-end"
@@ -145,12 +147,22 @@ const Home = () => {
                                     >
                                         <PlusCircleFill className="text-light fs-3" />
                                     </Button>
-                                    <img
-                                        style={{ objectFit: "cover", width: "150px", height: "150px" }}
+                                    <motion.img
+                                        drag
+                                        style={{
+                                            objectFit: "cover",
+                                            width: "150px",
+                                            height: "150px",
+                                            zIndex: "999",
+                                            position: "relative",
+                                        }}
                                         className="rounded-circle img-thumbnail"
                                         src={`${LocalHostPath}/img-utenti/${TuttiDettagliUtenteLoggato.immagineProfilo}`}
                                         alt="immagine profilo "
                                     />
+                                    <div className=" text-center treasurePosition">
+                                        <TreasureComp />
+                                    </div>
                                     <Button
                                         className="d-flex align-items-end"
                                         onClick={() => navigate("/ModificaDatiUtente")}

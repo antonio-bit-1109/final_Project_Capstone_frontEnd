@@ -14,7 +14,6 @@ import {
 import { CartFill } from "react-bootstrap-icons";
 import { rimuoviTuttiAllenamentiCompletatiUtente } from "../../redux/reducers/allenamentiCompletatiReducer";
 import { svuotaTuttiDettagliUtenteLoggato } from "../../redux/reducers/utentiReducer";
-
 function NavbarComponent() {
     const { carrelloProdotti } = useSelector((store) => store.prodotti);
     const { TuttiDettagliUtenteLoggato } = useSelector((store) => store.utenti);
@@ -35,9 +34,11 @@ function NavbarComponent() {
             <Navbar className=" sticky-top" expand="lg" bg="dark" data-bs-theme="dark">
                 <Container fluid>
                     <Navbar.Brand as={NavLink} to={"/"}>
+                        {" "}
                         <img style={{ width: "50px" }} src={logo} alt="logo-app" />
                         <span className="m-auto ms-3 nameColor">EpicWorkout</span>
                     </Navbar.Brand>
+
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="m-auto">
