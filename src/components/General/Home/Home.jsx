@@ -129,7 +129,7 @@ const Home = () => {
                     <Container>
                         <Row>
                             <Col xs="12" sm="12" md="8">
-                                <div>
+                                <div className="mt-4">
                                     <h2 className="text-light display-2 d-flex justify-content-center">
                                         <span className="display-1 fw-semibold">
                                             {DatiGenderUtente && DatiGenderUtente.gender === "male"
