@@ -1,10 +1,13 @@
+import { useSelector } from "react-redux";
 import Treasure from "../assets/treasure/treasure.svg";
 
 // eslint-disable-next-line react/prop-types
-const TreasureComp = ({ showCustomModalTreasure }) => {
+const TreasureComp = () => {
+    const { showModalTreasure } = useSelector((store) => store.bonus);
+
     return (
         <>
-            <img className={`${showCustomModalTreasure && "shake"}`} src={Treasure} alt=" my_treasure" />
+            <img className={`${showModalTreasure && "shake"}`} src={Treasure} alt=" my_treasure" />
         </>
     );
 };

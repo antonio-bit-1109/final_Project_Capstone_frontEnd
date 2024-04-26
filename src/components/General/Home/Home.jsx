@@ -18,6 +18,7 @@ import ObscureGraphic from "../grafico/ObscureGraphic";
 import { motion } from "framer-motion";
 import TreasureComp from "../../TreasureComp";
 import CustomModalTreasure from "../../CustomModalTreasure";
+import { setModalTreasure_True } from "../../../redux/reducers/bonusReducer";
 
 const Home = () => {
     const navigate = useNavigate();
@@ -37,7 +38,8 @@ const Home = () => {
     const [serieTotAllenamenti, setSerieTotAllenamenti] = useState(0);
     const [ripetizioniTotAllenamenti, setRipetizioniTotAllenamenti] = useState(0);
     const [allenamentiCompletati, setAllenamentiCompletati] = useState(0);
-    const [showCustomModalTreasure, setCustomModalTreasure] = useState(false);
+    // const [showCustomModalTreasure, setCustomModalTreasure] = useState(false);
+    // const { showModalTreasure } = useSelector((store) => store.bonus);
 
     useEffect(() => {
         dispatch(getDettagliUtente());
@@ -113,14 +115,15 @@ const Home = () => {
             img.y <= divEsterno.top ||
             img.y >= divEsterno.bottom
         ) {
-            setCustomModalTreasure(true);
+            // setCustomModalTreasure(true);
+            dispatch(setModalTreasure_True());
         }
     };
 
     return (
         <>
             {" "}
-            <CustomModalTreasure showCustomModalTreasure={showCustomModalTreasure} />
+            <CustomModalTreasure />
             {TuttiDettagliUtenteLoggato && (
                 <div className="Bg-sfondo-dark altezza-sfondo">
                     <Container>
@@ -180,7 +183,7 @@ const Home = () => {
                                         onDrag={(event, info) => handleDrag(event, info)}
                                     />
                                     <div className=" text-center treasurePosition">
-                                        <TreasureComp showCustomModalTreasure={showCustomModalTreasure} />
+                                        <TreasureComp />
                                     </div>
                                     <Button
                                         className="d-flex align-items-end"
