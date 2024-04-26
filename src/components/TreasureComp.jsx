@@ -1,9 +1,10 @@
 import Treasure from "../assets/treasure/treasure.svg";
 
-const TreasureComp = () => {
+// eslint-disable-next-line react/prop-types
+const TreasureComp = ({ showCustomModalTreasure }) => {
     return (
         <>
-            <img src={Treasure} alt=" my_treasure" />
+            <img className={`${showCustomModalTreasure && "shake"}`} src={Treasure} alt=" my_treasure" />
         </>
     );
 };

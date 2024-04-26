@@ -17,6 +17,7 @@ import ObscureGraphic from "../grafico/ObscureGraphic";
 // import ModificaDatiUtenteOffCanvas from "./Utente/ModificaDatiUtenteOffCanvas";
 import { motion } from "framer-motion";
 import TreasureComp from "../../TreasureComp";
+import CustomModalTreasure from "../../CustomModalTreasure";
 
 const Home = () => {
     const navigate = useNavigate();
@@ -36,6 +37,7 @@ const Home = () => {
     const [serieTotAllenamenti, setSerieTotAllenamenti] = useState(0);
     const [ripetizioniTotAllenamenti, setRipetizioniTotAllenamenti] = useState(0);
     const [allenamentiCompletati, setAllenamentiCompletati] = useState(0);
+    const [showCustomModalTreasure, setCustomModalTreasure] = useState(false);
 
     useEffect(() => {
         dispatch(getDettagliUtente());
@@ -101,8 +103,24 @@ const Home = () => {
         dispatch(CambiaImmagine(TuttiDettagliUtenteLoggato.idUtente, formData));
     };
 
+    const handleDrag = (event, info) => {
+        const divEsterno = document.getElementById("outerDiv").getBoundingClientRect();
+        const img = info.point;
+
+        if (
+            img.x <= divEsterno.left ||
+            img.x >= divEsterno.right ||
+            img.y <= divEsterno.top ||
+            img.y >= divEsterno.bottom
+        ) {
+            setCustomModalTreasure(true);
+        }
+    };
+
     return (
         <>
+            {" "}
+            <CustomModalTreasure showCustomModalTreasure={showCustomModalTreasure} />
             {TuttiDettagliUtenteLoggato && (
                 <div className="Bg-sfondo-dark altezza-sfondo">
                     <Container>
@@ -138,7 +156,7 @@ const Home = () => {
                             </Col>
                             <Col xs="12" sm="12" md="3">
                                 {" "}
-                                <div className="d-flex justify-content-center my-4 position-relative">
+                                <div id="outerDiv" className="d-flex justify-content-center my-4 position-relative">
                                     {" "}
                                     <Button
                                         className="d-flex align-items-end"
@@ -159,9 +177,10 @@ const Home = () => {
                                         className="rounded-circle img-thumbnail"
                                         src={`${LocalHostPath}/img-utenti/${TuttiDettagliUtenteLoggato.immagineProfilo}`}
                                         alt="immagine profilo "
+                                        onDrag={(event, info) => handleDrag(event, info)}
                                     />
                                     <div className=" text-center treasurePosition">
-                                        <TreasureComp />
+                                        <TreasureComp showCustomModalTreasure={showCustomModalTreasure} />
                                     </div>
                                     <Button
                                         className="d-flex align-items-end"
