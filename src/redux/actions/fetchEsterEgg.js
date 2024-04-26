@@ -15,6 +15,15 @@ export const AbbonamentoBonus = () => async (dispatch) => {
 
         const data = await response.json();
 
+        if (data.message) {
+            toast.warning(data.message, { autoClose: 2000 });
+            setTimeout(() => {
+                dispatch(getDettagliUtente());
+                dispatch(setModalTreasure_False());
+            }, 1500);
+            return;
+        }
+
         if (data) {
             const EsitoAbbRegalo = await fetchWithAuth(
                 LocalHostPath + `/EasterEgg/AggiornaAbbonamentoUtente/${data.idAbbonamento}`,
