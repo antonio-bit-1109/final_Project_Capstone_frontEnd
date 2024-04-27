@@ -33,6 +33,18 @@ const BackOffice = () => {
         ProdottoDescrizione: null,
     });
 
+    const [datiEsercizioMOdifica, setDatiEsercizioModifica] = useState({
+        nomeEsercizio: null,
+        descrizioneEsercizio: null,
+        difficoltaEsercizio: null,
+        IsStrenght: true,
+        tempoRecupero: null,
+        Serie: null,
+        ripetizioni: null,
+        met: null,
+        parteDelCorpoAllenata: null,
+    });
+
     const [showModaleEditEsercizio, SetshowModaleEditEsercizio] = useState(false);
 
     useEffect(() => {
@@ -222,7 +234,24 @@ const BackOffice = () => {
                                             >
                                                 <X className="fs-1 text-danger" />
                                             </Button>
-                                            <Button onClick={handleShowMOdaleEditEsercizi} variant="transparent">
+                                            <Button
+                                                onClick={() => {
+                                                    handleShowMOdaleEditEsercizi();
+                                                    setDatiEsercizioModifica({
+                                                        nomeEsercizio: esercizio.nomeEsercizio,
+                                                        descrizioneEsercizio: esercizio.descrizioneEsercizio,
+                                                        difficoltaEsercizio: esercizio.difficolta,
+                                                        IsStrenght: esercizio.isStrenght,
+                                                        tempoRecupero: esercizio.tempoRecupero,
+                                                        Serie: esercizio.serie,
+                                                        ripetizioni: esercizio.ripetizioni,
+                                                        met: esercizio.met,
+                                                        parteDelCorpoAllenata: esercizio.parteDelCorpoAllenata,
+                                                    });
+                                                    setIdEsercizio(esercizio.idEsercizio);
+                                                }}
+                                                variant="transparent"
+                                            >
                                                 <PenFill className="fs-5 text-white" />
                                             </Button>
                                         </div>
@@ -268,6 +297,9 @@ const BackOffice = () => {
                                                 <Card.Text className="fs-5 my-2">
                                                     <strong>MET:</strong> {esercizio.met}
                                                 </Card.Text>
+                                                <Card.Text className="fs-5 my-2">
+                                                    <strong>Difficoltà Esercizio:</strong> {esercizio.difficolta}
+                                                </Card.Text>
                                             </div>
                                         </div>
                                     </Card>
@@ -306,8 +338,12 @@ const BackOffice = () => {
             />
 
             <ModaleModificaEsercizio
+                key={idEsercizio}
+                idEsercizio={idEsercizio}
                 showModaleEditEsercizio={showModaleEditEsercizio}
                 handleCloseMOdaleEditEsercizio={handleCloseMOdaleEditEsercizio}
+                datiEsercizioMOdifica={datiEsercizioMOdifica}
+                setDatiEsercizioModifica={setDatiEsercizioModifica}
             />
         </div>
     );

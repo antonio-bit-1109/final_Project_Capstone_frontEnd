@@ -24,7 +24,6 @@ const ModaleModificaProdottoBackOffice = ({
     // } = useForm();
 
     const HandleSubmittingModificaProdotto = (e) => {
-        // console.log(data2);
         e.preventDefault();
         handleCloseModalEditprodotto();
 

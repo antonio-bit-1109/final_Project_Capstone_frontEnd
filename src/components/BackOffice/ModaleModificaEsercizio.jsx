@@ -1,14 +1,31 @@
 /* eslint-disable react/prop-types */
 import { Button, Form, Modal } from "react-bootstrap";
-import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { ModificaEsercizioFetch } from "../../redux/actions/fetchEsercizi";
+import { useState } from "react";
+// import { useForm } from "react-hook-form";
 
-const ModaleModificaEsercizio = ({ showModaleEditEsercizio, handleCloseMOdaleEditEsercizio }) => {
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-        reset,
-    } = useForm();
+const ModaleModificaEsercizio = ({
+    showModaleEditEsercizio,
+    handleCloseMOdaleEditEsercizio,
+    datiEsercizioMOdifica,
+    setDatiEsercizioModifica,
+    idEsercizio,
+}) => {
+    const dispatch = useDispatch();
+
+    const [immagineEsercizio, setImmagineEsercizio] = useState(null);
+
+    const EditEsercizio = (e) => {
+        e.preventDefault();
+        handleCloseMOdaleEditEsercizio();
+
+        const formData = new FormData();
+        formData.append("immagineEsercizio", immagineEsercizio);
+
+        console.log(datiEsercizioMOdifica);
+        dispatch(ModificaEsercizioFetch(idEsercizio, datiEsercizioMOdifica, formData));
+    };
 
     return (
         <>
@@ -19,25 +36,24 @@ const ModaleModificaEsercizio = ({ showModaleEditEsercizio, handleCloseMOdaleEdi
                 </Modal.Header>
                 <Modal.Body>
                     {/* INPUT PER INVIO ESERCIZIO CON REACT HOOK FORMS */}
-                    <Form>
-                        {/* NOME ESERCIZIO STRING  */}
+                    <Form onSubmit={EditEsercizio}>
+                        {/* NOME ESERCIZIO MODIFICA  */}
                         <Form.Group className="my-2">
                             <Form.Label className="m-auto" htmlFor="nomeEsercizioInput">
                                 Nome Esercizio{" "}
                             </Form.Label>
                             <Form.Control
-                                {...register("NomeEsercizio", {
-                                    required: "Inserisci il nome dell' esercizio.",
-                                    pattern: {
-                                        value: /^[A-Za-z\s.,!?àèìòùÀÈÌÒÙ',"-]+$/i,
-                                        message: "Il nome può contenere solo lettere maiuscole o minuscole ",
-                                    },
-                                })}
                                 type="text"
                                 id="nomeEsercizioInput"
                                 aria-describedby="nomeEsercizioInput"
+                                value={datiEsercizioMOdifica.nomeEsercizio}
+                                onChange={(e) =>
+                                    setDatiEsercizioModifica({
+                                        ...datiEsercizioMOdifica,
+                                        nomeEsercizio: e.target.value,
+                                    })
+                                }
                             />
-                            {errors.NomeEsercizio && <div className="text-danger">{errors.NomeEsercizio.message}</div>}
                         </Form.Group>
 
                         {/* IMMAGINE ESERCIZIO FILE */}
@@ -50,7 +66,7 @@ const ModaleModificaEsercizio = ({ showModaleEditEsercizio, handleCloseMOdaleEdi
                                 type="file"
                                 id="ImmagineEsercizioInput"
                                 aria-describedby="ImmagineEsercizioInput"
-                                //   onChange={(e) => setImmagineCreateEsercizio(e.target.files[0])}
+                                onChange={(e) => setImmagineEsercizio(e.target.files[0])}
                             />
                         </Form.Group>
 
@@ -60,20 +76,17 @@ const ModaleModificaEsercizio = ({ showModaleEditEsercizio, handleCloseMOdaleEdi
                                 Descrizione{" "}
                             </Form.Label>
                             <Form.Control
-                                {...register("DescrizioneEsercizio", {
-                                    required: "Inserisci una descrizione per l'esercizio.",
-                                    pattern: {
-                                        value: /^[A-Za-z\s.,!?àèìòùÀÈÌÒÙ',"0-9]+$/i,
-                                        message: "Il nome può contenere solo lettere maiuscole o minuscole",
-                                    },
-                                })}
                                 type="text"
                                 id="inputDescrizioneEsercizio"
                                 aria-describedby="inputDescrizioneEsercizio"
+                                value={datiEsercizioMOdifica.descrizioneEsercizio}
+                                onChange={(e) =>
+                                    setDatiEsercizioModifica({
+                                        ...datiEsercizioMOdifica,
+                                        descrizioneEsercizio: e.target.value,
+                                    })
+                                }
                             />
-                            {errors.DescrizioneEsercizio && (
-                                <div className="text-danger">{errors.DescrizioneEsercizio.message}</div>
-                            )}
                         </Form.Group>
 
                         {/* DIFFICOLTA ESERCIZIO */}
@@ -82,35 +95,37 @@ const ModaleModificaEsercizio = ({ showModaleEditEsercizio, handleCloseMOdaleEdi
                                 Difficoltà Esercizio{" "}
                             </Form.Label>
                             <Form.Control
-                                {...register("DifficoltaEsercizio", {
-                                    required: "Inserisci un valore per la difficoltà.",
-                                    pattern: {
-                                        value: /^[1-3]+$/i,
-                                        message: " Inserisci un valore tra 1 e 3.",
-                                    },
-                                })}
                                 type="number"
                                 id="inputDifficoltaEsercizio"
                                 aria-describedby="inputDescrizioneEsercizio"
                                 min={1}
                                 max={3}
+                                value={datiEsercizioMOdifica.difficoltaEsercizio}
+                                onChange={(e) =>
+                                    setDatiEsercizioModifica({
+                                        ...datiEsercizioMOdifica,
+                                        difficoltaEsercizio: e.target.value,
+                                    })
+                                }
                             />
-                            {errors.DifficoltaEsercizio && (
-                                <div className="text-danger">{errors.DifficoltaEsercizio.message}</div>
-                            )}
                         </Form.Group>
 
                         {/* ESERCIZIO FORZA O NO BOOL */}
                         <Form.Group className="my-3">
                             {" "}
                             <Form.Check
-                                {...register("IsStrenght")}
-                                className="m-auto" // prettier-ignore
+                                className="m-auto"
                                 type="switch"
                                 label="Esercizio di Forza"
                                 id="EsercizioForza"
+                                checked={datiEsercizioMOdifica.IsStrenght}
+                                onChange={(e) =>
+                                    setDatiEsercizioModifica({
+                                        ...datiEsercizioMOdifica,
+                                        IsStrenght: e.target.checked,
+                                    })
+                                }
                             />
-                            {errors.IsStrenght && <div className="text-danger">{errors.IsStrenght.message}</div>}
                         </Form.Group>
 
                         {/* TEMPO RECUPERO ESERCIZIO INT */}
@@ -119,18 +134,17 @@ const ModaleModificaEsercizio = ({ showModaleEditEsercizio, handleCloseMOdaleEdi
                                 Tempo Di Recupero (sec&quot;){" "}
                             </Form.Label>
                             <Form.Control
-                                {...register("TempoRecupero", {
-                                    required: "Inserisci un tempo di recupero.",
-                                    pattern: {
-                                        value: /^[0-9]+$/i,
-                                        message: "Inserisci il valore in Secondi.",
-                                    },
-                                })}
                                 type="number"
                                 id="inputRecuperoEsercizio"
                                 aria-describedby="inputRecuperoEsercizio"
+                                value={datiEsercizioMOdifica.tempoRecupero}
+                                onChange={(e) =>
+                                    setDatiEsercizioModifica({
+                                        ...datiEsercizioMOdifica,
+                                        tempoRecupero: e.target.value,
+                                    })
+                                }
                             />
-                            {errors.TempoRecupero && <div className="text-danger">{errors.TempoRecupero.message}</div>}
                         </Form.Group>
 
                         {/* SERIE ESERCIZIO INT */}
@@ -139,20 +153,17 @@ const ModaleModificaEsercizio = ({ showModaleEditEsercizio, handleCloseMOdaleEdi
                                 N° Serie
                             </Form.Label>
                             <Form.Control
-                                {...register("SerieEsercizio", {
-                                    required: "Inserisci un numero di serie.",
-                                    pattern: {
-                                        value: /^[0-9]+$/i,
-                                        message: "Inserisci un valore intero tra 0 e 9.",
-                                    },
-                                })}
                                 type="number"
                                 id="inputSerieEsercizio"
                                 aria-describedby="inputSerieEsercizio"
+                                value={datiEsercizioMOdifica.Serie}
+                                onChange={(e) =>
+                                    setDatiEsercizioModifica({
+                                        ...datiEsercizioMOdifica,
+                                        Serie: e.target.value,
+                                    })
+                                }
                             />
-                            {errors.SerieEsercizio && (
-                                <div className="text-danger">{errors.SerieEsercizio.message}</div>
-                            )}
                         </Form.Group>
 
                         {/* RIPETIZIONI ESERCIZIO INT */}
@@ -161,20 +172,17 @@ const ModaleModificaEsercizio = ({ showModaleEditEsercizio, handleCloseMOdaleEdi
                                 N° Ripetizioni{" "}
                             </Form.Label>
                             <Form.Control
-                                {...register("RipetizioniEsercizio", {
-                                    required: "Inserisci un numero di ripetizioni.",
-                                    pattern: {
-                                        value: /^[0-9]+$/i,
-                                        message: "Inserisci un valore intero tra 4 e 20.",
-                                    },
-                                })}
                                 type="number"
                                 id="inputRipetizioniEsercizio"
                                 aria-describedby="inputRipetizioniEsercizio"
+                                value={datiEsercizioMOdifica.ripetizioni}
+                                onChange={(e) =>
+                                    setDatiEsercizioModifica({
+                                        ...datiEsercizioMOdifica,
+                                        ripetizioni: e.target.value,
+                                    })
+                                }
                             />
-                            {errors.RipetizioniEsercizio && (
-                                <div className="text-danger">{errors.RipetizioniEsercizio.message}</div>
-                            )}
                         </Form.Group>
 
                         {/* MET */}
@@ -183,30 +191,31 @@ const ModaleModificaEsercizio = ({ showModaleEditEsercizio, handleCloseMOdaleEdi
                                 MET (Metabolic Equivalent of Task)
                             </Form.Label>
                             <Form.Control
-                                {...register("met", {
-                                    required: "Inserisci un valore tra 1 e 15.",
-                                    pattern: {
-                                        value: /^(1[0-5]|[1-9])$/i,
-                                        message: "Inserisci un valore intero tra 1 e 15.",
-                                    },
-                                })}
                                 type="number"
                                 id="metEsercizio"
                                 aria-describedby="inputmetEsercizio"
+                                value={datiEsercizioMOdifica.met}
+                                onChange={(e) =>
+                                    setDatiEsercizioModifica({
+                                        ...datiEsercizioMOdifica,
+                                        met: e.target.value,
+                                    })
+                                }
                             />
-                            {errors.met && <div className="text-danger">{errors.met.message}</div>}
                         </Form.Group>
 
                         {/* PARTE CORPO ESERCIZIO STRING */}
                         <Form.Group className="my-3">
                             {" "}
                             <Form.Select
-                                {...register("ParteCorpoEsercizio", {
-                                    required: "Inserisci un valore.",
-                                })}
-                                // value={}
-                                // onChange={(e) => setParteCorpo(e.target.value === "null" ? null : e.target.value)}
                                 aria-label="Default select example"
+                                value={datiEsercizioMOdifica.parteDelCorpoAllenata}
+                                onChange={(e) =>
+                                    setDatiEsercizioModifica({
+                                        ...datiEsercizioMOdifica,
+                                        parteDelCorpoAllenata: e.target.value,
+                                    })
+                                }
                             >
                                 <option value=""> Parte Del Corpo: </option>
                                 <option value="petto">Petto</option>
@@ -216,21 +225,18 @@ const ModaleModificaEsercizio = ({ showModaleEditEsercizio, handleCloseMOdaleEdi
                                 <option value="tricipiti">Tricipiti</option>
                                 <option value="fullbody">Full Body</option>
                             </Form.Select>
-                            {errors.ParteCorpoEsercizio && (
-                                <div className="text-danger">{errors.ParteCorpoEsercizio.message}</div>
-                            )}
                         </Form.Group>
 
                         <Modal.Footer>
                             <Button
                                 variant="light"
                                 className="rounded-4 text-warning border-warning fw-bold"
-                                //   onClick={handleCloseCreateEsercizio}
+                                onClick={handleCloseMOdaleEditEsercizio}
                             >
                                 Chiudi
                             </Button>
-                            <Button variant="warning " className="rounded-4 text-light fw-bold" type="submit">
-                                Crea Nuovo Esercizio
+                            <Button type="submit" variant="warning " className="rounded-4 text-light fw-bold">
+                                Modifica Esercizio Selezionato
                             </Button>
                         </Modal.Footer>
                     </Form>

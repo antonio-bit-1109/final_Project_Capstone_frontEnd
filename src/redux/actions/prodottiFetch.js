@@ -96,6 +96,7 @@ export const CreaNuovoProdotto = (pathUrl, data, formData) => async (dispatch) =
 
                 dispatch(setProdottoAppenaCreato(prodottoCreato));
                 dispatch(GetProdotti());
+                toast.success("prodotto creato con successo", { autoClose: 1500 });
             }
         } else {
             throw new Error("Errore nel recupero dei risultati");

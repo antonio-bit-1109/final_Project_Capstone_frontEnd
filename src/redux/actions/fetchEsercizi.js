@@ -112,3 +112,42 @@ export const deleteEsercizio = (idEsercizio) => async (dispatch) => {
         console.error("Errore nel fetch:", error.message);
     }
 };
+
+export const ModificaEsercizioFetch = (idEsercizio, stateEsercizio, formData) => async (dispatch) => {
+    try {
+        const response = await fetchWithAuth(LocalHostPath + `/Esercizi/modificaEsercizio/${idEsercizio}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(stateEsercizio),
+        });
+
+        if (response.status === 500) {
+            throw new Error("Huston abbiamo un problema", response.status);
+        }
+
+        if (response.ok) {
+            const idEsercizioModificato = await response.json();
+            console.log(idEsercizioModificato);
+
+            const modificaImmagine = await fetchWithAuth(
+                LocalHostPath + `/Esercizi/modificaImmagine/${idEsercizioModificato}`,
+                {
+                    method: "POST",
+                    body: formData,
+                }
+            );
+
+            if (modificaImmagine.status === 500) {
+                throw new Error("esercizio non trovato nel db.");
+            }
+
+            const esitoPositivo = await modificaImmagine.json();
+            console.log(esitoPositivo.message);
+            dispatch(GetAllEsercizi());
+        }
+    } catch (error) {
+        console.error(error);
+    }
+};
