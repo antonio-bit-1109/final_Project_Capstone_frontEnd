@@ -16,7 +16,7 @@ export const AbbonamentoBonus = () => async (dispatch) => {
         const data = await response.json();
 
         if (data.message) {
-            toast.warning(data.message, { autoClose: 2000 });
+            toast.warning(data.message, { autoClose: 3000 });
             setTimeout(() => {
                 dispatch(getDettagliUtente());
                 dispatch(setModalTreasure_False());

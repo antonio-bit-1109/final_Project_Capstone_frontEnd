@@ -215,7 +215,7 @@ body {
 }
 
 .customProp {
-    background-color: rgba(37, 36, 36, 0.842);
+    background-color: rgba(37, 36, 36, 0.973);
     z-index: 999;
 }
 
@@ -360,7 +360,7 @@ body {
 }
 
 .size {
-    font-size: 2em;
+    font-size: 0.8em;
 }
 
 .puff-in {
@@ -409,4 +409,12 @@ body {
     90% {
         transform: rotate(2deg);
     }
+}
+
+.big {
+    font-size: 2.5em;
+}
+
+.lineHeigth {
+    line-height: 8rem;
 }

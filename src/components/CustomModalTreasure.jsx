@@ -20,12 +20,14 @@ const CustomModalTreasure = () => {
             >
                 <div>
                     <h2
-                        className={`text-light text-center fw-bold display-1 ${
+                        className={`text-light lineHeigth text-center fw-bold display-1 ${
                             showModalTreasure && "customModalAnimation"
                         }`}
                     >
-                        hai trovato un tesoro! <br /> Hai vinto 5 giorni di abbonamento{" "}
-                        <span className="size puff-in">gratis!</span>
+                        Hai trovato un <br /> <span className="text-warning big">TESORO!</span> <br />{" "}
+                        <span className="size puff-in">
+                            Hai vinto 5 giorni di abbonamento <span className="text-warning">GRATIS</span> !{" "}
+                        </span>
                     </h2>
                 </div>
 
