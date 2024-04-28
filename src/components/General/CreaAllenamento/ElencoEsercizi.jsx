@@ -1,34 +1,34 @@
 /* eslint-disable react/prop-types */
-import { Button, Card, Col, Form, Modal } from "react-bootstrap";
+import { Button, Card, Col, Modal } from "react-bootstrap";
 import { LocalHostPath } from "../../../functions/localHostPath";
 import { useDispatch, useSelector } from "react-redux";
 import { PushInArrayAllenamento } from "../../../redux/reducers/allenamentiReducer";
-import { useEffect, useState } from "react";
-import { PencilSquare, Check } from "react-bootstrap-icons";
-import { ModificaSerieEsercizio } from "../../../redux/actions/fetchEsercizi";
+import { useState } from "react";
+// import { PencilSquare, Check } from "react-bootstrap-icons";
+// import { ModificaSerieEsercizio } from "../../../redux/actions/fetchEsercizi";
 
 const ElencoEsercizi = ({ handleClose }) => {
     const dispatch = useDispatch();
     const [immagineEsercizio, setImmagineEsercizio] = useState("");
     const [showImage, setShowImage] = useState(false);
     const { listaEsercizi } = useSelector((store) => store.esercizi);
-    const { TuttiDettagliUtenteLoggato } = useSelector((store) => store.utenti);
-    const [showInput, setShowInput] = useState(new Array(listaEsercizi.length).fill(false));
-    const [serie, setSerie] = useState(null);
+    // const { TuttiDettagliUtenteLoggato } = useSelector((store) => store.utenti);
+    // const [showInput, setShowInput] = useState(new Array(listaEsercizi.length).fill(false));
+    // const [serie, setSerie] = useState(null);
 
     const handleCloseImage = () => setShowImage(false);
     const handleShowImage = () => setShowImage(true);
 
-    useEffect(() => {
-        setShowInput(new Array(listaEsercizi.length).fill(false));
-    }, [listaEsercizi]);
+    // useEffect(() => {
+    //     setShowInput(new Array(listaEsercizi.length).fill(false));
+    // }, [listaEsercizi]);
 
-    const changeSerieEsercizio = (event, idEsercizio) => {
-        event.preventDefault();
-        console.log(idEsercizio);
+    // const changeSerieEsercizio = (event, idEsercizio) => {
+    //     event.preventDefault();
+    //     console.log(idEsercizio);
 
-        dispatch(ModificaSerieEsercizio(serie, idEsercizio));
-    };
+    //     dispatch(ModificaSerieEsercizio(serie, idEsercizio));
+    // };
 
     return (
         <>
@@ -66,62 +66,7 @@ const ElencoEsercizi = ({ handleClose }) => {
                                         <Card.Body className="d-flex justify-content-center align-items-center">
                                             {" "}
                                             <span className="fw-semibold fs-4">Serie:</span>
-                                            {TuttiDettagliUtenteLoggato &&
-                                            TuttiDettagliUtenteLoggato.ruolo === "admin" ? (
-                                                !showInput[index] ? (
-                                                    <div className="d-inline-block position-relative">
-                                                        <button
-                                                            onClick={() => {
-                                                                // setShowInput(!showInput[index]);
-                                                                setShowInput((prevState) => {
-                                                                    const newState = [...prevState];
-                                                                    newState[index] = !newState[index];
-                                                                    return newState;
-                                                                });
-                                                            }}
-                                                            className=" buttonStyle1_position"
-                                                        >
-                                                            <PencilSquare />
-                                                        </button>
-                                                        <span className="fw-semibold fs-3 ms-2">{esercizio.serie}</span>
-                                                    </div>
-                                                ) : (
-                                                    <Form
-                                                        onSubmit={() =>
-                                                            changeSerieEsercizio(event, esercizio.idEsercizio)
-                                                        }
-                                                        className="position-relative"
-                                                    >
-                                                        <Form.Control
-                                                            className="w-25"
-                                                            type="number"
-                                                            id="serie"
-                                                            aria-describedby="numeroserie"
-                                                            value={serie}
-                                                            onChange={(e) => setSerie(e.target.value)}
-                                                            min="1"
-                                                        />
-                                                        <button
-                                                            onClick={() => {
-                                                                // setShowInput(!showInput[index]);
-                                                                setShowInput((prevState) => {
-                                                                    const newState = [...prevState];
-                                                                    newState[index] = !newState[index];
-                                                                    return newState;
-                                                                });
-                                                            }}
-                                                            className=" buttonStyle2_position"
-                                                        >
-                                                            <PencilSquare />
-                                                        </button>
-                                                        <button type="submit" className="buttonStyle3_position">
-                                                            <Check className="text-success" size={36} />
-                                                        </button>
-                                                    </Form>
-                                                )
-                                            ) : (
-                                                <span className="fw-semibold fs-3 ms-2">{esercizio.serie}</span>
-                                            )}
+                                            <span className="fw-semibold fs-3 ms-2">{esercizio.serie}</span>
                                         </Card.Body>
                                         <Card.Body className="d-flex justify-content-center align-items-center">
                                             {" "}
