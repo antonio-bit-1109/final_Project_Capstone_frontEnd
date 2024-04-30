@@ -11,6 +11,7 @@ import { GetAllEsercizi } from "../../redux/actions/fetchEsercizi";
 import ModaleCreazioneNuovoEsercizio from "./ModaleCreazioneNuovoEsercizio";
 import ModaleDeleteEsercizio from "./ModaleDeleteEsercizio";
 import ModaleModificaEsercizio from "./ModaleModificaEsercizio";
+import { getUtenti } from "../../redux/actions/fetchUtenti";
 
 const BackOffice = () => {
     const dispatch = useDispatch();
@@ -18,11 +19,15 @@ const BackOffice = () => {
     const { listaProdotti } = useSelector((store) => store.prodotti);
     const { TuttiDettagliUtenteLoggato } = useSelector((store) => store.utenti);
     const { listaTuttiEsercizi } = useSelector((store) => store.esercizi);
+    const { TuttiUtenti } = useSelector((store) => store.utenti);
     const [showModalDelete, setShowModalDelete] = useState(false);
     const [idProdotto, setIdProdotto] = useState(null);
     const [show, setShow] = useState(false);
+
     const [showDivProdotti, setShowDivProdotti] = useState(true);
     const [showDivEsercizi, setShowDivEsercizi] = useState(false);
+    const [showDivUtenti, setShowDivUtenti] = useState(false);
+
     const [showModalEditProdotto, setShowModalEditProdotto] = useState(false);
     const [showCreateEsercizio, setShowCreateEsercizio] = useState(false);
     const [showModaldeleteEsercizio, setShowModaldeleteEsercizio] = useState(false);
@@ -49,6 +54,7 @@ const BackOffice = () => {
 
     useEffect(() => {
         dispatch(GetProdotti());
+        dispatch(getUtenti());
     }, [dispatch]);
 
     const handleShow = () => setShow(true);
@@ -113,6 +119,24 @@ const BackOffice = () => {
                                         </Button>
                                     </div>
                                 </Col>
+                            )}{" "}
+                            {showDivUtenti && (
+                                <Col xs="6" sm="5" md="2">
+                                    <div className="d-flex flex-column align-items-center my-3">
+                                        <Button
+                                            // onClick={handleShowCreateEsercizio}
+                                            variant="transparent"
+                                            className=" text-light d-flex flex-column align-items-center"
+                                        >
+                                            <PlusCircleFill
+                                                color="white"
+                                                style={{ Height: "70px", Width: "70px" }}
+                                                className="display-4"
+                                            />{" "}
+                                            <p className="mt-1">Inserisci Nuovo Utente </p>
+                                        </Button>
+                                    </div>
+                                </Col>
                             )}
                         </>
                     ) : null}
@@ -124,6 +148,7 @@ const BackOffice = () => {
                                 onClick={() => {
                                     setShowDivEsercizi(false);
                                     setShowDivProdotti(true);
+                                    setShowDivUtenti(false);
                                 }}
                                 variant="light"
                                 className="rounded-4 text-warning border-warning fw-bold"
@@ -135,6 +160,8 @@ const BackOffice = () => {
                                 onClick={() => {
                                     setShowDivEsercizi(true);
                                     setShowDivProdotti(false);
+                                    setShowDivUtenti(false);
+
                                     dispatch(GetAllEsercizi());
                                 }}
                                 variant="warning "
@@ -142,6 +169,18 @@ const BackOffice = () => {
                             >
                                 {" "}
                                 Esercizi{" "}
+                            </Button>
+                            <Button
+                                onClick={() => {
+                                    setShowDivEsercizi(false);
+                                    setShowDivProdotti(false);
+                                    setShowDivUtenti(true);
+                                }}
+                                variant="light"
+                                className="rounded-4 text-warning border-warning fw-bold"
+                            >
+                                {" "}
+                                Utenti
                             </Button>
                         </div>
                     </Col>
@@ -302,6 +341,48 @@ const BackOffice = () => {
                                                 </Card.Text>
                                             </div>
                                         </div>
+                                    </Card>
+                                </Col>
+                            ))}
+                    </div>
+
+                    {/* DIV UTENTI */}
+                    <div className={`${showDivUtenti ? "d-block" : "d-none"}`}>
+                        {TuttiUtenti &&
+                            TuttiUtenti.map((utente, i) => (
+                                <Col xs="11" sm="10" md="8" lg="6" xl="4" key={`mykey-${i}`}>
+                                    {" "}
+                                    <Card className="effettoVetro text-light my-3 border border-white rounded-5">
+                                        <div className="m-3 d-flex align-items-center justify-content-around">
+                                            {" "}
+                                            <img
+                                                className="immagineProfilo"
+                                                src={LocalHostPath + "/img-utenti/" + utente.immagineProfilo}
+                                            />
+                                            <Card.Title className="my-2"> Nome: {utente.nome}</Card.Title>
+                                        </div>
+
+                                        <Card.Body className="my-3">
+                                            {" "}
+                                            <div className="d-flex justify-content-around border border-1">
+                                                {" "}
+                                                <Card.Text> Cognome: {utente.cognome}</Card.Text>
+                                            </div>
+                                            <div className="d-flex justify-content-around border border-1">
+                                                {" "}
+                                                <Card.Text> password: {utente.password}</Card.Text>
+                                                <Card.Text> ruolo: {utente.ruolo}</Card.Text>
+                                            </div>
+                                            <div className="d-flex justify-content-around border border-1">
+                                                <Card.Text>peso: {utente.peso}</Card.Text>
+                                                <Card.Text> altezza: {utente.altezza}</Card.Text>
+                                            </div>
+                                            <div className="d-flex justify-content-around border border-1">
+                                                <Card.Text> email: {utente.email}</Card.Text>
+                                                <Card.Text>Kcal Bruciate: {utente.totaleKcalConsumate}</Card.Text>
+                                            </div>
+                                            {/* <Button variant="primary">Go somewhere</Button> */}
+                                        </Card.Body>
                                     </Card>
                                 </Col>
                             ))}

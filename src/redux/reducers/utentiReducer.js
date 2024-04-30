@@ -5,6 +5,7 @@ const initialState = {
     UtenteAppenaRegistrato: null,
     TuttiDettagliUtenteLoggato: null,
     GenderUtente: null,
+    TuttiUtenti: null,
 };
 
 const stateReducerSlice = createSlice({
@@ -27,6 +28,10 @@ const stateReducerSlice = createSlice({
         setGenderUtente: (state, action) => {
             state.GenderUtente = action.payload;
         },
+
+        setTuttiUtenti: (state, action) => {
+            state.TuttiUtenti = action.payload;
+        },
     },
 });
 
@@ -36,5 +41,6 @@ export const {
     setTuttiDettagliUtenteLoggato,
     svuotaTuttiDettagliUtenteLoggato,
     setGenderUtente,
+    setTuttiUtenti,
 } = stateReducerSlice.actions;
 export default stateReducerSlice.reducer;

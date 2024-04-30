@@ -2,6 +2,7 @@ import { toast } from "react-toastify";
 import {
     setGenderUtente,
     setTuttiDettagliUtenteLoggato,
+    setTuttiUtenti,
     setUtenteAppenaRegistrato,
     svuotaTuttiDettagliUtenteLoggato,
 } from "../reducers/utentiReducer";
@@ -220,5 +221,22 @@ export const CancellaAccount = (password, idutente) => async (dispatch) => {
     } catch (error) {
         console.error("Errore nel fetch:", error.message);
         toast.error(error.message);
+    }
+};
+
+export const getUtenti = () => async (dispatch) => {
+    try {
+        const response = await fetchWithAuth(LocalHostPath + "/Utente/tuttiUtenti", {
+            method: "GET",
+        });
+
+        if (!response.ok) {
+            throw new Error("si è verificato un errore.");
+        }
+
+        const data = await response.json();
+        dispatch(setTuttiUtenti(data));
+    } catch (err) {
+        console.error(err);
     }
 };
