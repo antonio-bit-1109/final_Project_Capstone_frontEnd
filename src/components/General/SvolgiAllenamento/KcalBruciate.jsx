@@ -47,7 +47,7 @@ const KcalBruciate = ({ timerIsRunning, kcalBurnSec, setKcalBurnSec }) => {
 
                     <div className="display-3 rounded rounded-5 my-4 p-3 shadow-lg bg-button">
                         <span className="text-light d-flex justify-content-center">
-                            Kcal Bruciate/sec :{" "}
+                            Kcal Bruciate/s :{" "}
                             <span className="fw-bold ms-3 text-warning">{parseFloat(kcalBurnSec.toFixed(2))}</span>
                         </span>
                     </div>
