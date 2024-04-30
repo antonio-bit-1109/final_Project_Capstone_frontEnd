@@ -187,11 +187,14 @@ const BackOffice = () => {
                 </Row>
                 <Row>
                     {/* DIV PRODOTTI */}
-                    <div className={`${showDivProdotti ? "d-block" : "d-none"}`}>
+                    <div className={`${showDivProdotti ? "d-flex flex-wrap" : "d-none"}`}>
                         {listaProdotti &&
                             listaProdotti.map((prodotto, index) => (
                                 <Col key={index} xs="12" md="9" lg="8" xl="6">
-                                    <Card className="rounded rounded-5 my-2 d-flex align-items-center flex-row shadow-lg effettoVetro text-light border border-2 p-5">
+                                    <Card
+                                        style={{ height: "90%" }}
+                                        className="rounded rounded-5 my-2 d-flex align-items-center flex-row shadow-lg effettoVetro text-light border border-2 p-5 mx-1"
+                                    >
                                         <div>
                                             {" "}
                                             <Button
@@ -256,11 +259,14 @@ const BackOffice = () => {
                     </div>
 
                     {/* DIV ESERCIZI */}
-                    <div id="style-1" className={`${showDivEsercizi ? "d-block scrollBar" : "d-none"}`}>
+                    <div id="style-1" className={`${showDivEsercizi ? "d-flex flex-wrap " : "d-none"}`}>
                         {listaTuttiEsercizi &&
                             listaTuttiEsercizi.map((esercizio, index) => (
                                 <Col key={index} xs="12" md="9" lg="8" xl="6">
-                                    <Card className="rounded rounded-5 my-4 shadow-lg effettoVetro text-light border border-2 p-4">
+                                    <Card
+                                        style={{ height: "90%" }}
+                                        className="rounded rounded-5 my-4 shadow-lg effettoVetro text-light border border-2 p-4 mx-1"
+                                    >
                                         <div className="d-flex justify-content-end">
                                             <Button
                                                 // onClick={() => dispatch(deleteEsercizio(esercizio.idEsercizio))}
@@ -347,12 +353,15 @@ const BackOffice = () => {
                     </div>
 
                     {/* DIV UTENTI */}
-                    <div className={`${showDivUtenti ? "d-block" : "d-none"}`}>
+                    <div className={`${showDivUtenti ? "d-flex flex-wrap" : "d-none"}`}>
                         {TuttiUtenti &&
                             TuttiUtenti.map((utente, i) => (
                                 <Col xs="11" sm="10" md="8" lg="6" xl="4" key={`mykey-${i}`}>
                                     {" "}
-                                    <Card className="effettoVetro text-light my-3 border border-white rounded-5">
+                                    <Card
+                                        style={{ height: "90%" }}
+                                        className="effettoVetro text-light my-3 border border-white rounded-5 mx-1"
+                                    >
                                         <div className="m-3 d-flex align-items-center justify-content-around">
                                             {" "}
                                             <img
@@ -364,20 +373,20 @@ const BackOffice = () => {
 
                                         <Card.Body className="my-3">
                                             {" "}
-                                            <div className="d-flex justify-content-around border border-1">
+                                            <div className="d-flex justify-content-around align-items-center border border-1">
                                                 {" "}
                                                 <Card.Text> Cognome: {utente.cognome}</Card.Text>
                                             </div>
-                                            <div className="d-flex justify-content-around border border-1">
+                                            <div className="d-flex justify-content-around align-items-center border border-1">
                                                 {" "}
                                                 <Card.Text> password: {utente.password}</Card.Text>
                                                 <Card.Text> ruolo: {utente.ruolo}</Card.Text>
                                             </div>
-                                            <div className="d-flex justify-content-around border border-1">
+                                            <div className="d-flex justify-content-around align-items-center border border-1">
                                                 <Card.Text>peso: {utente.peso}</Card.Text>
                                                 <Card.Text> altezza: {utente.altezza}</Card.Text>
                                             </div>
-                                            <div className="d-flex justify-content-around border border-1">
+                                            <div className="d-flex justify-content-around align-items-center border border-1">
                                                 <Card.Text> email: {utente.email}</Card.Text>
                                                 <Card.Text>Kcal Bruciate: {utente.totaleKcalConsumate}</Card.Text>
                                             </div>
