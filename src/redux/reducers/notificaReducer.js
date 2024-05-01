@@ -6,7 +6,7 @@ const initialState = {
 };
 
 const stateReducerSlice = createSlice({
-    name: "stateReducerSlice",
+    name: "notifica",
     initialState,
     reducers: {
         AddOneCountModale: (state) => {

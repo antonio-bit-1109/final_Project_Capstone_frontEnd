@@ -10,6 +10,7 @@ import allenamentiCompletatiReducer from "../reducers/allenamentiCompletatiReduc
 import utentiReducer from "../reducers/utentiReducer";
 import notificaReducer from "../reducers/notificaReducer";
 import bonusReducer from "../reducers/bonusReducer";
+import backOfficeReducer from "../reducers/backOfficeReducer";
 
 const persistConfig = {
     key: "root",
@@ -48,6 +49,7 @@ const rootReducer = combineReducers({
     allenamentiCompletati: allenamentiCompletatiReducer,
     notifica: notificaReducer,
     bonus: bonusReducer,
+    backOffice: backOfficeReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

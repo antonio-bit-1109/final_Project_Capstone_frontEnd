@@ -6,10 +6,13 @@ const initialState = {
     TuttiDettagliUtenteLoggato: null,
     GenderUtente: null,
     TuttiUtenti: null,
+    showDivUtenti: false,
+    showDivEsercizi: false,
+    showDivProdotti: true,
 };
 
 const stateReducerSlice = createSlice({
-    name: "stateReducerSlice",
+    name: "utenti",
     initialState,
     reducers: {
         // Azione definita nello slice

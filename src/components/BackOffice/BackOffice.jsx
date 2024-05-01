@@ -13,6 +13,15 @@ import ModaleDeleteEsercizio from "./ModaleDeleteEsercizio";
 import ModaleModificaEsercizio from "./ModaleModificaEsercizio";
 import { getUtenti } from "../../redux/actions/fetchUtenti";
 import ModaleCancellaUtente from "./ModaleCancellaUtente";
+import {
+    ShowDivEsercizi_false,
+    ShowDivEsercizi_true,
+    ShowDivProdotti_false,
+    ShowDivProdotti_true,
+    ShowDivUtenti_false,
+    ShowDivUtenti_true,
+} from "../../redux/reducers/backOfficeReducer";
+
 // import ModaleCancellaUtente from "./ModaleCancellaUtente";
 
 const BackOffice = () => {
@@ -27,9 +36,8 @@ const BackOffice = () => {
     const [idUtente, setIdUtente] = useState(null);
     const [show, setShow] = useState(false);
 
-    const [showDivProdotti, setShowDivProdotti] = useState(true);
-    const [showDivEsercizi, setShowDivEsercizi] = useState(false);
-    const [showDivUtenti, setShowDivUtenti] = useState(false);
+    const { showDivUtenti, showDivEsercizi, showDivProdotti } = useSelector((store) => store.backOffice);
+    console.log(showDivUtenti, showDivEsercizi, showDivProdotti);
 
     const [showModalEditProdotto, setShowModalEditProdotto] = useState(false);
     const [showCreateEsercizio, setShowCreateEsercizio] = useState(false);
@@ -59,6 +67,7 @@ const BackOffice = () => {
     useEffect(() => {
         dispatch(GetProdotti());
         dispatch(getUtenti());
+        dispatch(GetAllEsercizi());
     }, [dispatch]);
 
     const handleShow = () => setShow(true);
@@ -152,9 +161,9 @@ const BackOffice = () => {
                         <div className="d-flex gap-3 mb-3">
                             <Button
                                 onClick={() => {
-                                    setShowDivEsercizi(false);
-                                    setShowDivProdotti(true);
-                                    setShowDivUtenti(false);
+                                    dispatch(ShowDivProdotti_true());
+                                    dispatch(ShowDivEsercizi_false());
+                                    dispatch(ShowDivUtenti_false());
                                 }}
                                 variant="light"
                                 className="rounded-4 text-warning border-warning fw-bold"
@@ -164,11 +173,9 @@ const BackOffice = () => {
                             </Button>
                             <Button
                                 onClick={() => {
-                                    setShowDivEsercizi(true);
-                                    setShowDivProdotti(false);
-                                    setShowDivUtenti(false);
-
-                                    dispatch(GetAllEsercizi());
+                                    dispatch(ShowDivProdotti_false());
+                                    dispatch(ShowDivEsercizi_true());
+                                    dispatch(ShowDivUtenti_false());
                                 }}
                                 variant="warning "
                                 className="rounded-4 text-light fw-bold"
@@ -178,9 +185,9 @@ const BackOffice = () => {
                             </Button>
                             <Button
                                 onClick={() => {
-                                    setShowDivEsercizi(false);
-                                    setShowDivProdotti(false);
-                                    setShowDivUtenti(true);
+                                    dispatch(ShowDivProdotti_false());
+                                    dispatch(ShowDivEsercizi_false());
+                                    dispatch(ShowDivUtenti_true());
                                 }}
                                 variant="light"
                                 className="rounded-4 text-warning border-warning fw-bold"

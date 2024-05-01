@@ -6,7 +6,7 @@ const initialState = {
 };
 
 const stateReducerSlice = createSlice({
-    name: "stateReducerSlice",
+    name: "bonus",
     initialState,
     reducers: {
         setModalTreasure_True: (state) => {

@@ -12,7 +12,6 @@ import { setDatiutenteLoggato, setTokenUtente } from "../reducers/tokenReducer";
 import { SvuotaArrayAllenamento, setnomeAllenamentoCreato } from "../reducers/allenamentiReducer";
 import { rimuoviTuttoDalCArrello, setCarrelloOttimizzato } from "../reducers/prodottiReducer";
 import { rimuoviTuttiAllenamentiCompletatiUtente } from "../reducers/allenamentiCompletatiReducer";
-import { retry } from "@reduxjs/toolkit/query";
 
 export const PostUtenteRegistrato = (urlPath, objPost) => async (dispatch) => {
     try {

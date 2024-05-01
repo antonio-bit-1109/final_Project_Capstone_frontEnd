@@ -10,7 +10,7 @@ const initialState = {
 };
 
 const stateReducerSlice = createSlice({
-    name: "stateReducerSlice",
+    name: "prodotti",
     initialState,
     reducers: {
         // Azione definita nello slice

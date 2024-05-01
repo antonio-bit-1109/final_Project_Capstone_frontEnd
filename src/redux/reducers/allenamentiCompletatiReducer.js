@@ -7,7 +7,7 @@ const initialState = {
 };
 
 const stateReducerSlice = createSlice({
-    name: "stateReducerSlice",
+    name: "allenamentiCompletati",
     initialState,
     reducers: {
         // Azione definita nello slice
