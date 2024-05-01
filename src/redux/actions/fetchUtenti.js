@@ -12,6 +12,7 @@ import { setDatiutenteLoggato, setTokenUtente } from "../reducers/tokenReducer";
 import { SvuotaArrayAllenamento, setnomeAllenamentoCreato } from "../reducers/allenamentiReducer";
 import { rimuoviTuttoDalCArrello, setCarrelloOttimizzato } from "../reducers/prodottiReducer";
 import { rimuoviTuttiAllenamentiCompletatiUtente } from "../reducers/allenamentiCompletatiReducer";
+import { retry } from "@reduxjs/toolkit/query";
 
 export const PostUtenteRegistrato = (urlPath, objPost) => async (dispatch) => {
     try {
@@ -226,7 +227,7 @@ export const CancellaAccount = (password, idutente) => async (dispatch) => {
 
 export const getUtenti = () => async (dispatch) => {
     try {
-        const response = await fetchWithAuth(LocalHostPath + "/Utente/tuttiUtenti", {
+        const response = await fetchWithAuth(LocalHostPath + "/Utente/GetTuttiUtenti", {
             method: "GET",
         });
 
@@ -236,6 +237,30 @@ export const getUtenti = () => async (dispatch) => {
 
         const data = await response.json();
         dispatch(setTuttiUtenti(data));
+    } catch (err) {
+        console.error(err);
+    }
+};
+
+export const deleteUtente_as_admin = (idUtenteToDelete) => async (dispatch) => {
+    try {
+        const response = await fetchWithAuth(LocalHostPath + `/Utente/deleteAsAdmin/${idUtenteToDelete}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+
+        if (response.ok) {
+            console.log("utente cancellato");
+            toast.success("utente cancellato con successo.");
+            dispatch(getUtenti());
+            return;
+        }
+
+        if (!response.ok) {
+            throw new Error("Errore durante la fetch.");
+        }
     } catch (err) {
         console.error(err);
     }

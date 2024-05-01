@@ -12,6 +12,8 @@ import ModaleCreazioneNuovoEsercizio from "./ModaleCreazioneNuovoEsercizio";
 import ModaleDeleteEsercizio from "./ModaleDeleteEsercizio";
 import ModaleModificaEsercizio from "./ModaleModificaEsercizio";
 import { getUtenti } from "../../redux/actions/fetchUtenti";
+import ModaleCancellaUtente from "./ModaleCancellaUtente";
+// import ModaleCancellaUtente from "./ModaleCancellaUtente";
 
 const BackOffice = () => {
     const dispatch = useDispatch();
@@ -22,6 +24,7 @@ const BackOffice = () => {
     const { TuttiUtenti } = useSelector((store) => store.utenti);
     const [showModalDelete, setShowModalDelete] = useState(false);
     const [idProdotto, setIdProdotto] = useState(null);
+    const [idUtente, setIdUtente] = useState(null);
     const [show, setShow] = useState(false);
 
     const [showDivProdotti, setShowDivProdotti] = useState(true);
@@ -51,6 +54,7 @@ const BackOffice = () => {
     });
 
     const [showModaleEditEsercizio, SetshowModaleEditEsercizio] = useState(false);
+    const [showModaleDeleteUtente, setShowModaleDeleteUtente] = useState(false);
 
     useEffect(() => {
         dispatch(GetProdotti());
@@ -74,6 +78,8 @@ const BackOffice = () => {
     const handleCloseMOdaleEditEsercizio = () => SetshowModaleEditEsercizio(false);
     const handleShowMOdaleEditEsercizi = () => SetshowModaleEditEsercizio(true);
 
+    const handleCloseModaleDeleteUtente = () => setShowModaleDeleteUtente(false);
+    const handleShowModaleDeleteUtente = () => setShowModaleDeleteUtente(true);
     return (
         <div className="Bg-sfondo-dark altezza-sfondo">
             <Container>
@@ -360,8 +366,24 @@ const BackOffice = () => {
                                     {" "}
                                     <Card
                                         style={{ height: "90%" }}
-                                        className="effettoVetro text-light my-3 border border-white rounded-5 mx-1"
+                                        className="effettoVetro text-light my-3 border border-white rounded-5 mx-1 position-relative"
                                     >
+                                        <div className="d-flex justify-content-end customposition3">
+                                            <Button
+                                                onClick={() => {
+                                                    handleShowModaleDeleteUtente();
+                                                    setIdUtente(utente.idUtente);
+                                                }}
+                                                className="me-2"
+                                                variant="transparent"
+                                            >
+                                                <X className="fs-1 text-danger" />
+                                            </Button>
+                                            <Button variant="transparent">
+                                                <PenFill className="fs-5 text-white" />
+                                            </Button>
+                                        </div>
+
                                         <div className="m-3 d-flex align-items-center justify-content-around">
                                             {" "}
                                             <img
@@ -390,7 +412,6 @@ const BackOffice = () => {
                                                 <Card.Text> email: {utente.email}</Card.Text>
                                                 <Card.Text>Kcal Bruciate: {utente.totaleKcalConsumate}</Card.Text>
                                             </div>
-                                            {/* <Button variant="primary">Go somewhere</Button> */}
                                         </Card.Body>
                                     </Card>
                                 </Col>
@@ -434,6 +455,12 @@ const BackOffice = () => {
                 handleCloseMOdaleEditEsercizio={handleCloseMOdaleEditEsercizio}
                 datiEsercizioMOdifica={datiEsercizioMOdifica}
                 setDatiEsercizioModifica={setDatiEsercizioModifica}
+            />
+
+            <ModaleCancellaUtente
+                showModaleDeleteUtente={showModaleDeleteUtente}
+                handleCloseModaleDeleteUtente={handleCloseModaleDeleteUtente}
+                idUtente={idUtente}
             />
         </div>
     );
