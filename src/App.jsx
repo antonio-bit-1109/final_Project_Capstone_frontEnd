@@ -21,7 +21,8 @@ import Abbonamenti from "./components/General/Utente/Abbonamenti";
 import ModificaDatiUtente from "./components/General/Home/ModificaDatiUtente";
 import StoricoAcquisti from "./components/General/Utente/StoricoAcquisti";
 import SocialMain from "./components/General/SocialMedia/SocialMain";
-import BackOffice2 from "./components/BackOffice2/BackOffice2";
+import BackOffice2 from "./components/BackOffice2/CRUDProdotti/BackOffice2";
+import BackOffice2Esercizio from "./components/BackOffice2/BackOffice2Esercizio";
 // import BackOffice from "./components/BackOffice/BackOffice";
 // import ModificaDatiUtente from "./components/General/Utente/ModificaDatiUtente";
 
@@ -174,17 +175,29 @@ function App() {
                             </>
                         }
                     />{" "}
-                    <Route
-                        path="/BackOffice"
-                        element={
-                            <>
-                                {" "}
-                                <NavbarComponent />
-                                {/* <BackOffice /> */}
-                                <BackOffice2 />
-                            </>
-                        }
-                    />
+                    <Route path="/BackOffice">
+                        <Route
+                            index
+                            element={
+                                <>
+                                    {" "}
+                                    <NavbarComponent />
+                                    {/* <BackOffice /> */}
+                                    <BackOffice2 />
+                                </>
+                            }
+                        />
+                        <Route
+                            path="Esercizio"
+                            element={
+                                <>
+                                    {" "}
+                                    <NavbarComponent />
+                                    <BackOffice2Esercizio />
+                                </>
+                            }
+                        />
+                    </Route>
                 </Routes>
 
                 {/* <NavBar />

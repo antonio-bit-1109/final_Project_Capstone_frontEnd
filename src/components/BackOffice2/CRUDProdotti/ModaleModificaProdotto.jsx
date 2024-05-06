@@ -1,8 +1,8 @@
 import { Button, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { LocalHostPath } from "../../functions/localHostPath";
-import { SalvaDatiprodotto, SetImmagineProdotto } from "../../redux/reducers/backOffice2Reducer";
-import { modificaProdotto } from "../../redux/actions/prodottiFetch";
+import { LocalHostPath } from "../../../functions/localHostPath";
+import { SalvaDatiprodotto, SetImmagineProdotto } from "../../../redux/reducers/backOffice2Reducer";
+import { modificaProdotto } from "../../../redux/actions/prodottiFetch";
 
 const ModaleModificaProdotto = () => {
     const dispatch = useDispatch();
