@@ -25,7 +25,6 @@ const ModaleModificaProdotto = () => {
     return (
         <>
             <div>
-                {" "}
                 <h3 className="text-light display-6">Modifica Prodotto Selezionato:</h3>
             </div>
             <div className="text-light">
@@ -48,7 +47,7 @@ const ModaleModificaProdotto = () => {
                                 //       nomeProdotto: e.target.value,
                                 //   })
                             }
-                            value={datiprodotto.nomeProdotto}
+                            value={datiprodotto && datiprodotto.nomeProdotto}
                         />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="prezzoprodotto">
@@ -69,7 +68,7 @@ const ModaleModificaProdotto = () => {
                                 //       nomeProdotto: e.target.value,
                                 //   })
                             }
-                            value={datiprodotto.PrezzoProdotto}
+                            value={datiprodotto && datiprodotto.PrezzoProdotto}
                         />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="descrizioneprodotto">
@@ -90,7 +89,7 @@ const ModaleModificaProdotto = () => {
                                 //       nomeProdotto: e.target.value,
                                 //   })
                             }
-                            value={datiprodotto.DescrizioneProdotto}
+                            value={datiprodotto && datiprodotto.DescrizioneProdotto}
                         />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="immagine">

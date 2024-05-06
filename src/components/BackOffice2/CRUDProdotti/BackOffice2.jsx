@@ -38,6 +38,8 @@ const BackOffice2 = () => {
                     DescrizioneProdotto: "",
                 })
             );
+
+            dispatch(SalvaDatiprodotto(null));
         };
     }, [dispatch]);
 

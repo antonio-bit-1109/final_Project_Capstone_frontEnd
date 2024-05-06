@@ -134,6 +134,10 @@ export const modificaProdotto = (idProdotto, pathUrl, datiProdotto, formData) =>
             body: JSON.stringify(datiProdotto),
         });
 
+        if (sendData.status === 400) {
+            toast.warning("clicca sulla modifica in una card per modificare", { autoClose: 1500 });
+        }
+
         const response = await sendData.json();
 
         if (response.message) {
