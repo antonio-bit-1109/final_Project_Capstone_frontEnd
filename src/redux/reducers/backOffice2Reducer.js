@@ -3,6 +3,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     idProdotto: null,
+    immagineProdotto: null,
+    datiprodotto: {
+        nomeProdotto: "",
+        PrezzoProdotto: "",
+        DescrizioneProdotto: "",
+    },
 };
 
 const stateReducerSlice = createSlice({
@@ -12,9 +18,17 @@ const stateReducerSlice = createSlice({
         salvaIdProdotto: (state, action) => {
             state.idProdotto = action.payload;
         },
+
+        SetImmagineProdotto: (state, action) => {
+            state.immagineProdotto = action.payload;
+        },
+
+        SalvaDatiprodotto: (state, action) => {
+            state.datiprodotto = action.payload;
+        },
     },
 });
 
 // Esporto solo l'azione definita nello slice
-export const { salvaIdProdotto } = stateReducerSlice.actions;
+export const { salvaIdProdotto, SetImmagineProdotto, SalvaDatiprodotto } = stateReducerSlice.actions;
 export default stateReducerSlice.reducer;

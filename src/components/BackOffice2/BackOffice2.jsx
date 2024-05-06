@@ -1,33 +1,38 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { GetProdotti, modificaProdotto } from "../../redux/actions/prodottiFetch";
+import { GetProdotti } from "../../redux/actions/prodottiFetch";
 import { getUtenti } from "../../redux/actions/fetchUtenti";
 import { GetAllEsercizi } from "../../redux/actions/fetchEsercizi";
-import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
-import { PenFill, PlusCircleFill, X } from "react-bootstrap-icons";
+import { Button, Card, Col, Container, Row } from "react-bootstrap";
+import { PenFill, X } from "react-bootstrap-icons";
 import { LocalHostPath } from "../../functions/localHostPath";
 import ModaleCreaNuovoProdottoBackOffice from "../BackOffice/ModaleCreaNuovoProdottoBackOffice";
 import ModaleEliminaProdottoBackOffice from "../BackOffice/ModaleEliminaProdottoBackOffice";
-import { salvaIdProdotto } from "../../redux/reducers/backOffice2Reducer";
+import { SalvaDatiprodotto, SetImmagineProdotto, salvaIdProdotto } from "../../redux/reducers/backOffice2Reducer";
+import AggiungiProdotto from "./AggiungiProdotto";
+import ModaleModificaProdotto from "./ModaleModificaProdotto";
 
 const BackOffice2 = () => {
     const dispatch = useDispatch();
 
     const { listaProdotti } = useSelector((store) => store.prodotti);
-    const { TuttiUtenti } = useSelector((store) => store.utenti);
-    const { listaTuttiEsercizi } = useSelector((store) => store.esercizi);
-    const { idProdotto } = useSelector((store) => store.BackOffice2);
+    // const { TuttiUtenti } = useSelector((store) => store.utenti);
+    // const { listaTuttiEsercizi } = useSelector((store) => store.esercizi);
+    // const { idProdotto } = useSelector((store) => store.BackOffice2);
+    // const { datiprodotto } = useSelector((store) => store.BackOffice2);
+
+    // const { immagineProdotto } = useSelector((store) => store.BackOffice2);
 
     const [show, setShow] = useState(false);
     // const [idProdotto, setIdProdotto] = useState(null);
     const [showModalDelete, setShowModalDelete] = useState(false);
-    const [immagineProdotto, setImmagineProdotto] = useState(null);
+    // const [immagineProdotto, setImmagineProdotto] = useState(null);
 
-    const [datiprodotto, setDatiprodotto] = useState({
-        nomeProdotto: "",
-        PrezzoProdotto: "",
-        DescrizioneProdotto: "",
-    });
+    // const [datiprodotto, setDatiprodotto] = useState({
+    //     nomeProdotto: "",
+    //     PrezzoProdotto: "",
+    //     DescrizioneProdotto: "",
+    // });
 
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
@@ -42,22 +47,13 @@ const BackOffice2 = () => {
     }, [dispatch]);
 
     const handleEdit = (prodotto) => {
-        setDatiprodotto({
-            nomeProdotto: prodotto.nomeProdotto,
-            PrezzoProdotto: prodotto.prezzoProdotto,
-            DescrizioneProdotto: prodotto.descrizione,
-        });
-    };
-
-    const HandleSubmittingModificaProdotto = (e) => {
-        e.preventDefault();
-        // handleCloseModalEditprodotto();
-
-        const formData2 = new FormData();
-        formData2.append("immagineProdotto", immagineProdotto);
-
-        // console.log(DatiProdotto);
-        dispatch(modificaProdotto(idProdotto, LocalHostPath, datiprodotto, formData2));
+        dispatch(
+            SalvaDatiprodotto({
+                nomeProdotto: prodotto.nomeProdotto,
+                PrezzoProdotto: prodotto.prezzoProdotto,
+                DescrizioneProdotto: prodotto.descrizione,
+            })
+        );
     };
 
     return (
@@ -142,7 +138,8 @@ const BackOffice2 = () => {
                                                         handleEdit(prodotto);
                                                         // setIdProdotto(prodotto.idProdotto);
                                                         dispatch(salvaIdProdotto(prodotto.idProdotto));
-                                                        setImmagineProdotto(null);
+                                                        // setImmagineProdotto(null);
+                                                        dispatch(SetImmagineProdotto(null));
                                                     }}
                                                     className="custom-position2"
                                                     variant="transparent"
@@ -189,84 +186,8 @@ const BackOffice2 = () => {
                     <Col>
                         {/* DIV AGGIUNGI PRODOTTO */}
                         <div className="CustomSticky_Position">
-                            <div className="d-flex flex-column align-items-center my-3">
-                                <Button onClick={handleShow} variant="transparent">
-                                    <PlusCircleFill
-                                        color="white"
-                                        style={{ Height: "70px", Width: "70px" }}
-                                        className="display-4"
-                                    />{" "}
-                                    <p className="mt-2 text-light">Aggiungi Prodotto</p>
-                                </Button>
-                            </div>
-                            <div>
-                                {" "}
-                                <h3 className="text-light display-6">Modifica Prodotto Selezionato:</h3>
-                            </div>
-                            <div className="text-light">
-                                <Form onSubmit={HandleSubmittingModificaProdotto}>
-                                    <Form.Group className="mb-3" controlId="nomeprodotto">
-                                        <Form.Label>Nome</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="clicca sul tasto di modifica nella card"
-                                            onChange={(e) =>
-                                                setDatiprodotto({
-                                                    ...datiprodotto,
-                                                    nomeProdotto: e.target.value,
-                                                })
-                                            }
-                                            value={datiprodotto.nomeProdotto}
-                                        />
-                                    </Form.Group>
-                                    <Form.Group className="mb-3" controlId="prezzoprodotto">
-                                        <Form.Label>Prezzo</Form.Label>
-                                        <Form.Control
-                                            type="number"
-                                            placeholder="clicca sul tasto di modifica nella card"
-                                            onChange={(e) =>
-                                                setDatiprodotto({
-                                                    ...datiprodotto,
-                                                    PrezzoProdotto: e.target.value,
-                                                })
-                                            }
-                                            value={datiprodotto.PrezzoProdotto}
-                                        />
-                                    </Form.Group>
-                                    <Form.Group className="mb-3" controlId="descrizioneprodotto">
-                                        <Form.Label>Descrizione</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="clicca sul tasto di modifica nella card"
-                                            onChange={(e) =>
-                                                setDatiprodotto({
-                                                    ...datiprodotto,
-                                                    DescrizioneProdotto: e.target.value,
-                                                })
-                                            }
-                                            value={datiprodotto.DescrizioneProdotto}
-                                        />
-                                    </Form.Group>
-                                    <Form.Group className="mb-3" controlId="immagine">
-                                        <Form.Label>Immagine</Form.Label>
-                                        <Form.Control
-                                            type="file"
-                                            accept="image/*"
-                                            placeholder="clicca sul tasto di modifica nella card"
-                                            onChange={(e) => setImmagineProdotto(e.target.files[0])}
-                                        />
-                                    </Form.Group>
-                                    <div>
-                                        <Button
-                                            type="submit"
-                                            variant="warning "
-                                            className="rounded-4 text-light fw-bold"
-                                        >
-                                            Modifica Prodotto
-                                        </Button>
-                                    </div>
-                                </Form>
-                            </div>
+                            <AggiungiProdotto handleShow={handleShow} />
+                            <ModaleModificaProdotto />
                         </div>
                     </Col>
                 </Row>
