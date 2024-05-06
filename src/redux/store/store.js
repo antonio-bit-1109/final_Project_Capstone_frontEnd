@@ -11,6 +11,7 @@ import utentiReducer from "../reducers/utentiReducer";
 import notificaReducer from "../reducers/notificaReducer";
 import bonusReducer from "../reducers/bonusReducer";
 import backOfficeReducer from "../reducers/backOfficeReducer";
+import backOffice2Reducer from "../reducers/backOffice2Reducer";
 
 const persistConfig = {
     key: "root",
@@ -50,6 +51,7 @@ const rootReducer = combineReducers({
     notifica: notificaReducer,
     bonus: bonusReducer,
     backOffice: backOfficeReducer,
+    BackOffice2: backOffice2Reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

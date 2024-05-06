@@ -21,7 +21,8 @@ import Abbonamenti from "./components/General/Utente/Abbonamenti";
 import ModificaDatiUtente from "./components/General/Home/ModificaDatiUtente";
 import StoricoAcquisti from "./components/General/Utente/StoricoAcquisti";
 import SocialMain from "./components/General/SocialMedia/SocialMain";
-import BackOffice from "./components/BackOffice/BackOffice";
+import BackOffice2 from "./components/BackOffice2/BackOffice2";
+// import BackOffice from "./components/BackOffice/BackOffice";
 // import ModificaDatiUtente from "./components/General/Utente/ModificaDatiUtente";
 
 function App() {
@@ -179,7 +180,8 @@ function App() {
                             <>
                                 {" "}
                                 <NavbarComponent />
-                                <BackOffice />
+                                {/* <BackOffice /> */}
+                                <BackOffice2 />
                             </>
                         }
                     />

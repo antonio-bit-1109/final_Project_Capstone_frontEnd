@@ -1,11 +1,12 @@
 import { Button, Modal } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { cancellaProdotto } from "../../redux/actions/prodottiFetch";
 import { LocalHostPath } from "../../functions/localHostPath";
 
 // eslint-disable-next-line react/prop-types
-const ModaleEliminaProdottoBackOffice = ({ idProdotto, handleCloseModalDelete, showModalDelete }) => {
+const ModaleEliminaProdottoBackOffice = ({ handleCloseModalDelete, showModalDelete }) => {
     const dispatch = useDispatch();
+    const { idProdotto } = useSelector((store) => store.BackOffice2);
 
     const eraseProduct = (id) => {
         dispatch(cancellaProdotto(LocalHostPath, id));
