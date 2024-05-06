@@ -134,12 +134,15 @@ const BackOffice2 = () => {
                         {/* in  base al valore dello stato display renderizzo condizionalmente il div sottostante, e si vedrà solo con width di window > 992px */}
                         <div className="CustomSticky_Position">
                             <AggiungiProdotto handleShow={handleShow} display={display} />
-                            <div>
-                                <h3 className="text-light display-6">
-                                    <p className="m-0">Modifica Prodotto Selezionato:</p>
-                                </h3>
-                            </div>
-                            <FormModificaProdotto display={display} />
+                            {WidthWindows > 992 && (
+                                <div>
+                                    <h3 className="text-light display-6">
+                                        <p className="m-0">Modifica Prodotto Selezionato:</p>
+                                    </h3>
+                                </div>
+                            )}
+
+                            <FormModificaProdotto display={display} textColor={"text-light"} />
                         </div>
                     </Col>
                 </Row>

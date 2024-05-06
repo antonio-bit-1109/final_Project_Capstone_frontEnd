@@ -4,8 +4,9 @@ import { LocalHostPath } from "../../../functions/localHostPath";
 import { SalvaDatiprodotto, SetImmagineProdotto, isModalVisible } from "../../../redux/reducers/backOffice2Reducer";
 import { modificaProdotto } from "../../../redux/actions/prodottiFetch";
 import PropTypes from "prop-types";
+import { propTypes } from "react-bootstrap/esm/Image";
 
-const FormModificaProdotto = ({ display }) => {
+const FormModificaProdotto = ({ display, textColor }) => {
     const dispatch = useDispatch();
     console.log(display);
 
@@ -26,7 +27,7 @@ const FormModificaProdotto = ({ display }) => {
 
     return (
         <div className={`${display}`}>
-            <div className="text-light">
+            <div className={`${textColor}`}>
                 <Form onSubmit={HandleSubmittingModificaProdotto}>
                     <Form.Group className="mb-3" controlId="nomeprodotto">
                         <Form.Label>Nome</Form.Label>
@@ -120,4 +121,5 @@ export default FormModificaProdotto;
 
 FormModificaProdotto.propTypes = {
     display: PropTypes.string,
+    textColor: propTypes.string,
 };

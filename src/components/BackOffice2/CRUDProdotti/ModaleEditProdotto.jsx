@@ -14,7 +14,7 @@ const ModaleEditProdotto = () => {
                     <h3 className="text-dark display-6">
                         <p className="m-0">Modifica Prodotto Selezionato:</p>
                     </h3>
-                    <FormModificaProdotto />
+                    <FormModificaProdotto textColor={"text-dark"} />
                     <Button
                         onClick={() => dispatch(isModalVisible(false))}
                         variant="light"
