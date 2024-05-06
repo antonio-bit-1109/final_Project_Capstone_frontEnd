@@ -2,12 +2,18 @@ import { Button, Card, Col } from "react-bootstrap";
 import { PenFill, X } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { LocalHostPath } from "../../../functions/localHostPath";
+import {
+    SalvaDatiprodotto,
+    SetImmagineProdotto,
+    isModalVisible,
+    salvaIdProdotto,
+} from "../../../redux/reducers/backOffice2Reducer";
 import PropTypes from "prop-types";
-import { SalvaDatiprodotto, SetImmagineProdotto, salvaIdProdotto } from "../../../redux/reducers/backOffice2Reducer";
 
 const DivMapProdotti = ({ handleShowModalDelete }) => {
     const dispatch = useDispatch();
     const { listaProdotti } = useSelector((store) => store.prodotti);
+    const { WidthWindows } = useSelector((store) => store.BackOffice2);
 
     const handleEdit = (prodotto) => {
         dispatch(
@@ -46,6 +52,8 @@ const DivMapProdotti = ({ handleShowModalDelete }) => {
                                         >
                                             <X className="fs-1 text-danger" />
                                         </Button>
+                                        {/*i bottoni qui sotto sono apparentemente uguali ma uno (quello presente a width della finestra maggiori di 992px ) imposta i valori del prodotto selezionato nel form, pronto per l'edit , mentre il bottone modifica rendeizzato a width minori di 992px apre un modale per poi fare l'edit del prodotto. */}
+                                        {/* BOTTONE WIDTH MAGGIORE 992PX */}
                                         <Button
                                             onClick={() => {
                                                 handleEdit(prodotto);
@@ -53,12 +61,36 @@ const DivMapProdotti = ({ handleShowModalDelete }) => {
                                                 dispatch(salvaIdProdotto(prodotto.idProdotto));
                                                 // setImmagineProdotto(null);
                                                 dispatch(SetImmagineProdotto(null));
+                                                console.log("i'm the bigger width button");
                                             }}
                                             className="custom-position2"
                                             variant="transparent"
                                         >
+                                            {" "}
                                             <PenFill className="fs-5 text-white" />
                                         </Button>
+                                        {/* BOTTONE WIDTH MINORE 992PX */}
+                                        {WidthWindows < 992 && (
+                                            <Button
+                                                onClick={() => {
+                                                    dispatch(isModalVisible(true));
+                                                    handleEdit(prodotto);
+                                                    // setIdProdotto(prodotto.idProdotto);
+                                                    dispatch(salvaIdProdotto(prodotto.idProdotto));
+                                                    // setImmagineProdotto(null);
+                                                    dispatch(SetImmagineProdotto(null));
+                                                    // handleEdit(prodotto);
+                                                    // dispatch(salvaIdProdotto(prodotto.idProdotto));
+                                                    // dispatch(SetImmagineProdotto(null));
+                                                    console.log("i'm the smaller width button guy ");
+                                                }}
+                                                className="custom-position2"
+                                                variant="transparent"
+                                            >
+                                                {" "}
+                                                <PenFill className="fs-5 text-white" />
+                                            </Button>
+                                        )}
                                     </div>
 
                                     <Card.Img

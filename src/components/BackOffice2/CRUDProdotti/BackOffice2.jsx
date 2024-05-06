@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { GetProdotti } from "../../../redux/actions/prodottiFetch";
 import { getUtenti } from "../../../redux/actions/fetchUtenti";
 import { GetAllEsercizi } from "../../../redux/actions/fetchEsercizi";
@@ -7,17 +7,23 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 import ModaleCreaNuovoProdottoBackOffice from "../../BackOffice/ModaleCreaNuovoProdottoBackOffice";
 import ModaleEliminaProdottoBackOffice from "../../BackOffice/ModaleEliminaProdottoBackOffice";
 import AggiungiProdotto from "./AggiungiProdotto";
-import ModaleModificaProdotto from "./ModaleModificaProdotto";
 import DivMapProdotti from "./DivMapProdotti";
 import { useNavigate } from "react-router-dom";
-import { SalvaDatiprodotto } from "../../../redux/reducers/backOffice2Reducer";
+import { SalvaDatiprodotto, impostaWidthWindow } from "../../../redux/reducers/backOffice2Reducer";
+import ModaleEditProdotto from "./ModaleEditProdotto";
+import FormModificaProdotto from "./FormModificaProdotto";
 
 const BackOffice2 = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const RefWidthWindow = useRef();
 
+    const { WidthWindows } = useSelector((store) => store.BackOffice2);
+    // const { showModale } = useSelector((store) => store.BackOffice2);
     const [show, setShow] = useState(false);
     const [showModalDelete, setShowModalDelete] = useState(false);
+    const [display, setDisplay] = useState("");
+    // const [WidthWindows, setWidthWindows] = useState(window.innerWidth);
 
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
@@ -25,10 +31,19 @@ const BackOffice2 = () => {
     const handleCloseModalDelete = () => setShowModalDelete(false);
     const handleShowModalDelete = () => setShowModalDelete(true);
 
+    // TIENE TRACCIA DELLA VIEWPORT cosi da poter impostare visibile o no il form di modifica del prodotto.
     useEffect(() => {
         dispatch(GetProdotti());
         dispatch(getUtenti());
         dispatch(GetAllEsercizi());
+
+        RefWidthWindow.current = WidthWindows;
+
+        const handleResize = () => {
+            dispatch(impostaWidthWindow(window.innerWidth));
+        };
+
+        window.addEventListener("resize", handleResize);
 
         return () => {
             dispatch(
@@ -38,10 +53,23 @@ const BackOffice2 = () => {
                     DescrizioneProdotto: "",
                 })
             );
+            window.removeEventListener("resize", handleResize);
 
             dispatch(SalvaDatiprodotto(null));
         };
     }, [dispatch]);
+
+    useEffect(() => {
+        if (RefWidthWindow.current !== WidthWindows) {
+            if (WidthWindows >= 992) {
+                setDisplay("d-block");
+            }
+
+            if (WidthWindows < 992) {
+                setDisplay("d-none");
+            }
+        }
+    }, [WidthWindows]);
 
     return (
         <div className="Bg-sfondo-dark altezza-sfondo">
@@ -90,14 +118,28 @@ const BackOffice2 = () => {
                             </Button>
                         </div>
                     </Col>
+                    {/* quanto la width è inferiore a 992px viene renderizzato questo div per fare create e edit del prodotto */}
+                    {WidthWindows < 992 && (
+                        <Col>
+                            <div>
+                                <AggiungiProdotto handleShow={handleShow} />
+                            </div>
+                        </Col>
+                    )}
                     <DivMapProdotti handleShowModalDelete={handleShowModalDelete} />
 
                     {/* FORM DI INVIO DATI  */}
                     <Col>
                         {/* DIV AGGIUNGI PRODOTTO */}
+                        {/* in  base al valore dello stato display renderizzo condizionalmente il div sottostante, e si vedrà solo con width di window > 992px */}
                         <div className="CustomSticky_Position">
-                            <AggiungiProdotto handleShow={handleShow} />
-                            <ModaleModificaProdotto />
+                            <AggiungiProdotto handleShow={handleShow} display={display} />
+                            <div>
+                                <h3 className="text-light display-6">
+                                    <p className="m-0">Modifica Prodotto Selezionato:</p>
+                                </h3>
+                            </div>
+                            <FormModificaProdotto display={display} />
                         </div>
                     </Col>
                 </Row>
@@ -108,6 +150,8 @@ const BackOffice2 = () => {
                 handleCloseModalDelete={handleCloseModalDelete}
                 showModalDelete={showModalDelete}
             />
+
+            <ModaleEditProdotto />
         </div>
     );
 };

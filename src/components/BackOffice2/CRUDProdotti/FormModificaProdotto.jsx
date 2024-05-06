@@ -1,11 +1,13 @@
 import { Button, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { LocalHostPath } from "../../../functions/localHostPath";
-import { SalvaDatiprodotto, SetImmagineProdotto } from "../../../redux/reducers/backOffice2Reducer";
+import { SalvaDatiprodotto, SetImmagineProdotto, isModalVisible } from "../../../redux/reducers/backOffice2Reducer";
 import { modificaProdotto } from "../../../redux/actions/prodottiFetch";
+import PropTypes from "prop-types";
 
-const ModaleModificaProdotto = () => {
+const FormModificaProdotto = ({ display }) => {
     const dispatch = useDispatch();
+    console.log(display);
 
     const { idProdotto } = useSelector((store) => store.BackOffice2);
     const { immagineProdotto } = useSelector((store) => store.BackOffice2);
@@ -23,10 +25,7 @@ const ModaleModificaProdotto = () => {
     };
 
     return (
-        <>
-            <div>
-                <h3 className="text-light display-6">Modifica Prodotto Selezionato:</h3>
-            </div>
+        <div className={`${display}`}>
             <div className="text-light">
                 <Form onSubmit={HandleSubmittingModificaProdotto}>
                     <Form.Group className="mb-3" controlId="nomeprodotto">
@@ -102,14 +101,23 @@ const ModaleModificaProdotto = () => {
                         />
                     </Form.Group>
                     <div>
-                        <Button type="submit" variant="warning " className="rounded-4 text-light fw-bold">
+                        <Button
+                            onClick={() => dispatch(isModalVisible(false))}
+                            type="submit"
+                            variant="warning "
+                            className="rounded-4 text-light fw-bold"
+                        >
                             Modifica Prodotto
                         </Button>
                     </div>
                 </Form>
             </div>
-        </>
+        </div>
     );
 };
 
-export default ModaleModificaProdotto;
+export default FormModificaProdotto;
+
+FormModificaProdotto.propTypes = {
+    display: PropTypes.string,
+};
