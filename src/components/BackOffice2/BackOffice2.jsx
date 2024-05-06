@@ -58,7 +58,6 @@ const BackOffice2 = () => {
 
         // console.log(DatiProdotto);
         dispatch(modificaProdotto(idProdotto, LocalHostPath, datiprodotto, formData2));
-        // reset2();
     };
 
     return (
@@ -199,6 +198,10 @@ const BackOffice2 = () => {
                                     />{" "}
                                     <p className="mt-2 text-light">Aggiungi Prodotto</p>
                                 </Button>
+                            </div>
+                            <div>
+                                {" "}
+                                <h3 className="text-light display-6">Modifica Prodotto Selezionato:</h3>
                             </div>
                             <div className="text-light">
                                 <Form onSubmit={HandleSubmittingModificaProdotto}>
