@@ -77,8 +77,9 @@ const BackOffice2 = () => {
                                 Esercizi{" "}
                             </Button>
                             <Button
-                                // onClick={() => {
-                                // }}
+                                onClick={() => {
+                                    navigate("/BackOffice/Utenti");
+                                }}
                                 variant="light"
                                 className="rounded-4 text-warning border-warning fw-bold"
                             >

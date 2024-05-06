@@ -22,7 +22,8 @@ import ModificaDatiUtente from "./components/General/Home/ModificaDatiUtente";
 import StoricoAcquisti from "./components/General/Utente/StoricoAcquisti";
 import SocialMain from "./components/General/SocialMedia/SocialMain";
 import BackOffice2 from "./components/BackOffice2/CRUDProdotti/BackOffice2";
-import BackOffice2Esercizio from "./components/BackOffice2/BackOffice2Esercizio";
+import BackOffice2Esercizio from "./components/BackOffice2/CRUDEsercizi/BackOffice2Esercizio";
+import BackOffice2Utenti from "./components/BackOffice2/CRUDUtenti/BackOffice2Utenti";
 // import BackOffice from "./components/BackOffice/BackOffice";
 // import ModificaDatiUtente from "./components/General/Utente/ModificaDatiUtente";
 
@@ -194,6 +195,16 @@ function App() {
                                     {" "}
                                     <NavbarComponent />
                                     <BackOffice2Esercizio />
+                                </>
+                            }
+                        />
+                        <Route
+                            path="Utenti"
+                            element={
+                                <>
+                                    {" "}
+                                    <NavbarComponent />
+                                    <BackOffice2Utenti />
                                 </>
                             }
                         />
