@@ -79,22 +79,22 @@ export const CreateEsercizio = (objPost, formData) => async (dispatch) => {
     }
 };
 
-export const ModificaSerieEsercizio = (serie, idEsercizio) => async (dispatch) => {
-    try {
-        const request = await fetchWithAuth(LocalHostPath + `/Esercizi/cambiaSerie/${idEsercizio}`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(serie),
-        });
+// export const ModificaSerieEsercizio = (serie, idEsercizio) => async (dispatch) => {
+//     try {
+//         const request = await fetchWithAuth(LocalHostPath + `/Esercizi/cambiaSerie/${idEsercizio}`, {
+//             method: "POST",
+//             headers: {
+//                 "Content-Type": "application/json",
+//             },
+//             body: JSON.stringify(serie),
+//         });
 
-        const response = request.json();
-        console.log(response);
-    } catch (error) {
-        console.error("Errore nel fetch:", error.message);
-    }
-};
+//         const response = request.json();
+//         console.log(response);
+//     } catch (error) {
+//         console.error("Errore nel fetch:", error.message);
+//     }
+// };
 
 export const deleteEsercizio = (idEsercizio) => async (dispatch) => {
     try {
