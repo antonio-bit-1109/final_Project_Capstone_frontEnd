@@ -1,8 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { GetProdotti } from "../../../redux/actions/prodottiFetch";
-import { getUtenti } from "../../../redux/actions/fetchUtenti";
-import { GetAllEsercizi } from "../../../redux/actions/fetchEsercizi";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import ModaleCreaNuovoProdottoBackOffice from "../../BackOffice/ModaleCreaNuovoProdottoBackOffice";
 import ModaleEliminaProdottoBackOffice from "../../BackOffice/ModaleEliminaProdottoBackOffice";
@@ -34,8 +32,8 @@ const BackOffice2 = () => {
     // TIENE TRACCIA DELLA VIEWPORT cosi da poter impostare visibile o no il form di modifica del prodotto.
     useEffect(() => {
         dispatch(GetProdotti());
-        dispatch(getUtenti());
-        dispatch(GetAllEsercizi());
+        // dispatch(getUtenti());
+        // dispatch(GetAllEsercizi());
 
         RefWidthWindow.current = WidthWindows;
 

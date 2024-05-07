@@ -437,3 +437,8 @@ body {
     position: sticky;
     top: 100px;
 }
+
+.CustomSticky_Position2 {
+    position: sticky;
+    top: 80px;
+}
