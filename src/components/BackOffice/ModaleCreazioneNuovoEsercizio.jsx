@@ -247,7 +247,7 @@ const ModaleCreazioneNuovoEsercizio = () => {
                             <Button
                                 variant="light"
                                 className="rounded-4 text-warning border-warning fw-bold"
-                                // onClick={handleCloseCreateEsercizio}
+                                onClick={() => dispatch(isModaleCreaEsercizioVisible(false))}
                             >
                                 Chiudi
                             </Button>

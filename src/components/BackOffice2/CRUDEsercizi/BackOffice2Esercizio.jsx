@@ -7,6 +7,7 @@ import DivMapEsercizi from "./DivMapEsercizi";
 import AggiungiEsercizio from "./AggiungiEsercizio";
 import FormModificaEsercizio from "./FormModificaEsercizio";
 import ModaleCreazioneNuovoEsercizio from "../../BackOffice/ModaleCreazioneNuovoEsercizio";
+import ModaleDeleteEsercizio from "../../BackOffice/ModaleDeleteEsercizio";
 
 const BackOffice2Esercizio = () => {
     const navigate = useNavigate();
@@ -38,6 +39,7 @@ const BackOffice2Esercizio = () => {
             // dispatch(SalvaDatiprodotto(null));
         };
     }, [dispatch]);
+
     return (
         <div className="Bg-sfondo-dark altezza-sfondo">
             <Container>
@@ -101,6 +103,7 @@ const BackOffice2Esercizio = () => {
                 </Row>
             </Container>
             <ModaleCreazioneNuovoEsercizio />
+            <ModaleDeleteEsercizio />
         </div>
     );
 };

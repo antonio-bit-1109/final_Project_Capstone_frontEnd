@@ -1,13 +1,17 @@
 /* eslint-disable react/prop-types */
 import { Button, Modal } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteEsercizio } from "../../redux/actions/fetchEsercizi";
+import { isModaleDeleteEsercizioVisible } from "../../redux/reducers/backOffice2Reducer";
 
-const ModaleDeleteEsercizio = ({ idEsercizio, showModaldeleteEsercizio, handleCloseModalDeleteEsercizio }) => {
+const ModaleDeleteEsercizio = () => {
     const dispatch = useDispatch();
+
+    const { showModaleDeleteEsercizio, idEsercizio } = useSelector((store) => store.BackOffice2);
+
     return (
         <>
-            <Modal show={showModaldeleteEsercizio} onHide={handleCloseModalDeleteEsercizio}>
+            <Modal show={showModaleDeleteEsercizio} onHide={() => dispatch(isModaleDeleteEsercizioVisible(false))}>
                 <Modal.Header closeButton>
                     <Modal.Title>Conferma Cancellazione Account</Modal.Title>
                 </Modal.Header>
@@ -19,7 +23,7 @@ const ModaleDeleteEsercizio = ({ idEsercizio, showModaldeleteEsercizio, handleCl
                 <Modal.Footer>
                     <Button
                         variant="light"
-                        onClick={handleCloseModalDeleteEsercizio}
+                        onClick={() => dispatch(isModaleDeleteEsercizioVisible(false))}
                         className="rounded-4 text-warning border-warning fw-bold"
                     >
                         Chiudi
@@ -28,8 +32,9 @@ const ModaleDeleteEsercizio = ({ idEsercizio, showModaldeleteEsercizio, handleCl
                         variant="warning "
                         className="rounded-4 text-light fw-bold"
                         onClick={() => {
-                            handleCloseModalDeleteEsercizio();
+                            // handleCloseModalDeleteEsercizio();
                             dispatch(deleteEsercizio(idEsercizio));
+                            dispatch(isModaleDeleteEsercizioVisible(false));
                         }}
                     >
                         Elimina Esercizio

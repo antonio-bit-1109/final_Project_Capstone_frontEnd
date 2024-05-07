@@ -12,6 +12,9 @@ const initialState = {
     },
     showModale: false,
     showModaleCreaEsercizio: false,
+
+    showModaleDeleteEsercizio: false,
+    idEsercizio: null,
 };
 
 const stateReducerSlice = createSlice({
@@ -41,6 +44,14 @@ const stateReducerSlice = createSlice({
         isModaleCreaEsercizioVisible: (state, action) => {
             state.showModaleCreaEsercizio = action.payload;
         },
+
+        isModaleDeleteEsercizioVisible: (state, action) => {
+            state.showModaleDeleteEsercizio = action.payload;
+        },
+
+        salvaIdEsercizio: (state, action) => {
+            state.idEsercizio = action.payload;
+        },
     },
 });
 
@@ -52,5 +63,7 @@ export const {
     impostaWidthWindow,
     isModalVisible,
     isModaleCreaEsercizioVisible,
+    salvaIdEsercizio,
+    isModaleDeleteEsercizioVisible,
 } = stateReducerSlice.actions;
 export default stateReducerSlice.reducer;

@@ -1,9 +1,11 @@
 import { Button, Card, Col } from "react-bootstrap";
 import { PenFill, X } from "react-bootstrap-icons";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { LocalHostPath } from "../../../functions/localHostPath";
+import { isModaleDeleteEsercizioVisible, salvaIdEsercizio } from "../../../redux/reducers/backOffice2Reducer";
 
 const DivMapEsercizi = () => {
+    const dispatch = useDispatch();
     const { listaTuttiEsercizi } = useSelector((store) => store.esercizi);
 
     return (
@@ -14,14 +16,21 @@ const DivMapEsercizi = () => {
                     listaTuttiEsercizi.map((esercizio, index) => (
                         <>
                             {" "}
-                            <Col key={`the good - ${index}`} xs="12" sm="12" md="11" lg="10">
+                            <Col key={`the good-${index}`} xs="12" sm="12" md="11" lg="10">
                                 <div className="d-md-flex flex-md-wrap justify-content-md-center d-lg-block">
                                     <Card
                                         style={{ height: "90%" }}
                                         className="rounded rounded-5 my-4 shadow-lg effettoVetro text-light border border-2 p-4 mx-1"
                                     >
                                         <div className="d-flex justify-content-end">
-                                            <Button className="me-2" variant="transparent">
+                                            <Button
+                                                onClick={() => {
+                                                    dispatch(isModaleDeleteEsercizioVisible(true));
+                                                    dispatch(salvaIdEsercizio(esercizio.idEsercizio));
+                                                }}
+                                                className="me-2"
+                                                variant="transparent"
+                                            >
                                                 <X className="fs-1 text-danger" />
                                             </Button>
                                             <Button variant="transparent">
