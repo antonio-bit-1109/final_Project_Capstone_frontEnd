@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { CreateEsercizio } from "../../redux/actions/fetchEsercizi";
+import { isModaleCreaEsercizioVisible } from "../../redux/reducers/backOffice2Reducer";
 
 // eslint-disable-next-line react/prop-types
-const ModaleCreazioneNuovoEsercizio = ({ showCreateEsercizio, setShowCreateEsercizio }) => {
+const ModaleCreazioneNuovoEsercizio = () => {
     const dispatch = useDispatch();
+
+    const { showModaleCreaEsercizio } = useSelector((store) => store.BackOffice2);
 
     const [ImmagineCreateEsercizio, setImmagineCreateEsercizio] = useState(null);
 
@@ -17,9 +20,10 @@ const ModaleCreazioneNuovoEsercizio = ({ showCreateEsercizio, setShowCreateEserc
         reset,
     } = useForm();
 
-    const handleCloseCreateEsercizio = () => setShowCreateEsercizio(false);
+    // const handleCloseCreateEsercizio = () => setShowCreateEsercizio(false);
+
     const submitHandlerCreateEsercizio = (data) => {
-        handleCloseCreateEsercizio();
+        // handleCloseCreateEsercizio();
 
         const formData = new FormData();
         formData.append("ImmagineEsercizio", ImmagineCreateEsercizio);
@@ -31,7 +35,7 @@ const ModaleCreazioneNuovoEsercizio = ({ showCreateEsercizio, setShowCreateEserc
         <>
             {" "}
             {/* MODALE PER CREAZIONE NUOVO ESERCIZIO */}
-            <Modal show={showCreateEsercizio} onHide={handleCloseCreateEsercizio}>
+            <Modal show={showModaleCreaEsercizio} onHide={() => dispatch(isModaleCreaEsercizioVisible(false))}>
                 <Modal.Header closeButton>
                     <Modal.Title>Crea Nuovo Esercizio </Modal.Title>
                 </Modal.Header>
@@ -243,7 +247,7 @@ const ModaleCreazioneNuovoEsercizio = ({ showCreateEsercizio, setShowCreateEserc
                             <Button
                                 variant="light"
                                 className="rounded-4 text-warning border-warning fw-bold"
-                                onClick={handleCloseCreateEsercizio}
+                                // onClick={handleCloseCreateEsercizio}
                             >
                                 Chiudi
                             </Button>

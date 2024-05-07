@@ -11,6 +11,7 @@ const initialState = {
         DescrizioneProdotto: "",
     },
     showModale: false,
+    showModaleCreaEsercizio: false,
 };
 
 const stateReducerSlice = createSlice({
@@ -36,10 +37,20 @@ const stateReducerSlice = createSlice({
         isModalVisible: (state, action) => {
             state.showModale = action.payload;
         },
+
+        isModaleCreaEsercizioVisible: (state, action) => {
+            state.showModaleCreaEsercizio = action.payload;
+        },
     },
 });
 
 // Esporto solo l'azione definita nello slice
-export const { salvaIdProdotto, SetImmagineProdotto, SalvaDatiprodotto, impostaWidthWindow, isModalVisible } =
-    stateReducerSlice.actions;
+export const {
+    salvaIdProdotto,
+    SetImmagineProdotto,
+    SalvaDatiprodotto,
+    impostaWidthWindow,
+    isModalVisible,
+    isModaleCreaEsercizioVisible,
+} = stateReducerSlice.actions;
 export default stateReducerSlice.reducer;

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -6,11 +6,12 @@ import { GetAllEsercizi } from "../../../redux/actions/fetchEsercizi";
 import DivMapEsercizi from "./DivMapEsercizi";
 import AggiungiEsercizio from "./AggiungiEsercizio";
 import FormModificaEsercizio from "./FormModificaEsercizio";
+import ModaleCreazioneNuovoEsercizio from "../../BackOffice/ModaleCreazioneNuovoEsercizio";
 
 const BackOffice2Esercizio = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const RefWidthWindow = useRef();
+    // const RefWidthWindow = useRef();
 
     useEffect(() => {
         // dispatch(GetProdotti());
@@ -99,6 +100,7 @@ const BackOffice2Esercizio = () => {
                     </Col>
                 </Row>
             </Container>
+            <ModaleCreazioneNuovoEsercizio />
         </div>
     );
 };
