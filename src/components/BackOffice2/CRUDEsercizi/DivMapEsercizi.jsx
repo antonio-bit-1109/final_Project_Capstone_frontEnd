@@ -11,7 +11,7 @@ const DivMapEsercizi = () => {
             <div className="d-md-flex flex-md-wrap justify-content-md-center d-lg-block">
                 {" "}
                 {listaTuttiEsercizi &&
-                    listaTuttiEsercizi.slice(0, 4).map((esercizio, index) => (
+                    listaTuttiEsercizi.map((esercizio, index) => (
                         <>
                             {" "}
                             <Col key={`the good - ${index}`} xs="12" sm="12" md="11" lg="10">

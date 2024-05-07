@@ -4,7 +4,6 @@ import { LocalHostPath } from "../../../functions/localHostPath";
 import { SalvaDatiprodotto, SetImmagineProdotto, isModalVisible } from "../../../redux/reducers/backOffice2Reducer";
 import { modificaProdotto } from "../../../redux/actions/prodottiFetch";
 import PropTypes from "prop-types";
-import { propTypes } from "react-bootstrap/esm/Image";
 
 const FormModificaProdotto = ({ display, textColor }) => {
     const dispatch = useDispatch();
@@ -121,5 +120,5 @@ export default FormModificaProdotto;
 
 FormModificaProdotto.propTypes = {
     display: PropTypes.string,
-    textColor: propTypes.string,
+    textColor: PropTypes.string,
 };

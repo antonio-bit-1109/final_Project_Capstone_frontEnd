@@ -89,7 +89,12 @@ const BackOffice2Esercizio = () => {
                     <Col>
                         <div className="CustomSticky_Position2">
                             <AggiungiEsercizio />
-                            <FormModificaEsercizio />
+                            <div>
+                                <h3 className="text-light display-6">
+                                    <p className="m-0">Modifica Esercizio Selezionato:</p>
+                                </h3>
+                            </div>
+                            <FormModificaEsercizio color={"text-light"} />
                         </div>
                     </Col>
                 </Row>

@@ -1,8 +1,9 @@
 import { Button, Form } from "react-bootstrap";
+import PropTypes from "prop-types";
 
-const FormModificaEsercizio = () => {
+const FormModificaEsercizio = ({ color }) => {
     return (
-        <>
+        <div className={`${color}`}>
             {" "}
             <Form>
                 {/* NOME ESERCIZIO MODIFICA  */}
@@ -95,82 +96,86 @@ const FormModificaEsercizio = () => {
                         // }
                     />
                 </Form.Group>
+                <div className="d-flex gap-3">
+                    <div>
+                        {/* TEMPO RECUPERO ESERCIZIO INT */}
+                        <Form.Group className="my-2">
+                            <Form.Label className="m-auto" htmlFor="inputRecuperoEsercizio">
+                                Tempo Di Recupero (sec&quot;){" "}
+                            </Form.Label>
+                            <Form.Control
+                                type="number"
+                                id="inputRecuperoEsercizio"
+                                aria-describedby="inputRecuperoEsercizio"
+                                // value={datiEsercizioMOdifica.tempoRecupero}
+                                // onChange={(e) =>
+                                //     setDatiEsercizioModifica({
+                                //         ...datiEsercizioMOdifica,
+                                //         tempoRecupero: e.target.value,
+                                //     })
+                                // }
+                            />
+                        </Form.Group>
 
-                {/* TEMPO RECUPERO ESERCIZIO INT */}
-                <Form.Group className="my-2">
-                    <Form.Label className="m-auto" htmlFor="inputRecuperoEsercizio">
-                        Tempo Di Recupero (sec&quot;){" "}
-                    </Form.Label>
-                    <Form.Control
-                        type="number"
-                        id="inputRecuperoEsercizio"
-                        aria-describedby="inputRecuperoEsercizio"
-                        // value={datiEsercizioMOdifica.tempoRecupero}
-                        // onChange={(e) =>
-                        //     setDatiEsercizioModifica({
-                        //         ...datiEsercizioMOdifica,
-                        //         tempoRecupero: e.target.value,
-                        //     })
-                        // }
-                    />
-                </Form.Group>
+                        {/* SERIE ESERCIZIO INT */}
+                        <Form.Group className="my-2">
+                            <Form.Label className="m-auto" htmlFor="inputSerieEsercizio">
+                                N° Serie
+                            </Form.Label>
+                            <Form.Control
+                                type="number"
+                                id="inputSerieEsercizio"
+                                aria-describedby="inputSerieEsercizio"
+                                // value={datiEsercizioMOdifica.Serie}
+                                // onChange={(e) =>
+                                //     setDatiEsercizioModifica({
+                                //         ...datiEsercizioMOdifica,
+                                //         Serie: e.target.value,
+                                //     })
+                                // }
+                            />
+                        </Form.Group>
+                    </div>
+                    <div>
+                        {/* RIPETIZIONI ESERCIZIO INT */}
+                        <Form.Group className="my-2">
+                            <Form.Label className="m-auto" htmlFor="inputRipetizioniEsercizio">
+                                N° Ripetizioni{" "}
+                            </Form.Label>
+                            <Form.Control
+                                type="number"
+                                id="inputRipetizioniEsercizio"
+                                aria-describedby="inputRipetizioniEsercizio"
+                                // value={datiEsercizioMOdifica.ripetizioni}
+                                // onChange={(e) =>
+                                //     setDatiEsercizioModifica({
+                                //         ...datiEsercizioMOdifica,
+                                //         ripetizioni: e.target.value,
+                                //     })
+                                // }
+                            />
+                        </Form.Group>
 
-                {/* SERIE ESERCIZIO INT */}
-                <Form.Group className="my-2">
-                    <Form.Label className="m-auto" htmlFor="inputSerieEsercizio">
-                        N° Serie
-                    </Form.Label>
-                    <Form.Control
-                        type="number"
-                        id="inputSerieEsercizio"
-                        aria-describedby="inputSerieEsercizio"
-                        // value={datiEsercizioMOdifica.Serie}
-                        // onChange={(e) =>
-                        //     setDatiEsercizioModifica({
-                        //         ...datiEsercizioMOdifica,
-                        //         Serie: e.target.value,
-                        //     })
-                        // }
-                    />
-                </Form.Group>
-
-                {/* RIPETIZIONI ESERCIZIO INT */}
-                <Form.Group className="my-2">
-                    <Form.Label className="m-auto" htmlFor="inputRipetizioniEsercizio">
-                        N° Ripetizioni{" "}
-                    </Form.Label>
-                    <Form.Control
-                        type="number"
-                        id="inputRipetizioniEsercizio"
-                        aria-describedby="inputRipetizioniEsercizio"
-                        // value={datiEsercizioMOdifica.ripetizioni}
-                        // onChange={(e) =>
-                        //     setDatiEsercizioModifica({
-                        //         ...datiEsercizioMOdifica,
-                        //         ripetizioni: e.target.value,
-                        //     })
-                        // }
-                    />
-                </Form.Group>
-
-                {/* MET */}
-                <Form.Group className="my-2">
-                    <Form.Label className="m-auto" htmlFor="inputSerieEsercizio">
-                        MET (Metabolic Equivalent of Task)
-                    </Form.Label>
-                    <Form.Control
-                        type="number"
-                        id="metEsercizio"
-                        aria-describedby="inputmetEsercizio"
-                        // value={datiEsercizioMOdifica.met}
-                        // onChange={(e) =>
-                        //     setDatiEsercizioModifica({
-                        //         ...datiEsercizioMOdifica,
-                        //         met: e.target.value,
-                        //     })
-                        // }
-                    />
-                </Form.Group>
+                        {/* MET */}
+                        <Form.Group className="my-2">
+                            <Form.Label className="m-auto" htmlFor="inputSerieEsercizio">
+                                MET (Metabolic Equivalent of Task)
+                            </Form.Label>
+                            <Form.Control
+                                type="number"
+                                id="metEsercizio"
+                                aria-describedby="inputmetEsercizio"
+                                // value={datiEsercizioMOdifica.met}
+                                // onChange={(e) =>
+                                //     setDatiEsercizioModifica({
+                                //         ...datiEsercizioMOdifica,
+                                //         met: e.target.value,
+                                //     })
+                                // }
+                            />
+                        </Form.Group>
+                    </div>
+                </div>
 
                 {/* PARTE CORPO ESERCIZIO STRING */}
                 <Form.Group className="my-3">
@@ -194,20 +199,26 @@ const FormModificaEsercizio = () => {
                         <option value="fullbody">Full Body</option>
                     </Form.Select>
                 </Form.Group>
-
-                <Button
-                    variant="light"
-                    className="rounded-4 text-warning border-warning fw-bold"
-                    // onClick={handleCloseMOdaleEditEsercizio}
-                >
-                    Chiudi
-                </Button>
-                <Button type="submit" variant="warning " className="rounded-4 text-light fw-bold">
-                    Modifica Esercizio Selezionato
-                </Button>
+                <div className="d-flex gap-3">
+                    {" "}
+                    {/* <Button
+                        variant="light"
+                        className="rounded-4 text-warning border-warning fw-bold"
+                        // onClick={handleCloseMOdaleEditEsercizio}
+                    >
+                        Chiudi
+                    </Button> */}
+                    <Button type="submit" variant="warning " className="rounded-4 text-light fw-bold">
+                        Modifica Esercizio Selezionato
+                    </Button>
+                </div>
             </Form>
-        </>
+        </div>
     );
 };
 
 export default FormModificaEsercizio;
+
+FormModificaEsercizio.propTypes = {
+    color: PropTypes.string,
+};
