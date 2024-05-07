@@ -55,6 +55,7 @@ const BackOffice2 = () => {
 
             dispatch(SalvaDatiprodotto(null));
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dispatch]);
 
     useEffect(() => {

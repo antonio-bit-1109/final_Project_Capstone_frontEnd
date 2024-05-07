@@ -47,6 +47,7 @@ const BackOffice2Esercizio = () => {
             window.removeEventListener("resize", handleResize);
             dispatch(salvaDatiEsercizio(null));
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dispatch]);
 
     return (
