@@ -24,6 +24,7 @@ const ModaleCreazioneNuovoEsercizio = () => {
 
     const submitHandlerCreateEsercizio = (data) => {
         // handleCloseCreateEsercizio();
+        dispatch(isModaleCreaEsercizioVisible(false));
 
         const formData = new FormData();
         formData.append("ImmagineEsercizio", ImmagineCreateEsercizio);

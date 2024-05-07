@@ -1,11 +1,34 @@
 import { Button, Form } from "react-bootstrap";
 import PropTypes from "prop-types";
+import { useDispatch, useSelector } from "react-redux";
+import { ModificaEsercizioFetch } from "../../../redux/actions/fetchEsercizi";
+import { useState } from "react";
+import { salvaDatiEsercizio } from "../../../redux/reducers/backOffice2Reducer";
 
 const FormModificaEsercizio = ({ color }) => {
+    const dispatch = useDispatch();
+    const { datiEsercizio, idEsercizio } = useSelector((store) => store.BackOffice2);
+
+    console.log(datiEsercizio, idEsercizio);
+
+    const [immagineEsercizio, setImmagineEsercizio] = useState(null);
+
+    const EditEsercizio = (e) => {
+        e.preventDefault();
+        // handleCloseMOdaleEditEsercizio();
+
+        const formData = new FormData();
+        formData.append("immagineEsercizio", immagineEsercizio);
+
+        // console.log(datiEsercizioMOdifica);
+        dispatch(ModificaEsercizioFetch(idEsercizio, datiEsercizio, formData));
+        setImmagineEsercizio(null);
+    };
+
     return (
         <div className={`${color}`}>
             {" "}
-            <Form>
+            <Form onSubmit={EditEsercizio}>
                 {/* NOME ESERCIZIO MODIFICA  */}
                 <Form.Group className="my-2">
                     <Form.Label className="m-auto" htmlFor="nomeEsercizioInput">
@@ -15,6 +38,20 @@ const FormModificaEsercizio = ({ color }) => {
                         type="text"
                         id="nomeEsercizioInput"
                         aria-describedby="nomeEsercizioInput"
+                        value={datiEsercizio && datiEsercizio.nomeEsercizio}
+                        onChange={
+                            (e) =>
+                                dispatch(
+                                    salvaDatiEsercizio({
+                                        ...datiEsercizio,
+                                        nomeEsercizio: e.target.value,
+                                    })
+                                )
+                            //   setDatiprodotto({
+                            //       ...datiprodotto,
+                            //       nomeProdotto: e.target.value,
+                            //   })
+                        }
                         // value={datiEsercizioMOdifica.nomeEsercizio}
                         // onChange={(e) =>
                         //     setDatiEsercizioModifica({
@@ -35,7 +72,7 @@ const FormModificaEsercizio = ({ color }) => {
                         type="file"
                         id="ImmagineEsercizioInput"
                         aria-describedby="ImmagineEsercizioInput"
-                        // onChange={(e) => setImmagineEsercizio(e.target.files[0])}
+                        onChange={(e) => setImmagineEsercizio(e.target.files[0])}
                     />
                 </Form.Group>
 
@@ -48,6 +85,20 @@ const FormModificaEsercizio = ({ color }) => {
                         type="text"
                         id="inputDescrizioneEsercizio"
                         aria-describedby="inputDescrizioneEsercizio"
+                        value={datiEsercizio && datiEsercizio.descrizioneEsercizio}
+                        onChange={
+                            (e) =>
+                                dispatch(
+                                    salvaDatiEsercizio({
+                                        ...datiEsercizio,
+                                        descrizioneEsercizio: e.target.value,
+                                    })
+                                )
+                            //   setDatiprodotto({
+                            //       ...datiprodotto,
+                            //       nomeProdotto: e.target.value,
+                            //   })
+                        }
                         // value={datiEsercizioMOdifica.descrizioneEsercizio}
                         // onChange={(e) =>
                         //     setDatiEsercizioModifica({
@@ -69,6 +120,20 @@ const FormModificaEsercizio = ({ color }) => {
                         aria-describedby="inputDescrizioneEsercizio"
                         min={1}
                         max={3}
+                        value={datiEsercizio && datiEsercizio.DifficoltaEsercizio}
+                        onChange={
+                            (e) =>
+                                dispatch(
+                                    salvaDatiEsercizio({
+                                        ...datiEsercizio,
+                                        DifficoltaEsercizio: e.target.value,
+                                    })
+                                )
+                            //   setDatiprodotto({
+                            //       ...datiprodotto,
+                            //       nomeProdotto: e.target.value,
+                            //   })
+                        }
                         // value={datiEsercizioMOdifica.difficoltaEsercizio}
                         // onChange={(e) =>
                         //     setDatiEsercizioModifica({
@@ -87,7 +152,15 @@ const FormModificaEsercizio = ({ color }) => {
                         type="switch"
                         label="Esercizio di Forza"
                         id="EsercizioForza"
-                        // checked={datiEsercizioMOdifica.IsStrenght}
+                        checked={datiEsercizio && datiEsercizio.IsStrength}
+                        onChange={(e) =>
+                            dispatch(
+                                salvaDatiEsercizio({
+                                    ...datiEsercizio,
+                                    IsStrength: e.target.checked,
+                                })
+                            )
+                        }
                         // onChange={(e) =>
                         //     setDatiEsercizioModifica({
                         //         ...datiEsercizioMOdifica,
@@ -107,6 +180,15 @@ const FormModificaEsercizio = ({ color }) => {
                                 type="number"
                                 id="inputRecuperoEsercizio"
                                 aria-describedby="inputRecuperoEsercizio"
+                                value={datiEsercizio && datiEsercizio.TempoRecupero}
+                                onChange={(e) =>
+                                    dispatch(
+                                        salvaDatiEsercizio({
+                                            ...datiEsercizio,
+                                            TempoRecupero: e.target.value,
+                                        })
+                                    )
+                                }
                                 // value={datiEsercizioMOdifica.tempoRecupero}
                                 // onChange={(e) =>
                                 //     setDatiEsercizioModifica({
@@ -126,6 +208,15 @@ const FormModificaEsercizio = ({ color }) => {
                                 type="number"
                                 id="inputSerieEsercizio"
                                 aria-describedby="inputSerieEsercizio"
+                                value={datiEsercizio && datiEsercizio.Serie}
+                                onChange={(e) =>
+                                    dispatch(
+                                        salvaDatiEsercizio({
+                                            ...datiEsercizio,
+                                            Serie: e.target.value,
+                                        })
+                                    )
+                                }
                                 // value={datiEsercizioMOdifica.Serie}
                                 // onChange={(e) =>
                                 //     setDatiEsercizioModifica({
@@ -146,6 +237,15 @@ const FormModificaEsercizio = ({ color }) => {
                                 type="number"
                                 id="inputRipetizioniEsercizio"
                                 aria-describedby="inputRipetizioniEsercizio"
+                                value={datiEsercizio && datiEsercizio.Ripetizioni}
+                                onChange={(e) =>
+                                    dispatch(
+                                        salvaDatiEsercizio({
+                                            ...datiEsercizio,
+                                            Ripetizioni: e.target.value,
+                                        })
+                                    )
+                                }
                                 // value={datiEsercizioMOdifica.ripetizioni}
                                 // onChange={(e) =>
                                 //     setDatiEsercizioModifica({
@@ -159,12 +259,21 @@ const FormModificaEsercizio = ({ color }) => {
                         {/* MET */}
                         <Form.Group className="my-2">
                             <Form.Label className="m-auto" htmlFor="inputSerieEsercizio">
-                                MET (Metabolic Equivalent of Task)
+                                MET (M Equivalent of Task)
                             </Form.Label>
                             <Form.Control
                                 type="number"
                                 id="metEsercizio"
                                 aria-describedby="inputmetEsercizio"
+                                value={datiEsercizio && datiEsercizio.met}
+                                onChange={(e) =>
+                                    dispatch(
+                                        salvaDatiEsercizio({
+                                            ...datiEsercizio,
+                                            met: e.target.value,
+                                        })
+                                    )
+                                }
                                 // value={datiEsercizioMOdifica.met}
                                 // onChange={(e) =>
                                 //     setDatiEsercizioModifica({
@@ -182,6 +291,15 @@ const FormModificaEsercizio = ({ color }) => {
                     {" "}
                     <Form.Select
                         aria-label="Default select example"
+                        value={datiEsercizio && datiEsercizio.ParteDelCorpo}
+                        onChange={(e) =>
+                            dispatch(
+                                salvaDatiEsercizio({
+                                    ...datiEsercizio,
+                                    ParteDelCorpo: e.target.value,
+                                })
+                            )
+                        }
                         // value={datiEsercizioMOdifica.parteDelCorpoAllenata}
                         // onChange={(e) =>
                         //     setDatiEsercizioModifica({

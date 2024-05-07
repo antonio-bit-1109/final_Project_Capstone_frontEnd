@@ -2,7 +2,11 @@ import { Button, Card, Col } from "react-bootstrap";
 import { PenFill, X } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { LocalHostPath } from "../../../functions/localHostPath";
-import { isModaleDeleteEsercizioVisible, salvaIdEsercizio } from "../../../redux/reducers/backOffice2Reducer";
+import {
+    isModaleDeleteEsercizioVisible,
+    salvaDatiEsercizio,
+    salvaIdEsercizio,
+} from "../../../redux/reducers/backOffice2Reducer";
 
 const DivMapEsercizi = () => {
     const dispatch = useDispatch();
@@ -33,7 +37,25 @@ const DivMapEsercizi = () => {
                                             >
                                                 <X className="fs-1 text-danger" />
                                             </Button>
-                                            <Button variant="transparent">
+                                            <Button
+                                                onClick={() => {
+                                                    dispatch(salvaIdEsercizio(esercizio.idEsercizio));
+                                                    dispatch(
+                                                        salvaDatiEsercizio({
+                                                            nomeEsercizio: esercizio.nomeEsercizio,
+                                                            descrizioneEsercizio: esercizio.descrizioneEsercizio,
+                                                            DifficoltaEsercizio: esercizio.difficolta,
+                                                            IsStrength: esercizio.isStrenght,
+                                                            TempoRecupero: esercizio.tempoRecupero,
+                                                            Ripetizioni: esercizio.ripetizioni,
+                                                            Serie: esercizio.serie,
+                                                            met: esercizio.met,
+                                                            ParteDelCorpo: esercizio.parteDelCorpoAllenata,
+                                                        })
+                                                    );
+                                                }}
+                                                variant="transparent"
+                                            >
                                                 <PenFill className="fs-5 text-white" />
                                             </Button>
                                         </div>

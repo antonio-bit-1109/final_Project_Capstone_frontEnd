@@ -15,6 +15,17 @@ const initialState = {
 
     showModaleDeleteEsercizio: false,
     idEsercizio: null,
+    datiEsercizio: {
+        nomeEsercizio: "",
+        descrizioneEsercizio: "",
+        DifficoltaEsercizio: "",
+        IsStrength: true,
+        TempoRecupero: "",
+        Ripetizioni: "",
+        Serie: "",
+        met: "",
+        ParteDelCorpo: "",
+    },
 };
 
 const stateReducerSlice = createSlice({
@@ -52,6 +63,10 @@ const stateReducerSlice = createSlice({
         salvaIdEsercizio: (state, action) => {
             state.idEsercizio = action.payload;
         },
+
+        salvaDatiEsercizio: (state, action) => {
+            state.datiEsercizio = action.payload;
+        },
     },
 });
 
@@ -65,5 +80,6 @@ export const {
     isModaleCreaEsercizioVisible,
     salvaIdEsercizio,
     isModaleDeleteEsercizioVisible,
+    salvaDatiEsercizio,
 } = stateReducerSlice.actions;
 export default stateReducerSlice.reducer;
