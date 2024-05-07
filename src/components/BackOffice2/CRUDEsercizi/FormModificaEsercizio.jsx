@@ -3,13 +3,11 @@ import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import { ModificaEsercizioFetch } from "../../../redux/actions/fetchEsercizi";
 import { useState } from "react";
-import { salvaDatiEsercizio } from "../../../redux/reducers/backOffice2Reducer";
+import { isModaleModificaEsercizioVisible, salvaDatiEsercizio } from "../../../redux/reducers/backOffice2Reducer";
 
 const FormModificaEsercizio = ({ color }) => {
     const dispatch = useDispatch();
     const { datiEsercizio, idEsercizio } = useSelector((store) => store.BackOffice2);
-
-    console.log(datiEsercizio, idEsercizio);
 
     const [immagineEsercizio, setImmagineEsercizio] = useState(null);
 
@@ -39,26 +37,14 @@ const FormModificaEsercizio = ({ color }) => {
                         id="nomeEsercizioInput"
                         aria-describedby="nomeEsercizioInput"
                         value={datiEsercizio && datiEsercizio.nomeEsercizio}
-                        onChange={
-                            (e) =>
-                                dispatch(
-                                    salvaDatiEsercizio({
-                                        ...datiEsercizio,
-                                        nomeEsercizio: e.target.value,
-                                    })
-                                )
-                            //   setDatiprodotto({
-                            //       ...datiprodotto,
-                            //       nomeProdotto: e.target.value,
-                            //   })
+                        onChange={(e) =>
+                            dispatch(
+                                salvaDatiEsercizio({
+                                    ...datiEsercizio,
+                                    nomeEsercizio: e.target.value,
+                                })
+                            )
                         }
-                        // value={datiEsercizioMOdifica.nomeEsercizio}
-                        // onChange={(e) =>
-                        //     setDatiEsercizioModifica({
-                        //         ...datiEsercizioMOdifica,
-                        //         nomeEsercizio: e.target.value,
-                        //     })
-                        // }
                     />
                 </Form.Group>
 
@@ -86,26 +72,14 @@ const FormModificaEsercizio = ({ color }) => {
                         id="inputDescrizioneEsercizio"
                         aria-describedby="inputDescrizioneEsercizio"
                         value={datiEsercizio && datiEsercizio.descrizioneEsercizio}
-                        onChange={
-                            (e) =>
-                                dispatch(
-                                    salvaDatiEsercizio({
-                                        ...datiEsercizio,
-                                        descrizioneEsercizio: e.target.value,
-                                    })
-                                )
-                            //   setDatiprodotto({
-                            //       ...datiprodotto,
-                            //       nomeProdotto: e.target.value,
-                            //   })
+                        onChange={(e) =>
+                            dispatch(
+                                salvaDatiEsercizio({
+                                    ...datiEsercizio,
+                                    descrizioneEsercizio: e.target.value,
+                                })
+                            )
                         }
-                        // value={datiEsercizioMOdifica.descrizioneEsercizio}
-                        // onChange={(e) =>
-                        //     setDatiEsercizioModifica({
-                        //         ...datiEsercizioMOdifica,
-                        //         descrizioneEsercizio: e.target.value,
-                        //     })
-                        // }
                     />
                 </Form.Group>
 
@@ -121,26 +95,14 @@ const FormModificaEsercizio = ({ color }) => {
                         min={1}
                         max={3}
                         value={datiEsercizio && datiEsercizio.DifficoltaEsercizio}
-                        onChange={
-                            (e) =>
-                                dispatch(
-                                    salvaDatiEsercizio({
-                                        ...datiEsercizio,
-                                        DifficoltaEsercizio: e.target.value,
-                                    })
-                                )
-                            //   setDatiprodotto({
-                            //       ...datiprodotto,
-                            //       nomeProdotto: e.target.value,
-                            //   })
+                        onChange={(e) =>
+                            dispatch(
+                                salvaDatiEsercizio({
+                                    ...datiEsercizio,
+                                    DifficoltaEsercizio: e.target.value,
+                                })
+                            )
                         }
-                        // value={datiEsercizioMOdifica.difficoltaEsercizio}
-                        // onChange={(e) =>
-                        //     setDatiEsercizioModifica({
-                        //         ...datiEsercizioMOdifica,
-                        //         difficoltaEsercizio: e.target.value,
-                        //     })
-                        // }
                     />
                 </Form.Group>
 
@@ -161,12 +123,6 @@ const FormModificaEsercizio = ({ color }) => {
                                 })
                             )
                         }
-                        // onChange={(e) =>
-                        //     setDatiEsercizioModifica({
-                        //         ...datiEsercizioMOdifica,
-                        //         IsStrenght: e.target.checked,
-                        //     })
-                        // }
                     />
                 </Form.Group>
                 <div className="d-flex gap-3">
@@ -189,13 +145,6 @@ const FormModificaEsercizio = ({ color }) => {
                                         })
                                     )
                                 }
-                                // value={datiEsercizioMOdifica.tempoRecupero}
-                                // onChange={(e) =>
-                                //     setDatiEsercizioModifica({
-                                //         ...datiEsercizioMOdifica,
-                                //         tempoRecupero: e.target.value,
-                                //     })
-                                // }
                             />
                         </Form.Group>
 
@@ -217,13 +166,6 @@ const FormModificaEsercizio = ({ color }) => {
                                         })
                                     )
                                 }
-                                // value={datiEsercizioMOdifica.Serie}
-                                // onChange={(e) =>
-                                //     setDatiEsercizioModifica({
-                                //         ...datiEsercizioMOdifica,
-                                //         Serie: e.target.value,
-                                //     })
-                                // }
                             />
                         </Form.Group>
                     </div>
@@ -246,13 +188,6 @@ const FormModificaEsercizio = ({ color }) => {
                                         })
                                     )
                                 }
-                                // value={datiEsercizioMOdifica.ripetizioni}
-                                // onChange={(e) =>
-                                //     setDatiEsercizioModifica({
-                                //         ...datiEsercizioMOdifica,
-                                //         ripetizioni: e.target.value,
-                                //     })
-                                // }
                             />
                         </Form.Group>
 
@@ -274,13 +209,6 @@ const FormModificaEsercizio = ({ color }) => {
                                         })
                                     )
                                 }
-                                // value={datiEsercizioMOdifica.met}
-                                // onChange={(e) =>
-                                //     setDatiEsercizioModifica({
-                                //         ...datiEsercizioMOdifica,
-                                //         met: e.target.value,
-                                //     })
-                                // }
                             />
                         </Form.Group>
                     </div>
@@ -300,13 +228,6 @@ const FormModificaEsercizio = ({ color }) => {
                                 })
                             )
                         }
-                        // value={datiEsercizioMOdifica.parteDelCorpoAllenata}
-                        // onChange={(e) =>
-                        //     setDatiEsercizioModifica({
-                        //         ...datiEsercizioMOdifica,
-                        //         parteDelCorpoAllenata: e.target.value,
-                        //     })
-                        // }
                     >
                         <option value=""> Parte Del Corpo: </option>
                         <option value="petto">Petto</option>
@@ -319,14 +240,12 @@ const FormModificaEsercizio = ({ color }) => {
                 </Form.Group>
                 <div className="d-flex gap-3">
                     {" "}
-                    {/* <Button
-                        variant="light"
-                        className="rounded-4 text-warning border-warning fw-bold"
-                        // onClick={handleCloseMOdaleEditEsercizio}
+                    <Button
+                        onClick={() => dispatch(isModaleModificaEsercizioVisible(false))}
+                        type="submit"
+                        variant="warning "
+                        className="rounded-4 text-light fw-bold"
                     >
-                        Chiudi
-                    </Button> */}
-                    <Button type="submit" variant="warning " className="rounded-4 text-light fw-bold">
                         Modifica Esercizio Selezionato
                     </Button>
                 </div>
