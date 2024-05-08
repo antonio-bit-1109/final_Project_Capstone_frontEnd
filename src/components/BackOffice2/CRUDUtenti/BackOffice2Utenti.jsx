@@ -10,6 +10,7 @@ import AggiungiUtente from "./AggiungiUtente";
 import FormModificaUtente from "./FormModificaUtente";
 import ModaleCancellaUtente from "../../BackOffice/ModaleCancellaUtente";
 import ModaleCreaNuovoUtente from "./ModaleCreaNuovoUtente";
+import { salvaDatiUtente } from "../../../redux/reducers/backOffice2Reducer";
 
 const BackOffice2Utenti = () => {
     const navigate = useNavigate();
@@ -17,6 +18,22 @@ const BackOffice2Utenti = () => {
 
     useEffect(() => {
         dispatch(getUtenti());
+
+        return () => {
+            dispatch(
+                salvaDatiUtente({
+                    nomeUtente: "",
+                    cognomeUtente: "",
+                    peso: "",
+                    altezza: "",
+                    email: "",
+                    easterEggFounded: false,
+                    UtentePremium: false,
+                    dataInizioAbbonamento: "",
+                    dataFineAbbonamento: "",
+                })
+            );
+        };
     }, []);
 
     return (
