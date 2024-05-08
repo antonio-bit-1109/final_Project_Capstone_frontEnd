@@ -9,7 +9,7 @@ const DivMapUtenti = () => {
     const { TuttiUtenti } = useSelector((store) => store.utenti);
 
     return (
-        <Col xs="12" sm="12" md="11" lg="7">
+        <Col xs="12" sm="12" md="12" lg="7">
             <div className="d-md-flex flex-md-wrap justify-content-md-center d-lg-block">
                 {" "}
                 {TuttiUtenti &&
@@ -20,7 +20,7 @@ const DivMapUtenti = () => {
                                 <div className="d-md-flex flex-md-wrap justify-content-md-center d-lg-block">
                                     <Card
                                         style={{ height: "90%" }}
-                                        className="rounded rounded-5 my-4 shadow-lg effettoVetro text-light border border-2 p-4 mx-1"
+                                        className="rounded rounded-5 my-4 shadow-lg effettoVetro text-light border border-2 p-5 mx-1"
                                     >
                                         <div className="d-flex justify-content-end">
                                             <Button
@@ -85,7 +85,7 @@ const DivMapUtenti = () => {
                                         <div className="d-flex flex-column">
                                             <div>
                                                 <Card.Img
-                                                    className="my-3"
+                                                    className="my-3 rounded-circle"
                                                     style={{
                                                         height: "200px",
                                                         objectFit: "contain",
