@@ -53,6 +53,7 @@ export const PostUtenteRegistrato = (urlPath, objPost) => async (dispatch) => {
                 toast.error("Errore nell'invio della mail di registrazione!");
             } else {
                 toast.success("Mail di conferma inviata con successo!");
+                dispatch(getUtenti());
             }
         }
     } catch (error) {

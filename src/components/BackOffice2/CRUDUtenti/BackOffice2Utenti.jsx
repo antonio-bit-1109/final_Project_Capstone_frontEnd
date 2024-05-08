@@ -9,6 +9,7 @@ import { getUtenti } from "../../../redux/actions/fetchUtenti";
 import AggiungiUtente from "./AggiungiUtente";
 import FormModificaUtente from "./FormModificaUtente";
 import ModaleCancellaUtente from "../../BackOffice/ModaleCancellaUtente";
+import ModaleCreaNuovoUtente from "./ModaleCreaNuovoUtente";
 
 const BackOffice2Utenti = () => {
     const navigate = useNavigate();
@@ -80,6 +81,7 @@ const BackOffice2Utenti = () => {
             </Container>
 
             <ModaleCancellaUtente />
+            <ModaleCreaNuovoUtente text={"crea nuovo utente"} />
         </div>
     );
 };
