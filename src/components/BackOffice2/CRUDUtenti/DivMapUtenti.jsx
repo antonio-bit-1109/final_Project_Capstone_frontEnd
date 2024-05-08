@@ -1,8 +1,12 @@
 import { Button, Card, Col } from "react-bootstrap";
-import { X } from "react-bootstrap-icons";
+import { PenFill, X } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { LocalHostPath } from "../../../functions/localHostPath";
-import { isModaleDeleteUtenteVisible, salvaIdUtente } from "../../../redux/reducers/backOffice2Reducer";
+import {
+    isModaleDeleteUtenteVisible,
+    salvaDatiUtente,
+    salvaIdUtente,
+} from "../../../redux/reducers/backOffice2Reducer";
 
 const DivMapUtenti = () => {
     const dispatch = useDispatch();
@@ -32,6 +36,41 @@ const DivMapUtenti = () => {
                                                 variant="transparent"
                                             >
                                                 <X className="fs-1 text-danger" />
+                                            </Button>
+                                            <Button
+                                                onClick={() => {
+                                                    dispatch(salvaIdUtente(utente.idUtente));
+                                                    dispatch(
+                                                        salvaDatiUtente({
+                                                            nomeUtente: utente.nome,
+                                                            cognomeUtente: utente.cognome,
+                                                            peso: utente.peso,
+                                                            altezza: utente.altezza,
+                                                            email: utente.email,
+                                                            easterEggFounded: utente.isBonusFounded,
+                                                            UtentePremium: utente.isPremium,
+                                                            dataInizioAbbonamento: utente.dataInizioAbbonamento,
+                                                            dataFineAbbonamento: utente.dataFineAbbonamento,
+                                                        })
+                                                    );
+                                                    // dispatch(
+                                                    //     salvaDatiEsercizio({
+                                                    //         nomeEsercizio: esercizio.nomeEsercizio,
+                                                    //         descrizioneEsercizio: esercizio.descrizioneEsercizio,
+                                                    //         DifficoltaEsercizio: esercizio.difficolta,
+                                                    //         IsStrength: esercizio.isStrenght,
+                                                    //         TempoRecupero: esercizio.tempoRecupero,
+                                                    //         Ripetizioni: esercizio.ripetizioni,
+                                                    //         Serie: esercizio.serie,
+                                                    //         met: esercizio.met,
+                                                    //         ParteDelCorpo: esercizio.parteDelCorpoAllenata,
+                                                    //     })
+                                                    // );
+                                                    // console.log("sono il bottone a schermo grande ");
+                                                }}
+                                                variant="transparent"
+                                            >
+                                                <PenFill className="fs-5 text-white" />
                                             </Button>
                                             {/* {WidthWindows && WidthWindows >= 992 ? (
                                                 <Button
@@ -123,15 +162,16 @@ const DivMapUtenti = () => {
 
                                                 <Card.Text className="fs-5 my-2">
                                                     <strong>Utente Premium? :</strong>{" "}
-                                                    {utente.isPremium ? utente.isPremium : "no"}
+                                                    {utente.isPremium ? "UTENTE PREMIUM" : "Utente non premium"}
                                                 </Card.Text>
                                             </div>
 
                                             <div>
                                                 <Card.Text className="fs-5 my-2">
-                                                    <strong>Easter-Egg Trovato?:</strong>{" "}
-                                                    {utente.isBonusFounded ? utente.isBonusFounded : "no"}
+                                                    <strong>Bonus Trovato?:</strong>{" "}
+                                                    {utente.isBonusFounded ? "BONUS TROVATO" : "Bonus non trovato."}
                                                 </Card.Text>
+
                                                 <Card.Text className="fs-5 my-2">
                                                     <strong>Data Inizio Abbonamento:</strong>{" "}
                                                     {utente.dataInizioAbbonamento

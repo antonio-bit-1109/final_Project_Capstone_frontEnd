@@ -29,6 +29,17 @@ const initialState = {
     showModaleModificaEsercizio: false,
     showModaleDeleteUtenteVisible: false,
     idUtente: null,
+    datiUtente: {
+        nomeUtente: "",
+        cognomeUtente: "",
+        peso: "",
+        altezza: "",
+        email: "",
+        easterEggFounded: false,
+        UtentePremium: false,
+        dataInizioAbbonamento: "",
+        dataFineAbbonamento: "",
+    },
 };
 
 const stateReducerSlice = createSlice({
@@ -82,6 +93,10 @@ const stateReducerSlice = createSlice({
         isModaleDeleteUtenteVisible: (state, action) => {
             state.showModaleDeleteUtenteVisible = action.payload;
         },
+
+        salvaDatiUtente: (state, action) => {
+            state.datiUtente = action.payload;
+        },
     },
 });
 
@@ -99,5 +114,6 @@ export const {
     isModaleModificaEsercizioVisible,
     salvaIdUtente,
     isModaleDeleteUtenteVisible,
+    salvaDatiUtente,
 } = stateReducerSlice.actions;
 export default stateReducerSlice.reducer;

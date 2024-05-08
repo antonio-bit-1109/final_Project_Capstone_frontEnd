@@ -1,29 +1,32 @@
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { salvaDatiUtente } from "../../../redux/reducers/backOffice2Reducer";
+import { ModificaDatiUtente_as_admin } from "../../../redux/actions/fetchUtenti";
 
 const FormModificaUtente = ({ color }) => {
     const dispatch = useDispatch();
-    const { datiEsercizio, idEsercizio } = useSelector((store) => store.BackOffice2);
+    const { datiUtente, idUtente } = useSelector((store) => store.BackOffice2);
 
-    const [immagineEsercizio, setImmagineEsercizio] = useState(null);
+    const [immagineUtente, setImmagineUtente] = useState(null);
 
-    const EditEsercizio = (e) => {
+    const EditUtente = (e) => {
         e.preventDefault();
         // handleCloseMOdaleEditEsercizio();
 
         const formData = new FormData();
-        formData.append("immagineEsercizio", immagineEsercizio);
+        formData.append("immagineUtente", immagineUtente);
+        console.log(formData);
 
         // console.log(datiEsercizioMOdifica);
-        // dispatch(ModificaEsercizioFetch(idEsercizio, datiEsercizio, formData));
-        // setImmagineEsercizio(null);
+        dispatch(ModificaDatiUtente_as_admin(idUtente, datiUtente, formData));
+        setImmagineUtente(null);
     };
 
     return (
         <div className={`${color}`}>
             {" "}
-            <Form onSubmit={EditEsercizio}>
+            <Form onSubmit={EditUtente}>
                 <div className="d-flex gap-3">
                     {/* NOME UTENTE */}
                     <Form.Group className="my-2">
@@ -34,15 +37,8 @@ const FormModificaUtente = ({ color }) => {
                             type="text"
                             id="nomeEsercizioInput"
                             aria-describedby="nomeEsercizioInput"
-                            // value={datiEsercizio && datiEsercizio.nomeEsercizio}
-                            // onChange={(e) =>
-                            //     dispatch(
-                            //         salvaDatiEsercizio({
-                            //             ...datiEsercizio,
-                            //             nomeEsercizio: e.target.value,
-                            //         })
-                            //     )
-                            // }
+                            value={datiUtente && datiUtente.nomeUtente}
+                            onChange={(e) => dispatch(salvaDatiUtente({ ...datiUtente, nomeUtente: e.target.value }))}
                         />
                     </Form.Group>
                     {/* COGNOME UTENTE */}
@@ -54,15 +50,10 @@ const FormModificaUtente = ({ color }) => {
                             type="text"
                             id="nomeEsercizioInput"
                             aria-describedby="nomeEsercizioInput"
-                            // value={datiEsercizio && datiEsercizio.nomeEsercizio}
-                            // onChange={(e) =>
-                            //     dispatch(
-                            //         salvaDatiEsercizio({
-                            //             ...datiEsercizio,
-                            //             nomeEsercizio: e.target.value,
-                            //         })
-                            //     )
-                            // }
+                            value={datiUtente && datiUtente.cognomeUtente}
+                            onChange={(e) =>
+                                dispatch(salvaDatiUtente({ ...datiUtente, cognomeUtente: e.target.value }))
+                            }
                         />
                     </Form.Group>
                 </div>
@@ -78,7 +69,7 @@ const FormModificaUtente = ({ color }) => {
                         type="file"
                         id="ImmagineEsercizioInput"
                         aria-describedby="ImmagineEsercizioInput"
-                        onChange={(e) => setImmagineEsercizio(e.target.files[0])}
+                        onChange={(e) => setImmagineUtente(e.target.files[0])}
                     />
                 </Form.Group>
 
@@ -94,15 +85,8 @@ const FormModificaUtente = ({ color }) => {
                                 type="number"
                                 id="inputDescrizioneEsercizio"
                                 aria-describedby="inputDescrizioneEsercizio"
-                                // value={datiEsercizio && datiEsercizio.descrizioneEsercizio}
-                                // onChange={(e) =>
-                                //     dispatch(
-                                //         salvaDatiEsercizio({
-                                //             ...datiEsercizio,
-                                //             descrizioneEsercizio: e.target.value,
-                                //         })
-                                //     )
-                                // }
+                                value={datiUtente && datiUtente.peso}
+                                onChange={(e) => dispatch(salvaDatiUtente({ ...datiUtente, peso: e.target.value }))}
                             />
                             <div className="fs-3">Kg</div>
                         </div>
@@ -119,15 +103,8 @@ const FormModificaUtente = ({ color }) => {
                                 type="number"
                                 id="inputDescrizioneEsercizio"
                                 aria-describedby="inputDescrizioneEsercizio"
-                                // value={datiEsercizio && datiEsercizio.descrizioneEsercizio}
-                                // onChange={(e) =>
-                                //     dispatch(
-                                //         salvaDatiEsercizio({
-                                //             ...datiEsercizio,
-                                //             descrizioneEsercizio: e.target.value,
-                                //         })
-                                //     )
-                                // }
+                                value={datiUtente && datiUtente.altezza}
+                                onChange={(e) => dispatch(salvaDatiUtente({ ...datiUtente, altezza: e.target.value }))}
                             />
                             <div className="fs-3">Cm</div>
                         </div>
@@ -146,15 +123,8 @@ const FormModificaUtente = ({ color }) => {
                             type="text"
                             id="nomeEsercizioInput"
                             aria-describedby="nomeEsercizioInput"
-                            // value={datiEsercizio && datiEsercizio.nomeEsercizio}
-                            // onChange={(e) =>
-                            //     dispatch(
-                            //         salvaDatiEsercizio({
-                            //             ...datiEsercizio,
-                            //             nomeEsercizio: e.target.value,
-                            //         })
-                            //     )
-                            // }
+                            value={datiUtente && datiUtente.email}
+                            onChange={(e) => dispatch(salvaDatiUtente({ ...datiUtente, email: e.target.value }))}
                         />
                     </Form.Group>
                 </div>
@@ -166,17 +136,26 @@ const FormModificaUtente = ({ color }) => {
                         <Form.Check
                             className="m-auto"
                             type="switch"
-                            label="EasterEgg trovato?"
+                            label="Bonus trovato?"
                             id="EsercizioForza"
-                            // checked={datiEsercizio && datiEsercizio.IsStrength}
-                            // onChange={(e) =>
-                            //     dispatch(
-                            //         salvaDatiEsercizio({
-                            //             ...datiEsercizio,
-                            //             IsStrength: e.target.checked,
-                            //         })
-                            //     )
-                            // }
+                            checked={datiUtente && datiUtente.easterEggFounded}
+                            onChange={(e) =>
+                                dispatch(salvaDatiUtente({ ...datiUtente, easterEggFounded: e.target.checked }))
+                            }
+                        />
+                    </Form.Group>
+                    {/* utente premium */}
+                    <Form.Group className="my-3">
+                        {" "}
+                        <Form.Check
+                            className="m-auto"
+                            type="switch"
+                            label="Utente Premium?"
+                            id="EsercizioForza"
+                            checked={datiUtente && datiUtente.UtentePremium}
+                            onChange={(e) =>
+                                dispatch(salvaDatiUtente({ ...datiUtente, UtentePremium: e.target.checked }))
+                            }
                         />
                     </Form.Group>
                 </div>
@@ -192,15 +171,10 @@ const FormModificaUtente = ({ color }) => {
                             type="number"
                             id="inputRecuperoEsercizio"
                             aria-describedby="inputRecuperoEsercizio"
-                            // value={datiEsercizio && datiEsercizio.TempoRecupero}
-                            // onChange={(e) =>
-                            //     dispatch(
-                            //         salvaDatiEsercizio({
-                            //             ...datiEsercizio,
-                            //             TempoRecupero: e.target.value,
-                            //         })
-                            //     )
-                            // }
+                            value={datiUtente && datiUtente.dataInizioAbbonamento}
+                            onChange={(e) =>
+                                dispatch(salvaDatiUtente({ ...datiUtente, dataInizioAbbonamento: e.target.value }))
+                            }
                         />
                     </Form.Group>
 
@@ -214,15 +188,10 @@ const FormModificaUtente = ({ color }) => {
                             type="number"
                             id="inputSerieEsercizio"
                             aria-describedby="inputSerieEsercizio"
-                            // value={datiEsercizio && datiEsercizio.Serie}
-                            // onChange={(e) =>
-                            //     dispatch(
-                            //         salvaDatiEsercizio({
-                            //             ...datiEsercizio,
-                            //             Serie: e.target.value,
-                            //         })
-                            //     )
-                            // }
+                            value={datiUtente && datiUtente.dataFineAbbonamento}
+                            onChange={(e) =>
+                                dispatch(salvaDatiUtente({ ...datiUtente, dataFineAbbonamento: e.target.value }))
+                            }
                         />
                     </Form.Group>
                 </div>

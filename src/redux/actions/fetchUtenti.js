@@ -264,3 +264,50 @@ export const deleteUtente_as_admin = (idUtenteToDelete) => async (dispatch) => {
         console.error(err);
     }
 };
+
+export const ModificaDatiUtente_as_admin = (idUtente, datiUtente, formData) => async (dispatch) => {
+    try {
+        const response = await fetchWithAuth(LocalHostPath + `/Utente/ModificaDatiUtenteAsAdmin/${idUtente}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(datiUtente),
+        });
+
+        if (response.status === 500) {
+            throw new Error(response.status);
+        }
+        if (response.status === 400) {
+            throw new Error(response.status);
+        }
+
+        if (response.ok) {
+            const IdUtenteObj = await response.json();
+            console.log(IdUtenteObj);
+
+            if ([...formData.entries()].length === 0) {
+                toast.success("dati utenti modificati (foto non cambiata");
+                dispatch(getUtenti());
+                return;
+            }
+
+            const request2 = await fetchWithAuth(
+                LocalHostPath + `/Utente/modificaFotoAs_Admin/${IdUtenteObj.idUtente}`,
+                {
+                    method: "POST",
+                    body: formData,
+                }
+            );
+
+            if (!request2.ok) {
+                throw new Error(request2.status);
+            }
+
+            dispatch(getUtenti());
+            toast.success("dati modificati. (foto cambiata)");
+        }
+    } catch (err) {
+        console.error(err);
+    }
+};
