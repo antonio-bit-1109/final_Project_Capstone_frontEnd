@@ -27,6 +27,8 @@ const initialState = {
         ParteDelCorpo: "",
     },
     showModaleModificaEsercizio: false,
+    showModaleDeleteUtenteVisible: false,
+    idUtente: null,
 };
 
 const stateReducerSlice = createSlice({
@@ -72,6 +74,14 @@ const stateReducerSlice = createSlice({
         salvaDatiEsercizio: (state, action) => {
             state.datiEsercizio = action.payload;
         },
+
+        salvaIdUtente: (state, action) => {
+            state.idUtente = action.payload;
+        },
+
+        isModaleDeleteUtenteVisible: (state, action) => {
+            state.showModaleDeleteUtenteVisible = action.payload;
+        },
     },
 });
 
@@ -87,5 +97,7 @@ export const {
     isModaleDeleteEsercizioVisible,
     salvaDatiEsercizio,
     isModaleModificaEsercizioVisible,
+    salvaIdUtente,
+    isModaleDeleteUtenteVisible,
 } = stateReducerSlice.actions;
 export default stateReducerSlice.reducer;

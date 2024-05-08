@@ -1,8 +1,23 @@
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import DivMapUtenti from "./DivMapUtenti";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getUtenti } from "../../../redux/actions/fetchUtenti";
+// import AggiungiEsercizio from "../CRUDEsercizi/AggiungiEsercizio";
+// import FormModificaEsercizio from "../CRUDEsercizi/FormModificaEsercizio";
+import AggiungiUtente from "./AggiungiUtente";
+import FormModificaUtente from "./FormModificaUtente";
+import ModaleCancellaUtente from "../../BackOffice/ModaleCancellaUtente";
 
 const BackOffice2Utenti = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getUtenti());
+    }, []);
+
     return (
         <div className="Bg-sfondo-dark altezza-sfondo">
             <Container>
@@ -49,8 +64,22 @@ const BackOffice2Utenti = () => {
                             </Button>
                         </div>
                     </Col>
+                    <DivMapUtenti />
+                    <Col>
+                        <div className="CustomSticky_Position2">
+                            <AggiungiUtente />
+                            <div>
+                                <h3 className="text-light display-6">
+                                    <p className="m-0">Modifica Utente Selezionato:</p>
+                                </h3>
+                            </div>
+                            <FormModificaUtente color={"text-light"} />
+                        </div>
+                    </Col>
                 </Row>
             </Container>
+
+            <ModaleCancellaUtente />
         </div>
     );
 };

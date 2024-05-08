@@ -1,13 +1,16 @@
 import { Button, Modal } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteUtente_as_admin } from "../../redux/actions/fetchUtenti";
+import { isModaleDeleteUtenteVisible } from "../../redux/reducers/backOffice2Reducer";
 
 // eslint-disable-next-line react/prop-types
-const ModaleCancellaUtente = ({ showModaleDeleteUtente, handleCloseModaleDeleteUtente, idUtente }) => {
+const ModaleCancellaUtente = () => {
     const dispatch = useDispatch();
+
+    const { showModaleDeleteUtenteVisible, idUtente } = useSelector((store) => store.BackOffice2);
     return (
         <>
-            <Modal show={showModaleDeleteUtente} onHide={handleCloseModaleDeleteUtente}>
+            <Modal show={showModaleDeleteUtenteVisible} onHide={() => dispatch(isModaleDeleteUtenteVisible(false))}>
                 <Modal.Header closeButton>
                     <Modal.Title>Cancella Utente Selezionato</Modal.Title>
                 </Modal.Header>
@@ -18,7 +21,7 @@ const ModaleCancellaUtente = ({ showModaleDeleteUtente, handleCloseModaleDeleteU
                     <Button
                         variant="light"
                         className="rounded-4 text-warning border-warning fw-bold"
-                        onClick={handleCloseModaleDeleteUtente}
+                        onClick={() => dispatch(isModaleDeleteUtenteVisible(false))}
                     >
                         Chiudi
                     </Button>
@@ -26,7 +29,7 @@ const ModaleCancellaUtente = ({ showModaleDeleteUtente, handleCloseModaleDeleteU
                         variant="warning "
                         className="rounded-4 text-light fw-bold"
                         onClick={() => {
-                            handleCloseModaleDeleteUtente();
+                            dispatch(isModaleDeleteUtenteVisible(false));
                             dispatch(deleteUtente_as_admin(idUtente));
                         }}
                     >
