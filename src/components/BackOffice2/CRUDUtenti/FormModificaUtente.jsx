@@ -3,7 +3,7 @@ import { Button, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { salvaDatiUtente } from "../../../redux/reducers/backOffice2Reducer";
 import { ModificaDatiUtente_as_admin } from "../../../redux/actions/fetchUtenti";
-
+import PropTypes from "prop-types";
 const FormModificaUtente = ({ color }) => {
     const dispatch = useDispatch();
     const { datiUtente, idUtente } = useSelector((store) => store.BackOffice2);
@@ -212,3 +212,7 @@ const FormModificaUtente = ({ color }) => {
 };
 
 export default FormModificaUtente;
+
+FormModificaUtente.propTypes = {
+    color: PropTypes.string,
+};
