@@ -1,6 +1,6 @@
 import sfondo from "../../../assets/bg-login.webp";
 import { useEffect } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 // import Button from "react-bootstrap/Button";
 // import Modal from "react-bootstrap/Modal";
 import { useDispatch, useSelector } from "react-redux";
