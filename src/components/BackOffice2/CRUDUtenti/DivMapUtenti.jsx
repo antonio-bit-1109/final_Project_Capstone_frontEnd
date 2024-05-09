@@ -120,18 +120,16 @@ const DivMapUtenti = () => {
                                     </div>
 
                                     <div className="d-flex flex-column">
-                                        <div>
-                                            <Card.Img
-                                                className="my-3 rounded-circle"
-                                                style={{
-                                                    height: "200px",
-                                                    objectFit: "contain",
-                                                    width: "200px",
-                                                }}
-                                                variant="img-top"
-                                                src={`${LocalHostPath}/img-utenti/${utente.immagineProfilo}`}
-                                            />
-                                        </div>
+                                        <Card.Img
+                                            className="rounded-circle mb-5"
+                                            style={{
+                                                height: "200px",
+                                                objectFit: "cover",
+                                                width: "200px",
+                                                borderRadius: "50%",
+                                            }}
+                                            src={`${LocalHostPath}/img-utenti/${utente.immagineProfilo}`}
+                                        />
 
                                         <div>
                                             {" "}

@@ -34,7 +34,7 @@ const BackOffice2Utenti = () => {
                 })
             );
         };
-    }, []);
+    }, [dispatch]);
 
     return (
         <div className="Bg-sfondo-dark altezza-sfondo">

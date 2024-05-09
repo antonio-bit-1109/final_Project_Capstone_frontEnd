@@ -7,7 +7,7 @@ const AggiungiEsercizio = () => {
     const dispatch = useDispatch();
     return (
         <>
-            <div className={`d-flex flex-column align-items-center my-3`}>
+            <div className={`d-flex flex-column align-items-start my-3`}>
                 <Button onClick={() => dispatch(isModaleCreaEsercizioVisible(true))} variant="transparent">
                     <PlusCircleFill color="white" style={{ Height: "70px", Width: "70px" }} className="display-4" />{" "}
                     <p className="mt-2 text-light">Aggiungi Esercizio</p>
