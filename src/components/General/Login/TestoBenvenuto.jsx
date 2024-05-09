@@ -17,6 +17,7 @@ const TestoBenvenuto = () => {
                             dispatch(isDivFlipped(true));
                             dispatch(isDivAccessoVisible(true));
                             dispatch(isDivRegistrazioneVisible(false));
+                            //  dispatch(IsRotateAnimationUPAdded(false));
                         }}
                         variant="warning text-light"
                         className="rounded-4 text-warning border-warning fw-bold color"
