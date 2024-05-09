@@ -3,9 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { LocalHostPath } from "../../functions/localHostPath";
 import { loadStripe } from "@stripe/stripe-js";
 import { useEffect, useState } from "react";
-import { rimuoviTuttoDalCArrello } from "../../redux/reducers/prodottiReducer";
+import {
+    rimuoviProdottoDalCarrello,
+    rimuoviProdottoDalCarrelloOttimizzato,
+    rimuoviTuttoDalCArrello,
+} from "../../redux/reducers/prodottiReducer";
 import { fetchWithAuth } from "../../functions/interceptor";
 import { setCarrelloOttimizzato } from "../../redux/reducers/prodottiReducer";
+import { Trash3 } from "react-bootstrap-icons";
 
 const Carrello = () => {
     const token = useSelector((store) => store.token.TokenUtente);
@@ -24,6 +29,11 @@ const Carrello = () => {
 
     const [newCarrello, setNewCarrello] = useState([]);
     console.log("new carrello", newCarrello);
+
+    const { CarrelloOttimizzato } = useSelector((store) => store.prodotti);
+    console.log("carrello ottimizzato", CarrelloOttimizzato);
+
+    const { TuttiDettagliUtenteLoggato } = useSelector((store) => store.utenti);
 
     useEffect(() => {
         if (prodottiNelCarrello) {
@@ -54,14 +64,14 @@ const Carrello = () => {
     }, [carrello, dispatch]);
 
     const handleClick = async () => {
-        fetchWithAuth(`${LocalHostPath}/Carrello/create-session`, {
+        fetchWithAuth(`${LocalHostPath}/Carrello/create-session/${TuttiDettagliUtenteLoggato.idUtente}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 // Authorization: `Bearer ${token}`,
             },
             body: JSON.stringify({
-                ListaItems: newCarrello,
+                CarrelloOttimizzato: CarrelloOttimizzato,
             }),
         })
             .then((res) => res.json())
@@ -77,6 +87,11 @@ const Carrello = () => {
                     console.error(error);
                 }
             });
+    };
+
+    const TrashProduct = (idProdotto) => {
+        dispatch(rimuoviProdottoDalCarrelloOttimizzato(idProdotto));
+        dispatch(rimuoviProdottoDalCarrello(idProdotto));
     };
 
     return (
@@ -115,10 +130,10 @@ const Carrello = () => {
                                 </Button>
                             </div>{" "}
                             <div className="mt-3">
-                                {prodottiNelCarrello &&
-                                    prodottiNelCarrello.map((prodotto, index) => (
+                                {CarrelloOttimizzato &&
+                                    CarrelloOttimizzato.map((prodotto, index) => (
                                         <Col xs="12" md="12" lg="8" xl="8" xxl="8" key={`my-col-${index}`}>
-                                            <Card className="rounded rounded-5 my-2 p-3 d-flex align-items-center flex-row shadow-lg effettoVetro text-light border border-2">
+                                            <Card className="rounded rounded-5 my-2 p-3 d-flex align-items-center flex-row shadow-lg effettoVetro text-light border border-2 position-relative">
                                                 <Card.Img
                                                     className="me-3"
                                                     style={{
@@ -130,7 +145,6 @@ const Carrello = () => {
                                                     src={`${LocalHostPath}/img-prodotti/${prodotto.immagineProdotto}`}
                                                 />
                                                 <div className="d-flex gap-4">
-                                                    {" "}
                                                     <div>
                                                         <Card.Title className="d-flex justify-content-center fw-bold fs-3">
                                                             {prodotto.nomeProdotto}
@@ -144,8 +158,26 @@ const Carrello = () => {
                                                         </Card.Text>
                                                     </div>
                                                     <div className="d-flex align-items-center">
-                                                        <Card.Text className=" fs-5">{prodotto.descrizione}</Card.Text>
+                                                        <div className="d-flex flex-column">
+                                                            {" "}
+                                                            <Card.Text className=" fs-5">
+                                                                {prodotto.descrizione}
+                                                            </Card.Text>
+                                                            <Card.Text className=" fs-5">
+                                                                {" "}
+                                                                Quantità:{" "}
+                                                                <div className="fs-1 d-inline-block ps-3">
+                                                                    {prodotto.quantita}
+                                                                </div>
+                                                            </Card.Text>
+                                                        </div>
                                                     </div>
+                                                    <Button
+                                                        onClick={() => TrashProduct(prodotto.idProdotto)}
+                                                        variant="transparent"
+                                                    >
+                                                        <Trash3 size={30} color="red" />
+                                                    </Button>
                                                 </div>
                                             </Card>
                                         </Col>

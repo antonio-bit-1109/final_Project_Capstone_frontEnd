@@ -72,7 +72,7 @@ const StoricoAcquisti = () => {
                                                 </div>
                                                 <div>{`alle ore : ${new Date(prod.dataAcquisto)
                                                     .toLocaleString("it-IT")
-                                                    .slice(10, 16)} `}</div>
+                                                    .slice(10, 15)} `}</div>
                                             </span>{" "}
                                         </div>
                                         <div className="d-flex">

@@ -26,6 +26,40 @@ const stateReducerSlice = createSlice({
             state.carrelloProdotti = [];
         },
 
+        rimuoviProdottoDalCarrelloOttimizzato: (state, action) => {
+            let array = state.CarrelloOttimizzato;
+
+            for (let i = 0; i < array.length; i++) {
+                let prodotto = array[i];
+                if (prodotto.idProdotto === action.payload) {
+                    if (prodotto.quantita === 1) {
+                        array.splice(i, 1);
+                        return;
+                    }
+
+                    prodotto.quantita--;
+                }
+            }
+        },
+
+        rimuoviProdottoDalCarrello: (state, action) => {
+            let array = state.carrelloProdotti;
+            let arrayContenitore = [];
+            let idProdottoRef = action.payload;
+            for (let i = 0; i < array.length; i++) {
+                let prodotto = array[i];
+
+                if (arrayContenitore.length !== 0) {
+                    return;
+                }
+
+                if (prodotto.idProdotto === idProdottoRef) {
+                    array.splice(i, 1);
+                    arrayContenitore.push(prodotto);
+                }
+            }
+        },
+
         setCarrelloOttimizzato: (state, action) => {
             state.CarrelloOttimizzato = action.payload;
         },
@@ -48,5 +82,7 @@ export const {
     setCarrelloOttimizzato,
     setProdottoAppenaCreato,
     setProdottiAcquistati,
+    rimuoviProdottoDalCarrelloOttimizzato,
+    rimuoviProdottoDalCarrello,
 } = stateReducerSlice.actions;
 export default stateReducerSlice.reducer;
