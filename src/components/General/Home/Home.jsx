@@ -19,6 +19,7 @@ import { motion } from "framer-motion";
 import TreasureComp from "../../TreasureComp";
 import CustomModalTreasure from "../../CustomModalTreasure";
 import { setModalTreasure_True } from "../../../redux/reducers/bonusReducer";
+import { isDivAccessoVisible, isDivFlipped, isDivRegistrazioneVisible } from "../../../redux/reducers/showDivLogin";
 
 const Home = () => {
     const navigate = useNavigate();
@@ -43,6 +44,10 @@ const Home = () => {
 
     useEffect(() => {
         dispatch(getDettagliUtente());
+        // per riportare default il div nella pagina iniziale di login
+        dispatch(isDivFlipped(false));
+        dispatch(isDivAccessoVisible(false));
+        dispatch(isDivRegistrazioneVisible(false));
     }, [dispatch]);
 
     useEffect(() => {

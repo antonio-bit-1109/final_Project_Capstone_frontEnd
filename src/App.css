@@ -442,3 +442,16 @@ body {
     position: sticky;
     top: 80px;
 }
+
+.flip {
+    animation: flip-horizontal-bottom 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+}
+
+@keyframes flip-horizontal-bottom {
+    0% {
+        transform: rotateX(0);
+    }
+    100% {
+        transform: rotateX(-180deg);
+    }
+}
