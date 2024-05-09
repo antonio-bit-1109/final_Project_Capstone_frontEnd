@@ -14,12 +14,10 @@ const FormModificaUtente = ({ color }) => {
         e.preventDefault();
         // handleCloseMOdaleEditEsercizio();
 
-        const formData = new FormData();
-        formData.append("immagineUtente", immagineUtente);
-        console.log(formData);
+        // console.log(formData);
 
         // console.log(datiEsercizioMOdifica);
-        dispatch(ModificaDatiUtente_as_admin(idUtente, datiUtente, formData));
+        dispatch(ModificaDatiUtente_as_admin(idUtente, datiUtente, immagineUtente));
         setImmagineUtente(null);
     };
 

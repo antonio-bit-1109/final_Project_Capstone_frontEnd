@@ -266,7 +266,7 @@ export const deleteUtente_as_admin = (idUtenteToDelete) => async (dispatch) => {
     }
 };
 
-export const ModificaDatiUtente_as_admin = (idUtente, datiUtente, formData) => async (dispatch) => {
+export const ModificaDatiUtente_as_admin = (idUtente, datiUtente, immagineUtente) => async (dispatch) => {
     try {
         const response = await fetchWithAuth(LocalHostPath + `/Utente/ModificaDatiUtenteAsAdmin/${idUtente}`, {
             method: "POST",
@@ -287,8 +287,11 @@ export const ModificaDatiUtente_as_admin = (idUtente, datiUtente, formData) => a
             const IdUtenteObj = await response.json();
             console.log(IdUtenteObj);
 
-            if ([...formData.entries()].length === 0) {
-                toast.success("dati utenti modificati (foto non cambiata");
+            const formData = new FormData();
+            if (immagineUtente) {
+                formData.append("immagineUtente", immagineUtente);
+            } else {
+                toast.success("info profilo cambiate (foto non cambiata");
                 dispatch(getUtenti());
                 return;
             }
