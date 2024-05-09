@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { salvaDatiUtente } from "../../../redux/reducers/backOffice2Reducer";
+import { isModaleEditUtenteVisible, salvaDatiUtente } from "../../../redux/reducers/backOffice2Reducer";
 import { ModificaDatiUtente_as_admin } from "../../../redux/actions/fetchUtenti";
 import PropTypes from "prop-types";
 const FormModificaUtente = ({ color }) => {
@@ -196,7 +196,7 @@ const FormModificaUtente = ({ color }) => {
                 <div className="d-flex gap-3">
                     {" "}
                     <Button
-                        // onClick={() => dispatch(isModaleModificaEsercizioVisible(false))}
+                        onClick={() => dispatch(isModaleEditUtenteVisible(false))}
                         type="submit"
                         variant="warning "
                         className="rounded-4 text-light fw-bold"

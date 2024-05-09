@@ -2,7 +2,7 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import DivMapUtenti from "./DivMapUtenti";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getUtenti } from "../../../redux/actions/fetchUtenti";
 // import AggiungiEsercizio from "../CRUDEsercizi/AggiungiEsercizio";
 // import FormModificaEsercizio from "../CRUDEsercizi/FormModificaEsercizio";
@@ -10,14 +10,24 @@ import AggiungiUtente from "./AggiungiUtente";
 import FormModificaUtente from "./FormModificaUtente";
 import ModaleCancellaUtente from "../../BackOffice/ModaleCancellaUtente";
 import ModaleCreaNuovoUtente from "./ModaleCreaNuovoUtente";
-import { salvaDatiUtente } from "../../../redux/reducers/backOffice2Reducer";
+import { impostaWidthWindow, salvaDatiUtente } from "../../../redux/reducers/backOffice2Reducer";
+import ModaleEditUtente from "./ModaleEditUtente";
 
 const BackOffice2Utenti = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    const { WidthWindows } = useSelector((store) => store.BackOffice2);
+    console.log(WidthWindows);
+
     useEffect(() => {
         dispatch(getUtenti());
+
+        const handleResize = () => {
+            dispatch(impostaWidthWindow(window.innerWidth));
+        };
+
+        window.addEventListener("resize", handleResize);
 
         return () => {
             dispatch(
@@ -33,6 +43,7 @@ const BackOffice2Utenti = () => {
                     dataFineAbbonamento: "",
                 })
             );
+            window.removeEventListener("resize", handleResize);
         };
     }, [dispatch]);
 
@@ -83,22 +94,25 @@ const BackOffice2Utenti = () => {
                         </div>
                     </Col>
                     <DivMapUtenti />
-                    <Col>
-                        <div className="CustomSticky_Position2">
-                            <AggiungiUtente />
-                            <div>
-                                <h3 className="text-light display-6">
-                                    <p className="m-0">Modifica Utente Selezionato:</p>
-                                </h3>
+                    {WidthWindows >= 992 && (
+                        <Col>
+                            <div className="CustomSticky_Position2">
+                                <AggiungiUtente />
+                                <div>
+                                    <h3 className="text-light display-6">
+                                        <p className="m-0">Modifica Utente Selezionato:</p>
+                                    </h3>
+                                </div>
+                                <FormModificaUtente color={"text-light"} />
                             </div>
-                            <FormModificaUtente color={"text-light"} />
-                        </div>
-                    </Col>
+                        </Col>
+                    )}
                 </Row>
             </Container>
 
             <ModaleCancellaUtente />
             <ModaleCreaNuovoUtente text={"crea nuovo utente"} />
+            <ModaleEditUtente />
         </div>
     );
 };

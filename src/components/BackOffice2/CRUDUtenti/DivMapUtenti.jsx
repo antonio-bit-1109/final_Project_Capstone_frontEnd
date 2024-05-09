@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { LocalHostPath } from "../../../functions/localHostPath";
 import {
     isModaleDeleteUtenteVisible,
+    isModaleEditUtenteVisible,
     salvaDatiUtente,
     salvaIdUtente,
 } from "../../../redux/reducers/backOffice2Reducer";
@@ -11,6 +12,7 @@ import {
 const DivMapUtenti = () => {
     const dispatch = useDispatch();
     const { TuttiUtenti } = useSelector((store) => store.utenti);
+    const { WidthWindows } = useSelector((store) => store.BackOffice2);
 
     return (
         <Col xs="12" sm="12" md="12" lg="7">
@@ -35,88 +37,55 @@ const DivMapUtenti = () => {
                                         >
                                             <X className="fs-1 text-danger" />
                                         </Button>
-                                        <Button
-                                            onClick={() => {
-                                                dispatch(salvaIdUtente(utente.idUtente));
-                                                dispatch(
-                                                    salvaDatiUtente({
-                                                        nomeUtente: utente.nome,
-                                                        cognomeUtente: utente.cognome,
-                                                        peso: utente.peso,
-                                                        altezza: utente.altezza,
-                                                        email: utente.email,
-                                                        easterEggFounded: utente.isBonusFounded,
-                                                        UtentePremium: utente.isPremium,
-                                                        dataInizioAbbonamento: utente.dataInizioAbbonamento,
-                                                        dataFineAbbonamento: utente.dataFineAbbonamento,
-                                                    })
-                                                );
-                                                // dispatch(
-                                                //     salvaDatiEsercizio({
-                                                //         nomeEsercizio: esercizio.nomeEsercizio,
-                                                //         descrizioneEsercizio: esercizio.descrizioneEsercizio,
-                                                //         DifficoltaEsercizio: esercizio.difficolta,
-                                                //         IsStrength: esercizio.isStrenght,
-                                                //         TempoRecupero: esercizio.tempoRecupero,
-                                                //         Ripetizioni: esercizio.ripetizioni,
-                                                //         Serie: esercizio.serie,
-                                                //         met: esercizio.met,
-                                                //         ParteDelCorpo: esercizio.parteDelCorpoAllenata,
-                                                //     })
-                                                // );
-                                                // console.log("sono il bottone a schermo grande ");
-                                            }}
-                                            variant="transparent"
-                                        >
-                                            <PenFill className="fs-5 text-white" />
-                                        </Button>
-                                        {/* {WidthWindows && WidthWindows >= 992 ? (
-                                                <Button
-                                                    onClick={() => {
-                                                        dispatch(salvaIdEsercizio(esercizio.idEsercizio));
-                                                        dispatch(
-                                                            salvaDatiEsercizio({
-                                                                nomeEsercizio: esercizio.nomeEsercizio,
-                                                                descrizioneEsercizio: esercizio.descrizioneEsercizio,
-                                                                DifficoltaEsercizio: esercizio.difficolta,
-                                                                IsStrength: esercizio.isStrenght,
-                                                                TempoRecupero: esercizio.tempoRecupero,
-                                                                Ripetizioni: esercizio.ripetizioni,
-                                                                Serie: esercizio.serie,
-                                                                met: esercizio.met,
-                                                                ParteDelCorpo: esercizio.parteDelCorpoAllenata,
-                                                            })
-                                                        );
-                                                        console.log("sono il bottone a schermo grande ");
-                                                    }}
-                                                    variant="transparent"
-                                                >
-                                                    <PenFill className="fs-5 text-white" />
-                                                </Button>
-                                            ) : (
-                                                <Button
-                                                    onClick={() => {
-                                                        console.log("sono il bottone schermo piccolo");
-                                                        dispatch(isModaleModificaEsercizioVisible(true));
-                                                        dispatch(
-                                                            salvaDatiEsercizio({
-                                                                nomeEsercizio: esercizio.nomeEsercizio,
-                                                                descrizioneEsercizio: esercizio.descrizioneEsercizio,
-                                                                DifficoltaEsercizio: esercizio.difficolta,
-                                                                IsStrength: esercizio.isStrenght,
-                                                                TempoRecupero: esercizio.tempoRecupero,
-                                                                Ripetizioni: esercizio.ripetizioni,
-                                                                Serie: esercizio.serie,
-                                                                met: esercizio.met,
-                                                                ParteDelCorpo: esercizio.parteDelCorpoAllenata,
-                                                            })
-                                                        );
-                                                    }}
-                                                    variant="transparent"
-                                                >
-                                                    <PenFill className="fs-5 text-white" />
-                                                </Button>
-                                            )} */}
+
+                                        {WidthWindows >= 992 ? (
+                                            <Button
+                                                onClick={() => {
+                                                    dispatch(salvaIdUtente(utente.idUtente));
+                                                    dispatch(
+                                                        salvaDatiUtente({
+                                                            nomeUtente: utente.nome,
+                                                            cognomeUtente: utente.cognome,
+                                                            peso: utente.peso,
+                                                            altezza: utente.altezza,
+                                                            email: utente.email,
+                                                            easterEggFounded: utente.isBonusFounded,
+                                                            UtentePremium: utente.isPremium,
+                                                            dataInizioAbbonamento: utente.dataInizioAbbonamento,
+                                                            dataFineAbbonamento: utente.dataFineAbbonamento,
+                                                        })
+                                                    );
+                                                    console.log("sono il bottone a schermo grande ");
+                                                }}
+                                                variant="transparent"
+                                            >
+                                                <PenFill className="fs-5 text-white" />
+                                            </Button>
+                                        ) : (
+                                            <Button
+                                                onClick={() => {
+                                                    dispatch(salvaIdUtente(utente.idUtente));
+                                                    dispatch(isModaleEditUtenteVisible(true));
+                                                    dispatch(
+                                                        salvaDatiUtente({
+                                                            nomeUtente: utente.nome,
+                                                            cognomeUtente: utente.cognome,
+                                                            peso: utente.peso,
+                                                            altezza: utente.altezza,
+                                                            email: utente.email,
+                                                            easterEggFounded: utente.isBonusFounded,
+                                                            UtentePremium: utente.isPremium,
+                                                            dataInizioAbbonamento: utente.dataInizioAbbonamento,
+                                                            dataFineAbbonamento: utente.dataFineAbbonamento,
+                                                        })
+                                                    );
+                                                    console.log("sono il bottone a schermo piccolo ");
+                                                }}
+                                                variant="transparent"
+                                            >
+                                                <PenFill className="fs-5 text-white" />
+                                            </Button>
+                                        )}
                                     </div>
 
                                     <div className="d-flex flex-column">

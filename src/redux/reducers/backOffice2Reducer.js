@@ -41,6 +41,7 @@ const initialState = {
         dataFineAbbonamento: "",
     },
     showModaleCreateUtente: false,
+    showModaleEditUtente: false,
 };
 
 const stateReducerSlice = createSlice({
@@ -102,6 +103,10 @@ const stateReducerSlice = createSlice({
         isModaleCreateUtenteVisible: (state, action) => {
             state.showModaleCreateUtente = action.payload;
         },
+
+        isModaleEditUtenteVisible: (state, action) => {
+            state.showModaleEditUtente = action.payload;
+        },
     },
 });
 
@@ -121,5 +126,6 @@ export const {
     isModaleDeleteUtenteVisible,
     salvaDatiUtente,
     isModaleCreateUtenteVisible,
+    isModaleEditUtenteVisible,
 } = stateReducerSlice.actions;
 export default stateReducerSlice.reducer;
