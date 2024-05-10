@@ -8,22 +8,19 @@ const DivBenvenuto = () => {
     const { isFlipped, showDivAccesso, showDivRegistration } = useSelector((store) => store.ShowDivLogin);
 
     return (
-        <>
-            <Col
-                //  className={`${addRotateAnimationUP ? "rotate-scale-up-diag-1 " : ""} ${
-                //      addRotateAnimationDOWN ? "rotate-scale-down-diag-1" : ""
-                //  }`}
-                xs="11"
-                sm="10"
-                md="6"
-                lg="5"
-            >
+        <div
+            id="container"
+            className={`d-flex justify-content-center ${
+                (isFlipped && showDivAccesso && "bounceIn") || (isFlipped && showDivRegistration && "bounceIn")
+            }`}
+        >
+            <Col xs="11" sm="10" md="6" lg="5">
                 {" "}
                 {!isFlipped && <TestoBenvenuto />}
                 {isFlipped && showDivAccesso && <FormPerAccedere />}
                 {isFlipped && showDivRegistration && <FormPerRegistrazioneNuovoUtente />}
             </Col>
-        </>
+        </div>
     );
 };
 
